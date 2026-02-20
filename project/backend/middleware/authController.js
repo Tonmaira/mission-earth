@@ -1,4 +1,4 @@
-const staffs = require('../models/staffs');
+const users = require('../models/users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -10,7 +10,7 @@ const handleLogin = async (req, res) => {
     if (!UserId || !Password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
     try {
-        const foundUser = await staffs.findOne({ 
+        const foundUser = await users.findOne({ 
             where: { 
               UserId: UserId,
               DeleteAt: null 

@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/dbConn").sequelize;
 
-const Staff = sequelize.define('Staffs', {
+const User = sequelize.define('Users', {
     Id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,11 +17,11 @@ const Staff = sequelize.define('Staffs', {
         type: DataTypes.STRING(50),
         allowNull: true
       },
-      Dept: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 1
-      },
+      // Dept: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   defaultValue: 1
+      // },
       UserType: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -50,8 +50,8 @@ const Staff = sequelize.define('Staffs', {
         allowNull: true
       }
 }, {
-    tableName: 'Staffs',
+    tableName: 'Users',
     timestamps: false // Because you only have CreateAt
   });
 
-module.exports = Staff;
+module.exports = User;

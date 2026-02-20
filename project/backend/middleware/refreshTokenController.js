@@ -1,4 +1,4 @@
-const staff = require('../models/staffs');
+const user = require('../models/users');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const Sequelize = require('sequelize');
@@ -13,7 +13,7 @@ const handleRefreshToken = async (req, res) => {
         if (!decodedToken || !decodedToken.UserId) {
             return res.sendStatus(403); // Invalid token
         }
-        const foundUser = await staff.findOne({ 
+        const foundUser = await user.findOne({ 
             where: { 
                 UserId: decodedToken.UserId,
                 deleteAt: null  // deleteAt is NULL
