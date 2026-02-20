@@ -1,0 +1,163 @@
+.QmedBorder{
+  border: 2px solid #459D9C;
+  background: linear-gradient(
+    45deg,
+    rgb(124, 176, 184),
+    rgb(156, 217, 217),
+    rgb(146, 221, 197),
+    rgb(185, 222, 190)
+  );
+  border-radius: 5px;
+  width: 94vw;
+  height: 95vh;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-rows: 70px 2px 1fr 2px 30px; /* header | mid | footer */
+}
+.QmedHeaderBorder{
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+}
+.QmedHeaderBorder .Head{
+  display: flex;
+  align-items: center;
+  padding :5px;
+}
+.QmedHeaderBorder .Content{
+  display: flex;
+  flex-direction: column;
+  align-items: Center;
+  padding :5px;
+  justify-content: center;
+}
+.QmedHeaderBorder .Tail{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding :5px;
+  /* position: inherit; */
+  /* right: 5px; */
+}
+.QmedHeaderBorder .Title{
+  color:#505252;
+  font-size: x-large;
+}
+.QmedHeaderBorder .Time{
+  color:#6A6D6D;
+}
+.QmedMidFrame{
+  overflow: auto; /* ถ้ามี content เยอะ */
+  background-color: #f0f8ff60;
+  display: flex;
+  flex-direction: row;
+}
+
+.QmedMidBorder{
+  border: 1px solid #459D9C;
+  border-radius: 3px;
+  margin: 5px;
+  width: 100%;
+  background-color: #f0f8ff40;
+  display: grid;
+  grid-template-rows: 30px 1fr 15px;
+}
+
+.QmedMidBorder .Title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #459D9C;
+  color: #fff;
+  padding: 5px;
+  font-size: 24px;
+}
+.QmedFooterBorder{
+  /* border: 1px solid rgb(255, 32, 32); */
+}
+
+.QmedMidBorder table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: #6A6D6D;
+}
+
+.QmedMidBorder thead th {
+  position: sticky;
+  top: 0;
+  background: #7eb9b9;
+  color: #ffffff;
+  z-index: 2;
+  padding: 8px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.QmedMidBorder tbody td {
+  padding: 15px;
+  font-size: 24px;
+}
+
+.LeftBigger {
+  font-size: 30px !important;
+}
+.LeftBigger thead th {
+  padding: 5px;
+  font-size: 30px;
+  height: 35px;
+}
+.LeftBigger tbody td {
+  padding: 15px;
+  font-size: 55px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.RightBigger {
+  font-size: 30px !important;
+}
+.RightBigger thead th {
+  padding: 15px;
+  font-size: 20px;
+  height: 25px;
+}
+.RightBigger tbody td {
+  padding: 15px;
+  font-size: 50px;
+  height: 40px;
+  overflow: hidden;
+}
+
+/* zebra rows */
+.QmedMidBorder tbody tr:nth-child(odd) {
+  background-color: #f5f7f7;
+}
+
+.QmedMidBorder tbody tr:nth-child(even) {
+  background-color: #e9eded;
+}
+
+/* alert row overrides */
+.QmedMidBorder tbody tr.QmedMidBorder_Row_Alert {
+  background-color: #b63333 !important;
+  color: #ffffff !important;
+}
+
+.QmedMidBorder tbody tr:hover {
+  background-color: #dbdbdb !important;
+}
+
+.QmedMidBorder tbody tr.QmedMidBorder_Row_Alert:hover {
+  background-color: #c73232 !important;
+}
+
+.QmedMidBorder_Row {
+  background-color: transparent;
+  color: #6A6D6D;
+}
+.NameClass {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

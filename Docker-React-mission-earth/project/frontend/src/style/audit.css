@@ -1,0 +1,412 @@
+.page_audit_body{
+    /* border:1px solid red; */
+    padding:5px;
+    display: flex;
+    gap:1rem;
+    width: 95vw;
+}
+
+.SearchBox{
+    width: fit-content;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    /* min-width: 0; */
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    color: #000000;
+    border-radius: 3px;
+}
+.SearchBox_Header{
+    /* border: 1px solid blue; */
+    padding: 0.5rem;
+    font-size: 16px;
+    color: #000000;
+    background: #ebebeb;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    display: flex;
+}
+.SearchBox_Item{
+    /* border:1px solid red; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    gap:3px
+}
+.SearchBox_Item_Input_Text{
+    width: -webkit-fill-available;
+    padding: 8px;
+    background: none;
+    color: #000000;
+    border: 1px solid #919191;
+    border-radius: 3px;
+}
+.SearchBox_Item_Input_Text:disabled{
+    background: none;
+    color: #e0e0e0;
+}
+.TextAreaBar{
+    display: flex;
+    flex-direction:column ;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 10px;
+}
+.SearchBox_Item_Body{
+    /* border:1px solid red; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.SearchBox_Item_Body_Icon{
+    /* border:1px solid red; */
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    color: #5d788b;
+    border: 1px solid #919191;
+    border-right: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: none;
+    justify-content: center;
+    align-items: center;
+    background: #ebebeb;
+}
+.SearchBox_Item_Body_Icon_Right{
+    /* border:1px solid red; */
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    color: #5d788b;
+    border: 1px solid #919191;
+    /* border-left: none; */
+    border-top-left-radius: none;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: none;
+    border-bottom-right-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    background: #ebebeb;
+}
+.SearchBox_Item_Body_Icon_Right:hover{
+    background: #d6d6d6;
+    cursor: pointer;
+}
+.SearchBox_Item_DatePicker{
+    /* border:1px solid red; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    gap:3px;
+}
+.SearchBox_Item_Input_DatePicker{
+    width: -webkit-fill-available;
+    padding: 5px;
+    background: none;
+    color: #000000;
+    border: 1px solid #919191;
+    border-top-left-radius: none;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: none;
+    border-bottom-right-radius: 3px;
+    color-scheme: light;
+}
+.SearcjBox_DatePickervertiSplit{
+    display: flex;
+}
+.SearchBox_Item_Input_DatePicker:disabled{
+    background: none;
+    color: #e0e0e0;
+}
+.SearchBox_SearchBTNStack{
+    /* border: 1px solid #919191; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 5px;
+}
+.SearchBox_SearchBTN{
+    width: 15rem;
+    padding: 10px;
+    background-color: #5d788b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.SearchBox_SearchBTN:hover{
+    background-color: #556c7c;
+}
+.SearchBox_DownloadBTN{
+    width: 15rem;
+    padding: 10px;
+    background-color: #5f8b5d;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.SearchBox_DownloadBTN:hover{
+    background-color: #3c7c39;
+}
+.SearchBox_SearchBTN_Reset{
+    width: 5rem;
+    padding: 10px;
+    background-color: #c7c7c7;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.SearchBox_SearchBTN_Reset:hover{
+    background-color: #adadad;
+}
+.IPDAuditTable_Vertical{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap:1rem;
+    align-items: center;
+}
+.IPDAuditTable{
+    width: 450px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125); 
+    color: #000000;
+    border-radius: 3px;
+    padding-bottom: 30px;
+}
+.IPDAuditTable_Header{
+    padding: 0.5rem;
+    font-size: 20px;
+    color: #000000;
+    background: #ebebeb;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+.IPDAuditTable_SubHeader{
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    font-size: 16px;
+    color: #000000;
+    /* background: #ebebeb; */
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+.Header_Between{
+    display:flex;
+    justify-content:space-between;
+    padding-left:rem;
+    padding-right: 1rem;
+}
+.QuestionDiv{
+    display: flex;
+    flex-direction: column;
+}
+.SubQuestionDiv{
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: row;
+}
+.QuestionList{
+    padding-left: 1rem;
+    display: flex;
+    color: #1b1b1b !important;
+    align-items: center;
+    /* border: 1px solid blue; */
+}
+.QuestionTextArea {
+    width: 80%;
+    max-width: 85%; /* or 75ch for character-based width */
+    min-height: 2em;
+    padding: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2b2b2b;
+    background-color: #fff;
+    white-space: pre-wrap; /* preserves line breaks and spaces */
+    overflow: auto;
+    text-align: left; 
+    /* border: 1px solid red; */
+  }
+  .QuestionTextAreaSub {
+    width: 70%;
+    max-width: 85%; /* or 75ch for character-based width */
+    min-height: 2em;
+    padding: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #474747;
+    white-space: pre-wrap; /* preserves line breaks and spaces */
+    overflow: auto;
+    text-align: left; 
+  }
+  .QuestionButtonArea  {
+    width: 20%;
+    font-size: 1rem;
+    line-height: 1.5;
+    /* color: #2b2b2b; */
+    /* white-space: pre-wrap; preserves line breaks and spaces */
+    /* overflow: auto; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    /* border: 1px solid yellow; */
+  }
+.IPDAuditTable_Table{
+    /* border: 1px solid #000000; */
+    border-collapse: collapse;
+    width: 100%;
+}
+.IPDAuditTable_Table_Body{
+    padding: 0.5rem;
+}
+.IPDAuditTable_Table_Body_Full{
+    padding: 0rem;
+}
+.IPDAuditTable_Table th,td{
+    /* border : 1px solid; */
+    background: none;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    /* background: -webkit-linear-gradient(to right, #ecfbff, #7CA2BE); */
+    /* background: linear-gradient(to right, #ecfbff, #7CA2BE); */
+}
+.IPDAuditTable_Table td{
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+.IPDAuditTable_HeaderRow{
+    background: #dad4ec;
+    background: -webkit-linear-gradient(to right, #dad4ec, #f3e7e9);
+    background: linear-gradient(to right, #dad4ec, #f3e7e9);
+}
+.IPDAuditTable_Table tr{
+    /* border : 1px solid; */
+    background-color: #fff;  
+}
+.IPDAuditTable_TableData{
+    text-align: center;
+}
+.IPDAuditTable_TableData_Left{
+    text-align: left;
+}
+.IPDAuditTable_Table tr:nth-child(odd){
+  background-color: #EDF0F8;
+}
+
+.AuditAction{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.AuditAction div{
+    height: 1.25rem;
+    width: 1.25rem;
+    padding: 0.05rem;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    transition: 0.2s;
+    /* border: 1px solid #919191; */
+}
+.searchBTN{
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.editBTN{
+    color: #fff;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+.deleteBTN{
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.searchBTN:hover{
+    background-color: #168899;
+    border-color: #168899;
+}
+.editBTN:hover{
+    background-color: #dda705;
+    border-color: #dda705;
+}
+.deleteBTN:hover{
+    background-color: #b82332;
+    border-color: #b82332;
+}
+.InfoPopup_Main {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: #232323d6;
+    padding: 0.5rem;
+    align-items: flex-start;
+    max-width: 27.5rem;
+    box-shadow: 2px 2px 5px 1px #00000071;
+    transition: 0.5s;
+    cursor: pointer;
+    z-index: 1;
+}
+.InfoPopup_Button {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    color: #636363;
+    border: 1px solid #6666666c;
+    border-radius: 25px;
+    /* background-color: #232323d6; */
+    padding: 0.5rem 1rem;
+    padding-right: 20px;
+    max-width: 22.5rem;
+    /* box-shadow: 2px 2px 5px 1px #00000071; */
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    z-index: 1;
+}
+.InfoPopup_Button:hover{
+    background-color: #232323d6;
+}
+.InfoPopup_Table td{
+    text-align: left;
+}
+.InfoPopup_Table td:first-child{
+    text-align: center;
+}
+.InfoPopup_Table th,td{
+    min-width: 80px;
+}

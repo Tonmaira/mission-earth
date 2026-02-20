@@ -1,0 +1,194 @@
+.QmedChkOutBorder{
+  border: 2px solid #459D9C;
+  background: linear-gradient(
+    45deg,
+    rgb(124, 176, 184),
+    rgb(156, 217, 217),
+    rgb(146, 221, 197),
+    rgb(185, 222, 190)
+  );
+  border-radius: 5px;
+  width: 92vw;
+  height: 95vh;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-rows: 30px 1fr 2px 25px; /* header | mid | footer */
+}
+.QmedChkOutHeaderBorder{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.QmedChkOutHeaderBorder .Head{
+  display: flex;
+  align-items: center;
+  /* padding :5px; */
+}
+.Content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding :0px 5px 0px 0px;
+  justify-content: space-between;
+}
+.QmedChkOutHeaderBorder .Tail{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding :5px;
+  /* position: inherit; */
+  /* right: 5px; */
+}
+.Title{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  /* border: 1px solid yellow; */
+}
+
+.QmedChkOutHeaderBorder .Time{
+  color:#6A6D6D;
+}
+.QmedChkOutMidFrame{
+  overflow: auto; /* ถ้ามี content เยอะ */
+  background-color: #f0f8ff60;
+  display: flex;
+  flex-direction: row;
+}
+
+.QmedChkOutMidBorder{
+  border: 1px solid #459D9C;
+  /* border-radius: 3px; */
+  /* margin: 5px; */
+  width: 100%;
+  background-color: #f0f8ff40;
+  display: grid;
+  grid-template-rows: 1fr ;
+}
+
+.QmedChkOutMidBorder table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: #6A6D6D;
+}
+
+.QmedChkOutMidBorder thead th {
+  position: sticky;
+  top: 0;
+  background: #7eb9b9;
+  color: #ffffff;
+  z-index: 2;
+  padding: 8px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.QmedChkOutMidBorder tbody td {
+  padding: 15px;
+  font-size: 24px;
+}
+
+.QmedChkOutMidBorder .Title{
+  display: flex;
+  align-items: center;
+  background-color: #459D9C;
+  color: #fff;
+  padding: 5px;
+}
+.QmedChkOutFooterBorder{
+  /* border: 1px solid rgb(255, 32, 32); */
+}
+
+.QmedChkOutMidBorder table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #6A6D6D;
+}
+
+.QmedChkOutMidBorder thead th {
+  position: sticky;
+  top: 0;
+  background: #459D9C;
+  color: #ebebeb;
+  z-index: 2;
+  padding: 8px;
+}
+
+.QmedChkOutMidBorder tbody td {
+  padding: 15px;
+  font-size: 18px;
+}
+
+/* zebra rows */
+.QmedChkOutMidBorder tbody tr:nth-child(odd) {
+  background-color: #f5f7f7;
+}
+
+.QmedChkOutMidBorder tbody tr:nth-child(even) {
+  background-color: #e9eded;
+}
+
+/* alert row overrides */
+.QmedChkOutMidBorder tbody tr.QmedChkOutMidBorder_Row_Alert {
+  background-color: #b63333 !important;
+  color: #ffffff !important;
+}
+
+.QmedChkOutMidBorder tbody tr:hover {
+  background-color: #dbdbdb !important;
+}
+
+.QmedChkOutMidBorder tbody tr.QmedChkOutMidBorder_Row_Alert:hover {
+  background-color: #c73232 !important;
+}
+
+.QmedChkOutMidBorder_Row {
+  background-color: transparent;
+  color: #6A6D6D;
+}
+
+.CheckOutBtn {
+  padding: 0px 10px 0px 10px;
+}
+.Active{
+  color:#ffffff;
+  border: 1px solid #459D9C;
+  border-radius: 5px;
+  background-color: #459D9C;
+  font-size: x-large;
+  /* height: 100%; */
+}
+.InactiveL{
+  background-color: #ade2e2;
+  border-top: 3px solid #459D9C;
+  color:#505252;
+  font-size: large;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.InactiveR{
+  background-color: #ade2e2;
+  border-top: 3px solid #459D9C;
+  border-right: 3px solid #459D9C;
+  border-top-right-radius: 5px;
+  color:#505252;
+  font-size: large;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.Inactive:hover{
+  background-color: #86e0e0;
+}
+
+.QMEDCHKTable thead th {
+  padding: 5px;
+  font-size: 16px;
+  height: 25px;
+}
+
+.NameClass {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,4 @@
+VITE_REACT_APP_API_BC_PREFIX=wss://
+VITE_REACT_APP_API_BC=/broadcast
+VITE_REACT_APP_API_URL=/api
+VITE_REACT_APP_QR=https://app-service.thainakarin.co.th

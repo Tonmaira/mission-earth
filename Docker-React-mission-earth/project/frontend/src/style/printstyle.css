@@ -1,0 +1,157 @@
+.rightprint_title{
+  padding-top: 18px;
+  padding-bottom: 12px;
+  padding-left: 18px;
+  width: 100%;
+  display: flex;
+}
+
+.rightinfo{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.PrintRightTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.PrintRightTable th, .PrintRightTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.PrintRightTable thead {
+  background-color: #1976d2;
+  color: white;
+}
+
+.PrintRightTable tbody td:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.PrintRightTable tbody {
+  color: rgb(0, 0, 0);
+}
+
+.PrintRightTable-vital {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.PrintRightTable-vital th, .PrintRightTable-vital td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.PrintRightTable-vital thead {
+  background-color: #1976d2;
+  color: white;
+}
+
+.PrintRightTable-vital tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.PrintRightTable-vital tbody {
+  color: rgb(0, 0, 0);
+}
+
+.RightOrderBorder{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.RigtRow{
+  display:flex;
+}
+.RigtRow_title{
+  width: 130px;
+}
+.RigtRow_info{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.PrintRightOrderItemRow{
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px;
+  gap: 5px;
+}
+.PrintRightOrderItemRow_title{
+  width:135px;
+}
+.P_flexEnd{
+  justify-content: flex-end;
+}
+.PrintRightOrderItemBorder {
+  width: 480px;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 4px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.PrintRightOrderMainBorder{
+  border-radius: 7px;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 10px;
+}
+.PrintCheckBox{
+  border: 1px solid rgb(97, 97, 97);
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sticky-button {
+  position: fixed;
+  bottom: 30px;   /* distance from bottom */
+  right: 50px;    /* distance from right */
+  padding: 12px 20px;
+  background-color: #007bff; /* blue button */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 5rem;
+  width: 5rem;
+  font-size: 16px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.sticky-button:hover {
+  background-color: #0056b3; /* darker on hover */
+}
+
+.pdfListBox{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  gap: 5px;
+}
+
+.MakeButton{
+  cursor:pointer;
+}
+
+.wd240{
+  width: 240px;
+}
