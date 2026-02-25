@@ -2,25 +2,25 @@
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-
 COPY package*.json ./
 RUN npm install
-
 COPY . .
 RUN npm run build
+
 
 # ---------- Production Stage ----------
 FROM node:20-alpine
 
 WORKDIR /app
-
 ENV NODE_ENV=production
 
-COPY --from=builder /app ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
-EXPOSE 7571
+EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
 
 
 # # Use a base image that includes the necessary dependencies for both Node.js and Nginx
