@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     container_name: me_nginx
     ports:
-      - "7571:80"
+      - "3000:80"
     volumes:
       - ./nginx/http.d:/etc/nginx/conf.d
     depends_on:
