@@ -1,21 +1,21 @@
 require("dotenv").config();
 const express = require('express');
 const http = require("http");
-const { connectDB } = require("./config/dbConn");
+// const { connectDB } = require("./config/dbConn");
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const createLog = require("./utils/logging");
-const { initSocket,broadcastOrdersByType } = require("./service/socket");
+// const { initSocket,broadcastOrdersByType } = require("./service/socket");
 
 const PORT = process.env.BACKEND_PORT || 5050; // Use 5051 as your WS port
 
 // Database Connection
-connectDB();
+// connectDB();
 
 // Express app
 const app = express();
 const server = http.createServer(app);
-initSocket(server);
+// initSocket(server);
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -49,10 +49,10 @@ app.use((req, res, next) => {
 app.get('/api', (req, res) => res.send('Hello from Node backend!'));
 
 // Main routes
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/refresh", require("./routes/refresh"));
-app.use("/api/users", require("./routes/api/UsersRoutes"));
-app.use("/api/medlog", require("./routes/api/MedlogRoutes"));
+// app.use("/api/auth", require("./routes/auth"));
+// app.use("/api/refresh", require("./routes/refresh"));
+// app.use("/api/users", require("./routes/api/UsersRoutes"));
+// app.use("/api/medlog", require("./routes/api/MedlogRoutes"));
 
 // 404 handler
 app.use((req, res, next) => {
@@ -72,9 +72,9 @@ app.use((err, req, res, next) => {
    Broadcast Interval
    ============================ */
 
-setInterval(() => {
-  broadcastOrdersByType();
-}, 5000);
+// setInterval(() => {
+//   broadcastOrdersByType();
+// }, 5000);
 
 /* ============================
    Start Server
