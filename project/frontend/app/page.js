@@ -1,23 +1,24 @@
 import FooterSection from "@/components/FooterSection";
-import IconCorrect from "@/components/IconCorrect";
 import Navbar from "@/components/Navbar";
-import ScrollReveal from "@/components/ScrollReveal";
+import SocialMediaPack from "@/components/SocialMediaPack";
 import ScrollRevealDown from "@/components/ScrollRevealDown";
-import ServicesSection from "@/components/ServicesSection"
-import SlideServices from "@/components/SlideServices";
-import VisionMission from "@/components/VisionMission";
+import AboutUsPre from '@/components/AboutUsPre';
+import HighlightService from '@/components/HighlightService';
 import Image from 'next/image';
+import { ServicesCard } from '@/components/ServiceData';
+import EarthFeed from "@/components/earthfeed/EarthFeed";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#002740] text-white">
+    <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">
       <Navbar />
+      <SocialMediaPack />
 
       {/* --- Hero / Logo Section --- */}
-      <section className="flex flex-col items-center justify-center min-h-[100vh] w-full px-4 py-10">
+      <section className="flex flex-col items-center justify-center min-h-[100vh] w-full px-4 py-10 snap-start">
 
   <div className="flex flex-col items-center">
-    <div className="relative w-80 h-40 md:w-[349.81px] md:h-[109px]"> 
+    <div className="relative w-70 h-25 md:w-[349.81px] md:h-[109px]"> 
       <Image
         src="/full-logo-me.svg" 
         alt="Mission Earth Central Logo"
@@ -25,10 +26,10 @@ export default function Home() {
         className="object-contain drop-shadow-[0_0_0px_rgba(206,168,112,0.2)]"
       />
     </div>
-    <div className="max-w-80 text-center space-y-24 mt-2">
+    <div className="max-w-80 text-center space-y-24 mt-0.3 md:mt-2">
             <ScrollRevealDown>
-            <div className="space-y-2">
-            <p className="text-[#cea870] text-sm leading-relaxed">
+            <div className="space-y-1 md:space-y-2">
+            <p className="text-[#cea870] text-[13px] md:text-sm leading-relaxed">
               Your Trusted Partner in Sustainable Growth,
 Empowered by Experts.
             </p>
@@ -38,13 +39,31 @@ Empowered by Experts.
   </div>
   </section>
 
+      {/* --- About Us --- */}
+      <section className="snap-start">
+          <AboutUsPre />
+      </section>
+      {/* --- Highlight Service --- */}
+          <section className="snap-start">
+      {/* 2. ต้องมี services={...} และตัวแปรข้างในต้องตรงกับที่ Import มา */}
+      <HighlightService services={ServicesCard} />
+    </section>
 
-      {/* --- Service Section --- */}
+    {/* --- Earth Feed --- */}
+      <section className="snap-start">
+          <EarthFeed />
+      </section>
+
+      {/* --- Service Section 
+            <div className="hidden md:block">
               <ServicesSection />
-              <SlideServices />
+            </div>
+              <SlideServices /> --- */}
 
       {/* --- Footer --- */}
+      <section className="snap-start">
       <FooterSection />
+      </section>
     </main>
   );
 }
