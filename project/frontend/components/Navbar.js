@@ -40,8 +40,8 @@ export default function Navbar() {
 
         {/* Desktop Menu (แสดงเฉพาะจอใหญ่) */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light text-gray-300">
-          <a href="#" className="hover:text-[#CEA870] transition-colors">Home</a>
-          <a href="#" className="hover:text-[#CEA870] transition-colors">About Us</a>
+          <a href="" className="hover:text-[#CEA870] transition-colors">Home</a>
+          <a href="about" className="hover:text-[#CEA870] transition-colors">About Us</a>
           <a href="#" className="hover:text-[#CEA870] transition-colors">Services</a>
           <a href="#" className="hover:text-[#CEA870] transition-colors">Projects</a>
           <a href="#" className="hover:text-[#CEA870] transition-colors">Contact Us</a>

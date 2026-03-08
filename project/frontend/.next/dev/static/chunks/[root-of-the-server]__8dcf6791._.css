@@ -460,10 +460,10 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
-      --color-gray-200: lab(91.6229% -.159085 -2.26791);
+      --color-gray-200: lab(91.6229% -.159115 -2.26791);
       --color-gray-300: lab(85.1236% -.612259 -3.7138);
-      --color-gray-400: lab(65.9269% -.832707 -8.17474);
-      --color-gray-500: lab(47.7841% -.393212 -10.0268);
+      --color-gray-400: lab(65.9269% -.832707 -8.17473);
+      --color-gray-500: lab(47.7841% -.393182 -10.0268);
       --color-gray-600: lab(35.6337% -1.58697 -10.8425);
       --color-gray-700: lab(27.1134% -.956401 -12.3224);
       --color-gray-800: lab(16.1051% -1.18239 -11.7533);
@@ -1654,22 +1654,22 @@
 
   .border-\[\#CEA870\]\/20 {
     border-color: #cea87033;
-    border-color: lab(71.4095% 9.08074 34.3885 / .2);
+    border-color: lab(71.4095% 9.0808 34.3885 / .2);
   }
 
   .border-\[\#CEA870\]\/30 {
     border-color: #cea8704d;
-    border-color: lab(71.4095% 9.08074 34.3885 / .3);
+    border-color: lab(71.4095% 9.0808 34.3885 / .3);
   }
 
   .border-\[\#CEA870\]\/40 {
     border-color: #cea87066;
-    border-color: lab(71.4095% 9.08074 34.3885 / .4);
+    border-color: lab(71.4095% 9.0808 34.3885 / .4);
   }
 
   .border-\[\#CEA870\]\/50 {
     border-color: #cea87080;
-    border-color: lab(71.4095% 9.08074 34.3885 / .5);
+    border-color: lab(71.4095% 9.0808 34.3885 / .5);
   }
 
   .border-gray-700 {
@@ -1755,12 +1755,12 @@
 
   .bg-\[\#CEA870\]\/10 {
     background-color: #cea8701a;
-    background-color: lab(71.4095% 9.08074 34.3885 / .1);
+    background-color: lab(71.4095% 9.0808 34.3885 / .1);
   }
 
   .bg-\[\#CEA870\]\/15 {
     background-color: #cea87026;
-    background-color: lab(71.4095% 9.08074 34.3885 / .15);
+    background-color: lab(71.4095% 9.0808 34.3885 / .15);
   }
 
   .bg-black\/20 {
@@ -2381,12 +2381,12 @@
 
   .text-\[\#CEA870\]\/60 {
     color: #cea87099;
-    color: lab(71.4095% 9.08074 34.3885 / .6);
+    color: lab(71.4095% 9.0808 34.3885 / .6);
   }
 
   .text-\[\#CEA870\]\/80 {
     color: #cea870cc;
-    color: lab(71.4095% 9.08074 34.3885 / .8);
+    color: lab(71.4095% 9.0808 34.3885 / .8);
   }
 
   .text-\[\#cea870\] {
@@ -2720,7 +2720,7 @@
   @media (hover: hover) {
     .hover\:border-\[\#CEA870\]\/50:hover {
       border-color: #cea87080;
-      border-color: lab(71.4095% 9.08074 34.3885 / .5);
+      border-color: lab(71.4095% 9.0808 34.3885 / .5);
     }
   }
 
@@ -2733,7 +2733,7 @@
   @media (hover: hover) {
     .hover\:bg-\[\#CEA870\]\/10:hover {
       background-color: #cea8701a;
-      background-color: lab(71.4095% 9.08074 34.3885 / .1);
+      background-color: lab(71.4095% 9.0808 34.3885 / .1);
     }
   }
 
