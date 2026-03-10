@@ -4,6 +4,7 @@
   "/api/events/calendar/route": "app/api/events/calendar/route.js",
   "/api/feed/route": "app/api/feed/route.js",
   "/contact/page": "app/contact/page.js",
+  "/feed/[id]/page": "app/feed/[id]/page.js",
   "/page": "app/page.js",
   "/portfolio/page": "app/portfolio/page.js",
   "/services/page": "app/services/page.js"

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import OutlineBtn from "../ui/OutlineBtn";
 import { useFeedItems } from "./useEarthFeed";
 
@@ -49,6 +50,7 @@ function FeedCard({ item }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative flex-1 overflow-hidden flex flex-col justify-between cursor-pointer"
+      onClick={() => window.location.href = `/feed/${item.id}`}
     >
       {/* Gold bar */}
       <div className={`absolute left-0 top-0 bottom-0 w-[4px] bg-[#CEA870] transition-opacity duration-200 z-[3] ${hovered ? "opacity-100" : "opacity-0"}`} />

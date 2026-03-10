@@ -8,42 +8,29 @@ const HIGHLIGHT_DATA = [
   {
     id: 1,
     image: "/image/services/10-sustaintravel-forest.jpg",
-    tag: "MISSION EARTH x ROH",
-    title: "FOREST BATHING",
+    tag: "Forest Bathing",
+    title: "SUSTAINABLE TOURISM",
     desc: "We offer science-backed, sensory immersions that bridge the gap between nature and wellbeing.",
-    button: "Breath with us"
+    button: "Explore",
+    href: "/services?cat=Sustainable Travel"
   },
   {
     id: 2,
-    image: "/image/services/14-commu.JPG",
-    tag: "MISSION EARTH x INCOMM",
-    title: "ESG Course",
-    desc: "Translate complexity into clarity through our collaborative learning journeys.",
-    button: "Take an ESG Quiz"
+    image: "/image/services/2-service-training.jpg",
+    tag: "Training",
+    title: "COURSE",
+    desc: "Translate complexity into clarity through our collaborative ESG learning journeys.",
+    button: "Learn more",
+    href: "/services?cat=Course"
   },
   {
     id: 3,
     image: "/image/services/21-boardgame.jpg",
-    tag: "MISSION EARTH x COMMUNITY",
-    title: "SUSTAINABLE EVENT",
-    desc: "Making sustainability actionable for all through interactive board games.",
-    button: "See more"
-  },
-  {
-    id: 4,
-    image: "/image/services/10-sustaintravel-forest.jpg",
-    tag: "MISSION EARTH x PLACEHOLDER",
-    title: "COMING SOON",
-    desc: "Something exciting is on the way. Stay tuned for our next initiative.",
-    button: "Learn more"
-  },
-  {
-    id: 5,
-    image: "/image/services/14-commu.JPG",
-    tag: "MISSION EARTH x PLACEHOLDER",
-    title: "COMING SOON",
-    desc: "Something exciting is on the way. Stay tuned for our next initiative.",
-    button: "Learn more"
+    tag: "Board Game",
+    title: "ESG TOOLS",
+    desc: "Making sustainability actionable for all through interactive board games and creative tools.",
+    button: "See more",
+    href: "/services?cat=ESG Tools"
   },
 ];
 
@@ -147,9 +134,9 @@ we make sustainability actionable for all.
                     <p className="text-gray-200 text-[12px] md:text-[16px] font-light max-w-xl mb-2 leading-relaxed">
                       {item.desc}
                     </p>
-                    <button className="w-fit border border-[#CEA870]/50 text-[#CEA870] px-6 py-2 rounded-full text-xs font-semibold hover:bg-[#CEA870] hover:text-[#002740] transition-all">
+                    <a href={item.href} className="w-fit border border-[#CEA870]/50 text-[#CEA870] px-6 py-2 rounded-full text-xs font-semibold hover:bg-[#CEA870] hover:text-[#002740] transition-all">
                       {item.button}
-                    </button>
+                    </a>
                   </motion.div>
                 )}
               </motion.div>

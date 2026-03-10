@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
 import ServicePopup from '@/components/ServicePopup';
@@ -10,13 +11,14 @@ export default function SlideServices() {
   // --- 1. ประกาศตัวแปร Mobile
     const scrollRef = useRef(null);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-    const [isPopupOpen, setIsPopupOpen] = useState(false); // ควบคุมการเปิด/ปิดหน้าต่างเลือกหมวด
-    const [popupView, setPopupView] = useState('categories'); // 'categories' หรือ 'tags'
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [popupView, setPopupView] = useState('categories');
     const [selectedCatIdx, setSelectedCatIdx] = useState(null);
-    const [expandedCat, setExpandedCat] = useState(null); // ตัวแปรที่หายไปซึ่งทำให้เกิด Error
+    const [expandedCat, setExpandedCat] = useState(null);
   // --- 1. ประกาศตัวแปร Desktop
     const [currentSlide, setCurrentSlide] = useState(0);
     const [activeTagIndex, setActiveTagIndex] = useState(0);
+    const searchParams = useSearchParams();
 
 
     const allTags = ServicesCard.flatMap((cat, catIdx) => 
@@ -28,6 +30,16 @@ export default function SlideServices() {
         tagIndex: tagIdx // เก็บลำดับ Tag ภายในหมวดไว้ใช้งาน
     }))
     );
+
+    useEffect(() => {
+      const cat = searchParams.get("cat");
+      if (!cat) return;
+      const catIdx = ServicesCard.findIndex(c => c.title.toLowerCase() === cat.toLowerCase());
+      if (catIdx !== -1) {
+        setTimeout(() => scrollToCategory(catIdx), 300);
+        setCurrentSlide(catIdx);
+      }
+    }, [searchParams]);
 
     const scrollToSpecificTag = (catIdx, tagName) => {
         const targetIndex = allTags.findIndex(
@@ -188,14 +200,17 @@ export default function SlideServices() {
             </div>
           
           {/* --- more information (Mobile) --- */}
-            <button 
+            <a
+                href="https://lin.ee/MDN9uJ4"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-3 rounded-full border border-[#CEA870] text-[#CEA870] text-[10px] font-bold uppercase tracking-[0.2em] active:bg-[#CEA870] active:text-[#002740] transition-all flex items-center justify-center gap-2 mb-2 mt-2"
             >
                 <span>ติดต่อสอบถาม</span>
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-            </button>
+            </a>
 
             </div>
             </div>
@@ -349,19 +364,22 @@ export default function SlideServices() {
 
       
             {/* more information */}
-                <motion.button
+                <motion.a
+                    href="https://lin.ee/MDN9uJ4"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="group flex items-center gap-3 border border-[#CEA870] text-[#CEA870] px-10 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300"
                 >
                     <span>ติดต่อสอบถาม</span>
-                    <svg 
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
+                    <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                </motion.button>
+                </motion.a>
                 </motion.div>
             </AnimatePresence>
             </div>
