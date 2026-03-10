@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
 import ServicePopup from '@/components/ServicePopup';
-import { allTags, ServicesCard } from '@/components/ServiceData';
+import { ServicesCard } from '@/components/ServiceData';
 
 
 export default function SlideServices() {
@@ -12,8 +12,6 @@ export default function SlideServices() {
     const scrollRef = useRef(null);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [popupView, setPopupView] = useState('categories');
-    const [selectedCatIdx, setSelectedCatIdx] = useState(null);
     const [expandedCat, setExpandedCat] = useState(null);
   // --- 1. ประกาศตัวแปร Desktop
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -148,7 +146,7 @@ export default function SlideServices() {
   // ดึงข้อมูลมาเตรียมโชว์
     const currentTag = allTags[activeSlideIndex]; // สำหรับ Mobile
     const currentData = ServicesCard[currentSlide];
-    const currentDetail = currentData.tags[activeTagIndex].detail;
+    const currentDetail = currentData?.tags?.[activeTagIndex]?.detail ?? "";
 
   return (
     <section className="max-w-flex bg-[#052032] text-white">

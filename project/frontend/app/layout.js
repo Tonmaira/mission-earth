@@ -1,5 +1,16 @@
 import { Poppins, Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
+import Image from 'next/image';
+
+export const metadata = {
+  title: "Mission Earth",
+  description: "Your Trusted Partner in Sustainable Growth, Empowered by Experts.",
+  icons: {
+    icon: [{ url: "/icon/goldenme.png", type: "image/png" }],
+    shortcut: "/icon/goldenme.png",
+    apple: "/icon/goldenme.png",
+  },
+};
 
 const poppins = Poppins({
   subsets: ["latin"],

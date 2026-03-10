@@ -97,9 +97,9 @@ export default function AboutPage() {
                 by leading organizations across Thailand.
               </p>
             </div>
-            <button className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit">
+            <a href="/portfolio" className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit flex items-center">
               See Our Work in Action
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -118,9 +118,9 @@ export default function AboutPage() {
                 is here to help you find the right solution — big or small.
               </p>
             </div>
-            <button className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit">
+            <a href="/contact" className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit flex items-center">
               Contact Us
-            </button>
+            </a>
           </div>
         </div>
       </section>

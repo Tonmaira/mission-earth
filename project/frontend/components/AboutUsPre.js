@@ -30,12 +30,6 @@ export default function AboutUsPre() {
           <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 md:py-40">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-center">
               <ScrollReveal>
-                 <div className="p-0">
-                  
-                  </div>
-              </ScrollReveal>
-        
-              <ScrollReveal>
                 <div className="space-y-8">
                   <div className="space-y-2">
                     <h2 className="text-[#CEA870] text-sm tracking-[0.4em] uppercase font-medium">Get to know</h2>

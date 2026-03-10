@@ -74,9 +74,9 @@ tailored for everyone from global businesses to individual explorers.
 From expert training and events to sustainable tourism and interactive board games,
 we make sustainability actionable for all.
         </p>
-        <button className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold">
+        <a href="/services" className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold">
                     More Services
-                  </button>
+                  </a>
         </div>
         
       </div>
