@@ -9,7 +9,7 @@ export default function AboutUsPre() {
 
         {/* head hero session */}
         <section 
-        className="relative min-h-screen overflow-hidden [clip-path:inset(0)] py-35"
+        className="relative min-h-screen overflow-hidden [clip-path:inset(0)] py-8 md:py-35"
         > 
           {/* 1. Background Layer (เหมือนเลเยอร์ล่างสุดใน Figma) */}
           <div className="absolute top-0 bottom-0 w-full h-20 bg-gradient-to-b from-[#002740] to-transparent z-10 pointer-events-none" />
@@ -27,7 +27,7 @@ export default function AboutUsPre() {
           </div>
         
           {/* 3. Content Layer (ต้องใส่ z-10 เพื่อให้ลอยเหนือรูป) */}
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-40">
+          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 md:py-40">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-center">
               <ScrollReveal>
                  <div className="p-0">

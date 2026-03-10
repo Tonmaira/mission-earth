@@ -12,6 +12,18 @@ export default function ActivitiesPanel() {
   const [animated, setAnimated] = useState(true);
   const [activeItem, setActiveItem] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
+  const [cardSlot, setCardSlot] = useState(525);
+
+  useEffect(() => {
+    const update = () => {
+      const isMobile = window.innerWidth < 768;
+      const cardW = isMobile ? window.innerWidth * 0.85 : 515;
+      setCardSlot(cardW + 10);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const upcomingItems = activityData;
 
@@ -82,7 +94,7 @@ export default function ActivitiesPanel() {
     <div className="flex-1 bg-[#052032] flex flex-col overflow-hidden">
 
       {/* Header */}
-      <div className="h-[85px] flex items-center justify-between px-20">
+      <div className="h-[85px] flex items-center justify-between px-4 md:px-20">
         <div>
           <p className="font-poppins text-xs text-me-gold tracking-label m-0">EXPLORE</p>
           <p className="font-poppins font-semibold italic text-[32px] text-me-gold m-0">Activities</p>
@@ -92,7 +104,7 @@ export default function ActivitiesPanel() {
 
       {/* Upcoming + Calendar */}
       <div
-        className="relative flex items-center justify-between h-[350px] px-20 overflow-hidden cursor-default"
+        className="relative flex items-center justify-between flex-[2] min-h-0 px-4 md:px-20 overflow-hidden cursor-default"
         onClick={resetActivity}
       >
 
@@ -138,7 +150,7 @@ export default function ActivitiesPanel() {
           </div>
         </div>
 
-        <div className="relative z-10" onClick={e => e.stopPropagation()}>
+        <div className="hidden md:block relative z-10" onClick={e => e.stopPropagation()}>
           <CalendarWidget
             year={calYear} month={calMonth}
             today={calYear === now.getFullYear() && calMonth === now.getMonth() ? now.getDate() : null}
@@ -152,12 +164,12 @@ export default function ActivitiesPanel() {
       </div>
 
       {/* Activity Card Slider */}
-      <div className="flex-1 relative overflow-hidden mt-2.5">
+      <div className="flex-[3] min-h-0 relative overflow-hidden mt-2.5">
         <>
           {/* Sliding strip */}
             <div
               className={`absolute flex gap-2.5 top-0 bottom-0 ${animated ? "transition-all duration-500 ease-in-out" : ""}`}
-              style={{ left: `calc(50% - ${displayIndex * 525 + 262}px)` }}
+              style={{ left: `calc(50% - ${displayIndex * cardSlot + Math.floor(cardSlot / 2)}px)` }}
               onTransitionEnd={handleTransitionEnd}
             >
               {extendedCards.map((card, i) => (
@@ -183,7 +195,7 @@ function ActivityCard({ card, isActive, onClick }) {
     <div
       onClick={onClick}
       className={`
-        relative w-[515px] h-full overflow-hidden bg-[#1a3040] shrink-0 cursor-pointer
+        relative w-[85vw] md:w-[515px] h-full overflow-hidden bg-[#1a3040] shrink-0 cursor-pointer
         transition-all duration-500
         ${isActive ? "brightness-100" : "brightness-[0.35]"}
       `}
@@ -200,7 +212,7 @@ function ActivityCard({ card, isActive, onClick }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/90 via-[#002740]/30 to-transparent" />
 
       {isActive && (
-        <div className="absolute bottom-0 left-0 right-0 p-5 pl-9 flex flex-col gap-4">
+        <div className="absolute bottom-0 left-0 right-0 p-4 pl-5 md:pl-9 flex flex-col gap-2 md:gap-4">
           <div>
             <p className="font-poppins font-semibold italic text-2xl text-[#CEA870] m-0">
               {card.title}

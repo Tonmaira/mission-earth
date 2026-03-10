@@ -20,25 +20,21 @@ export default function Members() {
             Mission Earth works as a trusted partner in sustainable growth, bringing together expertise, process, and people.
             We design learning journeys and collaborative processes that translate complexity into clarity.
           </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {team.map((member, index) => (
-          <div key={index} className="flex flex-col group">
-            {/* 1. เพิ่ม relative ตรงนี้เพื่อให้ Image fill ทำงานได้ถูกต้อง */}
-            <div className="relative aspect-[3/3.5] bg-white mb-2 overflow-hidden rounded-sm transition-transform duration-500 group-hover:scale-[1.02]">
-              <Image 
-                src={member.image} 
-                alt={member.name} 
-                fill 
-                /* 2. ปรับ opacity เป็น 100% (หรือ 90%) เพื่อให้เห็นหน้าทีมงานชัดเจน ไม่ดูเป็น "เงา" */
+          <div key={index} className="flex flex-col group min-w-0">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-sm mb-2 transition-transform duration-500 group-hover:scale-[1.02]">
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
                 className="object-cover opacity-100 group-hover:opacity-90 transition-opacity duration-500"
               />
             </div>
-            
-            <h3 className="text-white text-sm font-bold mb-1 tracking-wide">
+            <h3 className="text-white text-[11px] font-bold mb-0.5 tracking-wide leading-snug [overflow-wrap:anywhere]">
               {member.name}
             </h3>
-            {/* 3. ใช้สีทอง #CEA870 ตาม CI ของ Mission Earth */}
-            <p className="text-[#CEA870] text-xs font-light tracking-widest uppercase">
+            <p className="text-[#CEA870] text-[9px] font-light tracking-widest uppercase [overflow-wrap:anywhere]">
               {member.role}
             </p>
           </div>

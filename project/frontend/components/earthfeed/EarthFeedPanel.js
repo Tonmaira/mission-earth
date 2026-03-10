@@ -16,10 +16,10 @@ export default function EarthFeedPanel() {
   const feedItems = rawFeed.length > 0 ? rawFeed : MOCK_FEED;
 
   return (
-    <div className="w-[390px] flex flex-col">
+    <div className="w-full md:w-[390px] h-full flex flex-col">
 
       {/* Header */}
-      <div className="h-[85px] flex items-center justify-between pl-6 pr-20 border-l-4 border-[#CEA870]">
+      <div className="h-[85px] flex items-center justify-between pl-6 pr-6 md:pr-20 border-l-4 border-[#CEA870]">
         <div>
           <p className="font-poppins text-xs text-[#CEA870] tracking-widest m-0">LATEST</p>
           <p className="font-poppins font-semibold italic text-[32px] text-[#CEA870] tracking-wide m-0">
@@ -80,10 +80,10 @@ function FeedCard({ item }) {
 
         {/* Title + Sub */}
         <div>
-          <p className="font-poppins font-semibold italic text-xl text-[#CEA870] m-0">
+          <p className="font-poppins font-semibold italic text-[16px] text-[#CEA870] m-0">
             {item.title}
           </p>
-          <p className="font-poppins text-base text-white m-0">{item.sub}</p>
+          <p className="font-poppins text-[12px] text-white m-0">{item.sub}</p>
         </div>
       </div>
     </div>

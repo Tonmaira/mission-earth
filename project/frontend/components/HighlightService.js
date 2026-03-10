@@ -56,10 +56,10 @@ export default function HighlightService() {
   
 
   return (
-    <section className="relative w-full min-h-screen justify-end py-4 bg-[#002740] overflow-hidden flex flex-col items-center mt-20">
-      
+    <section className="relative w-full h-full pt-[85px] bg-[#002740] overflow-hidden flex flex-col items-center">
+
       {/* 1. Header Section */}
-      <div className="relative w-full h-[450px] max-w-flex mx-auto overflow-hidden flex items-end justify-center pb-6 md:pb-16 mb-2">
+      <div className="relative w-full flex-[2] md:flex-[3] min-h-0 max-w-flex mx-auto overflow-hidden flex items-end justify-center pb-4 md:pb-10 mb-2">
         <div className="absolute top-0 bottom-0 w-full h-20 bg-gradient-to-b from-[#002740] to-transparent z-10 pointer-events-none" />
                     
                     <Image 
@@ -95,7 +95,7 @@ we make sustainability actionable for all.
       </div>
 
       {/* 2. Banner Slider */}
-      <div className="relative w-full flex justify-center items-center h-[280px] md:h-[360px]">
+      <div className="relative w-full flex justify-center items-center flex-[2] md:flex-[4] min-h-0">
         <div className="relative w-full h-full flex items-center justify-center">
           {HIGHLIGHT_DATA.map((item, index) => {
             const isActive = index === activeIndex;
@@ -174,7 +174,7 @@ we make sustainability actionable for all.
       </div>
 
       {/* 4. Indicators */}
-      <div className="flex justify-center gap-3 mt-4">
+      <div className="flex justify-center gap-3 mt-2 mb-2 flex-shrink-0">
         {HIGHLIGHT_DATA.map((_, i) => (
           <div 
             key={i} 

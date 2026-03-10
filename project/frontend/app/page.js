@@ -7,6 +7,7 @@ import HighlightService from '@/components/HighlightService';
 import Image from 'next/image';
 import { ServicesCard } from '@/components/ServiceData';
 import EarthFeed from "@/components/earthfeed/EarthFeed";
+import EarthFeedPanel from "@/components/earthfeed/EarthFeedPanel";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <SocialMediaPack />
 
       {/* --- Hero / Logo Section --- */}
-      <section className="flex flex-col items-center justify-center min-h-[100vh] w-full px-4 py-10 snap-start">
+      <section className="flex flex-col items-center justify-center h-dvh w-full px-4 py-10 snap-start snap-always">
 
   <div className="flex flex-col items-center">
     <div className="relative w-70 h-25 md:w-[349.81px] md:h-[109px]"> 
@@ -40,18 +41,23 @@ Empowered by Experts.
   </section>
 
       {/* --- About Us --- */}
-      <section className="snap-start">
+      <section className="snap-start snap-always h-dvh overflow-hidden">
           <AboutUsPre />
       </section>
       {/* --- Highlight Service --- */}
-          <section className="snap-start">
+      <section className="snap-start snap-always h-dvh overflow-hidden">
       {/* 2. ต้องมี services={...} และตัวแปรข้างในต้องตรงกับที่ Import มา */}
       <HighlightService services={ServicesCard} />
     </section>
 
     {/* --- Earth Feed --- */}
-      <section className="snap-start">
+      <section className="snap-start snap-always h-dvh overflow-hidden">
           <EarthFeed />
+      </section>
+
+      {/* --- Earth Feed Panel (mobile only, stacked below) --- */}
+      <section className="md:hidden snap-start snap-always h-dvh overflow-y-auto bg-[#002740] pt-[85px]">
+        <EarthFeedPanel />
       </section>
 
       {/* --- Service Section 
@@ -61,7 +67,7 @@ Empowered by Experts.
               <SlideServices /> --- */}
 
       {/* --- Footer --- */}
-      <section className="snap-start">
+      <section className="snap-start snap-always">
       <FooterSection />
       </section>
     </main>

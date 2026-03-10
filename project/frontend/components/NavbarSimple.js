@@ -22,9 +22,9 @@ export default function NavbarSimple() {
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light text-gray-300">
           <a href="/" className="hover:text-[#CEA870] transition-colors">Home</a>
           <a href="/about" className="hover:text-[#CEA870] transition-colors">About Us</a>
-          <a href="#" className="hover:text-[#CEA870] transition-colors">Services</a>
-          <a href="#" className="hover:text-[#CEA870] transition-colors">Projects</a>
-          <a href="#" className="hover:text-[#CEA870] transition-colors">Contact Us</a>
+          <a href="/services" className="hover:text-[#CEA870] transition-colors">Services</a>
+          <a href="/portfolio" className="hover:text-[#CEA870] transition-colors">Portfolio</a>
+          <a href="/contact" className="hover:text-[#CEA870] transition-colors">Contact Us</a>
           <div className="group flex items-center gap-2">
             <a href="#"><TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" /></a>
           </div>
@@ -48,9 +48,9 @@ export default function NavbarSimple() {
         <div className="flex flex-col items-center justify-center h-full space-y-8 text-center tracking-widest">
           <a href="/"       className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</a>
           <a href="/about"  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>About Us</a>
-          <a href="#"       className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
-          <a href="#"       className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Projects</a>
-          <a href="#"       className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
+          <a href="/services"  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
+          <a href="/portfolio" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
+          <a href="/contact"   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-8">
             <TranslateIcon className="w-10 h-10 text-[#CEA870]" />

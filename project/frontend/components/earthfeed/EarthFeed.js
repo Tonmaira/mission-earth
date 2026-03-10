@@ -18,9 +18,11 @@ import EarthFeedPanel from "./EarthFeedPanel";
 export default function EarthFeed() {
   return (
     <section className="w-full bg-[#002740] pt-[85px]">
-      <div className="flex w-full h-[calc(100vh-85px)]">
+      <div className="flex w-full h-[calc(100dvh-85px)]">
         <ActivitiesPanel />
-        <EarthFeedPanel />
+        <div className="hidden md:flex h-full">
+          <EarthFeedPanel />
+        </div>
       </div>
     </section>
   );

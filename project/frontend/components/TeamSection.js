@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-const team = [
+const members = [
   {
     name: "Khemupsorn Sirisukha",
     role: "Chief Executive Officer",
@@ -53,6 +53,27 @@ const team = [
   },
 ];
 
+const advisors = [
+  {
+    name: "Vitchayut Tupwongse, PhD",
+    role: "Advisor",
+    image: "/advisor-vitchayut.jpg",
+    bio: "Providing strategic guidance and expertise to advance Mission Earth's sustainability mission.",
+  },
+  {
+    name: "On-anong Larpparisudthi, PhD",
+    role: "Advisor",
+    image: "/advisor-onanong.jpg",
+    bio: "Contributing academic expertise and research insight to shape Mission Earth's programs and impact.",
+  },
+  {
+    name: "Chuchart Vinitwatanakhun, MD",
+    role: "Senior Advisor",
+    image: "/advisor-chuchart.jpg",
+    bio: "Guiding Mission Earth with senior-level expertise in health, environment, and sustainable development.",
+  },
+];
+
 export default function TeamSection() {
   const [hovered,  setHovered]  = useState(null);
   const [selected, setSelected] = useState(null);
@@ -65,20 +86,15 @@ export default function TeamSection() {
       <div className="hidden lg:block shrink-0 w-[424px] sticky top-[120px] self-start h-[480px]">
         {hovered !== null ? (
           <div className="relative w-full h-full overflow-hidden rounded-sm animate-fade-in">
-            <Image
-              src={team[hovered].image}
-              alt={team[hovered].name}
-              fill
-              className="object-cover object-top transition-all duration-500"
-            />
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/90 via-[#002740]/20 to-transparent" />
-            {/* Info */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
-              <p className="font-semibold text-white text-[20px] leading-snug">{team[hovered].name}</p>
-              <p className="text-[#CEA870] text-[14px] tracking-widest uppercase">{team[hovered].role}</p>
-              <p className="text-white/80 text-[14px] leading-relaxed mt-1">{team[hovered].bio}</p>
-            </div>
+            {(() => { const m = hovered < members.length ? members[hovered] : advisors[hovered - members.length]; return (<>
+              <Image src={m.image} alt={m.name} fill className="object-cover object-top transition-all duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/90 via-[#002740]/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
+                <p className="font-semibold text-white text-[20px] leading-snug">{m.name}</p>
+                <p className="text-[#CEA870] text-[14px] tracking-widest uppercase">{m.role}</p>
+                <p className="text-white/80 text-[14px] leading-relaxed mt-1">{m.bio}</p>
+              </div>
+            </>); })()}
           </div>
         ) : null}
       </div>
@@ -92,16 +108,16 @@ export default function TeamSection() {
           Mission Earth is a passionate team of environmental experts and dedicated partners committed
           to making sustainability accessible to everyone.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-0">
-          {team.map((member, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
+          {members.map((member, i) => (
             <div
               key={member.name}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => setSelected(i)}
-              className="flex flex-col gap-[15px] pb-[8px] px-[8px] w-full lg:w-[260px] cursor-pointer group"
+              className="flex flex-col gap-2 cursor-pointer group min-w-0"
             >
-              <div className="relative aspect-[3/3.5] w-full overflow-hidden rounded-sm">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -109,11 +125,40 @@ export default function TeamSection() {
                   className={`object-cover object-top transition-all duration-500 ${hovered === i ? "scale-105 brightness-110" : "brightness-75"}`}
                 />
               </div>
-              <div className="flex flex-col gap-[4px] py-[8px]">
-                <p className={`font-semibold text-[16px] transition-colors duration-300 ${hovered === i ? "text-[#CEA870]" : "text-white"}`}>
+              <div className="flex flex-col gap-1">
+                <p className={`font-semibold text-[13px] md:text-[15px] leading-snug transition-colors duration-300 [overflow-wrap:anywhere] ${hovered === i ? "text-[#CEA870]" : "text-white"}`}>
                   {member.name}
                 </p>
-                <p className="text-[#CEA870] text-[14px] tracking-widest uppercase">{member.role}</p>
+                <p className="text-[#CEA870] text-[10px] md:text-[12px] tracking-widest uppercase [overflow-wrap:anywhere]">{member.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Advisors */}
+        <p className="text-[#CEA870] text-xs tracking-[0.3em] uppercase mt-6 mb-2">Advisors</p>
+        <div className="flex flex-row gap-3 md:gap-4">
+          {advisors.map((member, i) => (
+            <div
+              key={member.name}
+              onMouseEnter={() => setHovered(members.length + i)}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => setSelected(members.length + i)}
+              className="flex flex-col gap-2 cursor-pointer group min-w-0 flex-1"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className={`object-cover object-top transition-all duration-500 ${hovered === members.length + i ? "scale-105 brightness-110" : "brightness-75"}`}
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className={`font-semibold text-[13px] md:text-[15px] leading-snug transition-colors duration-300 [overflow-wrap:anywhere] ${hovered === members.length + i ? "text-[#CEA870]" : "text-white"}`}>
+                  {member.name}
+                </p>
+                <p className="text-[#CEA870] text-[10px] md:text-[12px] tracking-widest uppercase [overflow-wrap:anywhere]">{member.role}</p>
               </div>
             </div>
           ))}
@@ -134,16 +179,18 @@ export default function TeamSection() {
         >
           <div className="relative h-[420px] w-full">
             <Image
-              src={team[selected].image}
-              alt={team[selected].name}
+              src={selected < members.length ? members[selected].image : advisors[selected - members.length].image}
+              alt={selected < members.length ? members[selected].name : advisors[selected - members.length].name}
               fill
               className="object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/95 via-[#002740]/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
-              <p className="font-semibold text-white text-[18px] leading-snug">{team[selected].name}</p>
-              <p className="text-[#CEA870] text-[12px] tracking-widest uppercase">{team[selected].role}</p>
-              <p className="text-white/80 text-[13px] leading-relaxed mt-1">{team[selected].bio}</p>
+              {(() => { const m = selected < members.length ? members[selected] : advisors[selected - members.length]; return (<>
+                <p className="font-semibold text-white text-[18px] leading-snug">{m.name}</p>
+                <p className="text-[#CEA870] text-[12px] tracking-widest uppercase">{m.role}</p>
+                <p className="text-white/80 text-[13px] leading-relaxed mt-1">{m.bio}</p>
+              </>); })()}
             </div>
           </div>
         </div>

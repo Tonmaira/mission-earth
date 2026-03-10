@@ -73,8 +73,8 @@ export default function AboutPage() {
                 { name: "Jimi",   src: "/partner/Jimi.png" },
                 { name: "KUAIT",  src: "/partner/KUAIT.png" },
               ].map((p) => (
-                <div key={p.name} className="relative h-[70px] w-[140px] md:h-[80px] md:w-[180px] lg:h-[100px] lg:w-[249px]">
-                  <Image src={p.src} alt={p.name} fill className="object-contain" />
+                <div key={p.name} className="relative h-[100px] w-[100px] md:h-[120px] md:w-[120px] lg:h-[140px] lg:w-[140px] bg-white rounded-sm p-2">
+                  <Image src={p.src} alt={p.name} fill className="object-contain p-2" />
                 </div>
               ))}
             </div>
