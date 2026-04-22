@@ -53,3 +53,4 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [03:04:58.341] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:18:37.996] Server  LOG     ✓ Compiled in 192ms

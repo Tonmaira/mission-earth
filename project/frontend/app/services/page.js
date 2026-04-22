@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import NavbarSimple from "@/components/NavbarSimple";
 import FooterSection from "@/components/FooterSection";
 import SlideServices from "@/components/SlideServices";
@@ -20,7 +21,9 @@ export default function AllServicesPage() {
       </section>
 
       {/* Services Slide */}
-      <SlideServices />
+      <Suspense fallback={null}>
+        <SlideServices />
+      </Suspense>
 
       <FooterSection />
     </main>
