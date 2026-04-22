@@ -54,3 +54,114 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [03:04:58.341] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [26:18:37.996] Server  LOG     ✓ Compiled in 192ms
+[26:54:06.323] Server  LOG       Reload env: .env.local
+[26:54:06.598] Server  LOG     ✓ Compiled in 221ms
+[27:03:34.591] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[31:34:19.142] Server  LOG     ✓ Compiled in 142ms
+[31:37:38.294] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[31:38:06.030] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:38:36.811] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:38:36.811] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:38:36.811] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:38:36.811] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:38:36.811] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:38:41.103] Browser ERROR   A param property was accessed directly with `params.id`. `params` is a Promise and must be unwrapped with `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[31:38:41.103] Browser ERROR   A param property was accessed directly with `params.id`. `params` is a Promise and must be unwrapped with `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[31:42:47.640] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[31:42:50.678] Browser WARN    Image with src "/ajwid.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:50.678] Browser WARN    Image with src "/tonmai.JPG" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:50.678] Browser WARN    Image with src "/zom.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:50.678] Browser WARN    Image with src "/fiat.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:50.678] Browser WARN    Image with src "/film.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:50.678] Browser WARN    Image with src "/pcherry.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:52.474] Browser WARN    Image with src "/image/services/2-service-training.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/project/20260214rohxmeforest bathing/IMG_7238-2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[31:42:54.005] Browser WARN    Image with src "/project/20260130bkkdw/2026-1-21-ASP-BKKDW2026_3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/partner/ROH.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/project/20260214rohxmeforest bathing/IMG_7238-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/project/20260116cmutalk/ARCH2024-A4-vio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/project/20260130bkkdw/BKKDW.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:54.005] Browser WARN    Image with src "/project/20260116cmutalk/DSC05737 copy.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:42:57.393] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[31:43:13.618] Browser WARN    Image with src "/ajwid.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:13.618] Browser WARN    Image with src "/tonmai.JPG" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:13.618] Browser WARN    Image with src "/zom.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:13.618] Browser WARN    Image with src "/fiat.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:13.618] Browser WARN    Image with src "/film.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:13.618] Browser WARN    Image with src "/pcherry.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:23.902] Browser WARN    Image with src "/image/services/2-service-training.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260130bkkdw/2026-1-21-ASP-BKKDW2026_3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260214rohxmeforest bathing/IMG_7238-2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[31:43:32.628] Browser WARN    Image with src "/partner/ROH.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260214rohxmeforest bathing/IMG_7238-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260116cmutalk/ARCH2024-A4-vio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260130bkkdw/BKKDW.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:32.628] Browser WARN    Image with src "/project/20260116cmutalk/DSC05737 copy.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:43:48.836] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:44:35.196] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:44:35.382] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:35.382] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:35.382] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:35.382] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:35.382] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:45.337] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:44:48.010] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:48.010] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:48.010] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:48.010] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:48.010] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:44:52.477] Browser ERROR   A param property was accessed directly with `params.id`. `params` is a Promise and must be unwrapped with `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[31:44:52.477] Browser ERROR   A param property was accessed directly with `params.id`. `params` is a Promise and must be unwrapped with `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[31:45:37.340] Server  LOG     ✓ Compiled in 32ms
+[31:45:37.402] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: React
+[31:45:50.731] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[31:45:50.743] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: useRouter
+[31:45:50.791] Server  LOG     ✓ Compiled in 30ms
+[31:45:50.829] Server  ERROR   ⨯ ReferenceError: useRouter is not defined
+[31:45:51.447] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: useRouter
+[31:46:02.670] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[31:46:02.716] Server  LOG     ✓ Compiled in 30ms
+[31:46:02.922] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:47:09.313] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[31:47:12.009] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:47:12.009] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:47:12.009] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:47:12.009] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[31:47:12.009] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[32:15:16.295] Server  LOG     ✓ Compiled in 86ms
+[32:15:48.419] Server  LOG     ✓ Compiled in 26ms
+[32:16:35.269] Server  LOG     ✓ Compiled in 48ms
+[32:18:33.380] Server  LOG     ✓ Compiled in 29ms
+[32:26:12.581] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[32:26:25.730] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[32:26:30.207] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[32:26:30.207] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[32:26:39.028] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:35:04.471] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[33:35:11.784] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:35:22.959] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:36:31.189] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:39:21.361] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:45:47.067] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:49:58.041] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:49:58.041] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:49:58.041] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:49:58.041] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:49:58.041] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:49:58.041] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:51:47.211] Server  LOG     ✓ Compiled in 53ms
+[33:51:48.511] Browser WARN    Image with src "http://localhost:3000/full-logo-me.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[33:51:48.511] Browser WARN    Image with src "/image/earthfeed/forestbathingincity.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:51:48.511] Browser WARN    Image with src "/image/earthfeed/DSC06796.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:51:48.511] Browser WARN    Image with src "/image/earthfeed/rohxmemou.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:51:48.511] Browser WARN    Image with src "/image/earthfeed/bma.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:51:48.511] Browser WARN    Image with src "/image/earthfeed/forestbathingdoitung.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[33:52:48.909] Server  LOG     ✓ Compiled in 33ms

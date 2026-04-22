@@ -1,10 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 async function getArticles() {
-  const res = await fetch("http://localhost:3000/api/feed", { cache: "no-store" });
-  if (!res.ok) return [];
-  return res.json();
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) return [];
+  return data.map(a => ({
+    id: a.id,
+    title: a.title,
+    sub: a.sub,
+    cat: a.cat,
+    date: a.date,
+    imageUrl: a.image_url,
+  }));
 }
 
 const CAT_COLOR = {
@@ -46,7 +62,7 @@ export default async function AdminFeedPage() {
             </tr>
           </thead>
           <tbody>
-            {articles.map((article, i) => (
+            {articles.map((article) => (
               <tr key={article.id} className={`border-b border-white/5 last:border-0 hover:bg-white/3 transition-colors`}>
                 {/* Title + image */}
                 <td className="px-6 py-4">

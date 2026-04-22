@@ -1,11 +1,31 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    setError("");
+    setLoading(true);
+
+    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (signInError) {
+      setError("Email หรือ Password ไม่ถูกต้อง");
+      setLoading(false);
+      return;
+    }
+
+    router.push("/admin");
+  };
 
   return (
     <main className="min-h-screen bg-[#002740] flex items-center justify-center px-4 relative overflow-hidden">
@@ -83,21 +103,20 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {/* Error */}
+            {error && (
+              <p className="text-red-400 text-sm text-center">{error}</p>
+            )}
+
             {/* Submit */}
             <button
               type="button"
-              className="w-full bg-[#CEA870] text-[#002740] font-semibold py-3 rounded-xl hover:bg-[#CEA870]/90 active:scale-95 transition-all duration-300 tracking-widest text-sm uppercase mt-2"
+              onClick={handleLogin}
+              disabled={loading}
+              className="w-full bg-[#CEA870] text-[#002740] font-semibold py-3 rounded-xl hover:bg-[#CEA870]/90 active:scale-95 transition-all duration-300 tracking-widest text-sm uppercase mt-2 disabled:opacity-50"
             >
-              Sign In
+              {loading ? "กำลังเข้าสู่ระบบ..." : "Sign In"}
             </button>
-
-            {/* Sign Up */}
-            <a
-              href="/signup"
-              className="w-full border border-[#CEA870]/50 text-[#CEA870] font-semibold py-3 rounded-xl hover:bg-[#CEA870]/10 active:scale-95 transition-all duration-300 tracking-widest text-sm uppercase flex items-center justify-center"
-            >
-              Sign Up
-            </a>
           </div>
 
           {/* Divider */}
@@ -109,7 +128,7 @@ export default function LoginPage() {
 
           {/* Register */}
           <p className="text-center text-gray-500 text-sm">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <a href="#" className="text-[#CEA870] hover:underline">Request access</a>
           </p>
         </div>

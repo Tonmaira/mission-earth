@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 const CATS = ["ME Update", "Event", "News"];
 
@@ -30,9 +31,22 @@ export default function NewArticlePage() {
     setBlocks(updated);
   };
 
-  const handleSubmit = () => {
-    // TODO: POST to /api/feed when backend is ready
-    alert("บันทึกแล้ว! (mock — ยังไม่ได้ต่อ DB)");
+  const handleSubmit = async () => {
+    const { error } = await supabase.from("articles").insert({
+      title: form.title,
+      sub: form.sub,
+      cat: form.cat,
+      date: form.date,
+      image_url: form.imageUrl,
+      tags: tags ? tags.split(",").map(t => t.trim()) : [],
+      blocks,
+    });
+
+    if (error) {
+      alert("เกิดข้อผิดพลาด: " + error.message);
+      return;
+    }
+
     router.push("/admin/feed");
   };
 
