@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { ServicesCard } from '@/components/ServiceData';
 import EarthFeed from "@/components/earthfeed/EarthFeed";
 import EarthFeedPanel from "@/components/earthfeed/EarthFeedPanel";
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">

@@ -34,8 +34,17 @@ export default function SlideServices() {
       if (!cat) return;
       const catIdx = ServicesCard.findIndex(c => c.title.toLowerCase() === cat.toLowerCase());
       if (catIdx !== -1) {
-        setTimeout(() => scrollToCategory(catIdx), 300);
         setCurrentSlide(catIdx);
+        const tag = searchParams.get("tag");
+        if (tag) {
+          const tagIdx = ServicesCard[catIdx].tags.findIndex(t => t.name === tag);
+          if (tagIdx !== -1) setActiveTagIndex(tagIdx);
+          else setActiveTagIndex(0);
+          setTimeout(() => scrollToSpecificTag(catIdx, tag), 300);
+        } else {
+          setActiveTagIndex(0);
+          setTimeout(() => scrollToCategory(catIdx), 300);
+        }
       }
     }, [searchParams]);
 
@@ -149,8 +158,8 @@ export default function SlideServices() {
     const currentDetail = currentData?.tags?.[activeTagIndex]?.detail ?? "";
 
   return (
-    <section className="max-w-flex bg-[#052032] text-white">
-      <div className="w-full md:max-w-6xl mx-auto px-0 md:px-4 py-10 md:py-20 bg-[#052032]">
+    <section id="slide-services" className="max-w-flex bg-[#052032] text-white">
+      <div className="w-full md:max-w-6xl mx-auto px-0 md:px-4 pt-[95px] pb-10 md:pb-8 bg-[#052032] min-h-screen">
 
       
       {/* --- 📱 MOBILE VERSION: SEAMLESS SNAP SLIDER --- */}
@@ -286,7 +295,7 @@ export default function SlideServices() {
             {currentData.tags.map((tag, idx) => (
               <button
                 key={idx}
-                onMouseEnter={() => setActiveTagIndex(idx)}
+                onClick={() => setActiveTagIndex(idx)}
                 className={`flex items-center gap-2 px-5 py-2 rounded-full border text-sm transition-all duration-300 ${
                   activeTagIndex === idx 
                   ? "bg-[#CEA870] border-[#CEA870] text-[#002740] font-bold" 
@@ -385,7 +394,7 @@ export default function SlideServices() {
       </div>
 
       {/* information box */}
-      <div className="hidden md:grid md:grid-cols-4 gap-6 mt-8">
+      <div className="hidden md:grid md:grid-cols-4 gap-6 mt-6">
         <InfoItem label="ภาษา" value={currentDetail.lang} />
         <InfoItem label="ระยะเวลา" value={currentDetail.time} />
         <InfoItem label="รูปแบบ" value={currentDetail.type} />

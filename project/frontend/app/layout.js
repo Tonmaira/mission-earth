@@ -1,6 +1,7 @@
 import { Poppins, Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import Image from 'next/image';
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata = {
   title: "Mission Earth",
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${poppins.variable} ${notoTh.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

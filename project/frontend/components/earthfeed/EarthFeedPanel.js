@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import OutlineBtn from "../ui/OutlineBtn";
 import { useFeedItems } from "./useEarthFeed";
+import { useLang } from "@/lib/LanguageContext";
 
 const MOCK_FEED = [
   { id: 1, cat: "ME Update", date: "Mar 7, 2026", title: "Forest Bathing in City", sub: "with 6 senses", imageUrl: "/image/earthfeed/forestbathingincity.jpg" },
@@ -13,6 +14,7 @@ const MOCK_FEED = [
 ];
 
 export default function EarthFeedPanel() {
+  const { t } = useLang();
   const { data: rawFeed, loading, error } = useFeedItems();
   const feedItems = rawFeed.length > 0 ? rawFeed : MOCK_FEED;
 
@@ -22,12 +24,12 @@ export default function EarthFeedPanel() {
       {/* Header */}
       <div className="h-[85px] flex items-center justify-between pl-6 pr-6 md:pr-20 border-l-4 border-[#CEA870]">
         <div>
-          <p className="font-poppins text-xs text-[#CEA870] tracking-widest m-0">LATEST</p>
+          <p className="font-poppins text-xs text-[#CEA870] tracking-widest m-0">{t("earthfeed.latest")}</p>
           <p className="font-poppins font-semibold italic text-[32px] text-[#CEA870] tracking-wide m-0">
             EARTH FEED
           </p>
         </div>
-        <OutlineBtn label="All" small />
+        <OutlineBtn label={t("earthfeed.all")} small />
       </div>
 
       {/* Feed Cards */}

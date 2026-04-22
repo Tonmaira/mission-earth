@@ -1,11 +1,19 @@
+"use client";
 import { useState, useEffect } from "react";
 import OutlineBtn from "../ui/OutlineBtn";
 import CalendarWidget from "./CalendarWidget";
 import { useCalendarEvents } from "./useEarthFeed";
 import activityData from "@/lib/activityData";
+import { useLang } from "@/lib/LanguageContext";
 
 export default function ActivitiesPanel() {
+  const { t, lang } = useLang();
   const now = new Date();
+
+  const translatedActivities = activityData.map((item) => ({
+    ...item,
+    ...item[lang] ?? item.en,
+  }));
   const [calYear,  setCalYear]  = useState(now.getFullYear());
   const [calMonth, setCalMonth] = useState(now.getMonth());
   const [displayIndex, setDisplayIndex] = useState(1);
@@ -25,7 +33,7 @@ export default function ActivitiesPanel() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const upcomingItems = activityData;
+  const upcomingItems = translatedActivities;
 
   const handleActivityClick = (item, i) => {
     setActiveItem(i);
@@ -52,7 +60,7 @@ export default function ActivitiesPanel() {
     setCalMonth(now.getMonth());
   };
 
-  const activityCards = activityData;
+  const activityCards = translatedActivities;
 
   const n = activityCards.length;
   const extendedCards = n > 0 ? [activityCards[n - 1], ...activityCards, activityCards[0]] : [];
@@ -96,10 +104,10 @@ export default function ActivitiesPanel() {
       {/* Header */}
       <div className="h-[85px] flex items-center justify-between px-4 md:px-20">
         <div>
-          <p className="font-poppins text-xs text-me-gold tracking-label m-0">EXPLORE</p>
-          <p className="font-poppins font-semibold italic text-[32px] text-me-gold m-0">Activities</p>
+          <p className="font-poppins text-xs text-me-gold tracking-label m-0">{t("earthfeed.explore")}</p>
+          <p className="font-poppins font-semibold italic text-[32px] text-me-gold m-0">{t("earthfeed.activities")}</p>
         </div>
-        <OutlineBtn label="All Activities" />
+        <OutlineBtn label={t("earthfeed.allActivities")} />
       </div>
 
       {/* Upcoming + Calendar */}
@@ -132,7 +140,7 @@ export default function ActivitiesPanel() {
         {/* Content */}
         <div className="relative z-10 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
           <p className="font-poppins font-semibold italic text-[36px] text-[#CEA870] m-0">
-            Up Coming
+            {t("earthfeed.upcoming")}
           </p>
           <div className="flex flex-col gap-1">
             {upcomingItems.map((item, i) => (
@@ -220,7 +228,13 @@ function ActivityCard({ card, isActive, onClick }) {
             <p className="font-poppins text-base text-white m-0">{card.desc}</p>
           </div>
           <div className="flex flex-wrap gap-2.5">
-            {(card.tags ?? []).map(tag => <OutlineBtn key={tag} label={tag} small />)}
+            {(card.tags ?? []).map(tag => {
+                const label = typeof tag === "string" ? tag : tag.label;
+                const href  = typeof tag === "object" ? tag.href : null;
+                return href
+                  ? <a key={label} href={href} onClick={e => e.stopPropagation()}><OutlineBtn label={label} small /></a>
+                  : <OutlineBtn key={label} label={label} small />;
+              })}
           </div>
         </div>
       )}

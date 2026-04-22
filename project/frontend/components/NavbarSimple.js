@@ -16,7 +16,7 @@ export default function NavbarSimple() {
       <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
 
         {/* Logo */}
-        <Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" />
+        <a href="/"><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
 
         {/* Desktop menu */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light text-gray-300">
@@ -28,6 +28,9 @@ export default function NavbarSimple() {
           <div className="group flex items-center gap-2">
             <a href="#"><TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" /></a>
           </div>
+          <a href="/login" className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
+            Login
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -54,6 +57,9 @@ export default function NavbarSimple() {
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-8">
             <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
+            <a href="/login" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">
+              Login
+            </a>
           </div>
         </div>
       </div>

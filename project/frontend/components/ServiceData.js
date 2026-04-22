@@ -49,6 +49,11 @@ export const ServicesCard = [
     title: "Sustainable Travel",
     desc: "ทริปเรียนรู้และท่องเที่ยวอย่างยั่งยืน ที่ออกแบบเพื่อสร้างแรงบันดาลใจและมุมมองใหม่ต่อโลก",
     tags: [
+      { name: "อาบป่า (Forest Bathing / Shinrin-yoku Experience)", 
+        tagImage: "/image/services/10-sustaintravel-forest.jpg",
+        icon: <span className="w-2 h-2 bg-[#CEA870]" />, 
+        summary: "ประสบการณ์การพักผ่อนและเยียวยาจิตใจผ่านธรรมชาติ ฝึกการรับรู้ด้วยประสาทสัมผัสและเชื่อมโยงกับสิ่งแวดล้อมอย่างลึกซึ้ง",
+        detail: { lang: "ไทย", time: "2 วัน 1 คืน", type: "walk2", tool: "blank2" } },
       { name: "LuxCamp", 
         icon: <span className="w-2 h-2 bg-[#CEA870]" />, 
         tagImage: "/image/services/7-sustaintravel-lux.jpg",
@@ -58,12 +63,7 @@ export const ServicesCard = [
         tagImage: "/image/services/8-sustaintravel-esgtrip.jpg",
         icon: <span className="w-2 h-2 bg-[#CEA870]" />, 
         summary: "หทริปศึกษาดูงานเพื่อเรียนรู้แนวทางการพัฒนาอย่างยั่งยืนจากองค์กรต้นแบบ ทั้งในประเทศไทยและต่างประเทศ",
-        detail: { lang: "ไทย", time: "2 วัน 1 คืน", type: "Retreat", tool: "Nature Journal" } },
-      { name: "อาบป่า (Forest Bathing / Shinrin-yoku Experience)", 
-        tagImage: "/image/services/10-sustaintravel-forest.jpg",
-        icon: <span className="w-2 h-2 bg-[#CEA870]" />, 
-        summary: "ประสบการณ์การพักผ่อนและเยียวยาจิตใจผ่านธรรมชาติ ฝึกการรับรู้ด้วยประสาทสัมผัสและเชื่อมโยงกับสิ่งแวดล้อมอย่างลึกซึ้ง",
-        detail: { lang: "ไทย", time: "2 วัน 1 คืน", type: "walk2", tool: "blank2" } }
+        detail: { lang: "ไทย", time: "2 วัน 1 คืน", type: "Retreat", tool: "Nature Journal" } }
     ]
   },
   {

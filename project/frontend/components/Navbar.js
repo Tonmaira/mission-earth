@@ -5,10 +5,12 @@ import Image from "next/image";
 import IconHamburger from "./IconHamburger";
 import IconClose from "./IconClose";
 import SocialMediaPackHorizon from "./SocialMediaPackHorizon";
+import { useLang } from "@/lib/LanguageContext";
 
 export default function Navbar() {
   const [showLogo, setShowLogo] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, toggleLang, lang } = useLang();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,23 +37,26 @@ export default function Navbar() {
         <div className={`z-[60] transition-all duration-1000 transform ${
           showLogo || isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
         }`}>
-          <Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" />
+          <a href="/"><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
         </div>
 
         {/* Desktop Menu (แสดงเฉพาะจอใหญ่) */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light text-gray-300">
-          <a href="/" className="hover:text-[#CEA870] transition-colors">Home</a>
-          <a href="/about" className="hover:text-[#CEA870] transition-colors">About Us</a>
-          <a href="/services" className="hover:text-[#CEA870] transition-colors">Services</a>
-          <a href="/portfolio" className="hover:text-[#CEA870] transition-colors">Portfolio</a>
-          <a href="/contact" className="hover:text-[#CEA870] transition-colors">Contact Us</a>
+          <a href="/" className="hover:text-[#CEA870] transition-colors">{t("navbar.home")}</a>
+          <a href="/about" className="hover:text-[#CEA870] transition-colors">{t("navbar.about")}</a>
+          <a href="/services" className="hover:text-[#CEA870] transition-colors">{t("navbar.services")}</a>
+          <a href="/portfolio" className="hover:text-[#CEA870] transition-colors">{t("navbar.portfolio")}</a>
+          <a href="/contact" className="hover:text-[#CEA870] transition-colors">{t("navbar.contact")}</a>
           <div className="group flex items-center gap-2">
-            <a href="#"><TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" /></a>
+            <button onClick={toggleLang} className="flex items-center gap-1">
+              <TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" />
+              <span className="text-xs text-[#CEA870] group-hover:text-white transition-colors">{lang === "en" ? "TH" : "EN"}</span>
+            </button>
           </div>
           
-          {/* --- <a href="#" className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium">
+          <a href="/login" className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
             Login
-          </a> --- */}
+          </a>
         </div>
         
         {/* Mobile Button: ใส่ z-[100] และแยกออกมาให้ชัดเจน */}
@@ -71,14 +76,17 @@ export default function Navbar() {
         isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 text-center tracking-widest">
-          <a href="/" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</a>
-          <a href="/about" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>About Us</a>
-          <a href="/services" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
-          <a href="/portfolio" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
-          <a href="/contact" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
+          <a href="/" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.home")}</a>
+          <a href="/about" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.about")}</a>
+          <a href="/services" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.services")}</a>
+          <a href="/portfolio" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.portfolio")}</a>
+          <a href="/contact" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.contact")}</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-8">
-            <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
+            <button onClick={toggleLang} className="flex items-center gap-2">
+              <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
+              <span className="text-[#CEA870] text-lg">{lang === "en" ? "ภาษาไทย" : "English"}</span>
+            </button>
             {/* --- <a href="#" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium">
               Login
             </a> --- */}

@@ -1,9 +1,12 @@
 "use client";
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from 'next/image';
+import Link from 'next/link';
+import { useLang } from "@/lib/LanguageContext";
 
 
 export default function AboutUsPre() {
+    const { t } = useLang();
     return (
     <main className="max-w-flex mx-auto">
 
@@ -32,20 +35,19 @@ export default function AboutUsPre() {
               <ScrollReveal>
                 <div className="space-y-8">
                   <div className="space-y-2">
-                    <h2 className="text-[#CEA870] text-sm tracking-[0.4em] uppercase font-medium">Get to know</h2>
+                    <h2 className="text-[#CEA870] text-sm tracking-[0.4em] uppercase font-medium">{t("home.about.label")}</h2>
                     <h3 className="text-4xl md:text-5xl font-semibold text-white italic">
                       <span className="text-[#CEA870]">Mission Earth</span>
                     </h3>
                   </div>
                   
                   <p className="text-gray-200 font-light text-lg leading-relaxed max-w-2xl">
-                    Mission Earth works as a trusted partner in sustainable growth, bringing together expertise, process, and people.
-                    We design learning journeys and collaborative processes that translate complexity into clarity.
+                    {t("home.about.desc")}
                   </p>
-        
-                  <button className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold">
-                    About Us
-                  </button>
+
+                  <Link href="/about" className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold inline-block">
+                    {t("home.about.button")}
+                  </Link>
                 </div>
               </ScrollReveal>
             </div>
