@@ -16,7 +16,8 @@ export default function EditArticlePage({ params }) {
 
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.from("articles").select("*").eq("id", id).single();
+      const { data, error } = await supabase.from("articles").select("*").eq("id", id).single();
+      console.log("edit load:", { id, data, error });
       if (data) {
         setForm({ title: data.title, sub: data.sub ?? "", cat: data.cat ?? "ME Update", date: data.date ?? "", imageUrl: data.image_url ?? "" });
         setBlocks(data.blocks ?? [{ type: "paragraph", text: "" }]);
