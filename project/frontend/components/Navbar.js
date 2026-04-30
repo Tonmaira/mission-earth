@@ -123,7 +123,7 @@ export default function Navbar() {
       <div className={`md:hidden fixed inset-0 w-full h-screen bg-[#002740] z-[40] transition-all duration-500 flex flex-col ${
         isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-8 text-center tracking-widest">
+        <div className="flex flex-col items-center justify-center min-h-full space-y-6 text-center tracking-widest py-24 overflow-y-auto">
           <a href="/" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.home")}</a>
           <a href="/about" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.about")}</a>
           <a href="/services" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.services")}</a>
