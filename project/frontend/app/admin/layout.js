@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,12 +16,27 @@ export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) router.push("/login");
     });
   }, [router]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/");
+  };
 
   return (
     <div className="min-h-screen bg-[#001a2c] flex">
@@ -31,12 +46,14 @@ export default function AdminLayout({ children }) {
 
         {/* Logo */}
         <div className={`h-[64px] flex items-center ${collapsed ? "justify-center px-2" : "px-5"} border-b border-white/5`}>
-          {!collapsed && (
-            <Image src="/full-logo-me.svg" alt="Mission Earth" width={100} height={30} className="object-contain" />
-          )}
-          {collapsed && (
-            <Image src="/icon/goldenme.png" alt="ME" width={28} height={28} className="object-contain" />
-          )}
+          <Link href="/">
+            {!collapsed && (
+              <Image src="/full-logo-me.svg" alt="Mission Earth" width={100} height={30} className="object-contain" />
+            )}
+            {collapsed && (
+              <Image src="/icon/goldenme.png" alt="ME" width={28} height={28} className="object-contain" />
+            )}
+          </Link>
         </div>
 
         {/* Nav */}
@@ -80,11 +97,39 @@ export default function AdminLayout({ children }) {
         {/* Topbar */}
         <div className="h-[64px] bg-[#002740] border-b border-white/5 flex items-center justify-between px-6 shrink-0">
           <p className="text-white/40 text-sm">Admin Panel</p>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#CEA870]/20 border border-[#CEA870]/30 flex items-center justify-center">
-              <span className="text-[#CEA870] text-xs font-bold">A</span>
-            </div>
-            <span className="text-gray-400 text-sm">Admin</span>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#CEA870]/20 border border-[#CEA870]/30 flex items-center justify-center">
+                <span className="text-[#CEA870] text-xs font-bold">A</span>
+              </div>
+              <span className="text-gray-400 text-sm">Admin</span>
+            </button>
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-[#002740] border border-white/10 rounded-2xl shadow-xl overflow-hidden z-50">
+                <Link
+                  href="/admin"
+                  className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-[#CEA870] transition-colors"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Admin Management
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-red-400 transition-colors border-t border-white/5"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Log out
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
