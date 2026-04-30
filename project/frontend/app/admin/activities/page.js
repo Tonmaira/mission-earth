@@ -1,12 +1,113 @@
 "use client";
-import { useState } from "react";
-import activityData from "@/lib/activityData";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
+const EMPTY_FORM = {
+  image_url: "",
+  start_date: "",
+  end_date: "",
+  en_title: "",
+  en_label: "",
+  en_desc: "",
+  en_tags: "",
+  th_title: "",
+  th_label: "",
+  th_desc: "",
+  th_tags: "",
+};
+
+function toTagArray(str) {
+  return str.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
+function toTagString(arr) {
+  if (!arr) return "";
+  return arr.join(", ");
+}
 
 export default function AdminActivitiesPage() {
-  const [activities, setActivities] = useState(activityData);
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [saving, setSaving] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
+
+  const fetchActivities = async () => {
+    const { data } = await supabase
+      .from("activities")
+      .select("*")
+      .order("start_date", { ascending: true });
+    setActivities(data ?? []);
+    setLoading(false);
+  };
+
+  useEffect(() => { fetchActivities(); }, []);
+
+  const openAdd = () => {
+    setEditingId(null);
+    setForm(EMPTY_FORM);
+    setShowForm(true);
+  };
+
+  const openEdit = (item) => {
+    setEditingId(item.id);
+    setForm({
+      image_url: item.image_url ?? "",
+      start_date: item.start_date ?? "",
+      end_date: item.end_date ?? "",
+      en_title: item.en_title ?? "",
+      en_label: item.en_label ?? "",
+      en_desc: item.en_desc ?? "",
+      en_tags: toTagString(item.en_tags),
+      th_title: item.th_title ?? "",
+      th_label: item.th_label ?? "",
+      th_desc: item.th_desc ?? "",
+      th_tags: toTagString(item.th_tags),
+    });
+    setShowForm(true);
+  };
+
+  const handleSave = async () => {
+    if (!form.en_title || !form.start_date || !form.end_date) return;
+    setSaving(true);
+    const payload = {
+      image_url: form.image_url,
+      start_date: form.start_date,
+      end_date: form.end_date,
+      en_title: form.en_title,
+      en_label: form.en_label,
+      en_desc: form.en_desc,
+      en_tags: toTagArray(form.en_tags),
+      th_title: form.th_title,
+      th_label: form.th_label,
+      th_desc: form.th_desc,
+      th_tags: toTagArray(form.th_tags),
+    };
+
+    if (editingId) {
+      await supabase.from("activities").update(payload).eq("id", editingId);
+    } else {
+      await supabase.from("activities").insert(payload);
+    }
+
+    await fetchActivities();
+    setShowForm(false);
+    setSaving(false);
+  };
+
+  const handleDelete = async (id) => {
+    setDeletingId(id);
+    await supabase.from("activities").delete().eq("id", id);
+    await fetchActivities();
+    setDeletingId(null);
+  };
+
+  const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-5xl">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -14,64 +115,177 @@ export default function AdminActivitiesPage() {
           <h1 className="text-white text-2xl font-semibold">Activities</h1>
           <p className="text-gray-400 text-sm mt-1">{activities.length} กิจกรรม</p>
         </div>
+        <button
+          onClick={openAdd}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#CEA870] text-[#002740] text-sm font-semibold hover:opacity-90 transition-opacity"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+          เพิ่มกิจกรรม
+        </button>
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {activities.map((item, i) => (
-          <div key={item.id} className="bg-[#052032] border border-white/5 rounded-2xl overflow-hidden group">
-            {/* Image */}
-            <div className="relative h-40 overflow-hidden">
-              <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-[#002740]/40" />
+      {loading ? (
+        <p className="text-gray-500 text-sm">กำลังโหลด...</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {activities.map((item) => (
+            <div key={item.id} className="bg-[#052032] border border-white/5 rounded-2xl overflow-hidden group flex flex-col">
+              <div className="relative h-40 overflow-hidden shrink-0">
+                {item.image_url ? (
+                  <img src={item.image_url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                ) : (
+                  <div className="w-full h-full bg-white/5 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-[#002740]/40" />
+              </div>
+
+              <div className="p-4 space-y-3 flex flex-col flex-1">
+                <div className="flex-1">
+                  <p className="text-[#CEA870] text-xs uppercase tracking-widest mb-1">กิจกรรม</p>
+                  <p className="text-white font-semibold text-sm">{item.en_title}</p>
+                  <p className="text-gray-400 text-xs mt-1 line-clamp-2">{item.en_desc}</p>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {item.start_date}
+                  {item.end_date !== item.start_date && ` — ${item.end_date}`}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {(item.en_tags ?? []).map((tag) => (
+                    <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px] border border-[#CEA870]/30 text-[#CEA870]">{tag}</span>
+                  ))}
+                </div>
+
+                <div className="flex gap-2 pt-2 border-t border-white/5">
+                  <button
+                    onClick={() => openEdit(item)}
+                    className="flex-1 py-1.5 rounded-lg text-xs text-gray-300 bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    แก้ไข
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    disabled={deletingId === item.id}
+                    className="flex-1 py-1.5 rounded-lg text-xs text-red-400 bg-red-400/5 hover:bg-red-400/10 transition-colors disabled:opacity-50"
+                  >
+                    {deletingId === item.id ? "กำลังลบ..." : "ลบ"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Form Drawer */}
+      {showForm && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="flex-1 bg-black/50 backdrop-blur-sm" onClick={() => setShowForm(false)} />
+          <div className="w-full max-w-md bg-[#001a2c] border-l border-white/10 overflow-y-auto flex flex-col">
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+              <h2 className="text-white font-semibold">{editingId ? "แก้ไขกิจกรรม" : "เพิ่มกิจกรรม"}</h2>
+              <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-white transition-colors">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            {/* Content */}
-            <div className="p-4 space-y-3">
+            {/* Form body */}
+            <div className="flex-1 px-6 py-5 space-y-5 overflow-y-auto">
+
+              {/* Image URL */}
               <div>
-                <p className="text-[#CEA870] text-xs uppercase tracking-widest mb-1">กิจกรรม</p>
-                <p className="text-white font-semibold">{item.en.title}</p>
-                <p className="text-gray-400 text-xs mt-1">{item.en.desc}</p>
+                <label className="text-xs text-gray-400 mb-1.5 block">Image URL</label>
+                <input value={form.image_url} onChange={set("image_url")} placeholder="/image/services/..." className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                {form.image_url && (
+                  <img src={form.image_url} alt="" className="mt-2 w-full h-28 object-cover rounded-lg opacity-70" onError={(e) => e.target.style.display = "none"} />
+                )}
               </div>
 
               {/* Dates */}
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {item.startDate.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" })}
-                {item.endDate > item.startDate && ` — ${item.endDate.toLocaleDateString("th-TH", { day: "numeric", month: "short" })}`}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">วันเริ่ม *</label>
+                  <input type="date" value={form.start_date} onChange={set("start_date")} className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">วันสิ้นสุด *</label>
+                  <input type="date" value={form.end_date} onChange={set("end_date")} className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {(item.en.tags ?? []).map((tag) => {
-                  const label = typeof tag === "string" ? tag : tag.label;
-                  return (
-                    <span key={label} className="px-2.5 py-0.5 rounded-full text-[10px] border border-[#CEA870]/30 text-[#CEA870]">
-                      {label}
-                    </span>
-                  );
-                })}
+              {/* EN */}
+              <div className="space-y-3">
+                <p className="text-xs text-[#CEA870] uppercase tracking-widest">English</p>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Title *</label>
+                  <input value={form.en_title} onChange={set("en_title")} placeholder="Forest Bathing" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Label (ชื่อสั้น)</label>
+                  <input value={form.en_label} onChange={set("en_label")} placeholder="Forest Bathing" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Description</label>
+                  <textarea value={form.en_desc} onChange={set("en_desc")} rows={3} placeholder="Short description..." className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50 resize-none" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Tags (คั่นด้วย comma)</label>
+                  <input value={form.en_tags} onChange={set("en_tags")} placeholder="Nature, Wellbeing, ESG" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
               </div>
 
-              {/* Edit note */}
-              <p className="text-gray-600 text-xs pt-1 border-t border-white/5">
-                แก้ไขได้ที่ <code className="text-gray-500">lib/activityData.js</code>
-              </p>
+              {/* TH */}
+              <div className="space-y-3">
+                <p className="text-xs text-[#CEA870] uppercase tracking-widest">ภาษาไทย</p>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">ชื่อกิจกรรม</label>
+                  <input value={form.th_title} onChange={set("th_title")} placeholder="อาบป่า (Forest Bathing)" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Label (ชื่อสั้น)</label>
+                  <input value={form.th_label} onChange={set("th_label")} placeholder="อาบป่า" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">คำอธิบาย</label>
+                  <textarea value={form.th_desc} onChange={set("th_desc")} rows={3} placeholder="คำอธิบายสั้นๆ..." className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50 resize-none" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1.5 block">Tags (คั่นด้วย comma)</label>
+                  <input value={form.th_tags} onChange={set("th_tags")} placeholder="ธรรมชาติ, สุขภาวะ, ESG" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-4 border-t border-white/10 flex gap-3 shrink-0">
+              <button onClick={() => setShowForm(false)} className="flex-1 py-2.5 rounded-xl text-sm text-gray-400 bg-white/5 hover:bg-white/10 transition-colors">
+                ยกเลิก
+              </button>
+              <button
+                onClick={handleSave}
+                disabled={saving || !form.en_title || !form.start_date}
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-[#CEA870] text-[#002740] hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {saving ? "กำลังบันทึก..." : editingId ? "บันทึก" : "เพิ่ม"}
+              </button>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Note */}
-      <div className="bg-[#052032] border border-[#CEA870]/10 rounded-2xl p-5">
-        <p className="text-[#CEA870] text-xs uppercase tracking-widest mb-2">หมายเหตุ</p>
-        <p className="text-gray-400 text-sm leading-relaxed">
-          ข้อมูล Activities ปัจจุบันอยู่ที่ <code className="text-gray-300 bg-white/5 px-1.5 py-0.5 rounded">lib/activityData.js</code> — พอเชื่อม Database แล้วจะสามารถเพิ่ม/แก้ไขได้จากหน้านี้เลย
-        </p>
-      </div>
-
+        </div>
+      )}
     </div>
   );
 }

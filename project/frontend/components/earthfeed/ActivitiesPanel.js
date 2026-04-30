@@ -107,7 +107,7 @@ export default function ActivitiesPanel() {
           <p className="font-poppins text-xs text-me-gold tracking-label m-0">{t("earthfeed.explore")}</p>
           <p className="font-poppins font-semibold italic text-[32px] text-me-gold m-0">{t("earthfeed.activities")}</p>
         </div>
-        <OutlineBtn label={t("earthfeed.allActivities")} />
+        <OutlineBtn label={t("earthfeed.allActivities")} href="/activities" />
       </div>
 
       {/* Upcoming + Calendar */}

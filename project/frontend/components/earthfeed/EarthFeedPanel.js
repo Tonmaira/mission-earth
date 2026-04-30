@@ -29,7 +29,7 @@ export default function EarthFeedPanel() {
             EARTH FEED
           </p>
         </div>
-        <OutlineBtn label={t("earthfeed.all")} small />
+        <OutlineBtn label={t("earthfeed.all")} small href="/feed" />
       </div>
 
       {/* Feed Cards */}
