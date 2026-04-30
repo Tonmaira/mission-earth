@@ -135,10 +135,20 @@ export default function Navbar() {
               <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
               <span className="text-[#CEA870] text-lg">{lang === "en" ? "ภาษาไทย" : "English"}</span>
             </button>
-            {/* --- <a href="#" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium">
-              Login
-            </a> --- */}
-            
+            {session ? (
+              <>
+                <a href="/admin" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
+                  Admin Management
+                </a>
+                <button onClick={handleLogout} className="text-gray-500 text-sm hover:text-red-400 transition-colors">
+                  Log out
+                </button>
+              </>
+            ) : (
+              <a href="/login" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
+                Login
+              </a>
+            )}
           </div>
         </div>
       </div>
