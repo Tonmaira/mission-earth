@@ -11,10 +11,11 @@ const socials = [
 ];
 
 const navLinks = [
-  { label: "Home",     href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact",  href: "/contact" },
+  { label: "Home",      href: "/" },
+  { label: "About Us",  href: "/about" },
+  { label: "Services",  href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact",   href: "/contact" },
 ];
 
 export default function FooterSection() {
