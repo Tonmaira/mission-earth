@@ -57,9 +57,9 @@ export default function FooterSection() {
           <p className="text-[#CEA870] text-xs tracking-widest uppercase font-semibold mb-2">Contact</p>
           <p className="text-white/60 text-[14px] leading-relaxed">
             MISSION EARTH Co., Ltd.<br />
-            88/5 Soi Phahon Yothin 7,<br />
-            Phahon Yothin Rd. Phayathai,<br />
-            Bangkok 10400
+            MANEEYA CENTER<br />
+            518/5 Phloen Chit Rd, Lumphini,<br />
+            Pathum Wan, Bangkok 10330
           </p>
           <div className="flex flex-col gap-1 mt-2">
             <a href="tel:0925253595" className="text-white/60 text-[14px] hover:text-[#CEA870] transition-colors duration-200">

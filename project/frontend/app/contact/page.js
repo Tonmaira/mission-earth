@@ -37,9 +37,9 @@ export default function ContactPage() {
             <div className="border-t border-white/10 pt-4">
               <p className="text-white text-[15px] leading-relaxed">
                 MISSION EARTH Co., Ltd.<br />
-                88/5 Soi Phahon Yothin 7,<br />
-                Phahon Yothin Rd. Phayathai,<br />
-                Bangkok 10400
+                MANEEYA CENTER<br />
+                518/5 Phloen Chit Rd, Lumphini,<br />
+                Pathum Wan, Bangkok 10330
               </p>
             </div>
           </div>
