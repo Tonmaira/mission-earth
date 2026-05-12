@@ -7,7 +7,7 @@ import HighlightService from '@/components/HighlightService';
 import Image from 'next/image';
 import { ServicesCard } from '@/components/ServiceData';
 import EarthFeed from "@/components/earthfeed/EarthFeed";
-import EarthFeedPanel from "@/components/earthfeed/EarthFeedPanel";
+import EarthFeedSection from "@/components/earthfeed/EarthFeedSection";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">
@@ -49,14 +49,14 @@ Empowered by Experts.
       <HighlightService services={ServicesCard} />
     </section>
 
-    {/* --- Earth Feed --- */}
+    {/* --- Activities --- */}
       <section className="snap-start snap-always h-dvh overflow-hidden">
           <EarthFeed />
       </section>
 
-      {/* --- Earth Feed Panel (mobile only, stacked below) --- */}
-      <section className="md:hidden snap-start snap-always h-dvh overflow-y-auto bg-[#002740] pt-[85px]">
-        <EarthFeedPanel />
+      {/* --- Earth Feed --- */}
+      <section className="snap-start snap-always h-dvh overflow-hidden">
+        <EarthFeedSection />
       </section>
 
       {/* --- Service Section 

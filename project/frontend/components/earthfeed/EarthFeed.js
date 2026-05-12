@@ -1,6 +1,5 @@
 "use client";
 import ActivitiesPanel from "./ActivitiesPanel";
-import EarthFeedPanel from "./EarthFeedPanel";
 
 /**
  * EarthFeed — full section for the Home page
@@ -17,12 +16,9 @@ import EarthFeedPanel from "./EarthFeedPanel";
  */
 export default function EarthFeed() {
   return (
-    <section className="w-full bg-[#002740] pt-[85px]">
-      <div className="flex w-full h-[calc(100dvh-85px)]">
+    <section className="w-full h-full bg-[#002740] pt-[85px]">
+      <div className="w-full h-[calc(100dvh-85px)]">
         <ActivitiesPanel />
-        <div className="hidden md:flex h-full">
-          <EarthFeedPanel />
-        </div>
       </div>
     </section>
   );
