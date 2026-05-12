@@ -35,6 +35,12 @@ export default function AdminActivitiesPage() {
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [toast, setToast] = useState(null);
+
+  const showToast = (msg, type = "success") => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 3000);
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
@@ -46,6 +52,9 @@ export default function AdminActivitiesPage() {
     if (!error) {
       const { data } = supabase.storage.from("Activities").getPublicUrl(fileName);
       setForm((f) => ({ ...f, image_url: data.publicUrl }));
+      showToast("อัพโหลดรูปสำเร็จ ✓");
+    } else {
+      showToast("อัพโหลดไม่สำเร็จ ลองใหม่อีกครั้ง", "error");
     }
     setUploading(false);
   };
@@ -126,6 +135,13 @@ export default function AdminActivitiesPage() {
 
   return (
     <div className="space-y-6 max-w-5xl">
+
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed top-6 right-6 z-[100] flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium shadow-lg ${toast.type === "error" ? "bg-red-500/90 text-white" : "bg-[#CEA870] text-[#002740]"}`}>
+          {toast.type === "error" ? "✕" : "✓"} {toast.msg}
+        </div>
+      )}
 
       {/* Header */}
       <div className="flex items-center justify-between">
