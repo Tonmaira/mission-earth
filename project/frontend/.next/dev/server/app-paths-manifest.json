@@ -1,17 +1,12 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/about/page": "app/about/page.js",
+  "/activities/dek-sang-nan-2/page": "app/activities/dek-sang-nan-2/page.js",
   "/admin/activities/page": "app/admin/activities/page.js",
-  "/admin/feed/[id]/page": "app/admin/feed/[id]/page.js",
-  "/admin/feed/new/page": "app/admin/feed/new/page.js",
   "/admin/feed/page": "app/admin/feed/page.js",
   "/admin/page": "app/admin/page.js",
+  "/api/activities/route": "app/api/activities/route.js",
   "/api/events/calendar/route": "app/api/events/calendar/route.js",
   "/api/feed/route": "app/api/feed/route.js",
-  "/contact/page": "app/contact/page.js",
-  "/feed/[id]/page": "app/feed/[id]/page.js",
+  "/brand-guide/page": "app/brand-guide/page.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/services/page": "app/services/page.js"
+  "/page": "app/page.js"
 }
