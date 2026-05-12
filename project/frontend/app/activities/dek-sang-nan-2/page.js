@@ -1,10 +1,18 @@
 "use client";
+import { useEffect } from "react";
 import NavbarSimple from "@/components/NavbarSimple";
 import FooterSection from "@/components/FooterSection";
 
 const BASE = "/image/activities/dek-sang-nan-2/component";
 
 export default function DekSangNan2Page() {
+  useEffect(() => {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const prev = meta?.getAttribute("content");
+    if (meta) meta.setAttribute("content", "#e8dcc8");
+    return () => { if (meta && prev) meta.setAttribute("content", prev); };
+  }, []);
+
   return (
     <main className="min-h-screen" style={{ backgroundColor: "#f5efe0" }}>
       <NavbarSimple bg="#e8dcc8" textColor="#1a3320" />

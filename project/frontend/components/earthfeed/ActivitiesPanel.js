@@ -195,6 +195,12 @@ export default function ActivitiesPanel() {
               className={`absolute flex gap-2.5 top-0 bottom-0 ${animated ? "transition-all duration-500 ease-in-out" : ""}`}
               style={{ left: `calc(50% - ${displayIndex * cardSlot + Math.floor(cardSlot / 2)}px)` }}
               onTransitionEnd={handleTransitionEnd}
+              onTouchStart={(e) => { e.currentTarget._touchX = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                const dx = e.changedTouches[0].clientX - (e.currentTarget._touchX ?? 0);
+                if (dx < -40) setDisplayIndex(i => i + 1);
+                else if (dx > 40) setDisplayIndex(i => i - 1);
+              }}
             >
               {extendedCards.map((card, i) => (
                 <ActivityCard
@@ -205,8 +211,8 @@ export default function ActivitiesPanel() {
                 />
               ))}
             </div>
-            <SlideArrow side="left"  onClick={() => setDisplayIndex(i => i - 1)} />
-            <SlideArrow side="right" onClick={() => setDisplayIndex(i => i + 1)} />
+            <SlideArrow side="left"  onClick={() => setDisplayIndex(i => i - 1)} className="hidden md:flex" />
+            <SlideArrow side="right" onClick={() => setDisplayIndex(i => i + 1)} className="hidden md:flex" />
           </>
         )}
       </div>
@@ -215,11 +221,19 @@ export default function ActivitiesPanel() {
 }
 
 function ActivityCard({ card, isActive, onClick }) {
+  const handleClick = () => {
+    if (isActive && card.pageUrl) {
+      window.location.href = card.pageUrl;
+    } else {
+      onClick();
+    }
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
       className={`
-        relative w-[85vw] md:w-[515px] h-full overflow-hidden bg-[#1a3040] shrink-0 cursor-pointer
+        relative w-[85vw] md:w-[515px] h-full overflow-hidden bg-[#1a3040] shrink-0 cursor-pointer rounded-2xl
         transition-all duration-500
         ${isActive ? "brightness-100" : "brightness-[0.35]"}
       `}
@@ -270,7 +284,7 @@ function ActivityCard({ card, isActive, onClick }) {
   );
 }
 
-function SlideArrow({ side, onClick }) {
+function SlideArrow({ side, onClick, className = "" }) {
   const isLeft = side === "left";
   return (
     <button
@@ -278,7 +292,7 @@ function SlideArrow({ side, onClick }) {
       className={`
         absolute top-1/2 -translate-y-1/2 z-10
         bg-me-navy/50 border-none cursor-pointer px-1.5 py-2 rounded
-        ${isLeft ? "left-3.5" : "right-3.5"}
+        ${isLeft ? "left-3.5" : "right-3.5"} ${className}
       `}
     >
       <svg width="20" height="34" viewBox="0 0 20 34" fill="none">

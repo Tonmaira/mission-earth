@@ -11,6 +11,9 @@ export const metadata = {
     shortcut: "/icon/goldenme.png",
     apple: "/icon/goldenme.png",
   },
+};
+
+export const viewport = {
   themeColor: "#002740",
 };
 

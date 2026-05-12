@@ -126,17 +126,28 @@ export default function HighlightService() {
           })}
         </div>
 
-        {/* 3. Navigation Arrows */}
+        {/* Touch swipe */}
+        <div
+          className="absolute inset-0 z-40 md:hidden"
+          onTouchStart={(e) => { e.currentTarget._touchX = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            const dx = e.changedTouches[0].clientX - (e.currentTarget._touchX ?? 0);
+            if (dx < -40) nextSlide();
+            else if (dx > 40) prevSlide();
+          }}
+        />
+
+        {/* 3. Navigation Arrows — desktop only */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 md:left-[78px] z-[50] p-4 rounded-full border border-[#CEA870]/20 text-[#CEA870] opacity-80 hover:opacity-100 hover:bg-[#CEA870]/10 transition-all duration-300"
+          className="hidden md:flex absolute left-[78px] z-[50] p-4 rounded-full border border-[#CEA870]/20 text-[#CEA870] opacity-80 hover:opacity-100 hover:bg-[#CEA870]/10 transition-all duration-300"
         >
           <ChevronLeft size={40} strokeWidth={2} />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 md:right-[78px] z-[50] p-4 rounded-full border border-[#CEA870]/20 text-[#CEA870] opacity-80 hover:opacity-100 hover:bg-[#CEA870]/10 transition-all duration-300"
+          className="hidden md:flex absolute right-[78px] z-[50] p-4 rounded-full border border-[#CEA870]/20 text-[#CEA870] opacity-80 hover:opacity-100 hover:bg-[#CEA870]/10 transition-all duration-300"
         >
           <ChevronRight size={40} strokeWidth={2} />
         </button>
