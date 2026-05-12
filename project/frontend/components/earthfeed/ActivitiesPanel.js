@@ -155,18 +155,22 @@ export default function ActivitiesPanel() {
             {t("earthfeed.upcoming")}
           </p>
           <div className="flex flex-col gap-1">
-            {upcomingItems.map((item, i) => (
-              <button
-                key={item.label}
-                onClick={() => handleActivityClick(item, i)}
-                className="flex items-center gap-3 text-left cursor-pointer bg-transparent border-none py-1"
-              >
-                <span className={`block h-[1.5px] transition-all duration-300 bg-[#CEA870] ${activeItem === i ? "w-5" : "w-2 opacity-40"}`} />
-                <span className={`font-poppins text-sm tracking-widest uppercase transition-all duration-300 ${activeItem === i ? "text-[#CEA870]" : "text-white/60"}`}>
-                  {item.label}
-                </span>
-              </button>
-            ))}
+            {upcomingItems.length === 0 ? (
+              <p className="font-poppins text-sm text-white/40 italic">No upcoming activities at this time.</p>
+            ) : (
+              upcomingItems.map((item, i) => (
+                <button
+                  key={item.label}
+                  onClick={() => handleActivityClick(item, i)}
+                  className="flex items-center gap-3 text-left cursor-pointer bg-transparent border-none py-1"
+                >
+                  <span className={`block h-[1.5px] transition-all duration-300 bg-[#CEA870] ${activeItem === i ? "w-5" : "w-2 opacity-40"}`} />
+                  <span className={`font-poppins text-sm tracking-widest uppercase transition-all duration-300 ${activeItem === i ? "text-[#CEA870]" : "text-white/60"}`}>
+                    {item.label}
+                  </span>
+                </button>
+              ))
+            )}
           </div>
         </div>
 
@@ -185,8 +189,12 @@ export default function ActivitiesPanel() {
 
       {/* Activity Card Slider */}
       <div className="flex-[3] min-h-0 relative overflow-hidden mt-2.5">
-        <>
-          {/* Sliding strip */}
+        {extendedCards.length === 0 ? (
+          <div className="flex items-center justify-center h-full">
+            <p className="font-poppins text-sm text-white/30 italic">No activities to display.</p>
+          </div>
+        ) : (
+          <>
             <div
               className={`absolute flex gap-2.5 top-0 bottom-0 ${animated ? "transition-all duration-500 ease-in-out" : ""}`}
               style={{ left: `calc(50% - ${displayIndex * cardSlot + Math.floor(cardSlot / 2)}px)` }}
@@ -201,10 +209,10 @@ export default function ActivitiesPanel() {
                 />
               ))}
             </div>
-
             <SlideArrow side="left"  onClick={() => setDisplayIndex(i => i - 1)} />
             <SlideArrow side="right" onClick={() => setDisplayIndex(i => i + 1)} />
           </>
+        )}
       </div>
     </div>
   );
