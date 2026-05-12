@@ -54,7 +54,8 @@ export default function AdminActivitiesPage() {
       setForm((f) => ({ ...f, image_url: data.publicUrl }));
       showToast("อัพโหลดรูปสำเร็จ ✓");
     } else {
-      showToast("อัพโหลดไม่สำเร็จ ลองใหม่อีกครั้ง", "error");
+      console.error("Upload error:", error);
+      showToast(error.message ?? "อัพโหลดไม่สำเร็จ", "error");
     }
     setUploading(false);
   };
