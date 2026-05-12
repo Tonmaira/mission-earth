@@ -3,14 +3,26 @@ import { useState, useEffect } from "react";
 import OutlineBtn from "../ui/OutlineBtn";
 import CalendarWidget from "./CalendarWidget";
 import { useCalendarEvents } from "./useEarthFeed";
-import activityData from "@/lib/activityData";
 import { useLang } from "@/lib/LanguageContext";
 
 export default function ActivitiesPanel() {
   const { t, lang } = useLang();
   const now = new Date();
 
-  const translatedActivities = activityData.map((item) => ({
+  const [activities, setActivities] = useState([]);
+  useEffect(() => {
+    fetch("/api/activities")
+      .then((r) => r.json())
+      .then((data) => {
+        setActivities(data.map((a) => ({
+          ...a,
+          startDate: a.startDate ? new Date(a.startDate) : null,
+          endDate: a.endDate ? new Date(a.endDate) : null,
+        })));
+      });
+  }, []);
+
+  const translatedActivities = activities.map((item) => ({
     ...item,
     ...item[lang] ?? item.en,
   }));
@@ -47,10 +59,10 @@ export default function ActivitiesPanel() {
 
   const handleDayClick = (day) => {
     const clicked = new Date(calYear, calMonth, day);
-    const idx = activityData.findIndex(({ startDate, endDate }) =>
+    const idx = translatedActivities.findIndex(({ startDate, endDate }) =>
       startDate && endDate && clicked >= startDate && clicked <= endDate
     );
-    if (idx !== -1) handleActivityClick(activityData[idx], idx);
+    if (idx !== -1) handleActivityClick(translatedActivities[idx], idx);
   };
 
   const resetActivity = () => {
