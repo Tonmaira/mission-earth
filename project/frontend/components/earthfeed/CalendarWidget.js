@@ -72,9 +72,8 @@ export default function CalendarWidget({ year, month, today, eventDays = new Set
                   w-[30px] h-[30px] flex flex-col items-center justify-center
                   pt-1 pb-0.5 transition-opacity duration-200
                   ${isPast ? "opacity-25 cursor-default" : "cursor-pointer"}
-                  ${isToday ? "bg-[#CEA870] rounded-full" : ""}
-                  ${""}
                   ${rangeClass}
+                  ${isToday ? "!bg-[#CEA870] rounded-full" : ""}
                 `}
               >
                 <span className={`
