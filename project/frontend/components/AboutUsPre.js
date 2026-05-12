@@ -30,7 +30,7 @@ export default function AboutUsPre() {
           </div>
         
           {/* 3. Content Layer (ต้องใส่ z-10 เพื่อให้ลอยเหนือรูป) */}
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-8 md:py-40">
+          <div className="relative z-10 w-full max-w-6xl mx-auto px-4 pt-28 pb-8 md:py-40">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-center">
               <ScrollReveal>
                 <div className="space-y-8">

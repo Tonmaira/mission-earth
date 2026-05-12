@@ -11,6 +11,7 @@ export const metadata = {
     shortcut: "/icon/goldenme.png",
     apple: "/icon/goldenme.png",
   },
+  themeColor: "#002740",
 };
 
 const poppins = Poppins({
@@ -28,7 +29,7 @@ const notoTh = Noto_Sans_Thai({
 export default function RootLayout({ children }) {
   return (
     <html lang="th" className={`${poppins.variable} ${notoTh.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased bg-[#002740]">
         <LanguageProvider>
           {children}
         </LanguageProvider>

@@ -233,17 +233,17 @@ function ActivityCard({ card, isActive, onClick }) {
       )}
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/90 via-[#002740]/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#002740] via-[#002740]/60 to-transparent" />
 
       {isActive && (
-        <div className="absolute bottom-0 left-0 right-0 p-4 pl-5 md:pl-9 flex flex-col gap-2 md:gap-4">
+        <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 md:pl-9 flex flex-col gap-1.5 md:gap-4">
           <div>
-            <p className="font-poppins font-semibold italic text-2xl text-[#CEA870] m-0">
+            <p className="font-poppins font-semibold italic text-base md:text-2xl text-[#CEA870] m-0">
               {card.title}
             </p>
-            <p className="font-poppins text-base text-white m-0">{card.desc}</p>
+            <p className="hidden md:block font-poppins text-base text-white m-0">{card.desc}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-2">
             {(card.tags ?? []).map(tag => {
                 const label = typeof tag === "string" ? tag : tag.label;
                 const href  = typeof tag === "object" ? tag.href : null;
