@@ -79,12 +79,8 @@ export default function CalendarWidget({ year, month, today, eventDays = new Set
               >
                 <span className={`
                   font-poppins text-base text-center leading-none
-                  ${isToday ? "text-[#002740] font-semibold" : ""}
+                  ${isToday ? "text-[#002740] font-semibold" : "text-white"}
                 `}
-                style={isToday ? undefined : {
-                  color: "#CEA870",
-                  textShadow: "-1px -1px 0 #002740, 1px -1px 0 #002740, -1px 1px 0 #002740, 1px 1px 0 #002740, 0 0 6px #002740",
-                }}
                 >
                   {day}
                 </span>
