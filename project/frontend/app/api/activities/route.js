@@ -18,6 +18,7 @@ export async function GET() {
     image: a.image_url,
     startDate: new Date(a.start_date),
     endDate: new Date(a.end_date),
+    pageUrl: a.page_url ?? null,
     en: { label: a.en_label, title: a.en_title, desc: a.en_desc, tags: a.en_tags ?? [] },
     th: { label: a.th_label, title: a.th_title, desc: a.th_desc, tags: a.th_tags ?? [] },
   }));

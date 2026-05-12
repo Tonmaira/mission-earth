@@ -53,9 +53,10 @@ export default function ActivitiesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {activities.map((item) => (
-              <div
+              <a
                 key={item.id}
-                className="rounded-2xl overflow-hidden border border-white/5 group flex flex-col"
+                href={item.page_url || `/activities/${item.id}`}
+                className="rounded-2xl overflow-hidden border border-white/5 group flex flex-col hover:border-[#CEA870]/30 transition-colors"
                 style={{ backgroundColor: "#052032" }}
               >
                 {/* Image */}
@@ -111,7 +112,7 @@ export default function ActivitiesPage() {
                     </div>
                   )}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}

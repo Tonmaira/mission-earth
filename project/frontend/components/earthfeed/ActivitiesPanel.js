@@ -247,7 +247,7 @@ function ActivityCard({ card, isActive, onClick }) {
             </p>
             <p className="font-poppins text-base text-white m-0">{card.desc}</p>
           </div>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap items-center gap-2.5">
             {(card.tags ?? []).map(tag => {
                 const label = typeof tag === "string" ? tag : tag.label;
                 const href  = typeof tag === "object" ? tag.href : null;
@@ -255,6 +255,18 @@ function ActivityCard({ card, isActive, onClick }) {
                   ? <a key={label} href={href} onClick={e => e.stopPropagation()}><OutlineBtn label={label} small /></a>
                   : <OutlineBtn key={label} label={label} small />;
               })}
+            {card.pageUrl && (
+              <a
+                href={card.pageUrl}
+                onClick={e => e.stopPropagation()}
+                className="flex items-center gap-1.5 text-[#CEA870] text-xs tracking-widest uppercase hover:opacity-70 transition-opacity"
+              >
+                ดูรายละเอียด
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            )}
           </div>
         </div>
       )}

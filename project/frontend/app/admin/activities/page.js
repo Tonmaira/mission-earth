@@ -14,6 +14,7 @@ const EMPTY_FORM = {
   th_label: "",
   th_desc: "",
   th_tags: "",
+  page_url: "",
 };
 
 function toTagArray(str) {
@@ -65,6 +66,7 @@ export default function AdminActivitiesPage() {
       th_label: item.th_label ?? "",
       th_desc: item.th_desc ?? "",
       th_tags: toTagString(item.th_tags),
+      page_url: item.page_url ?? "",
     });
     setShowForm(true);
   };
@@ -84,6 +86,7 @@ export default function AdminActivitiesPage() {
       th_label: form.th_label,
       th_desc: form.th_desc,
       th_tags: toTagArray(form.th_tags),
+      page_url: form.page_url || null,
     };
 
     if (editingId) {
@@ -225,6 +228,12 @@ export default function AdminActivitiesPage() {
                   <label className="text-xs text-gray-400 mb-1.5 block">วันสิ้นสุด *</label>
                   <input type="date" value={form.end_date} onChange={set("end_date")} className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#CEA870]/50" />
                 </div>
+              </div>
+
+              {/* Page URL */}
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">Page URL <span className="text-gray-600">(ปล่อยว่าง = ใช้หน้า default)</span></label>
+                <input value={form.page_url} onChange={set("page_url")} placeholder="/activities/forest-bathing" className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/50" />
               </div>
 
               {/* EN */}
