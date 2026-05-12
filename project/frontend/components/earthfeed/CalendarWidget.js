@@ -56,30 +56,33 @@ export default function CalendarWidget({ year, month, today, eventDays = new Set
             const segEnd   = inRange && isSegEnd(day);
             const alone    = segStart && segEnd;
 
-            let rangeClass = "";
+            let borderClass = "";
             if (inRange) {
-              rangeClass = "bg-[#CEA870]/15 border-t border-b border-[#CEA870]";
-              if (alone)          rangeClass += " border-l border-r rounded-full";
-              else if (segStart)  rangeClass += " border-l rounded-l-full";
-              else if (segEnd)    rangeClass += " border-r rounded-r-full";
+              borderClass = "border-t border-b border-[#CEA870]";
+              if (alone)          borderClass += " border-l border-r rounded-full";
+              else if (segStart)  borderClass += " border-l rounded-l-full";
+              else if (segEnd)    borderClass += " border-r rounded-r-full";
             }
 
             return (
               <div
                 key={i}
                 onClick={() => !isPast && onDayClick?.(day)}
+                style={inRange && !isToday ? { backgroundColor: "rgba(206,168,112,0.15)" } : undefined}
                 className={`
                   w-[30px] h-[30px] flex flex-col items-center justify-center
                   pt-1 pb-0.5 transition-opacity duration-200
                   ${isPast ? "opacity-25 cursor-default" : "cursor-pointer"}
-                  ${rangeClass}
+                  ${borderClass}
                   ${isToday ? "!bg-[#CEA870] rounded-full" : ""}
                 `}
               >
                 <span className={`
                   font-poppins text-base text-center leading-none
-                  ${isToday ? "text-[#002740] font-semibold" : "text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.85)]"}
-                `}>
+                  ${isToday ? "text-[#002740] font-semibold" : "text-white"}
+                `}
+                style={isToday ? undefined : { textShadow: "0 0 8px rgba(0,39,64,0.9), 0 1px 5px rgba(0,0,0,0.85)" }}
+                >
                   {day}
                 </span>
                 <div className={`
