@@ -6,8 +6,10 @@ import OutlineBtn from "../ui/OutlineBtn";
 export default function EarthFeedSection() {
   const { data: items, loading } = useFeedItems();
 
-  const featured = items[0] ?? null;
-  const sideItems = items.slice(1, 6);
+  const top = items[0] ?? null;
+  const bottomLeft = items[1] ?? null;
+  const bottomRight = items[2] ?? null;
+  const sideItems = items.slice(3, 8);
 
   return (
     <div className="w-full h-full flex flex-col bg-[#001a2c] pt-[85px]">
@@ -24,43 +26,22 @@ export default function EarthFeedSection() {
       {/* Content */}
       <div className="flex-1 min-h-0 flex flex-col md:flex-row gap-0 overflow-hidden">
 
-        {/* Featured Article — left */}
-        {loading ? (
-          <div className="flex-[3] bg-[#052032] animate-pulse" />
-        ) : featured ? (
-          <Link
-            href={`/feed/${featured.id}`}
-            className="relative flex-[3] overflow-hidden group block"
-          >
-            {featured.imageUrl ? (
-              <img
-                src={featured.imageUrl}
-                alt={featured.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-[#052032]" />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#001a2c]/95 via-[#001a2c]/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-              {featured.cat && (
-                <span className="border border-white/60 rounded-full px-3 py-0.5 text-[11px] text-white/80 tracking-widest uppercase mb-3 inline-block">
-                  {featured.cat}
-                </span>
-              )}
-              <h2 className="text-white font-semibold italic text-2xl md:text-[32px] leading-snug group-hover:text-[#CEA870] transition-colors duration-300">
-                {featured.title}
-              </h2>
-              {featured.sub && (
-                <p className="text-white/50 text-sm mt-2 leading-relaxed">{featured.sub}</p>
-              )}
-            </div>
-          </Link>
-        ) : (
-          <div className="flex-[3] flex items-center justify-center bg-[#052032]">
-            <p className="text-white/30 italic text-sm">No articles yet.</p>
+        {/* Left grid: top 1 big + bottom 2 small */}
+        <div className="flex-[3] flex flex-col min-h-0 gap-[2px]">
+          {/* Top — big featured */}
+          <div className="flex-[2] min-h-0">
+            <FeedCard item={top} loading={loading} titleSize="text-2xl md:text-[28px]" />
           </div>
-        )}
+          {/* Bottom — two side by side */}
+          <div className="flex-1 min-h-0 flex gap-[2px]">
+            <div className="flex-1 min-w-0">
+              <FeedCard item={bottomLeft} loading={loading} titleSize="text-base md:text-lg" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <FeedCard item={bottomRight} loading={loading} titleSize="text-base md:text-lg" />
+            </div>
+          </div>
+        </div>
 
         {/* Latest Stories — right */}
         <div className="flex-[2] flex flex-col bg-[#001a2c] border-l border-white/10 overflow-y-auto">
@@ -122,5 +103,37 @@ export default function EarthFeedSection() {
         </div>
       </div>
     </div>
+  );
+}
+
+function FeedCard({ item, loading, titleSize = "text-xl" }) {
+  if (loading) return <div className="w-full h-full bg-[#052032] animate-pulse" />;
+  if (!item) return <div className="w-full h-full bg-[#052032]" />;
+  return (
+    <Link href={`/feed/${item.id}`} className="relative block w-full h-full overflow-hidden group">
+      {item.imageUrl ? (
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-[#052032]" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#001a2c]/95 via-[#001a2c]/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+        {item.cat && (
+          <span className="border border-white/60 rounded-full px-3 py-0.5 text-[10px] text-white/80 tracking-widest uppercase mb-2 inline-block">
+            {item.cat}
+          </span>
+        )}
+        <h2 className={`text-white font-semibold italic ${titleSize} leading-snug group-hover:text-[#CEA870] transition-colors duration-300`}>
+          {item.title}
+        </h2>
+        {item.sub && (
+          <p className="text-white/50 text-xs mt-1 line-clamp-1">{item.sub}</p>
+        )}
+      </div>
+    </Link>
   );
 }
