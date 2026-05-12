@@ -48,9 +48,9 @@ export default function AdminActivitiesPage() {
     setUploading(true);
     const ext = file.name.split(".").pop();
     const fileName = `${Date.now()}.${ext}`;
-    const { error } = await supabase.storage.from("activities").upload(fileName, file, { upsert: true });
+    const { error } = await supabase.storage.from("Activities").upload(fileName, file, { upsert: true });
     if (!error) {
-      const { data } = supabase.storage.from("activities").getPublicUrl(fileName);
+      const { data } = supabase.storage.from("Activities").getPublicUrl(fileName);
       setForm((f) => ({ ...f, image_url: data.publicUrl }));
       showToast("อัพโหลดรูปสำเร็จ ✓");
     } else {
