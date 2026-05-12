@@ -17,7 +17,7 @@ import ActivitiesPanel from "./ActivitiesPanel";
 export default function EarthFeed() {
   return (
     <section className="w-full h-full bg-[#002740] pt-[85px]">
-      <div className="w-full h-[calc(100dvh-85px)]">
+      <div className="w-full h-[calc(100dvh-85px)] flex">
         <ActivitiesPanel />
       </div>
     </section>

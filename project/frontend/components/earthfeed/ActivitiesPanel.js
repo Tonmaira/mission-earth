@@ -111,10 +111,34 @@ export default function ActivitiesPanel() {
   };
 
   return (
-    <div className="flex-1 bg-[#052032] flex flex-col overflow-hidden">
+    <div className="flex-1 relative flex flex-col overflow-hidden">
+
+      {/* Background — covers entire panel, cross-fades on click */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+        style={{
+          backgroundImage: "url('/image/services/19-scaventure.jpg')",
+          opacity: activeItem === null ? 1 : 0,
+        }}
+      />
+      {upcomingItems.map((item, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+          style={{
+            backgroundImage: `url('${item.image}')`,
+            opacity: activeItem === i ? 1 : 0,
+          }}
+        />
+      ))}
+
+      {/* Gradient — bottom to top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#002740] via-[#002740]/70 to-[#002740]/20 pointer-events-none" />
+      {/* Gradient — top to bottom (for header) */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#002740] to-transparent pointer-events-none z-[1]" />
 
       {/* Header */}
-      <div className="h-[85px] flex items-center justify-between px-4 md:px-20">
+      <div className="relative z-10 h-[85px] flex items-center justify-between px-4 md:px-20">
         <div>
           <p className="font-poppins text-xs text-me-gold tracking-label m-0">{t("earthfeed.explore")}</p>
           <p className="font-poppins font-semibold italic text-[32px] text-me-gold m-0">{t("earthfeed.activities")}</p>
@@ -124,57 +148,29 @@ export default function ActivitiesPanel() {
 
       {/* Upcoming + Calendar */}
       <div
-        className="relative flex items-center justify-between flex-[2] min-h-0 px-4 md:px-20 overflow-hidden cursor-default"
+        className="relative z-10 flex-1 flex items-center justify-between px-4 md:px-20 cursor-default"
         onClick={resetActivity}
       >
-
-        {/* Background images — cross-fade on click */}
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-          style={{
-            backgroundImage: "url('/image/services/19-scaventure.jpg')",
-            opacity: activeItem === null ? 1 : 0,
-          }}
-        />
-        {upcomingItems.map((item, i) => (
-          <div
-            key={i}
-            className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-            style={{
-              backgroundImage: `url('${item.image}')`,
-              opacity: activeItem === i ? 1 : 0,
-            }}
-          />
-        ))}
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-[#002740]/70" />
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
-          <p className="font-poppins font-semibold italic text-[36px] text-[#CEA870] m-0">
-            {t("earthfeed.upcoming")}
-          </p>
-          <div className="flex flex-col gap-1">
-            {upcomingItems.length === 0 ? (
-              <p className="font-poppins text-sm text-white/40 italic">No upcoming activities at this time.</p>
-            ) : (
-              upcomingItems.map((item, i) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleActivityClick(item, i)}
-                  className="flex items-center gap-3 text-left cursor-pointer bg-transparent border-none py-1"
-                >
-                  <span className={`block h-[1.5px] transition-all duration-300 bg-[#CEA870] ${activeItem === i ? "w-5" : "w-2 opacity-40"}`} />
-                  <span className={`font-poppins text-sm tracking-widest uppercase transition-all duration-300 ${activeItem === i ? "text-[#CEA870]" : "text-white/60"}`}>
-                    {item.label}
-                  </span>
-                </button>
-              ))
-            )}
-          </div>
+        <div className="flex flex-col gap-1" onClick={e => e.stopPropagation()}>
+          {upcomingItems.length === 0 ? (
+            <p className="font-poppins text-sm text-white/40 italic">No upcoming activities at this time.</p>
+          ) : (
+            upcomingItems.map((item, i) => (
+              <button
+                key={item.label}
+                onClick={() => handleActivityClick(item, i)}
+                className="flex items-center gap-3 text-left cursor-pointer bg-transparent border-none py-1"
+              >
+                <span className={`block h-[1.5px] transition-all duration-300 bg-[#CEA870] ${activeItem === i ? "w-5" : "w-2 opacity-40"}`} />
+                <span className={`font-poppins text-sm tracking-widest uppercase transition-all duration-300 ${activeItem === i ? "text-[#CEA870]" : "text-white/60"}`}>
+                  {item.label}
+                </span>
+              </button>
+            ))
+          )}
         </div>
 
-        <div className="hidden md:block relative z-10" onClick={e => e.stopPropagation()}>
+        <div className="hidden md:block" onClick={e => e.stopPropagation()}>
           <CalendarWidget
             year={calYear} month={calMonth}
             today={calYear === now.getFullYear() && calMonth === now.getMonth() ? now.getDate() : null}
@@ -187,8 +183,8 @@ export default function ActivitiesPanel() {
         </div>
       </div>
 
-      {/* Activity Card Slider */}
-      <div className="flex-[3] min-h-0 relative overflow-hidden mt-2.5">
+      {/* Activity Card Slider — overlays background */}
+      <div className="relative z-10 h-[260px] overflow-hidden">
         {extendedCards.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <p className="font-poppins text-sm text-white/30 italic">No activities to display.</p>
