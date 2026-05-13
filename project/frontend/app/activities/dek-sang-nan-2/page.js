@@ -15,7 +15,7 @@ export default function DekSangNan2Page() {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: "#f5efe0" }}>
-      <NavbarSimple bg="#e8dcc8" textColor="#1a3320" />
+      <NavbarSimple bg="#e8dcc8" textColor="#1a3320" solid />
 
       {/* ─── HERO ─── */}
       <section

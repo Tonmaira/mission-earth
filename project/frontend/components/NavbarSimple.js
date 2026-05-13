@@ -30,7 +30,7 @@ function NavLink({ href, label, hoverColor, textColor }) {
   );
 }
 
-export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", navLinks = DEFAULT_LINKS }) {
+export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", navLinks = DEFAULT_LINKS, solid = false }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -59,7 +59,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
   };
 
   return (
-    <nav className="w-full h-[85px] fixed top-0 left-0 z-[60] backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: `${bg}e6` }}>
+    <nav className="w-full h-[85px] fixed top-0 left-0 z-[60] backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: solid ? bg : `${bg}e6` }}>
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
