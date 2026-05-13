@@ -93,54 +93,64 @@ export default function DekSangNan2Page() {
         style={{ zIndex: 0 }} />
 
       {/* Fixed animals */}
+      {/* puloo-left: mobile bottom-left, ยกขึ้นหนี countdown bar */}
       <img src={`${BASE}/ani-puloo-left.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "6.2vh", left: "3.5vw", width: "25%", zIndex: 1 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "clamp(60px,10vh,6.2vh)", left: "3.5vw", width: "clamp(80px,18vw,25%)", zIndex: 1 }} />
+      {/* puloo-right: top-left */}
       <img src={`${BASE}/ani-puloo-right.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "-2.5vh", left: "24.3vw", width: "17%", zIndex: 1 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "-2.5vh", left: "clamp(60px,20vw,24.3vw)", width: "clamp(60px,14vw,17%)", zIndex: 1 }} />
+      {/* chanee: top-right */}
       <img src={`${BASE}/ani-chanee.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "22.2vh", right: "5.6vw", width: "16%", zIndex: 2 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "22.2vh", right: "5.6vw", width: "clamp(55px,13vw,16%)", zIndex: 2 }} />
+      {/* chompoo: bottom-right ยกขึ้นหนี countdown bar */}
       <img src={`${BASE}/ani-chompoo.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "11.1vh", right: "6.25vw", width: "15%", zIndex: 1 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "clamp(65px,12vh,11.1vh)", right: "6.25vw", width: "clamp(50px,12vw,15%)", zIndex: 1 }} />
+      {/* katarng-left: top-left */}
       <img src={`${BASE}/ani-katarng-left.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "12.3vh", left: "6.25vw", width: "14%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "12.3vh", left: "6.25vw", width: "clamp(50px,11vw,14%)", zIndex: 1 }} />
+      {/* katarng-right: top */}
       <img src={`${BASE}/ani-katarng-right.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "-18.5vh", right: "27.8vw", width: "10.5%", zIndex: 3 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "-18.5vh", right: "27.8vw", width: "clamp(40px,9vw,10.5%)", zIndex: 3 }} />
+      {/* bird */}
       <img src={`${BASE}/ani-bird.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "14.8vh", right: "20.8vw", width: "6%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "14.8vh", right: "20.8vw", width: "clamp(22px,5vw,6%)", zIndex: 1 }} />
+      {/* fern: bottom ยกขึ้นหนี countdown bar */}
       <img src={`${BASE}/ani-fern.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "6.2vh", right: "27.8vw", width: "10%", zIndex: 2 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "clamp(60px,10vh,6.2vh)", right: "clamp(10px,8vw,27.8vw)", width: "clamp(35px,9vw,10%)", zIndex: 2 }} />
+      {/* mushrooms */}
       <img src={`${BASE}/ani-mushroom-1.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "34.6vh", left: "3.5vw", width: "4%", zIndex: 1 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "34.6vh", left: "3.5vw", width: "clamp(14px,4vw,4%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-mushroom-1.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "37vh", right: "5.6vw", width: "3%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "37vh", right: "5.6vw", width: "clamp(12px,3vw,3%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-mushroom-2.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "32.1vh", left: "6.25vw", width: "3%", zIndex: 1 }} />
+        className="fixed opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "32.1vh", left: "6.25vw", width: "clamp(12px,3vw,3%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-mushroom-2.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "33.3vh", right: "4.2vw", width: "2%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "33.3vh", right: "4.2vw", width: "clamp(10px,2.5vw,2%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-mushroom-2.svg`} alt=""
-        className="fixed hidden sm:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "24.7vh", left: "17.4vw", width: "2.5%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "24.7vh", left: "17.4vw", width: "clamp(10px,2.5vw,2.5%)", zIndex: 1 }} />
+      {/* trees */}
       <img src={`${BASE}/ani-bigger-tree.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ bottom: "9.9vh", left: "38%", width: "3%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ bottom: "9.9vh", left: "38%", width: "clamp(12px,3vw,3%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-2-tree.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "24.7vh", left: "5.6vw", width: "3.5%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "24.7vh", left: "5.6vw", width: "clamp(14px,3.5vw,3.5%)", zIndex: 1 }} />
       <img src={`${BASE}/ani-lil-tree.svg`} alt=""
-        className="fixed hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300"
-        style={{ top: "42vh", right: "25vw", width: "2%", zIndex: 1 }} />
+        className="fixed hidden sm:block opacity-40 hover:opacity-100 transition-opacity duration-300"
+        style={{ top: "42vh", right: "25vw", width: "clamp(10px,2vw,2%)", zIndex: 1 }} />
 
       <NavbarSimple bg="#e8dcc8" textColor="#1a3320" solid />
 
