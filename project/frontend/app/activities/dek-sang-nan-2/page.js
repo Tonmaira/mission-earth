@@ -131,6 +131,17 @@ export default function DekSangNan2Page() {
               maxWidth: "80vw",
             }}
           />
+
+          {/* Register button */}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeJyNXsXVk1OJr1JAVZWE2dhESF6eV3Lv0FjHHc0W4NNYOfLg/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pointer-events-auto mt-4 md:mt-6 px-8 py-3 rounded-full font-semibold text-sm md:text-base tracking-wide transition-all duration-200 hover:scale-105 hover:opacity-90"
+            style={{ backgroundColor: "#1a3320", color: "#f5efe0", letterSpacing: "0.05em" }}
+          >
+            สมัครเข้าร่วม Bootcamp
+          </a>
         </div>
 
         {/* Scroll indicator */}
