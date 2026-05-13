@@ -1,7 +1,6 @@
 import { Poppins, Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/LanguageContext";
-import PopupRegister from "@/components/PopupRegister";
 
 export const metadata = {
   title: "Mission Earth",
@@ -35,7 +34,6 @@ export default function RootLayout({ children }) {
       <body className="font-sans antialiased bg-[#002740]">
         <LanguageProvider>
           {children}
-          <PopupRegister />
         </LanguageProvider>
       </body>
     </html>

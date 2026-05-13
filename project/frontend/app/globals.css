@@ -31,3 +31,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes slideInLeft {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(0); }
+}

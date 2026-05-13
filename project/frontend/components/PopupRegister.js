@@ -8,7 +8,10 @@ export default function PopupRegister() {
   if (closed) return null;
 
   return (
-    <div className="fixed bottom-5 left-5 z-[999] group">
+    <div
+      className="fixed bottom-5 left-5 z-[999] group opacity-25 hover:opacity-100 transition-opacity duration-200"
+      style={{ animation: "slideInLeft 0.5s ease-out 1s both" }}
+    >
       <button
         onClick={() => setClosed(true)}
         className="absolute -top-2 -right-2 z-10 w-5 h-5 rounded-full bg-white/80 text-black flex items-center justify-center text-xs leading-none hover:bg-white transition-colors"
@@ -22,7 +25,7 @@ export default function PopupRegister() {
           src="/image/activities/dek-sang-nan-2/component/popup-register.png"
           alt="สมัครเข้าร่วม Bootcamp เด็กสร้างน่าน"
           width={180}
-          className="drop-shadow-xl opacity-50 group-hover:opacity-100 transition-opacity duration-200"
+          className="drop-shadow-xl"
         />
       </Link>
     </div>

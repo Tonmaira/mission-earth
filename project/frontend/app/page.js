@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { ServicesCard } from '@/components/ServiceData';
 import EarthFeed from "@/components/earthfeed/EarthFeed";
 import EarthFeedSection from "@/components/earthfeed/EarthFeedSection";
+import PopupRegister from "@/components/PopupRegister";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">
@@ -69,6 +70,8 @@ Empowered by Experts.
       <section className="snap-start snap-always">
       <FooterSection />
       </section>
+
+      <PopupRegister />
     </main>
   );
 }
