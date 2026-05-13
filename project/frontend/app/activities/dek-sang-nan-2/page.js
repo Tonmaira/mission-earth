@@ -390,10 +390,10 @@ export default function DekSangNan2Page() {
 
       {/* ─── SECTION 3 — คุณสมบัติ + รายละเอียด ─── */}
       <section
-        className="relative flex items-center px-6 md:px-16 lg:px-24"
-        style={{ height: "100dvh" }}
+        className="relative flex items-center px-6 md:px-16 lg:px-24 py-24"
+        style={{ minHeight: "100dvh" }}
       >
-        <div className="relative z-10 hidden md:flex flex-col gap-6 max-w-[480px]">
+        <div className="relative z-10 flex flex-col gap-6 max-w-[480px]">
           <div>
             <p className="font-semibold text-xl mb-3" style={{ color: "#235c80" }}>👥 คุณสมบัติผู้สมัคร</p>
             <ul className="flex flex-col gap-2.5">
