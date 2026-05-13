@@ -71,7 +71,7 @@ export default function CalendarWidget({ year, month, today, eventDays = new Set
                 style={inRange && !isToday ? { backgroundColor: "rgba(206,168,112,0.15)" } : undefined}
                 className={`
                   w-[30px] h-[30px] flex flex-col items-center justify-center
-                  pt-1 pb-0.5 transition-opacity duration-200
+                  pt-1 pb-0.5
                   ${isPast ? "opacity-25 cursor-default" : "cursor-pointer"}
                   ${borderClass}
                   ${isToday ? "!bg-[#CEA870] rounded-full" : ""}
