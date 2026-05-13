@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
             className="fixed bottom-5 right-5 z-[999] hover:scale-105 transition-transform duration-200 drop-shadow-xl"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/image/activities/dek-sang-nan-2/component/popup-register.svg" alt="สมัครเข้าร่วม Bootcamp เด็กสร้างน่าน" width={180} />
+            <img src="/image/activities/dek-sang-nan-2/component/popup-register.png" alt="สมัครเข้าร่วม Bootcamp เด็กสร้างน่าน" width={180} />
           </Link>
         </LanguageProvider>
       </body>
