@@ -19,17 +19,17 @@ export const metadata = {
     "ผู้พิทักษ์ป่าต้นน้ำ",
   ],
   alternates: {
-    canonical: "https://missionearth.co/activities/dek-sang-nan-2",
+    canonical: "https://www.missionearth.co/activities/dek-sang-nan-2",
   },
   openGraph: {
     title: "เด็กสร้างน่าน ปีที่ 2 | Mission Earth",
     description:
       "โครงการ Bootcamp เยาวชนน่าน สมัครได้ถึง 26 มิถุนายน 2569 สำหรับน้อง ๆ อายุ 15–18 ปี ในจังหวัดน่าน",
-    url: "https://missionearth.co/activities/dek-sang-nan-2",
+    url: "https://www.missionearth.co/activities/dek-sang-nan-2",
     siteName: "Mission Earth",
     images: [
       {
-        url: "https://missionearth.co/image/activities/dek-sang-nan-2/component/popup-register.png",
+        url: "https://www.missionearth.co/image/activities/dek-sang-nan-2/component/popup-register.png",
         width: 1200,
         height: 630,
         alt: "เด็กสร้างน่าน ปีที่ 2",
@@ -44,7 +44,7 @@ export const metadata = {
     description:
       "โครงการ Bootcamp เยาวชนน่าน สมัครได้ถึง 26 มิถุนายน 2569",
     images: [
-      "https://missionearth.co/image/activities/dek-sang-nan-2/component/popup-register.png",
+      "https://www.missionearth.co/image/activities/dek-sang-nan-2/component/popup-register.png",
     ],
   },
 };
