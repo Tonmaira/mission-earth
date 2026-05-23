@@ -18,7 +18,7 @@ const TIMELINE = [
     label: "กิจกรรม Kick-off Online",
     date: "26 พฤษภาคม 2569\nเวลา 13.00 – 15.00 น. (ระบบ Zoom)",
     milestone: new Date("2026-05-26T15:00:00+07:00"),
-    action: { label: "Link Zoom", href: "#", bg: "#8aacbe" },
+    action: { label: "Link Zoom", href: "https://chula.zoom.us/j/99953665450?pwd=l34UKOeF4do5mQtBbj05qAg3mLnf3P.1", bg: "#8aacbe" },
     color: "#235c80",
   },
   {
@@ -31,7 +31,7 @@ const TIMELINE = [
     label: "ประกาศผล",
     date: "6 กรกฎาคม 2569",
     milestone: new Date("2026-07-06T00:00:00+07:00"),
-    badge: { label: "ประกาศผู้ผ่านเข้ารอบ (Soon)", bg: "#c4879a" },
+    action: { label: "ประกาศผู้ผ่านเข้ารอบ (Soon)", href: "#", bg: "#c4879a" },
     color: "#90261d",
   },
   {
