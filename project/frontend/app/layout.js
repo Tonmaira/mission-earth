@@ -5,11 +5,6 @@ import { LanguageProvider } from "@/lib/LanguageContext";
 export const metadata = {
   title: "Mission Earth",
   description: "Your Trusted Partner in Sustainable Growth, Empowered by Experts.",
-  icons: {
-    icon: [{ url: "/icon/goldenme.png", type: "image/png" }],
-    shortcut: "/icon/goldenme.png",
-    apple: "/icon/goldenme.png",
-  },
 };
 
 export const viewport = {
