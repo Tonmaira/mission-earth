@@ -5,8 +5,6 @@ import FooterSection from "@/components/FooterSection";
 
 const BASE = "/image/activities/dek-sang-nan-2/component";
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeJyNXsXVk1OJr1JAVZWE2dhESF6eV3Lv0FjHHc0W4NNYOfLg/viewform?usp=header";
-const ZOOM_URL = "https://chula.zoom.us/j/99953665450?pwd=l34UKOeF4do5mQtBbj05qAg3mLnf3P.1";
-const KICKOFF_DATE = new Date("2026-05-26T00:00:00+07:00");
 const COUNTDOWN_TARGET = new Date("2026-06-26T23:59:00+07:00");
 
 const TIMELINE = [
@@ -20,7 +18,6 @@ const TIMELINE = [
     label: "กิจกรรม Kick-off Online",
     date: "26 พฤษภาคม 2569\nเวลา 13.00 – 15.00 น. (ระบบ Zoom)",
     milestone: new Date("2026-05-26T15:00:00+07:00"),
-    action: { label: "Link Zoom", href: "https://chula.zoom.us/j/99953665450?pwd=l34UKOeF4do5mQtBbj05qAg3mLnf3P.1", bg: "#8aacbe" },
     color: "#235c80",
   },
   {
@@ -190,31 +187,15 @@ export default function DekSangNan2Page() {
             className="pointer-events-auto"
             style={{ height: "clamp(240px, 52vh, 520px)", width: "auto", maxWidth: "80vw" }}
           />
-          <div className="pointer-events-auto mt-4 md:mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full font-semibold text-sm md:text-base tracking-wide transition-all duration-200 hover:scale-105 hover:opacity-90"
-              style={{ backgroundColor: "#1a3320", color: "#f5efe0", letterSpacing: "0.05em" }}
-            >
-              สมัครเข้าร่วม Bootcamp
-            </a>
-            <a
-              href={ZOOM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full font-semibold text-sm md:text-base tracking-wide transition-all duration-200 hover:scale-105"
-              style={{
-                backgroundColor: "#8aacbe",
-                color: "#1a3320",
-                letterSpacing: "0.05em",
-                opacity: now >= KICKOFF_DATE ? 1 : 0.5,
-              }}
-            >
-              กิจกรรม Kick-off (26 พ.ค. 2569)
-            </a>
-          </div>
+          <a
+            href={FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pointer-events-auto mt-4 md:mt-6 px-8 py-3 rounded-full font-semibold text-sm md:text-base tracking-wide transition-all duration-200 hover:scale-105 hover:opacity-90"
+            style={{ backgroundColor: "#1a3320", color: "#f5efe0", letterSpacing: "0.05em" }}
+          >
+            สมัครเข้าร่วม Bootcamp
+          </a>
         </div>
 
         {/* Scroll indicator */}
