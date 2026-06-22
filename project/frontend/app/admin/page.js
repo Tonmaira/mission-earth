@@ -1,17 +1,35 @@
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
 
-const STATS = [
-  { label: "บทความทั้งหมด", value: "5", sub: "Earth Feed", href: "/admin/feed", color: "#CEA870" },
-  { label: "กิจกรรม", value: "3", sub: "Activities", href: "/admin/activities", color: "#7EB8A4" },
-  { label: "แบบประเมิน", value: "1", sub: "Survey", href: "/survey/readiness", color: "#8BA7C2" },
-];
+export const dynamic = "force-dynamic";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
+async function getCounts() {
+  const [{ count: articles }, { count: activities }] = await Promise.all([
+    supabase.from("articles").select("*", { count: "exact", head: true }),
+    supabase.from("activities").select("*", { count: "exact", head: true }),
+  ]);
+  return { articles: articles ?? 0, activities: activities ?? 0 };
+}
 
 const QUICK = [
   { label: "เขียนบทความใหม่", href: "/admin/feed/new", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
   { label: "ดูหน้าเว็บ", href: "/", icon: "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" },
 ];
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const { articles, activities } = await getCounts();
+
+  const STATS = [
+    { label: "บทความทั้งหมด", value: articles, sub: "Earth Feed", href: "/admin/feed", color: "#CEA870" },
+    { label: "กิจกรรม", value: activities, sub: "Activities", href: "/admin/activities", color: "#7EB8A4" },
+    { label: "แบบประเมิน", value: 1, sub: "Survey", href: "/survey/readiness", color: "#8BA7C2" },
+  ];
+
   return (
     <div className="space-y-8">
 
