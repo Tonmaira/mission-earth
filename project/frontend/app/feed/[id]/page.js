@@ -9,6 +9,32 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const { data: article } = await supabase.from("articles").select("title, sub, image_url").eq("id", id).single();
+  if (!article) return {};
+  return {
+    title: `${article.title} | Mission Earth`,
+    description: article.sub ?? "",
+    alternates: { canonical: `https://www.missionearth.co/feed/${id}` },
+    openGraph: {
+      title: article.title,
+      description: article.sub ?? "",
+      url: `https://www.missionearth.co/feed/${id}`,
+      siteName: "Mission Earth",
+      images: article.image_url ? [{ url: article.image_url, width: 1200, height: 630, alt: article.title }] : [],
+      locale: "th_TH",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.sub ?? "",
+      images: article.image_url ? [article.image_url] : [],
+    },
+  };
+}
+
 export default async function FeedArticlePage({ params }) {
   const { id } = await params;
 
