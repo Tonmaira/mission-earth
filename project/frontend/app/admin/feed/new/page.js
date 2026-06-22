@@ -52,7 +52,7 @@ export default function NewArticlePage() {
     setUploadingBlock(null);
   };
 
-  const addBlock = (type) => setBlocks([...blocks, type === "image" ? { type, src: "", caption: "" } : { type, text: "" }]);
+  const addBlock = (type) => setBlocks([...blocks, type === "image" ? { type, src: "", caption: "" } : type === "reference" ? { type, text: "", url: "" } : { type, text: "" }]);
   const updateBlock = (i, field, val) => { const u = [...blocks]; u[i] = { ...u[i], [field]: val }; setBlocks(u); };
   const removeBlock = (i) => setBlocks(blocks.filter((_, idx) => idx !== i));
   const moveBlock = (i, dir) => {
@@ -180,6 +180,14 @@ export default function NewArticlePage() {
                   placeholder={block.type === "quote" ? "ข้อความ quote..." : "เนื้อหา paragraph..."}
                   className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors resize-none" />
               )}
+              {block.type === "reference" && (
+                <div className="space-y-2">
+                  <input type="text" value={block.text} onChange={(e) => updateBlock(i, "text", e.target.value)} placeholder="ข้อความอ้างอิง..."
+                    className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors" />
+                  <input type="text" value={block.url} onChange={(e) => updateBlock(i, "url", e.target.value)} placeholder="URL (optional)"
+                    className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors" />
+                </div>
+              )}
               {block.type === "image" && (
                 <div className="space-y-2">
                   <div className="flex gap-2 items-center">
@@ -208,7 +216,7 @@ export default function NewArticlePage() {
         </div>
 
         <div className="flex gap-2 flex-wrap pt-2">
-          {["paragraph", "image", "quote"].map((type) => (
+          {["paragraph", "image", "quote", "reference"].map((type) => (
             <button key={type} onClick={() => addBlock(type)}
               className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/10 text-gray-400 text-xs hover:border-[#CEA870]/40 hover:text-[#CEA870] transition-all">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>

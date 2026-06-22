@@ -125,6 +125,32 @@ export default async function FeedArticlePage({ params }) {
           })}
         </div>
 
+        {/* References */}
+        {(() => {
+          const refs = (article.blocks ?? []).filter(b => b.type === "reference");
+          if (!refs.length) return null;
+          return (
+            <div className="mt-10 pt-6 border-t border-white/10">
+              <p className="text-white/40 text-[11px] tracking-[0.2em] uppercase mb-3">อ้างอิง</p>
+              <ol className="flex flex-col gap-2">
+                {refs.map((ref, i) => (
+                  <li key={i} className="flex gap-2 text-[13px] text-white/40 leading-relaxed">
+                    <span className="shrink-0">{i + 1}.</span>
+                    {ref.url ? (
+                      <a href={ref.url} target="_blank" rel="noopener noreferrer"
+                        className="hover:text-white/70 underline underline-offset-2 transition-colors break-all">
+                        {ref.text || ref.url}
+                      </a>
+                    ) : (
+                      <span>{ref.text}</span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          );
+        })()}
+
         {/* Tags */}
         {article.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-10">
