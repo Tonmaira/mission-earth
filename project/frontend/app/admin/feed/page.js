@@ -29,6 +29,7 @@ const CAT_COLOR = {
   "ME Update": "#CEA870",
   "Event": "#7EB8A4",
   "News": "#8BA7C2",
+  "Article": "#C4879A",
 };
 
 export default async function AdminFeedPage() {

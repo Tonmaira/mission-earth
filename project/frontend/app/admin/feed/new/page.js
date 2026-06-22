@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-const CATS = ["ME Update", "Event", "News"];
+const CATS = ["ME Update", "Event", "News", "Article"];
 
 async function uploadToStorage(file) {
   const ext = file.name.split(".").pop();
