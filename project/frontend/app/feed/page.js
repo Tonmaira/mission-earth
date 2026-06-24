@@ -66,7 +66,7 @@ export default function FeedPage() {
                 style={{ backgroundColor: "#052032" }}
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden shrink-0">
+                <div className="relative aspect-video overflow-hidden shrink-0">
                   {item.imageUrl ? (
                     <img
                       src={item.imageUrl}
