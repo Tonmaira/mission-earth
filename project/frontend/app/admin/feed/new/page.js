@@ -2,13 +2,13 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import CropModal from "@/components/admin/CropModal";
 
 const CATS = ["ME Update", "Event", "News", "Article"];
 
-async function uploadToStorage(file) {
-  const ext = file.name.split(".").pop();
+async function uploadToStorage(blob, ext = "jpg") {
   const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-  const { error } = await supabase.storage.from("Articles").upload(fileName, file, { upsert: true });
+  const { error } = await supabase.storage.from("Articles").upload(fileName, blob, { upsert: true, contentType: "image/jpeg" });
   if (error) throw error;
   const { data } = supabase.storage.from("Articles").getPublicUrl(fileName);
   return data.publicUrl;
@@ -23,33 +23,49 @@ export default function NewArticlePage() {
   const [tags, setTags] = useState("");
   const [uploadingHero, setUploadingHero] = useState(false);
   const [uploadingBlock, setUploadingBlock] = useState(null);
+  const [cropSrc, setCropSrc] = useState(null);
+  const [cropTarget, setCropTarget] = useState(null); // "hero" | number (block index)
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
-  const handleHeroUpload = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploadingHero(true);
-    try {
-      const url = await uploadToStorage(file);
-      setForm((f) => ({ ...f, imageUrl: url }));
-    } catch (err) {
-      alert("อัพโหลดไม่สำเร็จ: " + err.message);
-    }
-    setUploadingHero(false);
+  const openCrop = (file, target) => {
+    const reader = new FileReader();
+    reader.onload = () => { setCropSrc(reader.result); setCropTarget(target); };
+    reader.readAsDataURL(file);
   };
 
-  const handleBlockImageUpload = async (i, e) => {
+  const handleHeroUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setUploadingBlock(i);
+    openCrop(file, "hero");
+    e.target.value = "";
+  };
+
+  const handleBlockImageUpload = (i, e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    openCrop(file, i);
+    e.target.value = "";
+  };
+
+  const handleCropConfirm = async (blob) => {
     try {
-      const url = await uploadToStorage(file);
-      updateBlock(i, "src", url);
+      if (cropTarget === "hero") {
+        setUploadingHero(true);
+        const url = await uploadToStorage(blob);
+        setForm((f) => ({ ...f, imageUrl: url }));
+        setUploadingHero(false);
+      } else {
+        setUploadingBlock(cropTarget);
+        const url = await uploadToStorage(blob);
+        updateBlock(cropTarget, "src", url);
+        setUploadingBlock(null);
+      }
     } catch (err) {
       alert("อัพโหลดไม่สำเร็จ: " + err.message);
     }
-    setUploadingBlock(null);
+    setCropSrc(null);
+    setCropTarget(null);
   };
 
   const addBlock = (type) => setBlocks([...blocks, type === "image" ? { type, src: "", caption: "" } : type === "reference" ? { type, text: "", url: "" } : { type, text: "" }]);
@@ -75,6 +91,15 @@ export default function NewArticlePage() {
   const isValid = form.title && form.cat && form.date;
 
   return (
+    <>
+    {cropSrc && (
+      <CropModal
+        imageSrc={cropSrc}
+        aspect={16 / 9}
+        onConfirm={handleCropConfirm}
+        onCancel={() => { setCropSrc(null); setCropTarget(null); }}
+      />
+    )}
     <div className="space-y-6 max-w-3xl">
 
       {/* Header */}
@@ -227,5 +252,6 @@ export default function NewArticlePage() {
       </div>
 
     </div>
+    </>
   );
 }
