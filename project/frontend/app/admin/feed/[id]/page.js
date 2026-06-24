@@ -84,7 +84,7 @@ export default function EditArticlePage({ params }) {
     setCropTarget(null);
   };
 
-  const addBlock = (type) => setBlocks([...blocks, type === "image" ? { type, src: "", caption: "" } : type === "reference" ? { type, text: "", url: "" } : { type, text: "" }]);
+  const addBlock = (type) => setBlocks([...blocks, type === "image" ? { type, src: "", caption: "" } : type === "reference" ? { type, text: "", url: "" } : type === "quote" ? { type, text: "", author: "" } : { type, text: "" }]);
   const updateBlock = (i, field, val) => { const u = [...blocks]; u[i] = { ...u[i], [field]: val }; setBlocks(u); };
   const removeBlock = (i) => setBlocks(blocks.filter((_, idx) => idx !== i));
   const moveBlock = (i, dir) => {
@@ -207,10 +207,19 @@ export default function EditArticlePage({ params }) {
                     </button>
                   </div>
                 </div>
-                {(block.type === "paragraph" || block.type === "quote") && (
-                  <textarea rows={block.type === "quote" ? 2 : 4} value={block.text} onChange={e => updateBlock(i, "text", e.target.value)}
-                    placeholder={block.type === "quote" ? "ข้อความ quote..." : "เนื้อหา paragraph..."}
+                {(block.type === "paragraph" || block.type === "heading") && (
+                  <textarea rows={block.type === "heading" ? 1 : 4} value={block.text} onChange={e => updateBlock(i, "text", e.target.value)}
+                    placeholder={block.type === "heading" ? "หัวข้อย่อย..." : "เนื้อหา paragraph..."}
                     className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors resize-none" />
+                )}
+                {block.type === "quote" && (
+                  <div className="space-y-2">
+                    <textarea rows={2} value={block.text} onChange={e => updateBlock(i, "text", e.target.value)}
+                      placeholder="ข้อความ quote..."
+                      className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors resize-none" />
+                    <input type="text" value={block.author ?? ""} onChange={e => updateBlock(i, "author", e.target.value)} placeholder="ชื่อเจ้าของ quote (optional)"
+                      className="w-full bg-[#002740] border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#CEA870]/60 transition-colors" />
+                  </div>
                 )}
                 {block.type === "reference" && (
                   <div className="space-y-2">
@@ -247,7 +256,7 @@ export default function EditArticlePage({ params }) {
             ))}
           </div>
           <div className="flex gap-2 flex-wrap pt-2">
-            {["paragraph", "image", "quote", "reference"].map(type => (
+            {["paragraph", "heading", "image", "quote", "reference"].map(type => (
               <button key={type} onClick={() => addBlock(type)}
                 className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/10 text-gray-400 text-xs hover:border-[#CEA870]/40 hover:text-[#CEA870] transition-all">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>

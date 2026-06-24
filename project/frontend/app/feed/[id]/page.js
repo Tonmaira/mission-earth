@@ -112,12 +112,24 @@ export default async function FeedArticlePage({ params }) {
                 </figure>
               );
             }
+            if (block.type === "heading") {
+              return (
+                <h2 key={i} className="text-white text-[18px] md:text-[20px] font-bold leading-snug">
+                  {block.text}
+                </h2>
+              );
+            }
             if (block.type === "quote") {
               return (
-                <blockquote key={i} className="border-l-4 border-[#CEA870] pl-6 py-2">
-                  <p className="text-[#CEA870] text-[16px] md:text-[18px] italic leading-relaxed">
-                    &ldquo;{block.text}&rdquo;
+                <blockquote key={i} className="flex flex-col items-center text-center py-4 gap-2">
+                  <p className="text-[#CEA870] text-[18px] md:text-[22px] font-bold leading-relaxed">
+                    <span className="font-serif">&ldquo;</span>
+                    {block.text}
+                    <span className="font-serif">&rdquo;</span>
                   </p>
+                  {block.author && (
+                    <p className="text-white/40 text-[12px] italic">{block.author}</p>
+                  )}
                 </blockquote>
               );
             }
