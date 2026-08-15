@@ -425,3 +425,30 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [05:04:24.014] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [05:04:49.432] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
 [05:04:49.504] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:19:53.113] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:19:53.717] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:20:48.990] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:50:57.762] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:50:58.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:52:21.903] Server  LOG     ✓ Compiled in 138ms
+[05:52:34.887] Server  LOG     ✓ Compiled in 109ms
+[05:52:51.546] Server  LOG     ✓ Compiled in 44ms
+[05:53:07.104] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:53:07.238] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:53:35.400] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:53:35.507] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:54:56.635] Server  LOG     ✓ Compiled in 66ms
+[05:55:10.221] Server  LOG     ✓ Compiled in 47ms
+[05:55:36.537] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:55:36.647] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:59:45.220] Server  LOG     ✓ Compiled in 81ms
+[06:00:10.043] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[06:00:10.750] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:02:17.415] Server  LOG     ✓ Compiled in 112ms
+[06:02:51.123] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[06:02:51.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:03:19.300] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[06:03:19.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:03:32.971] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[06:03:33.070] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

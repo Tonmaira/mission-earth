@@ -2,6 +2,7 @@
 
 import { Children, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import LiquidGrainBackground from "./LiquidGrainBackground";
+import RotateGate from "./RotateGate";
 
 /** How long one slide change takes. The cross-fade is `--slide-fade` in globals.css. */
 const SLIDE_MS = 1100;
@@ -351,6 +352,9 @@ export default function DeckShell({ children, bgTuning }) {
   return (
     <>
       <LiquidGrainBackground tuning={bgTuning} />
+
+      {/* upright phones get "turn me sideways" instead of the deck */}
+      <RotateGate />
 
       <div
         ref={scrollerRef}
