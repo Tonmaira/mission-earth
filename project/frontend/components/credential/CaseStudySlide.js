@@ -30,7 +30,7 @@ const BADGES = {
 
 /** Largest the title is allowed to be — mirrors what the Tailwind classes on it
  *  would have been at each breakpoint, since an inline font-size overrides them. */
-const titleCeiling = (width) => (width < 768 ? 28 : width < 1024 ? 32 : 36);
+const titleCeiling = (width) => (width < 768 ? 28 : width < 1024 ? 32 : width < 1800 ? 36 : 46);
 const TITLE_FLOOR = 20;
 
 /**
@@ -166,29 +166,29 @@ export default function CaseStudySlide({ study, preparedFor }) {
             <h2 ref={titleRef} className="overflow-hidden font-normal leading-tight">
               {title}
             </h2>
-            {quote && <p className="text-base md:text-lg lg:text-[19px]">{quote}</p>}
+            {quote && <p className="text-base md:text-lg lg:text-[19px] 3xl:text-[24px]!">{quote}</p>}
           </header>
 
           <dl className="flex flex-col gap-3 lg:gap-8">
             {metaRows.map((m) => (
               <div key={m.label} className="flex items-start justify-between gap-4">
-                <dt className="text-sm font-semibold md:text-[15px]">{m.label}</dt>
+                <dt className="text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">{m.label}</dt>
                 {/* `whitespace-pre-line`: the source sheet uses real line breaks
                     inside a cell (a two-line client name, say) and HTML would
                     otherwise run them together into one paragraph */}
-                <dd className="w-[68%] whitespace-pre-line text-sm font-semibold md:text-[15px]">
+                <dd className="w-[68%] whitespace-pre-line text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
                   {m.value}
-                  {m.sub && <span className="block text-xs font-normal md:text-[13px]">{m.sub}</span>}
+                  {m.sub && <span className="block text-xs font-normal md:text-[13px] 3xl:text-[17px]!">{m.sub}</span>}
                 </dd>
               </div>
             ))}
 
             <div className="flex items-start justify-between gap-4">
-              <dt className="text-sm font-semibold leading-tight md:text-[15px]">
+              <dt className="text-sm font-semibold leading-tight md:text-[15px] 3xl:text-[19px]!">
                 {goals.length > 0 && (
                   <>
                     SDG
-                    <span className="block text-[11px]">Alignment</span>
+                    <span className="block text-[11px] 3xl:text-[14px]!">Alignment</span>
                   </>
                 )}
               </dt>
@@ -223,7 +223,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
                             source files are the 3000px print originals, so
                             next/image resizing them is doing real work here. */}
                         <Image src={g.src} alt={g.alt} width={44} height={44} className="h-11 w-11 shrink-0" />
-                        <p className="text-sm font-semibold leading-tight md:text-[15px]">
+                        <p className="text-sm font-semibold leading-tight md:text-[15px] 3xl:text-[19px]!">
                           {g.code}
                           <span className="block font-normal">{g.name}</span>
                         </p>
@@ -246,7 +246,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
               cutting it off.
             */
             <div className="mt-auto flex min-h-0 flex-col items-center gap-3 border-t-[3px] border-me-gold pt-7 md:h-[var(--cat-row-h)]">
-              <p className="shrink-0 text-sm font-semibold md:text-[15px]">CATALYST MAPPING</p>
+              <p className="shrink-0 text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">CATALYST MAPPING</p>
               <CatalystDonut mix={catalystMix} className="min-h-0 w-[118px] flex-1 lg:w-[160px]" />
             </div>
           )}
@@ -257,8 +257,8 @@ export default function CaseStudySlide({ study, preparedFor }) {
           <div className="flex border-b-[3px] border-me-gold bg-me-navy/85 p-3 text-me-gold">
             {statTiles.map((s) => (
               <div key={s.label || s.figure} className="flex-1 text-center">
-                <p className="text-lg font-semibold md:text-xl lg:text-[22px]">{s.figure}</p>
-                <p className="text-xs md:text-[13px]">{s.label}</p>
+                <p className="text-lg font-semibold md:text-xl lg:text-[22px] 3xl:text-[28px]!">{s.figure}</p>
+                <p className="text-xs md:text-[13px] 3xl:text-[17px]!">{s.label}</p>
               </div>
             ))}
           </div>
@@ -302,7 +302,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
                     // eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do
                     <img src={BADGES[c.key]} alt="" aria-hidden="true" className="h-8 w-8 shrink-0" />
                   )}
-                  <h3 className="text-base font-semibold md:text-[17px]">{c.name}</h3>
+                  <h3 className="text-base font-semibold md:text-[17px] 3xl:text-[22px]!">{c.name}</h3>
                 </div>
                 {/* the lead sits in its own fixed-height row in the Figma so the
                     three body texts start on the same line; `min-h` does that
@@ -310,11 +310,11 @@ export default function CaseStudySlide({ study, preparedFor }) {
                     a blank lead too — otherwise one empty cell knocks the other
                     two cards' bodies out of line. */}
                 {hasLead && (
-                  <p className="whitespace-pre-line text-[13px] font-semibold leading-snug md:min-h-[3.6rem]">
+                  <p className="whitespace-pre-line text-[13px] font-semibold leading-snug md:min-h-[3.6rem] 3xl:text-[17px]!">
                     {c.lead}
                   </p>
                 )}
-                {c.body && <p className="whitespace-pre-line text-[13px] leading-snug">{c.body}</p>}
+                {c.body && <p className="whitespace-pre-line text-[13px] leading-snug 3xl:text-[17px]!">{c.body}</p>}
               </article>
             ))}
           </div>

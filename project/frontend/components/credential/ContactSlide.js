@@ -22,7 +22,7 @@ export default function ContactSlide({ preparedFor }) {
           <p className="cover-tracked">LET&rsquo;S WORK TOGETHER</p>
         </div>
 
-        <h2 className="text-3xl font-light leading-tight text-me-gold md:text-5xl lg:text-[44px]">
+        <h2 className="text-3xl font-light leading-tight text-me-gold md:text-5xl lg:text-[44px] 3xl:text-[56px]!">
           พร้อมเริ่มต้นเส้นทาง
           <br />
           ความยั่งยืนไปด้วยกัน

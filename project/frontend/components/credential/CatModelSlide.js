@@ -210,9 +210,9 @@ export default function CatModelSlide({ preparedFor }) {
       <section className="flex flex-col items-start gap-4 md:gap-2">
         <div className="flex items-center gap-4">
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
-          <p className="text-[11px] uppercase tracking-[0.3em] text-me-gold/60">Our Model</p>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[15px]!">Our Model</p>
         </div>
-        <h2 className="text-3xl font-semibold leading-snug text-[#F0EEE9] md:text-4xl lg:text-5xl">
+        <h2 className="text-3xl font-semibold leading-snug text-[#F0EEE9] md:text-4xl lg:text-5xl 3xl:text-[60px]!">
           The ESG <span className="text-me-gold">CAT</span>ALYST model
         </h2>
       </section>
@@ -233,8 +233,8 @@ export default function CatModelSlide({ preparedFor }) {
           className={`flex w-full flex-col items-center cat-scene md:min-h-0 md:flex-1 ${playKey > 0 ? "is-playing" : ""}`}
         >
           <div className="mb-2 max-w-xs text-center md:mb-4 cat-copy-top" style={copyStyle}>
-            <h3 className="text-xl font-semibold text-me-gold md:text-2xl">CORE</h3>
-            <p className="mt-1 text-sm text-me-gold md:text-base">
+            <h3 className="text-xl font-semibold text-me-gold md:text-2xl 3xl:text-[30px]!">CORE</h3>
+            <p className="mt-1 text-sm text-me-gold md:text-base 3xl:text-[20px]!">
               Define the ESG substance
               <br />
               what matters most, what must be proven.
@@ -265,16 +265,16 @@ export default function CatModelSlide({ preparedFor }) {
               className={`absolute top-[69%] hidden w-48 flex-col gap-1 sm:flex md:w-56 ${POINTS[0].align} ${POINTS[0].enter} right-full mr-3 sm:mr-4`}
               style={copyStyle}
             >
-              <h3 className="text-lg font-semibold text-me-gold md:text-xl">{POINTS[0].title}</h3>
-              <p className="text-xs text-me-gold sm:text-sm">{POINTS[0].copy}</p>
+              <h3 className="text-lg font-semibold text-me-gold md:text-xl 3xl:text-[26px]!">{POINTS[0].title}</h3>
+              <p className="text-xs text-me-gold sm:text-sm 3xl:text-[18px]!">{POINTS[0].copy}</p>
             </div>
 
             <div
               className={`absolute top-[69%] hidden w-48 flex-col gap-1 sm:flex md:w-56 ${POINTS[1].align} ${POINTS[1].enter} left-full ml-3 sm:ml-4`}
               style={copyStyle}
             >
-              <h3 className="text-lg font-semibold text-me-gold md:text-xl">{POINTS[1].title}</h3>
-              <p className="text-xs text-me-gold sm:text-sm">{POINTS[1].copy}</p>
+              <h3 className="text-lg font-semibold text-me-gold md:text-xl 3xl:text-[26px]!">{POINTS[1].title}</h3>
+              <p className="text-xs text-me-gold sm:text-sm 3xl:text-[18px]!">{POINTS[1].copy}</p>
             </div>
           </div>
 
@@ -294,7 +294,7 @@ export default function CatModelSlide({ preparedFor }) {
 
       <section className="flex flex-col items-center gap-6 px-6 text-center md:gap-8 md:pb-4">
         <span className="h-px w-full max-w-2xl bg-white/20" aria-hidden="true" />
-        <p className="max-w-2xl text-sm leading-relaxed text-me-gold md:text-lg">
+        <p className="max-w-2xl text-sm leading-relaxed text-me-gold md:text-lg 3xl:text-[23px]!">
           From <b className="font-semibold">what matters</b>, to <b className="font-semibold">what we do</b>, to
           proven <b className="font-semibold">impact</b>
         </p>

@@ -37,14 +37,14 @@ function splitColumns(groups) {
 }
 
 const rowClass =
-  "block w-full text-left leading-snug text-[15px] text-me-cream/70 transition-colors duration-200 hover:text-me-gold lg:text-[17px]";
+  "block w-full text-left leading-snug text-[15px] text-me-cream/70 transition-colors duration-200 hover:text-me-gold lg:text-[17px] 3xl:text-[22px]!";
 
 function Group({ label, rows }) {
   return (
     <section className="relative">
       {/* the label rides the first row's line, hard against the column's right
           edge — `pr` on the rows keeps a long title from running under it */}
-      <p className="absolute right-0 top-[3px] text-[10px] uppercase tracking-[0.25em] text-me-gold/55 lg:text-[11px]">
+      <p className="absolute right-0 top-[3px] text-[10px] uppercase tracking-[0.25em] text-me-gold/55 lg:text-[11px] 3xl:text-[14px]!">
         {label}
       </p>
       <ul className="flex flex-col gap-[6px] pr-[9rem]">
@@ -96,8 +96,8 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
       {showHeading && (
         <div className="flex items-center gap-4">
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
-          <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60">All Works</p>
-          <span className="text-[13px] text-me-cream/40">{WORKS.length}</span>
+          <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[20px]!">All Works</p>
+          <span className="text-[13px] text-me-cream/40 3xl:text-[17px]!">{WORKS.length}</span>
         </div>
       )}
 

@@ -1,13 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/feed/route": "app/api/feed/route.js",
-  "/credential/page": "app/credential/page.js",
-  "/credential/work/[slug]/page": "app/credential/work/[slug]/page.js",
-  "/credential/year/[year]/page": "app/credential/year/[year]/page.js",
-  "/forest_bathing/page": "app/forest_bathing/page.js",
-  "/page": "app/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/portfolio/work/[slug]/page": "app/portfolio/work/[slug]/page.js",
-  "/portfolio/year/[year]/page": "app/portfolio/year/[year]/page.js",
-  "/services/page": "app/services/page.js"
+  "/credential/page": "app/credential/page.js"
 }

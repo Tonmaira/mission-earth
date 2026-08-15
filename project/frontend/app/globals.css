@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @theme {
+  /* A step above the widest default breakpoint (2xl = 1536px), for 1920-wide
+     screens and projectors. Named rather than an arbitrary `min-[1800px]:`
+     variant so Tailwind sorts it after lg/xl/2xl — an arbitrary one lands
+     before them and loses to `lg:` on exactly the screens it is meant for. */
+  --breakpoint-3xl: 1800px;
+
   --color-me-gold: #CEA870;
   --color-me-navy: #002740;
   /* the deck's off-white. Was a bare :root var in credential.css, which meant
