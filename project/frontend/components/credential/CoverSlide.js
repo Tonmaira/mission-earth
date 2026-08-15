@@ -11,7 +11,8 @@ import SlideTopBar from "./SlideTopBar";
  */
 
 
-export default function CoverSlide({ preparedFor = "Osotspa Public Company Limited", year = "2026" }) {
+// no default client here either — SlideTopBar takes it from the URL
+export default function CoverSlide({ preparedFor, year = "2026" }) {
   return (
     <div className="slide-stage cover-stage">
       <SlideTopBar preparedFor={preparedFor} />

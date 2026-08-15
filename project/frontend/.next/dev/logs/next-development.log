@@ -409,3 +409,19 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [04:18:59.007] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[04:44:53.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:44:54.093] Browser WARN    Image with src "/image/services/2-service-training.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[04:44:54.093] Browser WARN    Image with src "/image/services/2-service-training.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:50:34.894] Server  LOG     ✓ Compiled in 51ms
+[04:57:19.242] Server  LOG     ✓ Compiled in 43ms
+[05:02:17.574] Server  LOG     ✓ Compiled in 79ms
+[05:02:42.601] Server  LOG     ✓ Compiled in 50ms
+[05:02:58.693] Server  LOG     ✓ Compiled in 46ms
+[05:03:35.914] Server  LOG     ✓ Compiled in 54ms
+[05:03:53.456] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:03:54.147] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:04:23.903] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:04:24.014] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:04:49.432] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[05:04:49.504] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

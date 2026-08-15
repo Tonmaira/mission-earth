@@ -60,7 +60,7 @@ export const SCG_PRAYOTSUK = {
   sdgGoals: [1, 11],
   stats: [
     { figure: "300+", label: "Engagement" },
-    { figure: "1.2M", label: "Reach" },
+    { figure: "1.2M+", label: "Reach" },
     { figure: "40+", label: "Change Makers" },
     { figure: "1.79", label: "SROI" },
   ],
@@ -92,9 +92,9 @@ export const DEK_SANG_NAN_1 = {
   label: "เด็กสร้างน่าน ปีที่ 1",
   title: "เด็กสร้างน่าน ปีที่ 1",
   quote: "“กิจกรรมฟื้นฟูป่าต้นน้ำ”",
-  photo: { src: "/profilecredential/case_deksarngnan.jpg", alt: "forest batning" }, // no hero photo supplied yet
+  photo: { src: "/profilecredential/case_deksarngnan.jpg", alt: "เยาวชนผู้เข้าร่วมค่ายเด็กสร้างน่าน" }, // no hero photo supplied yet
   meta: [
-    { label: "Client", value: "ศูนย์พันธกิจเพื่อสังคม\nจุฬาลงกรณ์มหาวิทยาลัย และ โครงการรักษ์ป่าน่านในพระราชดำริ" },
+    { label: "Client", value: "ศูนย์พันธกิจเพื่อสังคม\nจุฬาลงกรณ์มหาวิทยาลัย และ โครงการรักษ์ป่าน่านตามพระราชดำริ" },
     { label: "Timeline", value: "6 months", sub: "Apr to Sep 2025" },
     { label: "Target", value: "เยาวชน จ.น่าน" },
   ],
@@ -133,7 +133,7 @@ export const GREEN_MISSION = {
   label: "Green Mission",
   title: "Green Mission",
   quote: "“ก้าวต่อไปไร้รอยเท้า”",
-  photo: { src: "/profilecredential/case_greenmission.jpg", alt: "forest batning" }, // no hero photo supplied yet
+  photo: { src: "/profilecredential/case_greenmission.jpg", alt: "เยาวชนผู้เข้าร่วมโครงการ Green Mission" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "บริษัท กัลฟ์ ดีเวลลอปเมนท์ จำกัด (มหาชน)\nจุฬาลงกรณ์มหาวิทยาลัย" },
     { label: "Timeline", value: "6 months", sub: "May to Oct 2024" },
@@ -142,7 +142,7 @@ export const GREEN_MISSION = {
   sdgGoals: [7, 9, 13, 17],
   stats: [
     { figure: "2000+", label: "Engagement" },
-    { figure: "500k+", label: "Reach" },
+    { figure: "500K+", label: "Reach" },
     { figure: "20", label: "Outputs" },
   ],
   catalystMix: { core: 30, action: 60, traceability: 10 },
@@ -172,8 +172,8 @@ export const WATER_WORKSHOP = {
   id: "water-workshop",
   label: "Workshop · การจัดการน้ำ",
   title: "Workshop: การจัดการน้ำ",
-  quote: "“พัฒนาศักยภาพผู้นำการการเปลี่ยนแปลงด้านน้ำ”",
-  photo: { src: "/profilecredential/expertise_knowledge.jpg", alt: "forest batning" }, // no hero photo supplied yet
+  quote: "“พัฒนาศักยภาพผู้นำการเปลี่ยนแปลงด้านน้ำ”",
+  photo: { src: "/profilecredential/expertise_knowledge.jpg", alt: "การอบรมหลักสูตรการจัดการน้ำ" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "สำนักงานทรัพยากรน้ำแห่งชาติ\nจุฬาลงกรณ์มหาวิทยาลัย" },
     { label: "Timeline", value: "5 months", sub: "Jul to Nov 2025" },
@@ -212,8 +212,8 @@ export const FOREST_BATHING = {
   id: "forest-bathing",
   label: "Forest Bathing",
   title: "Forest Bathing",
-  quote: "“Awaken All Six Sense with Nature”",
-  photo: { src: "/profilecredential/expertise_nature.jpg", alt: "forest batning" }, // no hero photo supplied yet
+  quote: "“Awaken All Six Senses with Nature”",
+  photo: { src: "/profilecredential/expertise_nature.jpg", alt: "กิจกรรม Forest Bathing ในป่า" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "Royal Orchid Holidays (ROH)" },
     { label: "Timeline", value: "3 months", sub: "Dec 2025 to Feb 2026" },
@@ -222,8 +222,8 @@ export const FOREST_BATHING = {
   sdgGoals: [3, 15, 8],
   stats: [
     { figure: "30+", label: "Engagement" },
-    { figure: "500k+", label: "Reach" },
-    { figure: "฿300k", label: "To Local Hand" },
+    { figure: "500K+", label: "Reach" },
+    { figure: "฿300k", label: "To Local Hands" },
     { figure: "90%", label: "CSAT" },
   ],
   catalystMix: { core: 40, action: 60, traceability: 0 },
@@ -254,16 +254,16 @@ export const BKKCAW_2025 = {
   label: "BKKCAW Workshop 2025",
   title: "BKKCAW Workshop 2025",
   quote: "“Designing a Planet Full of Life”",
-  photo: {  src: "/profilecredential/case_bkkcaw.jpg", alt: "forest batning"  }, // no hero photo supplied yet
+  photo: {  src: "/profilecredential/case_bkkcaw.jpg", alt: "วงเสวนาในงาน Bangkok Climate Action Week"  }, // no hero photo supplied yet
   meta: [
-    { label: "Client", value: "Asia Plus\nCUD4S" },
+    { label: "Client", value: "Asia Plus Group Holdings\nCUD4S" },
     { label: "Timeline", value: "5 months", sub: "May to Sep 2025" },
     { label: "Target", value: "ประชาชนทั่วประเทศ" },
   ],
   sdgGoals: [9, 11, 13, 16],
   stats: [
     { figure: "200+", label: "Engagement" },
-    { figure: "700k+", label: "Reach" },
+    { figure: "700K+", label: "Reach" },
     { figure: "1", label: "Board Game Prototype" },
   ],
   catalystMix: { core: 30, action: 60, traceability: 10 },
@@ -278,7 +278,7 @@ export const BKKCAW_2025 = {
       key: "action",
       name: "ACTION",
       lead: "ESG Interaction Workshop ㆍ\nIntegrated Impact Activities ㆍ\nImpact Toolkit",
-      body: "ออกแบบและจัดทำ Board Game เพื่อเรียนรู้ด้านความหลากหลายทางชีวภาพ/การวางผังเมือง/Green Finance\nจัดกิจกรม Workshop",
+      body: "ออกแบบและจัดทำ Board Game เพื่อเรียนรู้ด้านความหลากหลายทางชีวภาพ/การวางผังเมือง/Green Finance\nจัดกิจกรรม Workshop",
     },
     {
       key: "traceability",

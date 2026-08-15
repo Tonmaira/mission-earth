@@ -8,5 +8,6 @@
   "/page": "app/page.js",
   "/portfolio/page": "app/portfolio/page.js",
   "/portfolio/work/[slug]/page": "app/portfolio/work/[slug]/page.js",
-  "/portfolio/year/[year]/page": "app/portfolio/year/[year]/page.js"
+  "/portfolio/year/[year]/page": "app/portfolio/year/[year]/page.js",
+  "/services/page": "app/services/page.js"
 }

@@ -15,7 +15,7 @@ const PARTNER_LOGOS = [
   { src: "/credential/กระทรวงทรัพย์@3x.png", name: "กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม" },
   { src: "/credential/สทนช@3x.png", name: "สำนักงานทรัพยากรน้ำแห่งชาติ" },
   { src: "/credential/Bedo@3x.png", name: "BEDO" },
-  { src: "/credential/รักษ์ป่าน่าน@3x.png", name: "โครงการรักษ์ป่าน่าน ตามพระราชดำริ" },
+  { src: "/credential/รักษ์ป่าน่าน@3x.png", name: "โครงการรักษ์ป่าน่านตามพระราชดำริ" },
   { src: "/credential/ADB.jpeg", name: "Asian Development Bank" },
   { src: "/credential/AFD.png", name: "Agence Française de Développement" },
   { src: "/credential/koicaThailand.jpg", name: "KOICA Thailand" },
