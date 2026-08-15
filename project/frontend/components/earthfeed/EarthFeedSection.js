@@ -1,6 +1,7 @@
 "use client";
 import { useFeedItems } from "./useEarthFeed";
 import Link from "next/link";
+import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 
 export default function EarthFeedSection() {
@@ -71,10 +72,12 @@ export default function EarthFeedSection() {
                   >
                     <div className="relative w-[80px] h-[58px] shrink-0 overflow-hidden">
                       {item.imageUrl ? (
-                        <img
+                        <Image
                           src={item.imageUrl}
                           alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          fill
+                          sizes="80px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
                         <div className="w-full h-full bg-white/10" />
@@ -112,10 +115,12 @@ function FeedCard({ item, loading, titleSize = "text-xl" }) {
   return (
     <Link href={`/feed/${item.id}`} className="relative block w-full h-full overflow-hidden group">
       {item.imageUrl ? (
-        <img
+        <Image
           src={item.imageUrl}
           alt={item.title}
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          fill
+          sizes="(max-width: 768px) 100vw, 66vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
         />
       ) : (
         <div className="absolute inset-0 bg-[#052032]" />

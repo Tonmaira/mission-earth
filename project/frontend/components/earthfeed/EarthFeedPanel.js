@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 import { useFeedItems } from "./useEarthFeed";
 import { useLang } from "@/lib/LanguageContext";
@@ -58,9 +59,12 @@ function FeedCard({ item }) {
       <div className={`absolute left-0 top-0 bottom-0 w-[4px] bg-[#CEA870] transition-opacity duration-200 z-[3] ${hovered ? "opacity-100" : "opacity-0"}`} />
       {/* Background */}
       {item.imageUrl ? (
-        <img
-          src={item.imageUrl} alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-50 z-[0]"
+        <Image
+          src={item.imageUrl}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 60vw"
+          className="object-cover opacity-50 z-[0]"
         />
       ) : (
         <div

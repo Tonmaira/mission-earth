@@ -48,6 +48,193 @@
           "button": "See more"
         }
       ]
+    },
+    "successCase": {
+      "label": "proven impact",
+      "title": "SUCCESS CASES",
+      "desc": "From ESG training and nature camps to creative events and sustainable travel, see how we've partnered with leading organizations across Thailand to turn sustainability into action.",
+      "more": "View All Success Cases",
+      "items": [
+        {
+          "title": "Building Sustainable Communities with SCG"
+        },
+        {
+          "title": "Youth Restoring Nan's Headwater Forest"
+        },
+        {
+          "title": "Awaken All Six Senses with Nature"
+        }
+      ]
     }
+  },
+  "exploreActivities": {
+    "eyebrow": "Explore the Sustainable",
+    "titleLine1": "Workshops",
+    "titleLine2": "& Activities",
+    "lead": "Discover thoughtfully curated experiences from us and our trusted partners",
+    "body": "Art workshops, mindfulness sessions, academic classes, wellness activities, seminars, learning trips, games, and adventures for every age.",
+    "closing": "Book the ones that inspire you, or join us as a vendor and share your own.",
+    "exploreBtn": "Explore Activities!",
+    "vendorBtn": "Join us as Vendor! (Soon)",
+    "searchPlaceholder": "Search by Activities, Destination",
+    "searchLabel": "Search activities",
+    "tabOriginal": "Mission Earth's Original",
+    "tabAll": "All Activities",
+    "seeAll": "See All",
+    "originals": [
+      {
+        "title": "Forest Bathing"
+      },
+      {
+        "title": "Ekiden"
+      }
+    ],
+    "categories": [
+      {
+        "title": "Mindfulness Activities",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      },
+      {
+        "title": "Art Workshops",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      },
+      {
+        "title": "Academic Classes",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      },
+      {
+        "title": "Games Workshops",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      },
+      {
+        "title": "Adventures",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      },
+      {
+        "title": "Others",
+        "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+      }
+    ]
+  },
+  "forestBathing": {
+    "nav": {
+      "info": "What's Forest Bathing",
+      "locations": "Locations",
+      "calendar": "Calendar",
+      "contact": "Contact Us"
+    },
+    "info": {
+      "eyebrow": "What is",
+      "title": "What is Forest Bathing?",
+      "lead": "Forest Bathing, or “Shinrin-yoku”, is the practice of spending slow, deliberate time in the forest with all five senses open. It is not a hike to conquer a summit — it is stopping, listening, smelling, touching, and letting the forest do its work on your body and mind.",
+      "points": [
+        {
+          "title": "Walk slowly",
+          "desc": "Short distances over a long time. The point is what you notice, not how far you go."
+        },
+        {
+          "title": "Open your senses",
+          "desc": "Listen to the forest, smell the soil and leaves, feel the bark and the wind."
+        },
+        {
+          "title": "Guided throughout",
+          "desc": "A facilitator leads you through activities that connect you with nature along the way."
+        }
+      ]
+    },
+    "locations": {
+      "eyebrow": "Locations",
+      "title": "Choose your forest",
+      "lead": "Each place offers a different experience. Pick a location to see its open dates.",
+      "items": {
+        "chet-kot": {
+          "name": "Chet Kot – Pong Kon Sao National Park",
+          "region": "Saraburi, Thailand",
+          "blurb": "Forest inside a national park, about two hours from Bangkok. An overnight trip."
+        },
+        "doi-tung": {
+          "name": "Doi Tung",
+          "region": "Chiangrai, Thailand",
+          "blurb": "Highland watershed forest in Chiang Rai. Cool year-round, with natural walking trails."
+        },
+        "urban-bangkok": {
+          "name": "Urban Forest Bathing",
+          "region": "Bang KraChao, Samut Prakarn",
+          "blurb": "Breathe with the forest. A mindful morning of Japanese forest bathing at Bang Krachao — Bangkok's green lung. Slow down, reconnect, and leave feeling lighter."
+        }
+      }
+    },
+    "instructors": {
+      "khemupsorn": {
+        "name": "khemupsorn Sirisukha",
+        "role": "Forest Bathing Instructor"
+      },
+      "yanudchara": {
+        "name": "Yanudchara Nuanpan",
+        "role": "Instructor"
+      },
+      "roh": {
+        "name": "Royal Orchid Holidays (ROH)",
+        "role": "Programs Management"
+      }
+    },
+    "calendar": {
+      "eyebrow": "Calendar",
+      "title": "All upcoming sessions"
+    },
+    "card": {
+      "nextSession": "Next session",
+      "notOpen": "Not open for booking yet",
+      "book": "Choose a date",
+      "notify": "Notify me"
+    },
+    "booking": {
+      "activityDateTitle": "Your Activity Date",
+      "activityDateSubtitle": "Select Other Date to See Other Activities",
+      "pickDate": "Pick a trip to book (gold-outlined days are trip dates)",
+      "pickFirst": "Pick a trip first",
+      "bookOn": "Book {date}",
+      "disabled": "Booking is not live yet",
+      "duration": "{days} days, {nights} night",
+      "durationPlural": "{days} days, {nights} nights",
+      "hour": "{hours} hour",
+      "hours": "{hours} hours"
+    },
+    "sections": {
+      "nav": {
+        "info": "Info",
+        "location": "Location",
+        "schedule": "Schedule",
+        "prepare": "Prepare",
+        "includes": "What's include",
+        "reviews": "Review",
+        "photos": "Photo"
+      },
+      "heading": {
+        "info": "About this session",
+        "location": "Location & getting there",
+        "schedule": "Schedule",
+        "prepare": "What to prepare",
+        "includes": "What's included",
+        "reviews": "Reviews",
+        "photos": "Photos"
+      },
+      "navLabel": "Session details",
+      "instructor": "Instructor",
+      "empty": "Details for this session are still being prepared.",
+      "viewMap": "Open in Google Maps",
+      "viewAllPhotos": "View all {count} photos"
+    },
+    "notify": {
+      "label": "Leave your email and we will tell you the moment {name} opens for booking.",
+      "placeholder": "you@example.com",
+      "submit": "Notify me",
+      "sending": "Saving…",
+      "done": "Done! We will email you when booking opens.",
+      "already": "This email is already on the list. We will let you know when booking opens.",
+      "failed": "Could not save. Please try again.",
+      "network": "Connection failed. Please try again."
+    },
+    "close": "Close"
   }
 }

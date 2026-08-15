@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 import CalendarWidget from "./CalendarWidget";
 import { useCalendarEvents } from "./useEarthFeed";
@@ -113,23 +114,39 @@ export default function ActivitiesPanel() {
   return (
     <div className="flex-1 relative flex flex-col overflow-hidden">
 
-      {/* Background — covers entire panel, cross-fades on click */}
+      {/* Background — covers entire panel, cross-fades on click.
+          ใช้ next/image (ไม่ใช่ CSS background-image) เพื่อให้รูปถูกย่อ/แปลง WebP
+          ไม่งั้นเบราว์เซอร์จะดึงไฟล์เต็มจาก Supabase ทุกครั้ง = กิน egress มหาศาล */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-        style={{
-          backgroundImage: "url('/image/services/19-scaventure.jpg')",
-          opacity: activeItem === null ? 1 : 0,
-        }}
-      />
+        className="absolute inset-0 transition-opacity duration-500"
+        style={{ opacity: activeItem === null ? 1 : 0 }}
+      >
+        <Image
+          src="/image/services/19-scaventure.jpg"
+          alt=""
+          fill
+          sizes="1600px"
+          quality={70}
+          className="object-cover"
+        />
+      </div>
       {upcomingItems.map((item, i) => (
         <div
           key={i}
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-          style={{
-            backgroundImage: `url('${item.image}')`,
-            opacity: activeItem === i ? 1 : 0,
-          }}
-        />
+          className="absolute inset-0 transition-opacity duration-500"
+          style={{ opacity: activeItem === i ? 1 : 0 }}
+        >
+          {/* sizes ตรึงที่ 1600px กันไม่ให้ขอ 3840px — รูปนี้อยู่ใต้ gradient ทึบ
+              และโดน brightness filter อยู่แล้ว ไม่ต้องคมระดับ retina เต็ม */}
+          <Image
+            src={item.image}
+            alt=""
+            fill
+            sizes="1600px"
+            quality={70}
+            className="object-cover"
+          />
+        </div>
       ))}
 
       {/* Gradient — bottom to top */}
@@ -240,9 +257,12 @@ function ActivityCard({ card, isActive, onClick }) {
     >
       {/* Background image */}
       {card.image && (
-        <img
-          src={card.image} alt=""
-          className="absolute inset-0 w-full h-full object-cover"
+        <Image
+          src={card.image}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 85vw, 515px"
+          className="object-cover"
         />
       )}
 

@@ -6,12 +6,15 @@ import AboutUsPre from '@/components/AboutUsPre';
 import HighlightService from '@/components/HighlightService';
 import Image from 'next/image';
 import { ServicesCard } from '@/components/ServiceData';
-import EarthFeed from "@/components/earthfeed/EarthFeed";
+import ExploreActivities from "@/components/ExploreActivities";
 import EarthFeedSection from "@/components/earthfeed/EarthFeedSection";
-import PopupRegister from "@/components/PopupRegister";
+import SuccessCaseSection from "@/components/SuccessCaseSection";
+import ScrollRestore from "@/components/ScrollRestore";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">
+      {/* กด back กลับมาแล้วให้อยู่ตำแหน่งเดิม — main เป็นตัวเลื่อนเอง เบราว์เซอร์เลยจำให้ไม่ได้ */}
+      <ScrollRestore storageKey="home-scroll" />
       <Navbar />
       <SocialMediaPack />
 
@@ -50,9 +53,14 @@ Empowered by Experts.
       <HighlightService services={ServicesCard} />
     </section>
 
+      {/* --- Success Cases --- */}
+      <section className="snap-start snap-always h-dvh overflow-hidden">
+        <SuccessCaseSection />
+      </section>
+
     {/* --- Activities --- */}
       <section className="snap-start snap-always h-dvh overflow-hidden">
-          <EarthFeed />
+          <ExploreActivities />
       </section>
 
       {/* --- Earth Feed --- */}
@@ -70,8 +78,6 @@ Empowered by Experts.
       <section className="snap-start snap-always">
       <FooterSection />
       </section>
-
-      <PopupRegister />
     </main>
   );
 }

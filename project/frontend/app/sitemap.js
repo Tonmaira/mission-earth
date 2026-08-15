@@ -7,5 +7,6 @@ export default function sitemap() {
     { url: `${base}/portfolio`,                           lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contact`,                             lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/activities/dek-sang-nan-2`,           lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${base}/forest_bathing`,                      lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
   ];
 }

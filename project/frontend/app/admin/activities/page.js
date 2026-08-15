@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { compressImage } from "@/lib/compressImage";
 
 const EMPTY_FORM = {
   image_url: "",
@@ -46,16 +47,21 @@ export default function AdminActivitiesPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploading(true);
-    const ext = file.name.split(".").pop();
-    const fileName = `${Date.now()}.${ext}`;
-    const { error } = await supabase.storage.from("Activities").upload(fileName, file, { upsert: true });
-    if (!error) {
+    try {
+      // ย่อ/บีบก่อนเสมอ — ไฟล์ดิบจากกล้องเคยหลุดเข้า storage เป็น 10 MB
+      const blob = await compressImage(file);
+      const fileName = `${Date.now()}.jpg`;
+      const { error } = await supabase.storage
+        .from("Activities")
+        .upload(fileName, blob, { upsert: true, contentType: "image/jpeg" });
+      if (error) throw error;
+
       const { data } = supabase.storage.from("Activities").getPublicUrl(fileName);
       setForm((f) => ({ ...f, image_url: data.publicUrl }));
       showToast("อัพโหลดรูปสำเร็จ ✓");
-    } else {
-      console.error("Upload error:", error);
-      showToast(error.message ?? "อัพโหลดไม่สำเร็จ", "error");
+    } catch (err) {
+      console.error("Upload error:", err);
+      showToast(err.message ?? "อัพโหลดไม่สำเร็จ", "error");
     }
     setUploading(false);
   };

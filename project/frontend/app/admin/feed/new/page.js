@@ -3,12 +3,15 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import CropModal from "@/components/admin/CropModal";
+import { compressImage } from "@/lib/compressImage";
 
 const CATS = ["ME Update", "Event", "News", "Article"];
 
 async function uploadToStorage(blob, ext = "jpg") {
+  // CropModal ส่ง canvas ที่ความละเอียดเต็มของต้นฉบับมา — ย่อก่อนเสมอ
+  const compressed = await compressImage(blob);
   const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-  const { error } = await supabase.storage.from("Articles").upload(fileName, blob, { upsert: true, contentType: "image/jpeg" });
+  const { error } = await supabase.storage.from("Articles").upload(fileName, compressed, { upsert: true, contentType: "image/jpeg" });
   if (error) throw error;
   const { data } = supabase.storage.from("Articles").getPublicUrl(fileName);
   return data.publicUrl;

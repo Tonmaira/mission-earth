@@ -17,6 +17,16 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+// true italic, so browsers don't fake it by skewing the upright face.
+// Not preloaded — only the credential cover asks for it.
+const poppinsItalic = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["italic"],
+  variable: "--font-poppins-italic",
+  preload: false,
+});
+
 const notoTh = Noto_Sans_Thai({
   subsets: ["thai"],
   weight: ["300", "400", "500", "600", "700"],
@@ -25,7 +35,7 @@ const notoTh = Noto_Sans_Thai({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="th" className={`${poppins.variable} ${notoTh.variable}`}>
+    <html lang="th" className={`${poppins.variable} ${poppinsItalic.variable} ${notoTh.variable}`}>
       <body className="font-sans antialiased bg-[#002740]">
         <LanguageProvider>
           {children}

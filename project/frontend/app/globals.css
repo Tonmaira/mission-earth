@@ -3,6 +3,9 @@
 @theme {
   --color-me-gold: #CEA870;
   --color-me-navy: #002740;
+  /* the deck's off-white. Was a bare :root var in credential.css, which meant
+     var() worked but `text-me-cream/70` quietly produced no rule at all. */
+  --color-me-cream: #F0EEE9;
   --color-me-dim6: oklch(90% 0 0 / 55%);
   --tracking-label: 0.3em;
 }
@@ -36,3 +39,5 @@ body {
   from { transform: translateX(-120%); }
   to   { transform: translateX(0); }
 }
+
+
