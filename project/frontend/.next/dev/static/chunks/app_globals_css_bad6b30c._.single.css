@@ -734,6 +734,18 @@
     z-index: 999;
   }
 
+  .order-1 {
+    order: 1;
+  }
+
+  .order-2 {
+    order: 2;
+  }
+
+  .order-3 {
+    order: 3;
+  }
+
   .container {
     width: 100%;
   }
@@ -5222,6 +5234,12 @@
   @media (min-width: 40rem) {
     .sm\:left-6 {
       left: calc(var(--spacing) * 6);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:order-none {
+      order: 0;
     }
   }
 

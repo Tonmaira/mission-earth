@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "dafa3bae11549635bbc191b00ec74f60",
-    "previewModeSigningKey": "5710756e0275e5799aed9dd9deaec5ed70f5b9d5e0aff46914703deab24287f0",
-    "previewModeEncryptionKey": "ed2aae30b91cbab5f02ee0f786dfcd4b1432582d035fa4fd24be7a35b30233b2"
-  }
-}
+{"version":4,"routes":{"/credential/osotspa-p0yn4c":{},"/credential/โอสถสภา":{},"/credential/001":{},"/credential/001osot":{}},"dynamicRoutes":{"/credential/[client]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/credential/[client]","routeRegex":"^\\/credential\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"dafa3bae11549635bbc191b00ec74f60","previewModeSigningKey":"5710756e0275e5799aed9dd9deaec5ed70f5b9d5e0aff46914703deab24287f0","previewModeEncryptionKey":"ed2aae30b91cbab5f02ee0f786dfcd4b1432582d035fa4fd24be7a35b30233b2"}}

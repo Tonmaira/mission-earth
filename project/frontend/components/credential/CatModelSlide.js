@@ -210,7 +210,7 @@ export default function CatModelSlide({ preparedFor }) {
       <section className="flex flex-col items-start gap-4 md:gap-2">
         <div className="flex items-center gap-4">
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
-          <p className="text-[11px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[15px]!">Our Model</p>
+          <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[15px]!">Our Model</p>
         </div>
         <h2 className="text-3xl font-semibold leading-snug text-[#F0EEE9] md:text-4xl lg:text-5xl 3xl:text-[60px]!">
           The ESG <span className="text-me-gold">CAT</span>ALYST model
@@ -232,9 +232,15 @@ export default function CatModelSlide({ preparedFor }) {
           key={playKey}
           className={`flex w-full flex-col items-center cat-scene md:min-h-0 md:flex-1 ${playKey > 0 ? "is-playing" : ""}`}
         >
-          <div className="mb-2 max-w-xs text-center md:mb-4 cat-copy-top" style={copyStyle}>
-            <h3 className="text-xl font-semibold text-me-gold md:text-2xl 3xl:text-[30px]!">CORE</h3>
-            <p className="mt-1 text-sm text-me-gold md:text-base 3xl:text-[20px]!">
+          {/* CORE reads at the same size as ACTION and TRACEABILITY: all three
+              are captions on a letter of the model, not a heading over it.
+              `order` puts it under the ring on a phone — see the ring below. */}
+          <div
+            className="mb-2 max-w-xs text-center md:mb-4 cat-copy-top order-2 sm:order-none"
+            style={copyStyle}
+          >
+            <h3 className="text-lg font-semibold text-me-gold md:text-xl 3xl:text-[26px]!">CORE</h3>
+            <p className="mt-1 text-xs text-me-gold sm:text-sm 3xl:text-[18px]!">
               Define the ESG substance
               <br />
               what matters most, what must be proven.
@@ -256,7 +262,11 @@ export default function CatModelSlide({ preparedFor }) {
             Capped at the design's 440px so a tall screen doesn't oversize it.
           */}
           <div
-            className="relative w-[242px] sm:w-[286px] md:min-h-0 md:w-auto md:max-w-full md:flex-1"
+            /* `order-1` on a phone, so the ring comes first and the reading
+               order down the screen is model → C → A → T. From `sm` up the
+               three captions sit around the ring and order goes back to the
+               source order. */
+            className="relative order-1 w-[242px] sm:order-none sm:w-[286px] md:min-h-0 md:w-auto md:max-w-full md:flex-1"
             style={{ aspectRatio: RING_RATIO, maxHeight: 440 }}
           >
             <CatRing />
@@ -278,11 +288,13 @@ export default function CatModelSlide({ preparedFor }) {
             </div>
           </div>
 
-          {/* mobile only: TRACEABILITY/ACTION stacked in normal flow below the
-              ring instead of flanking it — there's no room to spare beside a
-              220px-wide ring on a phone screen */}
-          <div className="mt-6 flex w-full max-w-xs flex-col gap-6 sm:hidden">
-            {POINTS.map((p) => (
+          {/* mobile only: ACTION then TRACEABILITY stacked in normal flow below
+              the ring instead of flanking it — there's no room to spare beside
+              a 220px-wide ring on a phone screen. Read in model order, C·A·T,
+              which is the reverse of how POINTS lists them for the sides (left
+              of the ring first). */}
+          <div className="order-3 mt-6 flex w-full max-w-xs flex-col gap-6 sm:hidden">
+            {[...POINTS].reverse().map((p) => (
               <div key={p.key} className={`text-center ${p.enter}`} style={copyStyle}>
                 <h3 className="text-lg font-semibold text-me-gold">{p.title}</h3>
                 <p className="mt-1 text-sm text-me-gold">{p.copy}</p>

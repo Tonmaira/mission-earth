@@ -28,9 +28,15 @@ const BADGES = {
   traceability: "/credential/cat-badges/badge-traceability.svg",
 };
 
+/** The "Hide panels" control, which clears the slide to its photograph. Off on
+ *  request; the button and its state are still here, so this is the only line
+ *  to change to bring it back. */
+const SHOW_HIDE_PANELS = false;
+
 /** Largest the title is allowed to be — mirrors what the Tailwind classes on it
  *  would have been at each breakpoint, since an inline font-size overrides them. */
-const titleCeiling = (width) => (width < 768 ? 28 : width < 1024 ? 32 : width < 1800 ? 36 : 46);
+const titleCeiling = (width) =>
+  width < 768 ? 28 : width < 1024 ? 32 : width < 1800 ? 36 : 46;
 const TITLE_FLOOR = 20;
 
 /**
@@ -74,7 +80,8 @@ function useFitTitle(title) {
 }
 
 export default function CaseStudySlide({ study, preparedFor }) {
-  const { title, quote, photo, meta, sdgGoals, stats, catalyst, catalystMix } = study;
+  const { title, quote, photo, meta, sdgGoals, stats, catalyst, catalystMix } =
+    study;
   // `.filter(Boolean)` so an unknown goal number is simply left out rather than
   // rendering an empty row or throwing
   const goals = (sdgGoals || []).map(sdgGoal).filter(Boolean);
@@ -88,7 +95,10 @@ export default function CaseStudySlide({ study, preparedFor }) {
   const metaRows = (meta || []).filter((m) => m.value);
   const statTiles = (stats || []).filter((s) => s.figure || s.label);
   const cards = (catalyst || []).filter((c) => c.name || c.lead || c.body);
-  const mixTotal = Object.values(catalystMix || {}).reduce((sum, n) => sum + (Number(n) || 0), 0);
+  const mixTotal = Object.values(catalystMix || {}).reduce(
+    (sum, n) => sum + (Number(n) || 0),
+    0,
+  );
   // the leads sit in a fixed-height row so the three bodies start on the same
   // line — pointless, and just dead space, when no card has a lead at all
   const hasLead = cards.some((c) => c.lead);
@@ -163,22 +173,38 @@ export default function CaseStudySlide({ study, preparedFor }) {
         >
           <header className="border-b-[3px] border-me-gold pb-4">
             {/* size is set by useFitTitle, not by a class — see there for why */}
-            <h2 ref={titleRef} className="overflow-hidden font-normal leading-tight">
+            <h2
+              ref={titleRef}
+              className="overflow-hidden font-normal leading-tight"
+            >
               {title}
             </h2>
-            {quote && <p className="text-base md:text-lg lg:text-[19px] 3xl:text-[24px]!">{quote}</p>}
+            {quote && (
+              <p className="text-base md:text-lg lg:text-[19px] 3xl:text-[24px]!">
+                {quote}
+              </p>
+            )}
           </header>
 
           <dl className="flex flex-col gap-3 lg:gap-8">
             {metaRows.map((m) => (
-              <div key={m.label} className="flex items-start justify-between gap-4">
-                <dt className="text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">{m.label}</dt>
+              <div
+                key={m.label}
+                className="flex items-start justify-between gap-4"
+              >
+                <dt className="text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
+                  {m.label}
+                </dt>
                 {/* `whitespace-pre-line`: the source sheet uses real line breaks
                     inside a cell (a two-line client name, say) and HTML would
                     otherwise run them together into one paragraph */}
                 <dd className="w-[68%] whitespace-pre-line text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
                   {m.value}
-                  {m.sub && <span className="block text-xs font-normal md:text-[13px] 3xl:text-[17px]!">{m.sub}</span>}
+                  {m.sub && (
+                    <span className="block text-xs font-normal md:text-[13px] 3xl:text-[17px]!">
+                      {m.sub}
+                    </span>
+                  )}
                 </dd>
               </div>
             ))}
@@ -188,7 +214,9 @@ export default function CaseStudySlide({ study, preparedFor }) {
                 {goals.length > 0 && (
                   <>
                     SDG
-                    <span className="block text-[11px] 3xl:text-[14px]!">Alignment</span>
+                    <span className="block text-[11px] 3xl:text-[14px]!">
+                      Alignment
+                    </span>
                   </>
                 )}
               </dt>
@@ -222,7 +250,13 @@ export default function CaseStudySlide({ study, preparedFor }) {
                             so a long name beside them can never squash one. The
                             source files are the 3000px print originals, so
                             next/image resizing them is doing real work here. */}
-                        <Image src={g.src} alt={g.alt} width={44} height={44} className="h-11 w-11 shrink-0" />
+                        <Image
+                          src={g.src}
+                          alt={g.alt}
+                          width={44}
+                          height={44}
+                          className="h-11 w-11 shrink-0"
+                        />
                         <p className="text-sm font-semibold leading-tight md:text-[15px] 3xl:text-[19px]!">
                           {g.code}
                           <span className="block font-normal">{g.name}</span>
@@ -246,44 +280,54 @@ export default function CaseStudySlide({ study, preparedFor }) {
               cutting it off.
             */
             <div className="mt-auto flex min-h-0 flex-col items-center gap-3 border-t-[3px] border-me-gold pt-7 md:h-[var(--cat-row-h)]">
-              <p className="shrink-0 text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">CATALYST MAPPING</p>
-              <CatalystDonut mix={catalystMix} className="min-h-0 w-[118px] flex-1 lg:w-[160px]" />
+              <p className="shrink-0 text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
+                CATALYST MAPPING
+              </p>
+              <CatalystDonut
+                mix={catalystMix}
+                className="min-h-0 w-[118px] flex-1 lg:w-[160px]"
+              />
             </div>
           )}
         </section>
 
         {/* ── right column ─────────────────────────────────────────────── */}
-        <section className={`relative flex flex-1 flex-col justify-between ${panelClass}`}>
+        <section
+          className={`relative flex flex-1 flex-col justify-between ${panelClass}`}
+        >
           <div className="flex border-b-[3px] border-me-gold bg-me-navy/85 p-3 text-me-gold">
             {statTiles.map((s) => (
               <div key={s.label || s.figure} className="flex-1 text-center">
-                <p className="text-lg font-semibold md:text-xl lg:text-[22px] 3xl:text-[28px]!">{s.figure}</p>
-                <p className="text-xs md:text-[13px] 3xl:text-[17px]!">{s.label}</p>
+                <p className="text-lg font-semibold md:text-xl lg:text-[22px] 3xl:text-[28px]!">
+                  {s.figure}
+                </p>
+                <p className="text-xs md:text-[13px] 3xl:text-[17px]!">
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>
 
           {/*
-            The photograph again, this time framed and at full strength, filling
-            the band the stat bar and the cards leave between them. The copy of
-            it behind everything stays as an ambient wash — this is the one you
-            are meant to look at, and being the same picture at two scales is
-            what lets a single supplied photo carry the whole slide.
+            The photograph again, at full strength and bled to the edges of the
+            band the stat bar and the cards leave between them — no inset, no
+            corner radius, no border, as the Figma frame has it. The copy of it
+            behind everything stays as an ambient wash; this is the one you are
+            meant to look at, and being the same picture at two scales is what
+            lets a single supplied photo carry the whole slide.
 
             `min-h-0` so it yields rather than shoving the cards down when the
             slide is short.
           */}
           {photo?.src && (
-            <div className="relative hidden min-h-0 flex-1 p-3 md:block">
-              <div className="relative h-full w-full overflow-hidden rounded-lg ring-1 ring-me-gold/25">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt || ""}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 70vw"
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative hidden min-h-0 flex-1 overflow-hidden md:block">
+              <Image
+                src={photo.src}
+                alt={photo.alt || ""}
+                fill
+                sizes="(max-width: 767px) 100vw, 70vw"
+                className="object-cover"
+              />
             </div>
           )}
 
@@ -300,9 +344,16 @@ export default function CaseStudySlide({ study, preparedFor }) {
                 <div className="flex items-center gap-3">
                   {BADGES[c.key] && (
                     // eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do
-                    <img src={BADGES[c.key]} alt="" aria-hidden="true" className="h-8 w-8 shrink-0" />
+                    <img
+                      src={BADGES[c.key]}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-8 w-8 shrink-0"
+                    />
                   )}
-                  <h3 className="text-base font-semibold md:text-[17px] 3xl:text-[22px]!">{c.name}</h3>
+                  <h3 className="text-base font-semibold md:text-[17px] 3xl:text-[22px]!">
+                    {c.name}
+                  </h3>
                 </div>
                 {/* the lead sits in its own fixed-height row in the Figma so the
                     three body texts start on the same line; `min-h` does that
@@ -314,29 +365,37 @@ export default function CaseStudySlide({ study, preparedFor }) {
                     {c.lead}
                   </p>
                 )}
-                {c.body && <p className="whitespace-pre-line text-[13px] leading-snug 3xl:text-[17px]!">{c.body}</p>}
+                {c.body && (
+                  <p className="whitespace-pre-line text-[13px] leading-snug 3xl:text-[17px]!">
+                    {c.body}
+                  </p>
+                )}
               </article>
             ))}
           </div>
         </section>
 
         {/*
-          Clears the slide down to its photograph. A sibling of the two panels
-          rather than a child, so it stays put and clickable once they've faded.
+          Clears the slide down to its photograph. Off for now, on request —
+          set SHOW_HIDE_PANELS back to true to bring it back, nothing else to
+          restore.
 
-          Deliberately quiet — this is a presentation slide, not an app screen —
-          so it rests at low opacity and comes up on hover or keyboard focus.
-          Bottom-centre keeps it off the slide rail on the right edge and off
-          Next's dev badge in the bottom-left corner.
+          A sibling of the two panels rather than a child, so it stays put and
+          clickable once they've faded. Deliberately quiet — this is a
+          presentation slide, not an app screen — so it rests at low opacity and
+          comes up on hover or keyboard focus. Bottom-centre keeps it off the
+          slide rail on the right edge and off Next's dev badge bottom-left.
         */}
-        <button
-          type="button"
-          onClick={() => setPanelsHidden((hidden) => !hidden)}
-          aria-pressed={panelsHidden}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full border border-me-gold/40 bg-me-navy/70 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-me-gold opacity-40 backdrop-blur transition hover:border-me-gold hover:text-white hover:opacity-100 focus-visible:opacity-100"
-        >
-          {panelsHidden ? "Show panels" : "Hide panels"}
-        </button>
+        {SHOW_HIDE_PANELS && (
+          <button
+            type="button"
+            onClick={() => setPanelsHidden((hidden) => !hidden)}
+            aria-pressed={panelsHidden}
+            className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full border border-me-gold/40 bg-me-navy/70 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-me-gold opacity-40 backdrop-blur transition hover:border-me-gold hover:text-white hover:opacity-100 focus-visible:opacity-100"
+          >
+            {panelsHidden ? "Show panels" : "Hide panels"}
+          </button>
+        )}
       </div>
     </div>
   );

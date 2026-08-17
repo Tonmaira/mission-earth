@@ -33,7 +33,7 @@ const LENSES = [
   {
     lens: "creative",
     title: "Creative & Communication",
-    copy: "Turning insight into collective action.",
+    copy: "Turning complexity into compelling stories.",
   },
 ];
 

@@ -171,8 +171,8 @@ export const GREEN_MISSION = {
 export const WATER_WORKSHOP = {
   id: "water-workshop",
   label: "Workshop · การจัดการน้ำ",
-  title: "Workshop: การจัดการน้ำ",
-  quote: "“พัฒนาศักยภาพผู้นำการเปลี่ยนแปลงด้านน้ำ”",
+  title: "Workshop:",
+  quote: "การจัดทำแผนการจัดการน้ำจังหวัดระยอง พัฒนาศักยภาพผู้นำการเปลี่ยนแปลงด้านน้ำ",
   photo: { src: "/profilecredential/expertise_knowledge.jpg", alt: "การอบรมหลักสูตรการจัดการน้ำ" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "สำนักงานทรัพยากรน้ำแห่งชาติ\nจุฬาลงกรณ์มหาวิทยาลัย" },
