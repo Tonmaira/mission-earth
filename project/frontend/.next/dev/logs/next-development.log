@@ -866,3 +866,28 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [27:00:19.157] Server  LOG     ✓ Compiled in 56ms
 [27:00:26.246] Server  LOG     ✓ Compiled in 97ms
 [27:00:36.748] Server  LOG     ✓ Compiled in 44ms
+[27:12:20.074] Server  LOG     ✓ Compiled in 131ms
+[27:12:30.722] Server  LOG     ✓ Compiled in 70ms
+[27:12:43.110] Server  LOG     ✓ Compiled in 55ms
+[27:13:01.511] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:13:03.924] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:13:04.088] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[27:13:46.594] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:13:46.781] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[27:14:23.228] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:14:23.402] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[27:18:01.699] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:18:01.846] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[27:18:14.727] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[27:18:35.564] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[27:18:35.705] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[29:32:22.681] Server  LOG     ✓ Compiled in 133ms
+[29:44:58.972] Server  LOG     ✓ Compiled in 73ms
+[29:45:25.665] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[29:45:28.219] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[29:45:28.404] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[29:45:28.527] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[29:46:13.490] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[29:46:13.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
