@@ -1,7 +1,7 @@
 "use client";
 
 import { PROVINCE_BY_CODE } from "@/lib/thaiProvinces";
-import { TH_MAP_BOUNDS, TH_MAP_PATHS, TH_MAP_VIEWBOX } from "./thMapPaths";
+import { TH_MAP_PATHS, TH_MAP_VIEWBOX } from "./thMapPaths";
 
 /**
  * แผนที่ประเทศไทย 77 จังหวัด กดเลือกได้
@@ -39,34 +39,6 @@ const toneFor = (count, max) => {
   const ratio = max > 0 ? Math.sqrt(count / max) : 0;
   return TONES.find((tone) => ratio <= tone.upTo).className;
 };
-
-/*
- * หมุดสำหรับจังหวัดที่เล็กเกินกว่าจะมองเห็น
- *
- * แผนที่แบบระบายสีมีจุดอ่อนอยู่อย่าง: พื้นที่บนแผนที่แปรตามขนาดจังหวัด ไม่ใช่
- * ตามปริมาณงาน กรุงเทพซึ่งมีงานมากที่สุดเลยเป็นจุดเล็กๆ ที่คนดูจากท้ายห้อง
- * มองไม่เห็น ส่วนแม่ฮ่องสอนที่มีสองงานกินพื้นที่มหาศาล — สายตาสรุปกลับด้าน
- * กับข้อมูลจริง
- *
- * แก้ด้วยการวาดวงกลมทับจังหวัดที่กรอบเล็กกว่าเกณฑ์ ใช้สีเดียวกับจังหวัดนั้น
- * และอยู่ใน <g> เดียวกัน เลยกดได้และเปลี่ยนสีตอน hover เหมือนกันหมด
- *
- * 800 คือพื้นที่กรอบในหน่วย viewBox (381×703) — ต่ำกว่านี้คือกลุ่มจังหวัดภาคกลาง
- * เล็กๆ กับภูเก็ต ส่วนกรุงเทพอยู่ที่ 612 เชียงใหม่ 9,924 จึงห่างกันชัดเจน
- */
-const SMALL_PROVINCE_AREA = 800;
-
-const markerFor = (code) => {
-  const box = TH_MAP_BOUNDS[code];
-  return box && box.w * box.h < SMALL_PROVINCE_AREA ? box : null;
-};
-
-/*
- * ขนาดหมุดโตตามจำนวนงานด้วย ไม่ใช่วงกลมเท่ากันหมด — จังหวัดเล็กที่มีงานเดียว
- * ไม่ควรเด่นเท่ากรุงเทพที่มีสิบงาน ใช้ √ เหมือนตอนไล่สี เพราะพื้นที่วงกลมโตตาม
- * รัศมียกกำลังสอง ถ้าเอารัศมีไปผูกกับจำนวนตรงๆ ตาจะอ่านว่าต่างกันเว่อร์กว่าจริง
- */
-const radiusFor = (count, max) => 4.5 + 4 * (max > 0 ? Math.sqrt(count / max) : 0);
 
 export default function ThailandMap({
   /**
@@ -110,7 +82,6 @@ export default function ThailandMap({
         const isActive = activeSet.has(code);
         const isSelected = code === selected;
         const province = PROVINCE_BY_CODE[code];
-        const marker = markerFor(code);
 
         const tone = isSelected
           ? "fill-me-gold stroke-me-cream"
@@ -160,16 +131,6 @@ export default function ThailandMap({
             {TH_MAP_PATHS[code].map((d, i) => (
               <path key={i} d={d} vectorEffect="non-scaling-stroke" />
             ))}
-
-            {/* วาดหลัง path เสมอ SVG ไม่มี z-index ชิ้นที่วาดทีหลังอยู่บน */}
-            {isActive && marker && (
-              <circle
-                cx={marker.cx}
-                cy={marker.cy}
-                r={radiusFor(counts[code], max)}
-                vectorEffect="non-scaling-stroke"
-              />
-            )}
           </g>
         );
       })}

@@ -672,3 +672,182 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [22:42:48.510] Server  LOG     ✓ Compiled in 58ms
 [22:42:52.999] Server  LOG     ✓ Compiled in 51ms
 [22:43:00.008] Server  LOG     ✓ Compiled in 90ms
+[23:37:38.937] Server  LOG     ✓ Compiled in 90ms
+[23:38:36.661] Server  LOG     ✓ Compiled in 59ms
+[23:39:00.261] Server  LOG     ✓ Compiled in 49ms
+[25:46:59.215] Server  LOG     ✓ Compiled in 118ms
+[25:47:55.787] Server  LOG     ✓ Compiled in 51ms
+[25:48:08.330] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:48:10.804] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:48:33.276] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:48:33.431] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:48:56.060] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:50:42.226] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:50:42.518] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:51:50.351] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:51:50.581] Browser WARN    Image with src "/project/20260116cmutalk/DSC05737 copy.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:51:50.581] Browser WARN    Image with src "/project/20260116cmutalk/DSC05737 copy.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[25:51:50.581] Browser WARN    Image with src "/project/20260116cmutalk/ARCH2024-A4-vio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[25:55:22.816] Server  LOG     ✓ Compiled in 77ms
+[25:55:22.859] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:22.866] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:22.886] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:23.575] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:23.575] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:23.576] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:23.578] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:23.578] Browser ERROR   uncaughtError: ReferenceError: TH_MAP_BOUNDS is not defined
+[25:55:43.305] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.307] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.311] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.315] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.315] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.315] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.317] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.317] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:55:43.514] Server  LOG     ✓ Compiled in 45ms
+[25:55:43.614] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:43.769] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:43.777] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.777] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.777] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.778] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.778] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.778] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.778] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.778] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:43.902] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:43.996] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.038] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.115] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.187] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.265] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.320] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.393] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.458] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.530] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.590] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.663] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.718] Server  ERROR   ⨯ ReferenceError: markerFor is not defined
+[25:55:44.817] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:55:44.832] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:44.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:44.867] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:44.977] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:45.019] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.035] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.056] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:45.063] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.083] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:45.109] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:45.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:45.579] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.579] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.579] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.579] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:55:45.580] Browser ERROR   uncaughtError: ReferenceError: markerFor is not defined
+[25:56:26.496] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.497] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.497] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.500] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.500] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.500] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.500] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.501] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:26.594] Server  LOG     ✓ Compiled in 52ms
+[25:56:26.682] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:26.782] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:26.920] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.016] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.048] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.145] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.190] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.279] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.332] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.416] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.484] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.568] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.624] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.731] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.742] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:27.777] Server  ERROR   ⨯ ReferenceError: marker is not defined
+[25:56:27.851] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:27.868] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:27.881] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:27.989] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:28.056] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.059] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:28.096] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.099] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:28.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:28.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:28.575] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.577] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.577] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.577] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:28.577] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[25:56:43.264] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.265] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.265] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.266] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.266] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.268] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.271] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.271] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[25:56:43.328] Server  LOG     ✓ Compiled in 47ms
+[25:56:43.506] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:43.649] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:43.850] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:43.987] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:44.130] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:44.255] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:44.371] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:44.544] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:56:44.571] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.614] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.678] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.849] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.861] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.874] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.886] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:44.899] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:57:24.054] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:57:40.927] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:57:41.564] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:59:30.229] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:59:30.356] Browser WARN    Image with src "/project/20250912tattripforearth/กระเป๋าผ้า-Trip-for-EARTH_print.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[25:59:30.356] Browser WARN    Image with src "/project/20250912tattripforearth/TAT@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[25:59:30.356] Browser WARN    Image with src "/project/20250912tattripforearth/กระเป๋าผ้า-Trip-for-EARTH_print.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:02:34.981] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:02:35.153] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:03:59.945] Server  LOG     ✓ Compiled in 103ms
+[26:04:24.042] Server  LOG     ✓ Compiled in 49ms
+[26:04:47.113] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:04:47.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:05:15.485] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:05:26.487] Server  LOG     ✓ Compiled in 63ms
+[26:05:44.986] Server  LOG     ✓ Compiled in 92ms
+[26:05:53.883] Server  LOG     ✓ Compiled in 59ms
+[26:06:57.001] Server  LOG     ✓ Compiled in 81ms
+[26:09:08.267] Server  LOG     ✓ Compiled in 83ms
+[26:10:14.514] Server  LOG     ✓ Compiled in 66ms
+[26:10:19.737] Server  LOG     ✓ Compiled in 47ms
+[26:10:22.273] Server  LOG     ✓ Compiled in 83ms
+[26:10:43.570] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:11:26.428] Server  LOG     ✓ Compiled in 55ms
+[26:11:43.283] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:11:43.446] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:12:11.390] Server  LOG     ✓ Compiled in 59ms
+[26:12:18.191] Server  LOG     ✓ Compiled in 53ms
+[26:12:42.526] Server  LOG     ✓ Compiled in 77ms
+[26:12:49.167] Server  LOG     ✓ Compiled in 51ms
+[26:12:56.389] Server  LOG     ✓ Compiled in 58ms
+[26:14:34.879] Server  LOG     ✓ Compiled in 59ms
+[26:14:46.855] Server  LOG     ✓ Compiled in 52ms
+[26:15:39.820] Server  LOG     ✓ Compiled in 64ms
+[26:15:52.100] Server  LOG     ✓ Compiled in 49ms
+[26:16:08.473] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:16:08.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

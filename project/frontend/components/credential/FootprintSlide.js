@@ -128,8 +128,7 @@ export default function FootprintSlide({ preparedFor }) {
             ) : (
               <>
                 <p className="text-[15px] text-me-cream/45 lg:text-[17px] 3xl:text-[22px]!">
-                  Where we return most often — select any province to see the
-                  work there.
+                  Where we return most often.
                 </p>
                 <ul className="mt-3 flex flex-col gap-[6px]">
                   {topProvinces.map(([code, count]) => (

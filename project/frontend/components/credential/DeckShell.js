@@ -44,6 +44,17 @@ export default function DeckShell({ children, bgTuning }) {
   );
 
   /*
+   * The rail's clickable rows stay full-width even while their names are
+   * invisible (see the rail's own comment below), so on a slide the rail
+   * happens to sit over, that invisible strip still eats clicks. The map on
+   * "Where we work" is exactly that case — its eastern provinces sit under
+   * the rail's row width, unclickable, and it also visually covers the map
+   * once a pointer opens the names. Simplest fix: the rail just isn't there
+   * on that one slide.
+   */
+  const hideRailOn = "footprint";
+
+  /*
    * Whether the rail is showing its names, worked out from where the pointer
    * actually is rather than from CSS :hover or mouseenter/mouseleave.
    *
@@ -378,7 +389,10 @@ export default function DeckShell({ children, bgTuning }) {
       <nav
         ref={railRef}
         aria-label="Slides"
-        className="fixed right-4 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 md:flex"
+        aria-hidden={slides[active]?.id === hideRailOn}
+        className={`fixed right-4 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 transition-opacity duration-500 md:flex ${
+          slides[active]?.id === hideRailOn ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
       >
         {slides.map((s, i) => (
           <button

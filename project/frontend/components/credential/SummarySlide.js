@@ -38,9 +38,13 @@ const SCOPE_STATS = [
  * แล้วค่อยไล่ลงไปหา reach ปิดท้าย
  *
  * ตัวไหนยังไม่มีข้อมูลสักงานจะหายไปเองทั้งช่อง ไม่ต้องมาคอมเมนต์ทิ้งไว้
+ *
+ * `approximate: true` ต่อ "+" ท้ายตัวเลข — ใช้กับช่องที่รู้อยู่แล้วว่านับได้
+ * ไม่ครบทุกงาน (ตอนนี้มีแค่สองงานที่กรอก toLocalHands) ตัวเลขที่โชว์เลยเป็น
+ * "อย่างน้อยเท่านี้" ไม่ใช่ยอดจริงทั้งหมด "+" บอกตรงๆ ว่ายังนับไม่ครบ
  */
 const IMPACT_STATS = [
-  { key: "toLocalHands", label: "THB into local hands" },
+  { key: "toLocalHands", label: "THB into local hands", approximate: true },
   { key: "changeMakers", label: "Changemakers" },
   { key: "engagement", label: "Active participants" },
   { key: "reach", label: "Total reach" },
@@ -52,11 +56,19 @@ const IMPACT_STATS = [
  *
  * ย่อทุกช่องที่ถึงล้าน ไม่ใช่เฉพาะช่องเงินเหมือนเดิม — ตอนนั้น "12,338,000"
  * กับ "13.1M" ไปยืนติดกันในแถวเดียว สองรูปแบบในบรรทัดเดียวดูเหมือนทำไม่เสร็จ
+ *
+ * `abbreviateThousands` ย่อหลักพันเป็น "k" ด้วย (500000 -> "500k") — เปิดเฉพาะ
+ * ช่องที่เป็น `approximate` เพราะเลขนั้น "อย่างน้อยเท่านี้" อยู่แล้ว การปัดเศษ
+ * ให้ดูอ่านง่ายไม่ได้เสียความแม่นยำอะไรเพิ่ม ส่วนตัวเลขที่นับครบจริงยังโชว์
+ * แบบเต็มมีคอมมาเหมือนเดิม
  */
-const format = (value) =>
-  value >= 1_000_000
-    ? `${(value / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`
-    : value.toLocaleString("en-US");
+const format = (value, { abbreviateThousands = false } = {}) => {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
+  if (abbreviateThousands && value >= 1_000) {
+    return `${(value / 1_000).toFixed(1).replace(/\.0$/, "")}k`;
+  }
+  return value.toLocaleString("en-US");
+};
 
 /** ตัวเลขหนึ่งช่อง — เลข 64px วางทับป้าย 24px ชิดซ้าย ไม่มีระยะห่างคั่น */
 function Stat({ figure, label }) {
@@ -79,7 +91,9 @@ export default function SummarySlide({ preparedFor }) {
   const impact = IMPACT_STATS.filter((stat) => worksWithStat(stat.key) > 0).map(
     (stat) => ({
       label: stat.label,
-      figure: format(sumStat(stat.key)),
+      figure:
+        format(sumStat(stat.key), { abbreviateThousands: stat.approximate }) +
+        (stat.approximate ? "+" : ""),
     })
   );
 
@@ -120,19 +134,31 @@ export default function SummarySlide({ preparedFor }) {
         </h2>
       </section>
 
-      {/* ระยะห่างระหว่างช่องเป็นค่าคงที่ 180px ไม่ใช่ตารางแบ่งเท่าๆ กัน — แต่ละช่อง
-          กว้างเท่าป้ายของตัวเอง เรียงต่อกันไปจากซ้าย เหมือนใน Figma
-          flex-wrap กันแถวล่างล้นจอตอนอยู่บนมือถือ */}
-      {[scope, impact].map((row, i) => (
-        <section
-          key={i}
-          className="flex flex-wrap gap-x-[calc(180*var(--u))] gap-y-[calc(48*var(--u))]"
-        >
-          {row.map((stat) => (
-            <Stat key={stat.label} figure={stat.figure} label={stat.label} />
-          ))}
-        </section>
-      ))}
+      {/*
+        สองแถวนี้ห่อไว้ในกล่องเดียวโดยเจตนา — `.slide-stage` เป็น
+        `justify-between` เอง ถ้าปล่อยให้ทั้งสอง <section> เป็นลูกตรงของมัน
+        ระยะห่างระหว่างแถวจะไม่ใช่ค่าคงที่ แต่เป็นพื้นที่ว่างที่เหลือหารเท่าๆ
+        กันสามช่อง (บาร์บน/หัวเรื่อง/แถวบน/แถวล่าง) ซึ่งพอเนื้อหาสั้นจะทิ้งช่อง
+        ว่างตรงกลางเยอะเกิน ห่อเป็นก้อนเดียวแล้วคุมด้วย gap ตรงนี้แทน ระยะห่าง
+        เลยคงที่ไม่ว่าจอจะเหลือพื้นที่แค่ไหน — ตัวห่อเองต้องเป็น <section> ไม่ใช่
+        <div> เพราะ `.slide-stage > section` คือตัวให้ระยะขอบซ้าย-ขวาทั้งสไลด์
+        (ลอง <div> แล้วเนื้อหาชิดขอบจอทันที)
+      */}
+      <section className="flex flex-col gap-[calc(64*var(--u))]">
+        {/* ระยะห่างระหว่างช่องเป็นค่าคงที่ 180px ไม่ใช่ตารางแบ่งเท่าๆ กัน — แต่ละช่อง
+            กว้างเท่าป้ายของตัวเอง เรียงต่อกันไปจากซ้าย เหมือนใน Figma
+            flex-wrap กันแถวล่างล้นจอตอนอยู่บนมือถือ */}
+        {[scope, impact].map((row, i) => (
+          <div
+            key={i}
+            className="flex flex-wrap pb-12 gap-x-[calc(180*var(--u))] gap-y-[calc(48*var(--u))]"
+          >
+            {row.map((stat) => (
+              <Stat key={stat.label} figure={stat.figure} label={stat.label} />
+            ))}
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

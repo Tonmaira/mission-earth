@@ -8,13 +8,14 @@
  *
  * `subType` is carried but not shown: it is there for filtering later.
  *
+ * `provinces` และตัวเลขผลลัพธ์มาจากคอลัมน์ location กับ stats_* ในชีตแล้ว
+ * (ก่อนหน้านี้เป็น mock ใน mockWorkData.js ซึ่งเลิกใช้แล้ว ลบไฟล์นั้นทิ้งได้)
+ *
  * `image` and `description` have no column in the sheet — they are the two
  * things the /portfolio row layout wants. Blank for now: the row falls back to
  * a placeholder panel and simply omits the description. Paste a path from
  * /public into `image` as the photographs arrive.
  */
-
-import { MOCK_WORK_DATA } from "./mockWorkData"; // ⚠️ ชั่วคราว — ดูท้ายไฟล์
 
 const SHEET_WORKS = [
   {
@@ -22,13 +23,23 @@ const SHEET_WORKS = [
     title: "ประโยชน์สุข",
     quote: "เอสซีจีร่วมสร้างชุมชนยั่งยืน",
     client: "SCG",
-    target: "ชุมชนจาก 21 จังหวัด",
+    target: "ชุมชนจาก 22 จังหวัด",
     type: "COURSE",
     timeline: "ม.ค. - พ.ย. 2568 (11 เดือน)",
     image: "",
     description: "",
     year: 2025,
     caseId: "scg-prayotsuk",
+    provinces: [
+      "TH-41", "TH-38", "TH-36", "TH-71", "TH-80",
+      "TH-92", "TH-19", "TH-25", "TH-16", "TH-14",
+      "TH-60", "TH-57", "TH-51", "TH-18", "TH-61",
+      "TH-54", "TH-50", "TH-55", "TH-52", "TH-40",
+      "TH-21", "TH-20",
+    ],
+    reach: 1_200_000,
+    engagement: 300,
+    changeMakers: 40,
   },
   {
     slug: "dek-sang-nan-1",
@@ -43,6 +54,10 @@ const SHEET_WORKS = [
     description: "",
     year: 2025,
     caseId: "dek-sang-nan-1",
+    provinces: ["TH-55"],
+    reach: 80_000,
+    engagement: 500,
+    outputs: 10,
   },
   {
     slug: "green-mission",
@@ -57,6 +72,13 @@ const SHEET_WORKS = [
     description: "",
     year: 2024,
     caseId: "green-mission",
+    provinces: [
+      "TH-12", "TH-10", "TH-95", "TH-49", "TH-72",
+      "TH-75", "TH-11", "TH-41",
+    ],
+    reach: 500_000,
+    engagement: 2_000,
+    outputs: 20,
   },
   {
     slug: "water-workshop",
@@ -71,6 +93,11 @@ const SHEET_WORKS = [
     description: "",
     year: 2025,
     caseId: "water-workshop",
+    provinces: ["TH-21"],
+    reach: 24_000,
+    engagement: 200,
+    outputs: 30,
+    conceptProposals: 30,
   },
   {
     slug: "forest-bathing",
@@ -88,6 +115,10 @@ const SHEET_WORKS = [
     logos: [
       { label: "Partner", src: "/partner/ROH.png" },
     ],
+    provinces: ["TH-57"],
+    reach: 500_000,
+    engagement: 30,
+    toLocalHands: 300_000,
   },
   {
     slug: "bkkcaw-2025",
@@ -107,6 +138,11 @@ const SHEET_WORKS = [
       { label: "Sponsor", src: "/project/20250927bkkcaw/ASP@3x.png" },
       { label: "Collab", src: "/project/20250927bkkcaw/ARCH cu@3x.png" },
     ],
+    provinces: ["TH-10"],
+    reach: 700_000,
+    engagement: 200,
+    outputs: 1,
+    boardGames: 1,
   },
   {
     slug: "alive-sustainable-board-game-workshop",
@@ -123,6 +159,9 @@ const SHEET_WORKS = [
     logos: [
       { label: "Partner", src: "/project/20260130bkkdw/BKKDW.jpg" },
     ],
+    provinces: ["TH-10"],
+    reach: 60_000,
+    engagement: 30,
   },
   {
     slug: "designing-the-future-we-want-to-live-in",
@@ -140,6 +179,9 @@ const SHEET_WORKS = [
     logos: [
       { label: "Host", src: "/project/20260116cmutalk/ARCH2024-A4-vio.png" },
     ],
+    provinces: ["TH-50"],
+    reach: 2_500,
+    engagement: 200,
   },
   {
     slug: "ความหลากหลายทางชีวภาพและคุณภาพชีวิต",
@@ -159,6 +201,9 @@ const SHEET_WORKS = [
       { label: "To", src: "/project/20260115bmaxmexafd/BMA.png" },
       { label: "Collab", src: "/project/20260115bmaxmexafd/AFD.png" },
     ],
+    provinces: ["TH-10"],
+    reach: 1_500,
+    engagement: 60,
   },
   {
     slug: "ent-2026",
@@ -176,6 +221,9 @@ const SHEET_WORKS = [
     logos: [
       { label: "To", src: "/project/20260114ent/CU@3x.png" },
     ],
+    provinces: ["TH-10"],
+    reach: 2_000,
+    engagement: 100,
   },
   {
     slug: "15th-cpa-tutor-2025",
@@ -192,6 +240,9 @@ const SHEET_WORKS = [
     logos: [
       { label: "To", src: "/project/20251117cpatutor2025/CPA@3x.png" },
     ],
+    provinces: ["TH-21"],
+    reach: 65_000,
+    engagement: 600,
   },
   {
     slug: "trip-for-earth",
@@ -208,6 +259,11 @@ const SHEET_WORKS = [
     logos: [
       { label: "To", src: "/project/20250912tattripforearth/TAT@3x.png" },
     ],
+    provinces: ["TH-75", "TH-73"],
+    reach: 64_000,
+    engagement: 30,
+    toLocalHands: 200_000,
+    outputs: 6,
   },
   {
     slug: "alive-sustainable-planet-1st-edition",
@@ -221,6 +277,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2025,
+    provinces: ["TH-10", "TH-40"],
+    reach: 760_000,
+    engagement: 230,
   },
   {
     slug: "pttep-bif",
@@ -234,6 +293,7 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2025,
+    provinces: [],
   },
   {
     slug: "biocourse",
@@ -246,6 +306,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2025,
+    provinces: ["TH-55", "TH-19"],
+    reach: 250,
+    engagement: 250,
   },
   {
     slug: "pathways-to-a-sustainable-urban-future",
@@ -259,6 +322,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-10"],
+    reach: 300,
+    engagement: 300,
   },
   {
     slug: "green-mission-1-press-conference",
@@ -272,6 +338,12 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: [
+      "TH-10", "TH-90", "TH-33", "TH-50", "TH-13",
+      "TH-71", "TH-75", "TH-20", "TH-19",
+    ],
+    reach: 1_000,
+    engagement: 50,
   },
   {
     slug: "transition-in-action",
@@ -285,6 +357,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-10"],
+    reach: 100,
+    engagement: 100,
   },
   {
     slug: "biogang-challenge-2024",
@@ -297,6 +372,10 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-10", "TH-12", "TH-11", "TH-13"],
+    reach: 1_000,
+    engagement: 45,
+    outputs: 15,
   },
   {
     slug: "โครงการการจัดการไฟป่า-ลดปัญหาหมอกควัน",
@@ -308,6 +387,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-50", "TH-51", "TH-57"],
+    reach: 300,
+    engagement: 300,
   },
   {
     slug: "คู่มือการป้องกันการเผาในที่โล่ง",
@@ -321,6 +403,7 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-50", "TH-51", "TH-57"],
   },
   {
     slug: "dcce-stop-the-climate-crisis-together",
@@ -333,6 +416,9 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-14", "TH-72"],
+    reach: 100,
+    engagement: 100,
   },
   {
     slug: "carbon-neutral-in-daily-life",
@@ -346,20 +432,28 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2024,
+    provinces: ["TH-14", "TH-72"],
+  },
+  {
+    slug: "dek-sang-nan-2",
+    title: "เด็กสร้างน่าน ปีที่ 2",
+    quote: "ปลูกความคิด เพื่อชีวิตแห่งป่าน่าน",
+    client: "ศูนย์พันธกิจเพื่อสังคม\nจุฬาลงกรณ์มหาวิทยาลัย",
+    target: "เยาวชน จ.น่าน",
+    type: "CAMP",
+    subType: "ค่ายวิชาการด้านสิ่งแวดล้อม",
+    timeline: "ก.พ. - ก.ค. 2569 (6 เดือน)",
+    image: "",
+    description: "",
+    year: 2026,
+    provinces: ["TH-55"],
+    reach: 100_000,
+    engagement: 200,
+    outputs: 31,
   },
 ];
 
-/*
- * ⚠️ ชั่วคราว — จังหวัดกับตัวเลขผลลัพธ์ยังไม่มีในชีต เลยเอา mock มาทับไว้ก่อน
- * ให้หน้า SUMMARY กับแผนที่มีของครบ (ดู mockWorkData.js)
- *
- * พอ CSV ตัวจริงมา: ลบ import ข้างบน ลบไฟล์ mockWorkData.js แล้วเปลี่ยน
- * บรรทัดล่างนี้เป็น `export const WORKS = SHEET_WORKS;`
- */
-export const WORKS = SHEET_WORKS.map((work) => ({
-  ...work,
-  ...MOCK_WORK_DATA[work.slug],
-}));
+export const WORKS = SHEET_WORKS;
 
 /**
  * The order the index slide lists its groups in. A type with no works simply
