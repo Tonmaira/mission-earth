@@ -138,7 +138,7 @@ export default function FootprintSlide({ preparedFor }) {
                         onClick={() => setSelected(code)}
                         className="flex w-full items-baseline gap-3 text-left text-[15px] leading-snug text-me-cream/70 transition-colors duration-200 hover:text-me-gold lg:text-[17px] 3xl:text-[22px]!"
                       >
-                        <span>{PROVINCE_BY_CODE[code]?.th ?? code}</span>
+                        <span>{PROVINCE_BY_CODE[code]?.en ?? code}</span>
                         {/* เส้นประคั่นให้ตัวเลขไปเรียงชิดขวาตรงกันทุกบรรทัด */}
                         <span
                           className="min-w-0 flex-1 translate-y-[-4px] border-b border-dotted border-me-cream/20"

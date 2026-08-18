@@ -66,8 +66,7 @@ export const CLIENT_BRIEFS = {
           {
             title: "Regional Footprint",
             points: [
-              "Expanding revenue streams in CLMV markets",
-              "Operational and financial headwinds in Myanmar",
+              "Expanding revenue streams in CLMV markets"
             ],
           },
         ],
@@ -76,7 +75,7 @@ export const CLIENT_BRIEFS = {
            `lead` เป็นตัวหนา `rest` เป็นตัวปกติ สีทองทั้งคู่ */
         footer: {
           lead: "The Next Horizon",
-          rest: " – Evolving strong internal ESG into an external Shared Value",
+          rest: " – Evolving strong internal ESG into external Shared Value",
         },
       },
 

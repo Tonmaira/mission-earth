@@ -851,3 +851,18 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [26:15:52.100] Server  LOG     ✓ Compiled in 49ms
 [26:16:08.473] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
 [26:16:08.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:44:14.359] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:49:40.542] Server  LOG     ✓ Compiled in 116ms
+[26:51:10.449] Server  LOG     ✓ Compiled in 48ms
+[26:55:15.507] Server  LOG     ✓ Compiled in 65ms
+[26:55:37.137] Server  LOG     ✓ Compiled in 51ms
+[26:55:58.656] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:55:58.858] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:57:39.670] Server  LOG     ✓ Compiled in 57ms
+[26:58:05.903] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[26:59:34.587] Server  LOG     ✓ Compiled in 53ms
+[26:59:44.995] Server  LOG     ✓ Compiled in 55ms
+[27:00:13.061] Server  LOG     ✓ Compiled in 64ms
+[27:00:19.157] Server  LOG     ✓ Compiled in 56ms
+[27:00:26.246] Server  LOG     ✓ Compiled in 97ms
+[27:00:36.748] Server  LOG     ✓ Compiled in 44ms
