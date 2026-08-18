@@ -28,5 +28,5 @@ export default async function CredentialForClientPage({ params }) {
   const name = clientName(client);
   if (!name) notFound();
 
-  return <CredentialDeck preparedFor={name} />;
+  return <CredentialDeck preparedFor={name} client={client} />;
 }

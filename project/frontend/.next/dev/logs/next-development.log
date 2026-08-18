@@ -1,184 +1,674 @@
-[00:00:00.350] Server  LOG     ✓ Ready in 255ms
-[00:00:03.694] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:00:03.752] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:15.396] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:00:15.514] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:00:15.710] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:00:15.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:45.014] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:01:45.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:09.272] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:02:09.333] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:06.028] Server  LOG     ✓ Compiled in 438ms
-[00:03:22.024] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:03:22.069] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:46.278] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:03:46.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:10.538] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:04:10.605] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:54.138] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:04:54.182] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:21.690] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:00.732] Server  LOG     ✓ Ready in 561ms
+[00:00:12.804] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:00:54.266] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:01:10.250] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:02:17.277] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:02:17.441] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:07.511] Server  LOG     ✓ Compiled in 207ms
+[00:03:12.930] Server  LOG     ✓ Compiled in 74ms
+[00:04:00.935] Server  LOG     ✓ Compiled in 44ms
+[00:04:01.055] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-55
+[00:04:01.055] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-55
+[00:07:55.956] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:07:56.151] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:56.562] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:07:56.731] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:56.852] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:07:17.885] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[00:07:19.539] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:31:17.808] Server  LOG     ✓ Compiled in 213ms
-[14:33:42.146] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:33:42.276] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:33:42.467] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:33:42.523] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:39:55.652] Server  LOG     ✓ Compiled in 73ms
-[14:40:09.077] Server  LOG     ✓ Compiled in 65ms
-[14:40:34.748] Server  LOG     ✓ Compiled in 72ms
-[14:45:00.809] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:45:00.891] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:45:07.063] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:47:43.599] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:47:43.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:47:57.852] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:47:57.896] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:48:12.100] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:48:12.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:49:40.647] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:49:40.733] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:50:09.135] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:50:09.196] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:51:41.880] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:51:41.960] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:52:25.474] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:52:25.537] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:54:13.084] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:54:13.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:54:26.519] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:54:26.564] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[14:54:39.766] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[14:54:39.808] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[22:08:55.194] Server  LOG     ✓ Compiled in 83ms
-[22:09:41.756] Server  LOG     ✓ Compiled in 63ms
-[22:09:43.216] Server  LOG     ✓ Compiled in 6ms
-[22:09:58.668] Server  LOG     ✓ Compiled in 37ms
-[22:09:58.826] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:09:59.429] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:09:59.625] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:10:16.144] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:10:16.225] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[22:10:30.361] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:10:30.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[22:10:44.585] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[22:10:44.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:23:53.004] Server  LOG     ✓ Compiled in 112ms
-[35:24:20.620] Server  LOG     ✓ Compiled in 51ms
-[35:24:35.416] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:24:35.708] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:24:35.778] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:24:35.964] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:08:39.346] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:08:39.667] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:37.095] Server  LOG     ✓ Compiled in 92ms
+[00:19:51.703] Server  LOG     ✓ Compiled in 61ms
+[00:19:51.781] Browser ERROR   uncaughtError: ReferenceError: SummarySlide is not defined
+[00:19:51.783] Browser ERROR   uncaughtError: ReferenceError: SummarySlide is not defined
+[00:19:51.784] Browser ERROR   uncaughtError: ReferenceError: SummarySlide is not defined
+[00:19:53.067] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:19:53.208] Server  LOG     ✓ Compiled in 56ms
+[00:19:53.422] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:19:53.423] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:19:53.424] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:19:53.571] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:19:53.785] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:19:53.928] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:53.942] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:54.453] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:54.453] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[35:27:20.256] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:27:23.666] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:27:51.808] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:27:53.319] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:28:29.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:28:38.607] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:28:46.955] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:28:54.199] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:29:36.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:30:34.779] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:31:17.388] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:31:57.520] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:31:57.591] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:34:40.153] Server  LOG     ✓ Compiled in 57ms
-[35:36:24.878] Server  LOG     ✓ Compiled in 47ms
-[35:36:24.984] Browser ERROR   ./components/credential/CaseStudySlide.js:342:8
+[00:20:11.831] Server  LOG     ✓ Compiled in 46ms
+[00:20:48.101] Server  LOG     ✓ Compiled in 68ms
+[00:22:03.071] Server  LOG     ✓ Compiled in 48ms
+[00:22:03.144] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-55
+[00:22:03.144] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:22:03.251] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-55
+[00:22:03.263] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:22:27.511] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:22:27.968] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:58.958] Server  LOG     ✓ Compiled in 73ms
+[00:40:59.033] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:40:59.151] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:41:11.003] Server  LOG     ✓ Compiled in 55ms
+[00:41:11.180] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:41:11.180] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:41:29.078] Server  LOG     ✓ Compiled in 54ms
+[00:41:29.138] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:41:45.399] Server  LOG     ✓ Compiled in 63ms
+[00:41:45.450] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:42:02.416] Server  LOG     ✓ Compiled in 77ms
+[00:42:02.476] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-50
+[00:42:17.967] Server  LOG     ✓ Compiled in 42ms
+[00:43:29.774] Server  LOG     ✓ Compiled in 75ms
+[00:43:37.070] Server  LOG     ✓ Compiled in 44ms
+[00:43:47.608] Server  LOG     ✓ Compiled in 47ms
+[00:44:44.372] Server  LOG     ✓ Compiled in 56ms
+[00:44:44.421] Browser ERROR   uncaughtError: ReferenceError: stats is not defined
+[00:44:44.421] Browser ERROR   uncaughtError: ReferenceError: stats is not defined
+[00:44:44.425] Browser ERROR   uncaughtError: ReferenceError: stats is not defined
+[00:45:10.955] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:45:11.066] Server  LOG     ✓ Compiled in 77ms
+[00:45:11.334] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:45:11.341] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:45:11.341] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:45:11.466] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:45:11.682] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:45:11.803] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:11.823] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:12.299] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:12.299] Browser WARN    Image with src "/profilecredential/case_deksarngnan.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:45:54.428] Server  LOG     ✓ Compiled in 49ms
+[00:45:56.753] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:49:44.279] Server  LOG     ✓ Compiled in 61ms
+[00:50:31.437] Server  LOG     ✓ Compiled in 62ms
+[00:50:31.541] Browser ERROR   ./components/credential/SummarySlide.js:141:8
 Parsing ecmascript source code failed
-  340 |           {panelsHidden ? "Show panels" : "Hide panels"}
-  341 |         </button>
-> 342 |       </div>
-      |        ^^^^^
-  343 |     </div>
-  344 |   );
-  345 | }
+  139 |           ))}
+  140 |         </div>
+> 141 |       </section>
+      |        ^^^^^^^^^
+  142 |
+  143 |       <section>
+  144 |         <p className="flex flex-wrap gap-x-5 gap-y-1 border-t border-me-cream/15 pt-5 text-[11px] uppercase tracking-[0.18em] text-me-cream/40 lg:text-[12px] 3xl:text-[15px]!">
 
 Unterminated regexp literal
 
 Import traces:
   Client Component Browser:
-    ./components/credential/CaseStudySlide.js [Client Component Browser]
+    ./components/credential/SummarySlide.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
 
   Client Component SSR:
-    ./components/credential/CaseStudySlide.js [Client Component SSR]
+    ./components/credential/SummarySlide.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
-[35:36:24.987] Browser ERROR   ./components/credential/CaseStudySlide.js:342:8
+[00:50:31.541] Browser ERROR   ./components/credential/SummarySlide.js:141:8
 Parsing ecmascript source code failed
-  340 |           {panelsHidden ? "Show panels" : "Hide panels"}
-  341 |         </button>
-> 342 |       </div>
-      |        ^^^^^
-  343 |     </div>
-  344 |   );
-  345 | }
+  139 |           ))}
+  140 |         </div>
+> 141 |       </section>
+      |        ^^^^^^^^^
+  142 |
+  143 |       <section>
+  144 |         <p className="flex flex-wrap gap-x-5 gap-y-1 border-t border-me-cream/15 pt-5 text-[11px] uppercase tracking-[0.18em] text-me-cream/40 lg:text-[12px] 3xl:text-[15px]!">
 
 Unterminated regexp literal
 
 Import traces:
   Client Component Browser:
-    ./components/credential/CaseStudySlide.js [Client Component Browser]
+    ./components/credential/SummarySlide.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
 
   Client Component SSR:
-    ./components/credential/CaseStudySlide.js [Client Component SSR]
+    ./components/credential/SummarySlide.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
-[35:36:25.762] Browser ERROR   ./components/credential/CaseStudySlide.js:342:8
+[00:50:31.543] Browser ERROR   ./components/credential/SummarySlide.js:141:8
 Parsing ecmascript source code failed
-  340 |           {panelsHidden ? "Show panels" : "Hide panels"}
-  341 |         </button>
-> 342 |       </div>
-      |        ^^^^^
-  343 |     </div>
-  344 |   );
-  345 | }
+  139 |           ))}
+  140 |         </div>
+> 141 |       </section>
+      |        ^^^^^^^^^
+  142 |
+  143 |       <section>
+  144 |         <p className="flex flex-wrap gap-x-5 gap-y-1 border-t border-me-cream/15 pt-5 text-[11px] uppercase tracking-[0.18em] text-me-cream/40 lg:text-[12px] 3xl:text-[15px]!">
 
 Unterminated regexp literal
 
 Import traces:
   Client Component Browser:
-    ./components/credential/CaseStudySlide.js [Client Component Browser]
+    ./components/credential/SummarySlide.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Client Component Browser]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
 
   Client Component SSR:
-    ./components/credential/CaseStudySlide.js [Client Component SSR]
+    ./components/credential/SummarySlide.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Client Component SSR]
     ./components/credential/CredentialDeck.js [Server Component]
     ./app/credential/page.js [Server Component]
-[35:36:34.881] Server  LOG     ✓ Compiled in 45ms
-[35:36:35.124] Browser ERROR   uncaughtError: ReferenceError: SHOW_HIDE_PANELS is not defined
-[35:36:35.763] Browser ERROR   uncaughtError: ReferenceError: SHOW_HIDE_PANELS is not defined
-[35:36:49.544] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[35:36:49.544] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[35:36:49.590] Server  LOG     ✓ Compiled in 49ms
-[35:36:49.748] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:36:49.929] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:36:50.023] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:36:50.101] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:36:50.165] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:50:55.734] Server  LOG     ✓ Compiled in 57ms
+[00:50:57.560] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[00:52:53.839] Server  LOG     ✓ Compiled in 55ms
+[00:54:21.320] Server  LOG     ✓ Compiled in 61ms
+[00:56:24.985] Server  LOG     ✓ Compiled in 53ms
+[00:57:10.932] Server  LOG     ✓ Compiled in 52ms
+[01:14:01.962] Server  LOG     ✓ Compiled in 93ms
+[01:14:20.915] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:55.773] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[01:14:55.867] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:33.990] Server  LOG     ✓ Compiled in 45ms
+[01:16:20.360] Server  LOG     ✓ Compiled in 59ms
+[01:23:08.995] Server  LOG     ✓ Compiled in 87ms
+[01:23:26.008] Browser WARN    Image with src "/profilecredential/expertise_nature.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[35:37:10.886] Server  LOG     ✓ Compiled in 35ms
-[35:37:11.032] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:38:08.366] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:38:24.447] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
-[35:38:24.520] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:38:51.697] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[01:42:36.696] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[01:42:41.188] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:42:41.312] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[35:39:06.602] Server  LOG     ✓ Compiled in 55ms
-[35:40:41.802] Server  LOG     ✓ Compiled in 44ms
-[35:40:58.993] Server  LOG     ✓ Compiled in 48ms
+[01:47:50.330] Server  LOG     ✓ Compiled in 54ms
+[01:48:04.115] Server  LOG     ✓ Compiled in 52ms
+[01:48:15.769] Server  LOG     ✓ Compiled in 46ms
+[01:49:51.462] Server  LOG     ✓ Compiled in 49ms
+[01:50:08.541] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:58:08.631] Server  LOG     ✓ Compiled in 61ms
+[01:58:58.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:58:58.821] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:02:53.745] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:02:53.897] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:21:12.052] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:21:12.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:48:56.603] Server  LOG     ✓ Compiled in 159ms
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-client] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-ssr] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./app/portfolio/page.js:6:1
+Export WORKS doesn't exist in target module
+  4 | import WorkRow from "@/components/credential/WorkRow";
+  5 | import WorksIndexList from "@/components/credential/WorksIndexList";
+> 6 | import { WORKS } from "@/components/credential/works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | /*
+  9 |  * Cards come from works.js — the same list the credential deck's index reads —
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-rsc] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-client] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-ssr] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./app/portfolio/page.js:6:1
+Export WORKS doesn't exist in target module
+  4 | import WorkRow from "@/components/credential/WorkRow";
+  5 | import WorksIndexList from "@/components/credential/WorksIndexList";
+> 6 | import { WORKS } from "@/components/credential/works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | /*
+  9 |  * Cards come from works.js — the same list the credential deck's index reads —
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-rsc] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-client] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-ssr] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:56.718] Browser ERROR   ./app/portfolio/page.js:6:1
+Export WORKS doesn't exist in target module
+  4 | import WorkRow from "@/components/credential/WorkRow";
+  5 | import WorksIndexList from "@/components/credential/WorksIndexList";
+> 6 | import { WORKS } from "@/components/credential/works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | /*
+  9 |  * Cards come from works.js — the same list the credential deck's index reads —
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-rsc] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[02:48:57.267] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-client] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:57.267] Browser ERROR   ./components/credential/SummarySlide.js:5:1
+Export WORKS doesn't exist in target module
+  3 | import PARTNER_LOGOS from "./partnerLogos";
+  4 | import SlideTopBar from "./SlideTopBar";
+> 5 | import { WORKS, provincesWorked, sumStat, worksWithStat } from "./works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | /**
+  8 |  * หน้าสรุป — สไลด์ก่อนสุดท้าย ปิดท้ายด้วยตัวเลขของงานทั้งหมดก่อนถึงหน้า CONTACT
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-ssr] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/credential/SummarySlide.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Client Component Browser]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+
+  Client Component SSR:
+    ./components/credential/SummarySlide.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Client Component SSR]
+    ./components/credential/CredentialDeck.js [Server Component]
+    ./app/credential/page.js [Server Component]
+[02:48:57.267] Browser ERROR   ./app/portfolio/page.js:6:1
+Export WORKS doesn't exist in target module
+  4 | import WorkRow from "@/components/credential/WorkRow";
+  5 | import WorksIndexList from "@/components/credential/WorksIndexList";
+> 6 | import { WORKS } from "@/components/credential/works";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | /*
+  9 |  * Cards come from works.js — the same list the credential deck's index reads —
+
+The export WORKS was not found in module [project]/components/credential/works.js [app-rsc] (ecmascript).
+Did you mean to import TYPE_ORDER?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[02:49:34.985] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:50:11.973] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:50:12.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:53:46.407] Server  LOG     ✓ Compiled in 63ms
+[02:54:06.323] Server  LOG     ✓ Compiled in 81ms
+[02:54:06.405] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-30
+[02:54:11.952] Server  LOG     ✓ Compiled in 44ms
+[02:54:12.016] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-30
+[02:54:19.431] Server  LOG     ✓ Compiled in 43ms
+[02:54:19.496] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. TH-30
+[02:54:23.966] Server  LOG     ✓ Compiled in 54ms
+[02:54:24.021] Browser ERROR   uncaughtError: ReferenceError: provincesWorked is not defined
+[02:54:24.027] Browser ERROR   uncaughtError: ReferenceError: provincesWorked is not defined
+[02:54:28.404] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:28.406] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:28.484] Server  LOG     ✓ Compiled in 52ms
+[02:54:28.564] Server  ERROR   ⨯ ReferenceError: active is not defined
+[02:54:28.574] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:28.574] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:28.705] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:28.824] Server  ERROR   ⨯ ReferenceError: active is not defined
+[02:54:28.925] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:29.005] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:29.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:29.161] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:29.179] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:32.641] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:32.641] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:32.689] Server  LOG     ✓ Compiled in 45ms
+[02:54:32.757] Server  ERROR   ⨯ ReferenceError: active is not defined
+[02:54:32.886] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:32.947] Server  ERROR   ⨯ ReferenceError: active is not defined
+[02:54:33.055] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:33.116] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:33.116] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:33.275] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:33.276] Browser ERROR   uncaughtError: ReferenceError: active is not defined
+[02:54:36.892] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:36.896] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:54:36.947] Server  LOG     ✓ Compiled in 48ms
+[02:54:37.098] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:37.283] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:54:37.366] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:37.386] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:54:55.849] Server  LOG     ✓ Compiled in 71ms
+[02:55:04.555] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:55:04.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:55:47.608] Server  LOG     ✓ Compiled in 75ms
+[02:55:52.600] Server  LOG     ✓ Compiled in 75ms
+[02:56:00.164] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[02:56:00.254] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:03:12.105] Server  LOG     ✓ Compiled in 102ms
+[03:03:25.302] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:03:25.414] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:04:45.638] Server  LOG     ✓ Compiled in 64ms
+[03:05:26.169] Server  LOG     ✓ Compiled in 102ms
+[03:07:04.426] Server  LOG     ✓ Compiled in 68ms
+[03:17:21.135] Server  LOG     ✓ Compiled in 44ms
+[03:18:23.197] Server  LOG     ✓ Compiled in 60ms
+[03:18:31.076] Server  LOG     ✓ Compiled in 54ms
+[03:18:31.157] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[03:18:31.164] Browser ERROR   uncaughtError: ReferenceError: marker is not defined
+[03:18:36.782] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:18:36.782] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:18:37.002] Server  LOG     ✓ Compiled in 53ms
+[03:18:37.230] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:18:37.446] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:18:37.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:18:37.586] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:19:03.793] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:19:03.889] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:19:05.197] Server  LOG     ✓ Compiled in 42ms
+[03:19:15.902] Server  LOG     ✓ Compiled in 59ms
+[03:19:24.560] Server  LOG     ✓ Compiled in 47ms
+[03:19:40.631] Server  LOG     ✓ Compiled in 58ms
+[03:19:53.076] Server  LOG     ✓ Compiled in 48ms
+[03:20:05.073] Server  LOG     ✓ Compiled in 67ms
+[03:20:15.842] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:20:15.946] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:21:48.222] Server  LOG     ✓ Compiled in 61ms
+[03:21:48.277] Browser ERROR   uncaughtError: ReferenceError: MARKER_RADIUS is not defined
+[03:21:48.277] Browser ERROR   uncaughtError: ReferenceError: MARKER_RADIUS is not defined
+[03:21:53.993] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:21:53.995] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:21:54.155] Server  LOG     ✓ Compiled in 46ms
+[03:21:54.354] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:21:54.626] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:21:54.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:21:54.724] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:21:54.928] Browser WARN    Image with src "/credential/case-scg/hero.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:22:03.331] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:22:03.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:23:56.302] Server  LOG     ✓ Compiled in 107ms
+[03:23:56.364] Browser ERROR   uncaughtError: ReferenceError: MAX_LISTED is not defined
+[03:24:08.863] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:24:08.950] Server  LOG     ✓ Compiled in 47ms
+[03:24:09.120] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:24:09.209] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:24:18.442] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[03:24:18.546] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:25:18.916] Server  LOG     ✓ Compiled in 57ms
+[03:25:25.218] Server  LOG     ✓ Compiled in 54ms
+[03:28:27.156] Server  LOG     ✓ Compiled in 81ms
+[03:28:40.213] Server  LOG     ✓ Compiled in 48ms
+[03:28:48.108] Server  LOG     ✓ Compiled in 45ms
+[04:14:40.677] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[04:14:41.745] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[04:14:41.854] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:31:45.367] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[04:31:50.651] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[04:31:50.787] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:28.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:28.344] Browser WARN    Image with src "/project/20250927bkkcaw/CAW-poster-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:28.345] Browser WARN    Image with src "/project/20250927bkkcaw/ASP@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:28.345] Browser WARN    Image with src "/project/20250927bkkcaw/ARCH cu@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:28.345] Browser WARN    Image with src "/project/20250927bkkcaw/CAW-poster-3.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[04:32:34.439] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:34.567] Browser WARN    Image with src "/project/20250912tattripforearth/กระเป๋าผ้า-Trip-for-EARTH_print.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:34.567] Browser WARN    Image with src "/project/20250912tattripforearth/TAT@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:34.567] Browser WARN    Image with src "/project/20250912tattripforearth/กระเป๋าผ้า-Trip-for-EARTH_print.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[04:32:43.319] Browser WARN    Image with src "/project/20260116cmutalk/ARCH2024-A4-vio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:43.319] Browser WARN    Image with src "/project/20260130bkkdw/BKKDW.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:43.319] Browser WARN    Image with src "/project/20260130bkkdw/2026-1-21-ASP-BKKDW2026_3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:43.319] Browser WARN    Image with src "/project/20260116cmutalk/DSC05737 copy.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:43.319] Browser WARN    Image with src "/project/20260115bmaxmexafd/DSC05603.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:45.895] Browser WARN    Image with src "/project/20260115bmaxmexafd/AFD.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:45.895] Browser WARN    Image with src "/project/20260115bmaxmexafd/BMA.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:45.895] Browser WARN    Image with src "/project/20260114ent/ENT2026.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:47.356] Browser WARN    Image with src "/project/20260114ent/CU@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:54.255] Browser WARN    Image with src "/project/20260214rohxmeforest bathing/IMG_7238-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:54.530] Browser WARN    Image with src "/partner/ROH.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:55.719] Browser WARN    Image with src "/project/20250927bkkcaw/CAW-poster-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:56.044] Browser WARN    Image with src "/project/20250927bkkcaw/ARCH cu@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:56.044] Browser WARN    Image with src "/project/20250927bkkcaw/ASP@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:56.548] Browser WARN    Image with src "/project/20251117cpatutor2025/2025 CPA Tutor.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:32:56.922] Browser WARN    Image with src "/project/20251117cpatutor2025/CPA@3x.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:33:13.346] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:33:13.478] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[21:41:50.442] Server  LOG     ✓ Compiled in 103ms
+[21:42:05.914] Server  LOG     ✓ Compiled in 103ms
+[21:42:13.693] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:42:27.058] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:42:27.233] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:42:53.618] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:42:54.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:42:55.251] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:42:55.396] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:43:24.241] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:43:24.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:44:13.046] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:44:13.204] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:44:53.287] Server  LOG     ✓ Compiled in 106ms
+[21:45:01.873] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:45:02.037] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:45:15.621] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:45:16.265] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:45:32.705] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:45:32.834] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:46:08.782] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:46:08.951] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:49:47.842] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:49:54.310] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[21:49:54.483] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:52:11.076] Server  LOG     ✓ Compiled in 98ms
+[21:52:15.781] Server  LOG     ✓ Compiled in 77ms
+[21:53:39.147] Server  LOG     ✓ Compiled in 51ms
+[21:53:58.777] Server  LOG     ✓ Compiled in 60ms
+[21:54:39.019] Server  LOG     ✓ Compiled in 82ms
+[21:56:34.174] Server  LOG     ✓ Compiled in 50ms
+[21:56:43.135] Server  LOG     ✓ Compiled in 84ms
+[21:57:14.717] Server  LOG     ✓ Compiled in 78ms
+[21:57:21.430] Server  LOG     ✓ Compiled in 44ms
+[21:57:53.743] Server  LOG     ✓ Compiled in 51ms
+[21:57:59.653] Server  LOG     ✓ Compiled in 75ms
+[21:58:03.121] Server  LOG     ✓ Compiled in 87ms
+[21:58:25.558] Server  LOG     ✓ Compiled in 58ms
+[21:58:50.948] Server  LOG     ✓ Compiled in 69ms
+[21:59:29.452] Server  LOG     ✓ Compiled in 58ms
+[21:59:33.797] Server  LOG     ✓ Compiled in 49ms
+[22:04:04.512] Server  LOG     ✓ Compiled in 67ms
+[22:04:16.571] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:04:16.752] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:32:56.223] Server  LOG     ✓ Compiled in 116ms
+[22:32:56.349] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'lead')
+[22:32:56.350] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'lead')
+[22:32:56.573] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'lead')
+[22:32:56.573] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'lead')
+[22:32:56.573] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'lead')
+[22:33:48.288] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.288] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.288] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.288] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.288] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.309] Server  LOG     ✓ Compiled in 94ms
+[22:33:48.869] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:33:48.890] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.890] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.890] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.890] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:48.890] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[22:33:49.049] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:33:49.218] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:33:49.388] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:33:49.525] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:33:49.629] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:33:49.660] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:33:49.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:33:49.842] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:33:49.861] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:33:59.869] Server  LOG     ✓ Compiled in 40ms
+[22:34:09.318] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:34:11.991] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:34:12.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:34:37.588] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:34:37.747] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:34:59.522] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:34:59.708] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:35:29.839] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[22:35:30.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:38:15.536] Server  LOG     ✓ Compiled in 64ms
+[22:42:43.159] Server  LOG     ✓ Compiled in 85ms
+[22:42:48.510] Server  LOG     ✓ Compiled in 58ms
+[22:42:52.999] Server  LOG     ✓ Compiled in 51ms
+[22:43:00.008] Server  LOG     ✓ Compiled in 90ms

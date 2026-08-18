@@ -45,6 +45,18 @@ const useLocationText = (id) => {
 
 const formatPrice = (n) => `THB ${n.toLocaleString("en-US")}`;
 
+/**
+ * ส่วนลดเป็น % จากราคาเต็ม ปัดเป็นจำนวนเต็ม — คำนวณสด ไม่ได้เก็บไว้ในข้อมูล
+ * เพื่อไม่ให้ตัวเลข % ค้างเป็นค่าเก่าเวลามีคนแก้ราคาแล้วลืมแก้ %
+ * คืน 0 เมื่อไม่ได้ตั้งราคาเต็มไว้ หรือราคาเต็มไม่ได้สูงกว่าราคาขาย
+ */
+const discountPct = (trip) => {
+  const full = Number(trip?.fullPrice) || 0;
+  const now = Number(trip?.price) || 0;
+  if (!full || !now || full <= now) return 0;
+  return Math.round(((full - now) / full) * 100);
+};
+
 /** ไอคอนกล้อง — ไฟล์ต้นฉบับเป็นเส้นสีเข้ม ใช้ brightness-0 invert กลับเป็นสีขาวให้เห็นบนป้ายพื้นดำ
  *  (แพตเทิร์นเดียวกับที่หน้า Ekiden ใช้กลับสีโลโก้) */
 function CameraIcon({ className }) {
@@ -1035,8 +1047,21 @@ function LocationModal({ location, onClose }) {
             <div className="flex shrink-0 flex-col gap-3 border-t border-black/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
               <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
                 {selectedTrip?.price && (
-                  <p className="text-[16px] font-semibold text-[#484848]">
-                    {formatPrice(selectedTrip.price)}
+                  <p className="flex items-baseline gap-2 text-[16px] font-semibold text-[#484848]">
+                    {/* ราคาเต็มขีดฆ่านำหน้า แล้วตามด้วยราคาจริงกับ % ที่ลด —
+                        ทั้งสองชิ้นขึ้นเฉพาะทริปที่ตั้ง fullPrice ไว้เท่านั้น
+                        ทริปที่ไม่ได้ลดราคาจะเห็นแค่ราคาเดียวเหมือนเดิม */}
+                    {discountPct(selectedTrip) > 0 && (
+                      <span className="text-[13px] font-normal text-[#828282] line-through">
+                        {formatPrice(selectedTrip.fullPrice)}
+                      </span>
+                    )}
+                    <span>{formatPrice(selectedTrip.price)}</span>
+                    {discountPct(selectedTrip) > 0 && (
+                      <span className="text-[13px] font-semibold text-[#0F8C82]">
+                        (-{discountPct(selectedTrip)}%)
+                      </span>
+                    )}
                   </p>
                 )}
                 {selectedTrip && (

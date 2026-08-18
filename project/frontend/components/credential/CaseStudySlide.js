@@ -94,7 +94,14 @@ export default function CaseStudySlide({ study, preparedFor }) {
    */
   const metaRows = (meta || []).filter((m) => m.value);
   const statTiles = (stats || []).filter((s) => s.figure || s.label);
-  const cards = (catalyst || []).filter((c) => c.name || c.lead || c.body);
+  /*
+   * A C·A·T card counts as filled only if it has a lead or a body. `name` is
+   * deliberately not counted: "CORE" / "ACTION" / "TRACEABILITY" is boilerplate
+   * carried on all three cards of every case, so counting it kept an empty card
+   * on any project that skipped a stage — Forest Bathing, which has no
+   * traceability work, showed a TRACEABILITY card with a badge and nothing in it.
+   */
+  const cards = (catalyst || []).filter((c) => c.lead || c.body);
   const mixTotal = Object.values(catalystMix || {}).reduce(
     (sum, n) => sum + (Number(n) || 0),
     0,
@@ -213,7 +220,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
               <dt className="text-sm font-semibold leading-tight md:text-[15px] 3xl:text-[19px]!">
                 {goals.length > 0 && (
                   <>
-                    SDG
+                    SDGs
                     <span className="block text-[11px] 3xl:text-[14px]!">
                       Alignment
                     </span>

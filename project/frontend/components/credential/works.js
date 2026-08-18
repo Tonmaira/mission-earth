@@ -14,7 +14,9 @@
  * /public into `image` as the photographs arrive.
  */
 
-export const WORKS = [
+import { MOCK_WORK_DATA } from "./mockWorkData"; // ⚠️ ชั่วคราว — ดูท้ายไฟล์
+
+const SHEET_WORKS = [
   {
     slug: "scg-prayotsuk",
     title: "ประโยชน์สุข",
@@ -347,6 +349,18 @@ export const WORKS = [
   },
 ];
 
+/*
+ * ⚠️ ชั่วคราว — จังหวัดกับตัวเลขผลลัพธ์ยังไม่มีในชีต เลยเอา mock มาทับไว้ก่อน
+ * ให้หน้า SUMMARY กับแผนที่มีของครบ (ดู mockWorkData.js)
+ *
+ * พอ CSV ตัวจริงมา: ลบ import ข้างบน ลบไฟล์ mockWorkData.js แล้วเปลี่ยน
+ * บรรทัดล่างนี้เป็น `export const WORKS = SHEET_WORKS;`
+ */
+export const WORKS = SHEET_WORKS.map((work) => ({
+  ...work,
+  ...MOCK_WORK_DATA[work.slug],
+}));
+
 /**
  * The order the index slide lists its groups in. A type with no works simply
  * doesn't appear, and COMMUNICATION is here ready for when its first work lands
@@ -378,3 +392,65 @@ export const activeYears = () =>
 export const worksOfYear = (year) => WORKS.filter((w) => w.year === Number(year));
 
 export const workBySlug = (slug) => WORKS.find((w) => w.slug === slug);
+
+/*
+ * พื้นที่ที่เราลงไปทำจริง — ใช้โดยสไลด์แผนที่ (FootprintSlide)
+ *
+ * `provinces` ของแต่ละงานเป็นรหัส ISO 3166-2:TH เช่น ["TH-55", "TH-19"]
+ * ชื่อจังหวัดของแต่ละรหัสอยู่ใน lib/thaiProvinces.js และเป็นรหัสเดียวกับชื่อ
+ * layer ในไฟล์ Figma ของแผนที่ งานไหนยังไม่ระบุก็ปล่อยว่างไว้ได้
+ */
+
+/*
+ * ตัวเลขผลลัพธ์ของแต่ละงาน — ใช้โดยหน้าสรุป (SummarySlide)
+ *
+ * ทุกคอลัมน์เป็นจำนวนนับล้วน บวกข้ามงานได้ตรงๆ งานไหนยังไม่มีข้อมูลให้เว้นว่าง
+ * (อย่าใส่ 0 — 0 แปลว่า "วัดแล้วได้ศูนย์" ส่วนเว้นว่างแปลว่า "ยังไม่ได้วัด"
+ * หน้าสรุปนับจำนวนโครงการที่มีข้อมูลจากตรงนี้)
+ *
+ *   reach             ครั้งการเข้าถึง — คนเดียวไปหลายงานถูกนับหลายครั้ง
+ *   engagement        จำนวนคนที่มีส่วนร่วม
+ *   changeMakers      จำนวน change maker
+ *   toLocalHands      เงินที่ลงถึงมือชุมชน (บาท)
+ *   outputs           จำนวนผลงานที่ส่งมอบ
+ *   conceptProposals  จำนวนข้อเสนอเชิงแนวคิด
+ *   boardGames        จำนวนเกมที่ออกแบบ (ไม่ใช่จำนวน copy ที่ผลิต)
+ *
+ * CSAT ยังไม่ได้ใส่: เป็นคะแนนเฉลี่ย บวกกันไม่ได้ ต้องถ่วงน้ำหนักด้วยจำนวน
+ * ผู้ตอบ ถ้าจะใส่ต้องมีคอลัมน์จำนวนผู้ตอบมาคู่กันด้วย
+ */
+
+/** รวมคอลัมน์ตัวเลขหนึ่งคอลัมน์จากทุกงาน */
+export const sumStat = (key) =>
+  WORKS.reduce((total, work) => total + (Number(work[key]) || 0), 0);
+
+/**
+ * จำนวนงานที่กรอกคอลัมน์นั้นไว้จริง — เอาไว้เขียนกำกับว่า "จาก N โครงการ"
+ *
+ * ช่องว่างต้องไม่ถูกนับ และ `Number("")` คืน 0 ซึ่งเป็นตัวเลขที่ถูกต้องตามหลัก
+ * เพราะงั้นต้องคัดสตริงว่างทิ้งก่อน ไม่ใช่พึ่ง Number.isFinite อย่างเดียว
+ */
+export const worksWithStat = (key) =>
+  WORKS.filter((work) => {
+    const value = work[key];
+    return value !== undefined && value !== null && value !== "" && Number.isFinite(Number(value));
+  }).length;
+
+/** งานทั้งหมดที่เกิดขึ้นในจังหวัดหนึ่ง เรียงตามลำดับในชีต */
+export const worksInProvince = (code) =>
+  WORKS.filter((w) => (w.provinces ?? []).includes(code));
+
+/** ทุกจังหวัดที่เคยลงพื้นที่ ไม่ซ้ำ — ตัวเลข "XX จังหวัด" มาจากตรงนี้ */
+export const provincesWorked = () => [
+  ...new Set(WORKS.flatMap((w) => w.provinces ?? [])),
+];
+
+/**
+ * จำนวนงานของแต่ละจังหวัด { "TH-10": 10, "TH-55": 2, ... }
+ * แผนที่เอาไปไล่ความเข้มของสีทอง — ไปบ่อย = เข้ม
+ */
+export const worksPerProvince = () =>
+  WORKS.reduce((count, work) => {
+    for (const code of work.provinces ?? []) count[code] = (count[code] ?? 0) + 1;
+    return count;
+  }, {});

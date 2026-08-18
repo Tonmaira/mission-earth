@@ -79,8 +79,11 @@ export const LOCATIONS = [
     image: "/forestBathing/shinrin-yogu1st-1.png",
     posterImage: "/forestBathing/shinrin-yogu-ggf-banner.png", // ปกในป็อปอัพจอง (การ์ดยังใช้ image ตัวบน)
     isOpen: true,
-    trips: [{ start: "2026-08-23", end: "2026-08-23", hours: 2, price: 1890 }], // 08.00–10.00 น.
-    registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdj7gaknaf_qGhjN3kmcOIrLF2O1eYDAVCxOkPilc6A93o19g/viewform?usp=publish-editor", // TODO: ใส่ลิงก์รับสมัครจริง (เช่น Google Form) ของ Urban Forest Bathing
+    // fullPrice = ราคาเต็มก่อนลด ใส่เมื่อไหร่ราคานั้นจะขึ้นขีดฆ่าคู่กับ % ที่ลด
+    // ให้อัตโนมัติ (% คำนวณสดจากสองตัวเลขนี้ ไม่ต้องกรอกเอง) ทริปไหนไม่ลดราคา
+    // ก็ไม่ต้องใส่ จะโชว์ราคาเดียวเหมือนเดิม
+    trips: [{ start: "2026-08-30", end: "2026-08-30", hours: 2, fullPrice: 2490, price: 1590 }], // 08.00–10.00 น.
+    registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfK2ur5n-kLubB92sQdtvAUjgmrbrdbKL24H4BvEeJ0WWY_UQ/viewform?usp=publish-editor", // TODO: ใส่ลิงก์รับสมัครจริง (เช่น Google Form) ของ Urban Forest Bathing
     gallery: MOCK_GALLERY, // MOCK: รอรูปตัวอย่างจริง
     instructors: ["yanudchara"],
     // MOCK: ข้อมูลจำลองไว้ทดสอบ scroll + แถบไอคอนซ้ายของ modal — ลบ/แก้เป็นของจริงทีหลัง

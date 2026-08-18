@@ -97,7 +97,7 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
         <div className="flex items-center gap-4">
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
           <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[20px]!">All Works</p>
-          <span className="text-[13px] text-me-cream/40 3xl:text-[17px]!">{WORKS.length}</span>
+          {/* <span className="text-[13px] text-me-cream/40 3xl:text-[17px]!">{WORKS.length}</span> */} { /* count จำนวนงาน */ }
         </div>
       )}
 
