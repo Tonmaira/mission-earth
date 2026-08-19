@@ -49,7 +49,7 @@ export default function ExpertiseSlideV2({ preparedFor }) {
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
           <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[20px]!">Our Expertise</p>
         </div>
-        <h2 className="text-3xl font-light leading-snug text-me-gold md:text-5xl lg:text-[40px] 3xl:text-[52px]!">
+        <h2 className="text-[16px] font-light leading-snug text-me-gold md:text-5xl lg:text-[40px] 3xl:text-[52px]!">
           Four Pillars. One <b className="font-semibold">MISSION</b>
         </h2>
       </section>

@@ -73,8 +73,7 @@ const SHEET_WORKS = [
     year: 2024,
     caseId: "green-mission",
     provinces: [
-      "TH-12", "TH-10", "TH-95", "TH-49", "TH-72",
-      "TH-75", "TH-11", "TH-41",
+      "TH-19",
     ],
     reach: 500_000,
     engagement: 2_000,
@@ -115,7 +114,7 @@ const SHEET_WORKS = [
     logos: [
       { label: "Partner", src: "/partner/ROH.png" },
     ],
-    provinces: ["TH-57"],
+    provinces: ["TH-57","TH-19"],
     reach: 500_000,
     engagement: 30,
     toLocalHands: 300_000,
@@ -339,8 +338,7 @@ const SHEET_WORKS = [
     description: "",
     year: 2024,
     provinces: [
-      "TH-10", "TH-90", "TH-33", "TH-50", "TH-13",
-      "TH-71", "TH-75", "TH-20", "TH-19",
+      ""
     ],
     reach: 1_000,
     engagement: 50,

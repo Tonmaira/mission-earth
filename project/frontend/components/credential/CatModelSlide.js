@@ -210,7 +210,7 @@ export default function CatModelSlide({ preparedFor }) {
       <section className="flex flex-col items-start gap-4 md:gap-2">
         <div className="flex items-center gap-4">
           <span className="h-px w-16 bg-me-gold/60" aria-hidden="true" />
-          <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[15px]!">Our Model</p>
+          <p className="text-[16px] uppercase tracking-[0.3em] text-me-gold/60 3xl:text-[20px]!">Our Model</p>
         </div>
         <h2 className="text-3xl font-regular leading-snug text-[#F0EEE9] md:text-4xl lg:text-5xl 3xl:text-[60px]!">
           The ESG <span className="text-me-gold font-semibold">CAT</span>ALYST Model

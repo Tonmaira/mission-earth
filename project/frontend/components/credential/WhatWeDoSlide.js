@@ -14,12 +14,12 @@ const STATS = [
     figure: "2+",
     lines: ["Years", "as a company"],
     // the aside is Poppins Light Italic in the design
-    aside: "(and just getting started)",
+    aside: "",
   },
   { figure: "10+", lines: ["Years", "of expertise", "on the team"] },
   { figure: "30+", lines: ["Partner organizations", "& institutions"] },
-  { figure: "10k+", lines: ["People reached", "through classes,", "workshops,", "camps & talks"] },
-  { figure: "20+", lines: ["Cross-disciplinary experts", "in our network"] },
+  { figure: "6k+", lines: ["People engagement", "through classes,", "workshops,", "camps & talks"] },
+  { figure: "21", lines: ["Fields of expert", "collaboration across", "environment, biodiversity,", "community development", "& more"] },
 ];
 
 export default function WhatWeDoSlide({ preparedFor }) {

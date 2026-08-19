@@ -63,7 +63,7 @@ export default function FootprintSlide({ preparedFor }) {
           <h2 className="text-[26px] leading-tight text-me-cream lg:text-[34px] 3xl:text-[46px]!">
             We don't just work on paper.
             <br />
-            <b className="text-me-gold">We show up on the ground.</b>
+            <b className="text-me-gold">We work hand-in-hand with people on the ground.</b>
           </h2>
 
           <div className="flex flex-wrap items-end gap-x-10 gap-y-4">

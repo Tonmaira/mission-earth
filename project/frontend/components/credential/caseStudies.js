@@ -92,7 +92,7 @@ export const DEK_SANG_NAN_1 = {
   label: "เด็กสร้างน่าน ปีที่ 1",
   title: "เด็กสร้างน่าน ปีที่ 1",
   quote: "“กิจกรรมฟื้นฟูป่าต้นน้ำ”",
-  photo: { src: "/profilecredential/case_deksarngnan.jpg", alt: "เยาวชนผู้เข้าร่วมค่ายเด็กสร้างน่าน" }, // no hero photo supplied yet
+  photo: { src: "/profilecredential/case_deksarngnan-1-2.JPG", alt: "เยาวชนผู้เข้าร่วมค่ายเด็กสร้างน่าน" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "ศูนย์พันธกิจเพื่อสังคม\nจุฬาลงกรณ์มหาวิทยาลัย และ โครงการรักษ์ป่าน่านตามพระราชดำริ" },
     { label: "Timeline", value: "6 months", sub: "Apr to Sep 2025" },
@@ -141,7 +141,7 @@ export const GREEN_MISSION = {
   ],
   sdgGoals: [7, 9, 13, 17],
   stats: [
-    { figure: "2000+", label: "Engagement" },
+    { figure: "2K+", label: "Engagement" },
     { figure: "500K+", label: "Reach" },
     { figure: "20", label: "Outputs" },
   ],
@@ -171,7 +171,7 @@ export const GREEN_MISSION = {
 export const WATER_WORKSHOP = {
   id: "water-workshop",
   label: "Workshop · การจัดการน้ำ",
-  title: "Workshop:",
+  title: "Water Plan:",
   quote: "การจัดทำแผนการจัดการน้ำจังหวัดระยอง พัฒนาศักยภาพผู้นำการเปลี่ยนแปลงด้านน้ำ",
   photo: { src: "/profilecredential/expertise_knowledge.jpg", alt: "การอบรมหลักสูตรการจัดการน้ำ" }, // no hero photo supplied yet
   meta: [
@@ -185,12 +185,12 @@ export const WATER_WORKSHOP = {
     { figure: "24K+", label: "Reach" },
     { figure: "30+", label: "Concept Proposals" },
   ],
-  catalystMix: { core: 20, action: 70, traceability: 10 },
+  catalystMix: { core: 34, action: 66, traceability: 0 },
   catalyst: [
     {
       key: "core",
       name: "CORE",
-      lead: "ESG Discovery",
+      lead: "Assessment & Baseline, Strategy & Framework",
       body: "กำหนดกรอบและประเด็นการเรียนรู้ㆍออกแบบหลักสูตรการจัดการน้ำ",
     },
     {
@@ -202,8 +202,8 @@ export const WATER_WORKSHOP = {
     {
       key: "traceability",
       name: "TRACEABILITY",
-      lead: "Reporting & Data",
-      body: "ประเมินความรู้ก่อน-หลังㆍจัดทำสื่อเผยแพร่ผลงาน",
+      lead: "",
+      body: "",
     },
   ],
 };

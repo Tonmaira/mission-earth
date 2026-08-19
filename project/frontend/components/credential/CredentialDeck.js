@@ -1,6 +1,5 @@
 "use client";
 
-import AllLogosPage from "./AllLogosPage";
 import CaseStudySlide from "./CaseStudySlide";
 import CatModelSlide from "./CatModelSlide";
 import ClientBriefSlide from "./ClientBriefSlide";
@@ -91,11 +90,11 @@ export default function CredentialDeck({ preparedFor = "", client = "" }) {
         <Slide id="footprint" label="Where we work" bleed scrollable>
           <FootprintSlide />
         </Slide>
-
+{/*
         <Slide id="summary" label="Summary" bleed scrollable>
           <SummarySlide />
         </Slide>
-
+*/}
         {/*
       Just before the close, and only on a client's own link — what we read in
       their business. These sit after our own numbers on purpose: we say what
@@ -113,12 +112,6 @@ export default function CredentialDeck({ preparedFor = "", client = "" }) {
           <ContactSlide />
         </Slide>
       </DeckShell>
-
-      {/*
-        Sits outside <DeckShell> on purpose — see AllLogosPage.js for why. It's
-        for the PDF export, not the on-screen presentation.
-      */}
-      <AllLogosPage />
     </PreparedForProvider>
   );
 }

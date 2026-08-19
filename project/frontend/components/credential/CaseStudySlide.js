@@ -228,50 +228,27 @@ export default function CaseStudySlide({ study, preparedFor }) {
                 )}
               </dt>
               {/*
-                Up to two goals get their number and name spelled out beside the
-                tile, as in the Figma frame. From three on there isn't the
-                height for that in this panel, so the tiles stand on their own,
-                four to a row — the artwork already names the goal, and the full
-                name stays available as each tile's alt text.
+                Tiles only, no number/name spelled out beside them — the
+                artwork already names the goal, and the full name stays
+                available as each tile's alt text (and its title tooltip) for
+                anyone who needs it spelled out. Four to a row regardless of
+                how many goals a case cites, so one goal and eight goals both
+                just read as a short row of badges.
               */}
               <dd className="w-[68%]">
-                {goals.length > 2 ? (
-                  <div className="grid w-fit grid-cols-4 gap-2">
-                    {goals.map((g) => (
-                      <Image
-                        key={g.n}
-                        src={g.src}
-                        alt={g.alt}
-                        title={g.alt}
-                        width={44}
-                        height={44}
-                        className="h-11 w-11"
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-2">
-                    {goals.map((g) => (
-                      <div key={g.n} className="flex items-start gap-3">
-                        {/* the SDG tiles are square badges — fixed on both axes
-                            so a long name beside them can never squash one. The
-                            source files are the 3000px print originals, so
-                            next/image resizing them is doing real work here. */}
-                        <Image
-                          src={g.src}
-                          alt={g.alt}
-                          width={44}
-                          height={44}
-                          className="h-11 w-11 shrink-0"
-                        />
-                        <p className="text-sm font-semibold leading-tight md:text-[15px] 3xl:text-[19px]!">
-                          {g.code}
-                          <span className="block font-normal">{g.name}</span>
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="grid w-fit grid-cols-4 gap-2">
+                  {goals.map((g) => (
+                    <Image
+                      key={g.n}
+                      src={g.src}
+                      alt={g.alt}
+                      title={g.alt}
+                      width={44}
+                      height={44}
+                      className="h-11 w-11"
+                    />
+                  ))}
+                </div>
               </dd>
             </div>
           </dl>
