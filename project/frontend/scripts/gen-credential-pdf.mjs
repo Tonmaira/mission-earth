@@ -12,11 +12,12 @@
  *
  * รันเองได้ด้วย: npm run pdf   (ต้อง next build ไว้ก่อน)
  */
-import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import next from "next";
 import puppeteer from "puppeteer";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -71,44 +72,43 @@ async function decksToRender() {
 }
 
 /**
- * เปิดเซิร์ฟเวอร์จาก build output แล้วรอจนกว่าจะตอบจริง — ไม่ใช่แค่รอเวลาเดาๆ
+ * เปิด Next ขึ้นมาเสิร์ฟ build output ที่เพิ่งสร้าง แล้วรอจนกว่าจะตอบจริง
  *
- * ใช้ `.next/standalone/server.js` ไม่ใช่ `next start` เพราะโปรเจกต์ตั้ง
- * `output: "standalone"` ไว้ (สำหรับ Docker) ซึ่ง `next start` ใช้ด้วยกันไม่ได้
- * — มันจะเตือนแล้วเสิร์ฟไม่ถูกต้อง
+ * เรียก Next แบบ programmatic (`next({ dev: false })`) ไม่ใช่ spawn
+ * `.next/standalone/server.js` และไม่ใช่ `next start`:
  *
- * standalone server คาดหวังให้ `public/` กับ `.next/static/` วางอยู่ข้างๆ ตัวมัน
- * (Dockerfile ก็ copy แบบนี้) เลยต้องวางให้ก่อนสตาร์ต
+ *   - standalone: Vercel build ไม่ได้สร้าง `.next/standalone` แบบเดียวกับ
+ *     `next build` บนเครื่อง (มันมี pipeline ของตัวเอง) เคยลองแล้วเซิร์ฟเวอร์
+ *     ตายด้วย MODULE_NOT_FOUND ตอน deploy ทั้งที่บนเครื่องผ่าน
+ *   - `next start`: ใช้กับ `output: "standalone"` ไม่ได้ (มันเตือนแล้วเสิร์ฟ
+ *     ไม่ถูก) ซึ่งโปรเจกต์นี้ตั้งไว้เพื่อ Docker
+ *
+ * วิธีนี้อ่านจาก `.next` ตรงๆ เลยได้เหมือนกันทุกที่ และยังได้ image optimization
+ * ของ next/image มาด้วย — สำคัญมาก เพราะรูปต้นฉบับใหญ่กว่าที่ใช้จริงหลายเท่า
+ * ถ้าเสิร์ฟไฟล์ดิบ PDF จะบวมกลับไปอีก
  */
 async function startServer() {
-  const standalone = path.join(ROOT, ".next", "standalone");
-  await cp(path.join(ROOT, "public"), path.join(standalone, "public"), {
-    recursive: true,
-    force: true,
-  });
-  await cp(path.join(ROOT, ".next", "static"), path.join(standalone, ".next", "static"), {
-    recursive: true,
-    force: true,
-  });
+  const app = next({ dev: false, dir: ROOT });
+  await app.prepare();
+  const handler = app.getRequestHandler();
 
-  const server = spawn("node", ["server.js"], {
-    cwd: standalone,
-    stdio: ["ignore", "pipe", "pipe"],
-    env: { ...process.env, NODE_ENV: "production", PORT: String(PORT), HOSTNAME: "127.0.0.1" },
+  const server = createServer((req, res) => handler(req, res));
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(PORT, "127.0.0.1", resolve);
   });
-  server.stderr.on("data", (d) => process.stderr.write(`[deck server] ${d}`));
 
   const deadline = Date.now() + 60_000;
   while (Date.now() < deadline) {
     try {
       const res = await fetch(`${ORIGIN}/credential`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) return server;
+      if (res.ok) return { close: async () => { await app.close?.(); server.close(); } };
     } catch {
-      // not up yet
+      // ยังไม่พร้อม
     }
     await new Promise((r) => setTimeout(r, 500));
   }
-  server.kill("SIGTERM");
+  server.close();
   throw new Error(`deck server did not become ready on ${ORIGIN} within 60s`);
 }
 
@@ -123,13 +123,14 @@ async function renderDeck(browser, slug) {
       if (req.resourceType() !== "image") return req.continue();
 
       /*
-       * เสิร์ฟไฟล์ใน public/ จากดิสก์ตรงๆ ไม่ผ่านเซิร์ฟเวอร์
+       * <img> ที่ชี้ไฟล์ใน public/ ตรงๆ (แถบโลโก้ WHAT WE DO, โลโก้ลูกค้า)
+       * อ่านจากดิสก์เลย ไม่ต้องผ่านเซิร์ฟเวอร์ — asset พวกนี้ไม่ได้ต้องการ
+       * optimization อะไร และการอ่านไฟล์ตรงๆ ทำให้ไม่ต้องพึ่งว่าเซิร์ฟเวอร์
+       * จัดการชื่อไฟล์แปลกๆ (เว้นวรรค, อักษรไทย) ได้ถูกหรือเปล่า ซึ่งเคยเป็น
+       * ปัญหาจริงมาแล้วตอนใช้ standalone server
        *
-       * standalone server ตอบ 404 ให้ไฟล์ที่ชื่อมีช่องว่าง (เช่น
-       * "ARCH cu@3x.png" — ส่วน "SCG@3x.png" ไม่เป็นไร) ซึ่งเป็นนิสัยของ
-       * standalone โดยเฉพาะ Vercel กับ next dev เสิร์ฟได้ปกติทั้งคู่ แต่ตอน
-       * build เราจำเป็นต้องใช้ standalone เลยอ่านจากไฟล์เองซะเลย — ได้ผลพลอย
-       * ได้คือ asset ทุกใบไม่ต้องพึ่งพฤติกรรมของเซิร์ฟเวอร์อีกต่อไป
+       * ส่วน next/image (`/_next/image?url=...`) ไม่เข้าเงื่อนไขนี้ (pathname
+       * ไม่มีนามสกุล) จึงตกไปให้เซิร์ฟเวอร์ทำ resize ให้ตามปกติ — ตั้งใจ
        */
       const filePath = publicFileFor(req.url());
       if (filePath) {
@@ -281,7 +282,7 @@ async function main() {
     console.log(`[credential pdf] ${decks.length} deck(s) written to public/credential-pdf/`);
   } finally {
     await browser?.close();
-    server?.kill("SIGTERM");
+    await server?.close();
   }
 }
 
