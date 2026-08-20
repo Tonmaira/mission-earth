@@ -287,10 +287,18 @@ async function main() {
 
 main().catch((err) => {
   /*
-   * ไม่ทำให้ build ล้ม — เว็บทั้งเว็บไม่ควรขึ้นไม่ได้เพราะ PDF ใบเดียวเรนเดอร์
-   * ไม่ผ่าน ปุ่มดาวน์โหลดรับมือกรณีไฟล์หายอยู่แล้ว (ขึ้นข้อความว่าโหลดไม่ได้)
-   * แต่ต้องส่งเสียงดังพอให้เห็นใน build log
+   * ล้ม build ไปเลย
+   *
+   * ตอนแรกเลือกให้แค่เตือนแล้วปล่อยผ่าน ด้วยเหตุผลว่าเว็บทั้งเว็บไม่ควรขึ้นไม่ได้
+   * เพราะ PDF — แต่ของจริงคือมัน deploy ออกไปพร้อมปุ่มที่กดแล้วเงียบ ไม่มีใคร
+   * รู้จนกว่าจะมีคนไปกด การเตือนใน log ที่ไม่มีใครอ่านไม่ใช่การเตือน
+   *
+   * ล้มตรงนี้แปลว่า deploy ที่ผ่านคือ deploy ที่ปุ่มใช้งานได้จริงเสมอ และของ
+   * เดิมที่ยังใช้งานได้อยู่ก็ยังคงเสิร์ฟต่อไป เพราะ Vercel ไม่สลับไป deployment
+   * ที่ build ไม่ผ่าน
    */
-  console.error("\n[credential pdf] FAILED — the deck PDFs were not regenerated.");
+  console.error("\n[credential pdf] FAILED — deck PDFs were not generated, failing the build.");
+  console.error("  The download button would ship dead, so this stops the deploy instead.");
   console.error(err);
+  process.exitCode = 1;
 });

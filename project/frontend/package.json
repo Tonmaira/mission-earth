@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/gen-credential-pdf.mjs",
+    "build": "puppeteer browsers install chrome && next build && node scripts/gen-credential-pdf.mjs",
     "start": "next start",
     "lint": "eslint",
-    "pdf": "node scripts/gen-credential-pdf.mjs"
+    "pdf": "puppeteer browsers install chrome && node scripts/gen-credential-pdf.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",
