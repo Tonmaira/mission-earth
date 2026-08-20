@@ -7,3 +7,4 @@
 [00:18:22.072] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:28:13.380] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
 [00:28:16.348] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:50:26.557] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.

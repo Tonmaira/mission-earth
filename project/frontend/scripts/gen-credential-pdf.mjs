@@ -18,7 +18,7 @@ import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import next from "next";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC_DIR = path.join(ROOT, "public");
@@ -56,6 +56,46 @@ function publicFileFor(rawUrl) {
   const candidate = path.join(PUBLIC_DIR, pathname);
   if (!candidate.startsWith(PUBLIC_DIR + path.sep)) return null;
   return existsSync(candidate) ? candidate : null;
+}
+
+/**
+ * หา Chromium ที่รันได้ในเครื่องที่กำลังรันอยู่ พร้อม args ที่มันต้องการ
+ *
+ * ต้องแยกสองทางเพราะ build รันคนละที่กับที่เราพัฒนา:
+ *
+ *   Linux (Vercel build) — ใช้ @sparticuz/chromium ซึ่งเป็น Chromium ที่คอมไพล์
+ *     มาสำหรับ environment แบบ Lambda โดยเฉพาะ คือแพ็ก shared library ที่ต้องใช้
+ *     มาให้ในตัว เครื่อง build ของ Vercel เป็น Linux แบบ minimal ที่ไม่มี libnss3
+ *     libX11 ฯลฯ — Chrome ปกติจะตายทันทีด้วย exit code 127 (เคยเจอมาแล้วจริง)
+ *
+ *   macOS (เครื่องเรา) — ใช้ Chrome ที่ติดตั้งอยู่แล้ว ไม่ต้องโหลดอะไรเพิ่ม
+ *     150MB ตั้ง CHROME_PATH ทับได้ถ้าติดตั้งไว้ที่อื่น
+ */
+async function resolveBrowser() {
+  if (process.platform === "linux") {
+    const { default: chromium } = await import("@sparticuz/chromium");
+    return {
+      executablePath: await chromium.executablePath(),
+      args: [...chromium.args, "--hide-scrollbars"],
+    };
+  }
+
+  const candidates = [
+    process.env.CHROME_PATH,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+  ].filter(Boolean);
+  const executablePath = candidates.find((p) => existsSync(p));
+  if (!executablePath) {
+    throw new Error(
+      `ไม่พบ Chrome บนเครื่องนี้ ลองแล้ว:\n  ${candidates.join("\n  ")}\n` +
+        `ถ้าติดตั้งไว้ที่อื่น ตั้ง CHROME_PATH ชี้ไปที่ไฟล์นั้น`
+    );
+  }
+  return {
+    executablePath,
+    args: ["--no-sandbox", "--disable-dev-shm-usage", "--hide-scrollbars"],
+  };
 }
 
 /* ทุกเด็คที่ต้องสร้าง — เด็คกลางหนึ่ง บวกของลูกค้าทุกรายใน clients.js
@@ -263,12 +303,16 @@ async function main() {
   let server;
   let browser;
   try {
+    const { executablePath, args } = await resolveBrowser();
+    console.log(`[credential pdf] chromium: ${executablePath}`);
+
     server = await startServer();
     browser = await puppeteer.launch({
+      executablePath,
+      args,
       headless: true,
-      args: ["--no-sandbox", "--disable-dev-shm-usage", "--hide-scrollbars"],
-      // the flatten-and-load-images step is real work on a 15-slide deck, and
-      // a CI box is slower than a laptop — the 30s default is not enough
+      // การคลี่ breakpoint + รอรูปเป็นงานจริงจังบนเด็ค 15 หน้า และเครื่อง CI
+      // ช้ากว่าโน้ตบุ๊ก — ค่า default 30 วิไม่พอ
       protocolTimeout: 180_000,
     });
 
