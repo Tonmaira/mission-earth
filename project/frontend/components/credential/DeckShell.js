@@ -20,7 +20,7 @@ const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 /
  * ← → / space / PageUp / PageDown step (paging through a tall slide before
  * moving on), Home and End jump to the ends, F toggles fullscreen.
  */
-export default function DeckShell({ children, bgTuning }) {
+export default function DeckShell({ children, bgTuning, client = "" }) {
   const scrollerRef = useRef(null);
   const railRef = useRef(null);
   const tweenRef = useRef(0);
@@ -30,7 +30,11 @@ export default function DeckShell({ children, bgTuning }) {
   const [active, setActive] = useState(0);
   const [chromeHidden, setChromeHidden] = useState(true);
   const [railOpen, setRailOpen] = useState(false);
-  const [railRow, setRailRow] = useState(-1);
+  // "link copied" confirmation, cleared on a timer — see copyLink below
+  const [linkCopied, setLinkCopied] = useState(false);
+  // the PDF takes a few seconds to render server-side; the button says so
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfFailed, setPdfFailed] = useState(false);
 
   // Read off the <Slide> props rather than the mounted sections: querying the
   // DOM for `data-label` could land mid-swap on a Fast Refresh and hand back
@@ -44,75 +48,25 @@ export default function DeckShell({ children, bgTuning }) {
   );
 
   /*
-   * The rail's clickable rows stay full-width even while their names are
-   * invisible (see the rail's own comment below), so on a slide the rail
-   * happens to sit over, that invisible strip still eats clicks. The map on
-   * "Where we work" is exactly that case — its eastern provinces sit under
-   * the rail's row width, unclickable, and it also visually covers the map
-   * once a pointer opens the names. Simplest fix: the rail just isn't there
-   * on that one slide.
-   */
-  const hideRailOn = "footprint";
-
-  /*
-   * Whether the rail is showing its names, worked out from where the pointer
-   * actually is rather than from CSS :hover or mouseenter/mouseleave.
-   *
-   * Safari leaves :hover switched on for a `position: fixed` element after the
-   * pointer has left it, and the rail is fixed — so the names stayed up there
-   * while Chrome behaved perfectly. (The giveaway: the row's own :hover did
-   * clear, so the pointed-at name faded and every other one hung around.)
-   * A point-in-rectangle test has no such moods.
-   *
-   * The rail is fixed and centred, so its box only moves when the window
-   * resizes — measure once and keep it rather than re-measuring per move.
+   * The rail panel is closed until the corner icon is clicked, then stays
+   * open until a click lands outside it (the icon itself counts as "outside
+   * the panel" but is inside this same wrapper, so clicking it to close
+   * doesn't get read as an outside click and immediately reopen it — see the
+   * icon's own onClick below). Being click-driven rather than hover-driven
+   * also sidesteps a Safari quirk this used to work around by hand: Safari
+   * leaves :hover switched on for a `position: fixed` element after the
+   * pointer has left it, which is a problem for hover-to-open but not for a
+   * plain click listener.
    */
   useEffect(() => {
-    const el = railRef.current;
-    if (!el) return;
-    let box = el.getBoundingClientRect();
-    let rows = [];
-    const remeasure = () => {
-      box = el.getBoundingClientRect();
-      rows = Array.from(el.querySelectorAll("button"), (b) => b.getBoundingClientRect());
+    const onDocClick = (e) => {
+      if (railRef.current && !railRef.current.contains(e.target)) {
+        setRailOpen(false);
+      }
     };
-    const onMove = (e) => {
-      const inside =
-        e.clientX >= box.left && e.clientX <= box.right && e.clientY >= box.top && e.clientY <= box.bottom;
-      // the gaps between rows count as on the rail but on no row in particular
-      const row = inside ? rows.findIndex((r) => e.clientY >= r.top && e.clientY <= r.bottom) : -1;
-      // returning the same value is a no-op, so these do not re-render on every
-      // mouse move — only when the pointer crosses a boundary
-      setRailOpen((was) => (was === inside ? was : inside));
-      setRailRow((was) => (was === row ? was : row));
-    };
-    const close = () => {
-      setRailOpen(false);
-      setRailRow(-1);
-    };
-
-    remeasure();
-    // Both pointer and mouse events, deliberately. WebKit has been known to
-    // stop delivering `pointermove` after certain interactions while plain
-    // `mousemove` keeps coming, and the rail closing depends entirely on
-    // hearing that the pointer has moved away.
-    document.addEventListener("pointermove", onMove);
-    document.addEventListener("mousemove", onMove);
-    // the pointer can also leave by going out of the window, where no further
-    // moves arrive to notice it with
-    document.addEventListener("pointerleave", close);
-    document.addEventListener("mouseleave", close);
-    window.addEventListener("blur", close);
-    window.addEventListener("resize", remeasure);
-    return () => {
-      document.removeEventListener("pointermove", onMove);
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("pointerleave", close);
-      document.removeEventListener("mouseleave", close);
-      window.removeEventListener("blur", close);
-      window.removeEventListener("resize", remeasure);
-    };
-  }, [slides.length]);
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, []);
 
   const sections = useCallback(
     () => Array.from(scrollerRef.current?.querySelectorAll("[data-slide]") ?? []),
@@ -267,6 +221,71 @@ export default function DeckShell({ children, bgTuning }) {
     [active, animateTo, goTo, sections]
   );
 
+  /*
+   * "Download PDF" hands over a file that already exists: the decks are
+   * rendered once at build time by scripts/gen-credential-pdf.mjs and shipped
+   * as static files. Nothing is generated per click, so the download starts
+   * instantly and production needs no Chromium at all.
+   *
+   * (Two earlier cuts, for anyone wondering why it isn't simpler: the
+   * browser's own `window.print()` makes the reader pick "Save as PDF" and —
+   * on Safari, which ignores the CSS `@page` size — hand-fix A4 portrait
+   * first. Rendering per request in an API route fixed that but cost ~1.2GB
+   * of Chromium per click, which Vercel has no browser to run anyway.)
+   *
+   * `fetch` first rather than pointing a link straight at the file: a missing
+   * file would otherwise navigate the reader away from the deck to a 404
+   * page, and the deck's content only changes on deploy, so a stale build
+   * without its PDF is exactly the case worth reporting in place.
+   */
+  const downloadPdf = useCallback(async () => {
+    if (pdfBusy) return;
+    setRailOpen(false);
+    setPdfBusy(true);
+    const file = `mission-earth-credential${client ? `-${client}` : ""}.pdf`;
+    try {
+      const res = await fetch(`/credential-pdf/${file}`);
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+
+      const href = URL.createObjectURL(await res.blob());
+      const a = document.createElement("a");
+      a.href = href;
+      a.download = file;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(href);
+    } catch (err) {
+      console.error(`[credential deck] PDF download failed: ${err.message}`);
+      setPdfFailed(true);
+      setTimeout(() => setPdfFailed(false), 4000);
+    } finally {
+      setPdfBusy(false);
+    }
+  }, [client, pdfBusy]);
+
+  const copyLink = useCallback(async () => {
+    try {
+      /*
+       * The hash is dropped on purpose. The deck keeps the slide you are on
+       * in the URL (see the replaceState effect below), so `location.href`
+       * mid-deck is a deep link into whatever slide happened to be on screen
+       * when the button was pressed. What gets sent to a client should open
+       * on the cover and be read from the top, so copy the bare deck URL.
+       */
+      const url = new URL(window.location.href);
+      url.hash = "";
+      await navigator.clipboard.writeText(url.toString());
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+    } catch (err) {
+      // clipboard writes need a secure context (https or localhost) and can be
+      // refused outright by permissions policy — say so rather than leaving a
+      // button that silently does nothing
+      console.warn(`[credential deck] copy link failed: ${err.name}: ${err.message}`);
+    }
+  }, []);
+
   const toggleFullscreen = useCallback(() => {
     const el = document.documentElement;
     const inFS = document.fullscreenElement || document.webkitFullscreenElement;
@@ -375,66 +394,103 @@ export default function DeckShell({ children, bgTuning }) {
       </div>
 
       {/*
-        Slide rail. Deliberately plain: the names sit on screen the whole time
-        and the only moving part is a CSS hover, so there is no open/closed
-        state to get stuck in. An earlier version faded the names in and out on
-        a timer and kept ending up with labels hanging around; nothing here
-        holds state beyond which slide is active.
+        Slide picker — built from the Figma frame at node 70:150. A diamond
+        icon sits fixed in the corner; click it and a panel of every slide
+        name opens directly above it, current slide bold. Click a name and it
+        both jumps there and closes the panel back up — click the icon again,
+        or anywhere else on the page (the click-outside effect above), and it
+        just closes with no jump.
 
-        Every row stretches to the width of the longest name, so the blank
-        ground in front of a short name still belongs to its row and can be
-        clicked. The tick sits in a fixed-width box so growing on hover cannot
-        shove the names sideways.
+        The panel is positioned `absolute` off the icon rather than stacked
+        above it in normal flow, so it can be hidden with opacity/scale alone
+        (no `hidden`/unmount) without shoving the icon out of its corner while
+        closed — it only ever affects space above itself.
       */}
-      <nav
-        ref={railRef}
-        aria-label="Slides"
-        aria-hidden={slides[active]?.id === hideRailOn}
-        className={`fixed right-4 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-3 transition-opacity duration-500 md:flex ${
-          slides[active]?.id === hideRailOn ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
-      >
-        {slides.map((s, i) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => goTo(i)}
-            aria-current={i === active ? "true" : undefined}
-            className="flex w-full cursor-pointer items-center justify-end gap-3 py-1"
-          >
-            {/* Pointing anywhere on the rail brings all six names up together
-                and leaving takes them all away; `railRow` picks out the one
-                being pointed at. Both come from the pointer's coordinates, not
-                from :hover — see the measuring effect above for why.
-                Appearing is quick, leaving is slow, and the duration travels
-                with the state being moved into. */}
-            <span
-              className={`whitespace-nowrap text-[10px] uppercase tracking-[0.2em] transition-[opacity,color] ${
-                railOpen ? "opacity-100 duration-150" : "opacity-0 duration-700"
-              } ${i === active ? "text-me-gold" : i === railRow ? "text-white" : "text-white/45"}`}
-            >
-              {s.label || `Slide ${i + 1}`}
-            </span>
-            <span className="flex w-8 justify-end" aria-hidden="true">
-              <span
-                className={`block h-px transition-all ${i === railRow ? "duration-150" : "duration-700"} ${
-                  i === active
-                    ? "w-8 bg-me-gold"
-                    : i === railRow
-                      ? "w-6 bg-white"
-                      : "w-4 bg-white/30"
+      <div ref={railRef} className="credential-chrome fixed right-6 bottom-6 z-20 hidden md:block">
+        <div
+          className={`absolute right-0 bottom-full mb-4 flex max-h-[calc(100svh-8rem)] origin-bottom-right flex-col overflow-hidden rounded-[13px] bg-[#052032] transition-[opacity,transform] duration-200 ${
+            railOpen ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
+          }`}
+        >
+          {/* the list scrolls on its own rather than the whole panel, so the
+              gold action bar below stays pinned to the bottom edge on a short
+              window instead of scrolling away with the names */}
+          <div className="flex min-h-0 flex-col items-end gap-3 overflow-y-auto p-5">
+            {slides.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => {
+                  goTo(i);
+                  setRailOpen(false);
+                }}
+                aria-current={i === active ? "true" : undefined}
+                className={`whitespace-nowrap text-[13px] tracking-[0.12em] text-me-gold transition-colors hover:text-white ${
+                  i === active ? "font-semibold opacity-[100%]" : "font-normal opacity-[50%]"
                 }`}
+              >
+                {(s.label || `Slide ${i + 1}`).toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/*
+            The two actions are not slides, so they get their own bar rather
+            than another row in the list — gold ground, edge to edge, clipped
+            to the panel's rounded bottom by the `overflow-hidden` above.
+            Icon-only: `title` carries the name on hover, `aria-label` for
+            screen readers, and for COPY LINK the icon swapping to the whole
+            chain is itself the "done" feedback.
+          */}
+          <div className="flex shrink-0 items-center justify-center gap-10 bg-me-gold px-5 py-3">
+            <button
+              type="button"
+              onClick={downloadPdf}
+              disabled={pdfBusy}
+              title={pdfBusy ? "Rendering…" : pdfFailed ? "Could not render — try again" : "Download PDF"}
+              aria-label={pdfBusy ? "Rendering PDF" : "Download PDF"}
+              aria-busy={pdfBusy}
+              className={`cursor-pointer transition-opacity hover:opacity-70 disabled:cursor-wait ${
+                pdfBusy ? "animate-pulse opacity-50" : pdfFailed ? "opacity-40" : ""
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do */}
+              <img src="/PDFDownload.svg" alt="" className="size-[30px]" />
+            </button>
+
+            <button
+              type="button"
+              onClick={copyLink}
+              title={linkCopied ? "Link copied" : "Copy link"}
+              aria-label={linkCopied ? "Link copied" : "Copy link"}
+              className="cursor-pointer transition-opacity hover:opacity-70"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do */}
+              <img
+                src={linkCopied ? "/AfterGetLinkIcon.svg" : "/BeforeGetLinkIcon.svg"}
+                alt=""
+                className="size-[34px]"
               />
-            </span>
-          </button>
-        ))}
-      </nav>
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setRailOpen((was) => !was)}
+          aria-label={railOpen ? "Close slide list" : "Open slide list"}
+          aria-expanded={railOpen}
+          className="flex size-[50px] cursor-pointer items-center justify-center"
+        >
+          <span className="block size-[25px] rotate-45 rounded-[7px] border border-me-gold/40 transition-colors hover:border-me-gold/70" />
+        </button>
+      </div>
 
       {/* slide counter — hides on any slide that fills its own frame. The
           keyboard hint that used to sit bottom-centre is gone; ← →, space,
           Home/End and F still work, they are just no longer advertised. */}
       <div
-        className={`pointer-events-none fixed bottom-6 left-6 z-20 font-mono text-[11px] tracking-[0.28em] text-white/45 transition-opacity duration-500 ${
+        className={`credential-chrome pointer-events-none fixed bottom-6 left-6 z-20 font-mono text-[11px] tracking-[0.28em] text-white/45 transition-opacity duration-500 ${
           chromeHidden ? "opacity-0" : "opacity-100"
         }`}
       >

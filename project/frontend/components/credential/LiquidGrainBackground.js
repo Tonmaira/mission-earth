@@ -352,7 +352,7 @@ export default function LiquidGrainBackground({ className = "", tuning }) {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 -z-10 overflow-hidden bg-me-navy ${className}`}
+      className={`credential-bg fixed inset-0 -z-10 overflow-hidden bg-me-navy ${className}`}
     >
       <canvas
         ref={liquidRef}

@@ -155,11 +155,25 @@ export default function FootprintSlide({ preparedFor }) {
         </div>
 
         <div className="order-1 flex min-h-0 flex-none items-center justify-center md:order-2">
+          {/*
+            `md:h-full` used to sit here instead of a fixed svh value. Chrome
+            resolves that fine — it stretches through `section`'s
+            `md:items-stretch` and this wrapper's own `min-h-0` without
+            trouble. Safari doesn't: percentage/`100%` heights routinely fail
+            to resolve through a chain of nested flex containers with
+            `min-height: 0` in it (a long-standing WebKit bug, not specific to
+            this map), so the SVG ended up with no computed height at all —
+            invisible, but only past the `md:` breakpoint, which is exactly
+            why rotating a phone from portrait into landscape made it vanish:
+            portrait stays under `md:` and keeps using the fixed `svh` height
+            below, which never depended on that chain. Landscape crossed into
+            `md:` and hit it.
+          */}
           <ThailandMap
             counts={counts}
             selected={selected}
             onSelect={setSelected}
-            className="h-[42svh] w-auto max-w-full md:h-full"
+            className="h-[42svh] w-auto max-w-full md:h-[80svh]"
           />
         </div>
       </section>

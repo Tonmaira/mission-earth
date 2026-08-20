@@ -9,6 +9,27 @@ import SlideTopBar from "./SlideTopBar";
  * (1920×1080, node 15:221). Layout lives in the `.wwd-*` block in globals.css.
  */
 
+/*
+ * Print-only stand-in for the marquee — built from Figma node 43:2. The
+ * marquee only ever has a handful of logos actually visible on screen at
+ * once (the rest are mid-scroll or waiting their turn), which is fine for a
+ * live page but useless on a printed page: nothing scrolls, so most logos
+ * would just never show up. This lays every logo from the same list out flat
+ * instead, wrapping into rows, and only exists under `@media print` (`hidden
+ * print:flex` — see credential.css for how the marquee it replaces gets the
+ * opposite, `print:hidden`, so the two never show at the same time).
+ */
+function PrintLogoStrip({ logos }) {
+  return (
+    <div className="hidden flex-wrap items-center justify-center gap-x-8 gap-y-4 bg-white px-10 py-6 print:flex">
+      {logos.map((logo) => (
+        // eslint-disable-next-line @next/next/no-img-element -- print-only static art, no next/image benefit
+        <img key={logo.src} src={logo.src} alt={logo.name} className="h-10 w-auto object-contain" />
+      ))}
+    </div>
+  );
+}
+
 const STATS = [
   {
     figure: "2+",
@@ -56,7 +77,10 @@ export default function WhatWeDoSlide({ preparedFor }) {
         ))}
       </section>
 
-      <LogoMarquee logos={PARTNER_LOGOS} />
+      <div className="print:hidden">
+        <LogoMarquee logos={PARTNER_LOGOS} />
+      </div>
+      <PrintLogoStrip logos={PARTNER_LOGOS} />
     </div>
   );
 }

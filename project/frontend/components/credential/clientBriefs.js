@@ -41,33 +41,16 @@ export const CLIENT_BRIEFS = {
         columns: [
           {
             title: "Commercial Engine",
-            points: [
-              "Refocused on high-margin branded FMCG and health portfolios",
-              "Unrivaled Route-to-Market via Cash Van network",
-              "Strong brand equity in energy beverages and personal care",
-            ],
+            // ไม่มี bullet โดยตั้งใจ — แค่หัวข้อลอย ต่างจาก Figma ต้นทาง
           },
           {
             title: "Manufacturing & Circular Excellence",
-            points: [
-              "Closed-loop glass recycling and cullet processing facilities",
-              "Resource-efficient production",
-              "High operational safety standards",
-            ],
           },
           {
             title: "People & Inclusive Culture Engagement",
-            points: [
-              "ACT culture driving execution speed and team performance",
-              "Strong employer brand for top talent",
-              "Disability employment and workplace inclusion model",
-            ],
           },
           {
             title: "Regional Footprint",
-            points: [
-              "Expanding revenue streams in CLMV markets"
-            ],
           },
         ],
 
@@ -94,28 +77,22 @@ export const CLIENT_BRIEFS = {
           {
             title: "Circularity Ecosystem",
             theme: "Circular Trade Partnership",
-            points: ["Material continuity", "Local partner empowerment"],
+            
           },
           {
             title: "Sustainable Sourcing",
             theme: "Health Literacy",
-            points: ["Agricultural product security", "Early health-brand affinity"],
+            
           },
           {
             title: "Workforce Well-being",
             theme: "Talent Resilience",
-            points: [
-              "Productivity optimization via operational wellness",
-              "Empowerment for disabled talent",
-            ],
+            
           },
           {
             title: "Cross-Border Regional ESG",
             theme: "Youth Empowerment",
-            points: [
-              "Social license to operate",
-              "Regional workforce pipeline and brand trust",
-            ],
+            
           },
         ],
 

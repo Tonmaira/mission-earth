@@ -46,3 +46,9 @@ dist-ssr
 .env*
 
 
+
+# Credential deck PDFs — generated during the build by
+# project/frontend/scripts/gen-credential-pdf.mjs, not authored by hand.
+# Kept out of git so 7MB of binaries are not re-committed on every content
+# edit; Vercel regenerates them on each deploy.
+/project/frontend/public/credential-pdf/

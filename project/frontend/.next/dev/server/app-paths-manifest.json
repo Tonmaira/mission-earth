@@ -1,10 +1,3 @@
 {
-  "/api/feed/route": "app/api/feed/route.js",
-  "/credential/[client]/page": "app/credential/[client]/page.js",
-  "/credential/page": "app/credential/page.js",
-  "/ekiden/page": "app/ekiden/page.js",
-  "/forest_bathing/page": "app/forest_bathing/page.js",
-  "/page": "app/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/portfolio/work/[slug]/page": "app/portfolio/work/[slug]/page.js"
+  "/credential/[client]/page": "app/credential/[client]/page.js"
 }

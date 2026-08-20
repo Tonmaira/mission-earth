@@ -37,7 +37,7 @@ export default function CredentialDeck({ preparedFor = "", client = "" }) {
 
   return (
     <PreparedForProvider value={preparedFor}>
-      <DeckShell>
+      <DeckShell client={client}>
         {/* 01 — cover (built from Figma node 1:2) */}
         <Slide id="cover" label="Cover" bleed scrollable>
           <CoverSlide />

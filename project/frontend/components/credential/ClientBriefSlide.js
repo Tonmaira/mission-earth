@@ -19,8 +19,15 @@ import SlideTopBar from "./SlideTopBar";
  * แนวตั้งบนมือถือ สี่คอลัมน์บนจอ 390px คือคอลัมน์ละสี่ตัวอักษร
  */
 
-/** bullet ท้ายคอลัมน์ — เหมือนกันทุก layout */
-function Points({ points }) {
+/**
+ * bullet ท้ายคอลัมน์ — เหมือนกันทุก layout
+ *
+ * `points` ไม่ใส่ default เดิม เลยพังทั้งหน้าเวลาคอลัมน์ไหนแก้ points ค้างไว้
+ * ไม่เสร็จ (ลบทิ้งแล้วยังไม่ได้พิมพ์ใหม่) — คอลัมน์ที่ยังไม่มี bullet ตอนนี้แค่
+ * ไม่มี <ul> ไม่ทำให้ทั้งสไลด์ล้ม
+ */
+function Points({ points = [] }) {
+  if (points.length === 0) return null;
   return (
     <ul className="list-disc pl-[calc(59*var(--u))] text-[calc(24*var(--u))] leading-normal text-me-cream">
       {points.map((point) => (
@@ -38,7 +45,7 @@ function BarColumn({ column, accent }) {
           สองบรรทัดจึงลงมาจบที่เส้นเดียวกันทั้งแถว เหมือนใน Figma
           เป็น min-h ไม่ใช่ h เพราะบนมือถือตัวอักษรกินที่มากกว่าสัดส่วนของ
           เฟรม 1920 หัวข้อสองบรรทัดจะล้นกรอบออกไปพ้นแท่งสี */}
-      <div className="flex min-h-[calc(96*var(--u))] items-end gap-[calc(10*var(--u))]">
+      <div className="flex min-h-[calc(96*var(--u))] items-center gap-[calc(10*var(--u))]">
         <span
           className="w-[calc(8*var(--u))] shrink-0 self-stretch"
           style={{ backgroundColor: accent }}

@@ -292,7 +292,7 @@ const SHEET_WORKS = [
     image: "",
     description: "",
     year: 2025,
-    provinces: [],
+    provinces: ["TH-90"],
   },
   {
     slug: "biocourse",

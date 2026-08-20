@@ -14,6 +14,10 @@ FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 
+# No Chromium needed at runtime: the credential deck's PDFs are rendered once
+# during the build (scripts/gen-credential-pdf.mjs) and shipped as static
+# files in public/, so serving them is just serving a file.
+
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
