@@ -435,28 +435,47 @@ export default function DeckShell({ children, bgTuning, client = "" }) {
           </div>
 
           {/*
-            The two actions are not slides, so they get their own bar rather
-            than another row in the list — gold ground, edge to edge, clipped
-            to the panel's rounded bottom by the `overflow-hidden` above.
+            The actions are not slides, so they get their own bar rather than
+            another row in the list — gold ground, edge to edge, clipped to
+            the panel's rounded bottom by the `overflow-hidden` above.
             Icon-only: `title` carries the name on hover, `aria-label` for
             screen readers, and for COPY LINK the icon swapping to the whole
             chain is itself the "done" feedback.
           */}
           <div className="flex shrink-0 items-center justify-center gap-10 bg-me-gold px-5 py-3">
-            <button
-              type="button"
-              onClick={downloadPdf}
-              disabled={pdfBusy}
-              title={pdfBusy ? "Rendering…" : pdfFailed ? "Could not render — try again" : "Download PDF"}
-              aria-label={pdfBusy ? "Rendering PDF" : "Download PDF"}
-              aria-busy={pdfBusy}
-              className={`cursor-pointer transition-opacity hover:opacity-70 disabled:cursor-wait ${
-                pdfBusy ? "animate-pulse opacity-50" : pdfFailed ? "opacity-40" : ""
-              }`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do */}
-              <img src="/PDFDownload.svg" alt="" className="size-[30px]" />
-            </button>
+            {/*
+              Download PDF is an internal tool, not something a client should
+              see. The deck's PDFs are rendered on our own machine with
+              `npm run pdf` (see scripts/gen-credential-pdf.mjs) and sent to
+              clients by hand — they are never deployed, so on the live site
+              this button would only ever 404.
+
+              `NODE_ENV` is inlined at build time, so on the deployed site
+              this whole branch is dropped from the bundle rather than merely
+              hidden with CSS.
+            */}
+            {process.env.NODE_ENV === "development" && (
+              <button
+                type="button"
+                onClick={downloadPdf}
+                disabled={pdfBusy}
+                title={
+                  pdfBusy
+                    ? "Rendering…"
+                    : pdfFailed
+                      ? "Not found — run `npm run pdf` first"
+                      : "Download PDF (local only)"
+                }
+                aria-label={pdfBusy ? "Rendering PDF" : "Download PDF"}
+                aria-busy={pdfBusy}
+                className={`cursor-pointer transition-opacity hover:opacity-70 disabled:cursor-wait ${
+                  pdfBusy ? "animate-pulse opacity-50" : pdfFailed ? "opacity-40" : ""
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- flat SVG, nothing for the optimizer to do */}
+                <img src="/PDFDownload.svg" alt="" className="size-[30px]" />
+              </button>
+            )}
 
             <button
               type="button"

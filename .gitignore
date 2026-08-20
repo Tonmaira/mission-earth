@@ -47,8 +47,6 @@ dist-ssr
 
 
 
-# Credential deck PDFs — generated during the build by
-# project/frontend/scripts/gen-credential-pdf.mjs, not authored by hand.
-# Kept out of git so 7MB of binaries are not re-committed on every content
-# edit; Vercel regenerates them on each deploy.
+# PDF ของเด็ค credential — สร้างเองบนเครื่องด้วย `npm run pdf` เพื่อเอาไปส่ง
+# ลูกค้าทางอีเมล ไม่ได้ deploy ขึ้นเว็บ (ปุ่มดาวน์โหลดโผล่เฉพาะตอน dev)
 /project/frontend/public/credential-pdf/

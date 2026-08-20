@@ -1,16 +1,22 @@
 /*
  * สร้าง PDF ของเด็ค /credential ทุกเวอร์ชัน เก็บลง public/credential-pdf/
  *
- * รันตอน build (ดู `build` ใน package.json) ไม่ใช่ตอนมีคนกดปุ่ม เพราะเนื้อหา
- * เด็คทั้งหมดอยู่ในโค้ด — works.js, caseStudies.js, clientBriefs.js,
- * partnerLogos.js — แก้ทีไรก็ต้อง deploy อยู่แล้ว ไฟล์ที่สร้างตอน build จึง
- * ไม่มีทางเก่ากว่าเว็บ ผลคือกดปุ่มแล้วได้ไฟล์ทันที ไม่กิน RAM ตอนใช้งาน และ
- * production ไม่ต้องมี Chromium (Vercel ก็ไม่มีให้อยู่แล้ว)
+ *     npm run dev      # เปิดค้างไว้
+ *     npm run pdf      # ~5 วินาที
  *
- * ต้องรันหลัง `next build` เพราะมันเปิดเซิร์ฟเวอร์จาก build output ขึ้นมา
- * แล้วสั่งเบราว์เซอร์ไปโหลดหน้าเด็คจริงๆ
+ * เป็นเครื่องมือสำหรับเราใช้เอง ไม่ใช่ฟีเจอร์ของเว็บ — ไฟล์ที่ได้เอาไปส่งลูกค้า
+ * เองทางอีเมล ปุ่มดาวน์โหลดในเด็คจึงโผล่เฉพาะตอน dev (ดู DeckShell.js) และ
+ * public/credential-pdf/ ถูก gitignore ไว้ ไม่ได้ deploy ขึ้นเว็บจริง
  *
- * รันเองได้ด้วย: npm run pdf   (ต้อง next build ไว้ก่อน)
+ * ทำไมไม่สร้างบน Vercel ตอน build: ลองมาแล้วทุกทางและแพงเกินคุ้ม —
+ * serverless ไม่มี Chrome, @sparticuz/chromium ทำได้แต่ build พุ่งจาก 1.5 นาที
+ * เป็น 9 นาทีทุกครั้งที่ push (เครื่อง build เป็นเครื่องใหม่ทุกรอบ ต้องแตกไฟล์
+ * Chromium ใหม่ แถมมันรัน --single-process ซึ่งช้ากับหน้าหนักๆ) บนเครื่องเรา
+ * ใช้ Chrome ที่มีอยู่แล้ว จบใน 5 วินาที
+ *
+ * ถ้าวันหนึ่งอยากให้ลูกค้าโหลดเองได้: เอาไฟล์ออกจาก .gitignore, commit ขึ้นไป,
+ * แล้วเอาเงื่อนไข NODE_ENV ใน DeckShell.js ออก — แต่ต้องมีวินัยรัน `npm run pdf`
+ * ทุกครั้งที่แก้เนื้อหา ไม่งั้นลูกค้าจะได้ไฟล์ที่ตัวเลขไม่ตรงกับเว็บ
  */
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -24,7 +30,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC_DIR = path.join(ROOT, "public");
 const OUT_DIR = path.join(PUBLIC_DIR, "credential-pdf");
 const PORT = Number(process.env.PDF_BUILD_PORT ?? 4321);
-const ORIGIN = `http://127.0.0.1:${PORT}`;
+
 
 const MIME = {
   ".png": "image/png",
@@ -59,31 +65,19 @@ function publicFileFor(rawUrl) {
 }
 
 /**
- * หา Chromium ที่รันได้ในเครื่องที่กำลังรันอยู่ พร้อม args ที่มันต้องการ
+ * หา Chrome ที่ติดตั้งอยู่ในเครื่อง
  *
- * ต้องแยกสองทางเพราะ build รันคนละที่กับที่เราพัฒนา:
- *
- *   Linux (Vercel build) — ใช้ @sparticuz/chromium ซึ่งเป็น Chromium ที่คอมไพล์
- *     มาสำหรับ environment แบบ Lambda โดยเฉพาะ คือแพ็ก shared library ที่ต้องใช้
- *     มาให้ในตัว เครื่อง build ของ Vercel เป็น Linux แบบ minimal ที่ไม่มี libnss3
- *     libX11 ฯลฯ — Chrome ปกติจะตายทันทีด้วย exit code 127 (เคยเจอมาแล้วจริง)
- *
- *   macOS (เครื่องเรา) — ใช้ Chrome ที่ติดตั้งอยู่แล้ว ไม่ต้องโหลดอะไรเพิ่ม
- *     150MB ตั้ง CHROME_PATH ทับได้ถ้าติดตั้งไว้ที่อื่น
+ * สคริปต์นี้รันบนเครื่องคนทำงาน ไม่ได้รันบน CI (ดู scripts/check-credential-pdf.mjs
+ * ว่าทำไม) จึงพึ่ง Chrome ที่มีอยู่แล้วได้เลย ไม่ต้องโหลด Chromium 150MB มาเก็บ
  */
-async function resolveBrowser() {
-  if (process.platform === "linux") {
-    const { default: chromium } = await import("@sparticuz/chromium");
-    return {
-      executablePath: await chromium.executablePath(),
-      args: [...chromium.args, "--hide-scrollbars"],
-    };
-  }
-
+function resolveBrowser() {
   const candidates = [
     process.env.CHROME_PATH,
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/usr/bin/google-chrome",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
   ].filter(Boolean);
   const executablePath = candidates.find((p) => existsSync(p));
   if (!executablePath) {
@@ -128,6 +122,31 @@ async function decksToRender() {
  * ถ้าเสิร์ฟไฟล์ดิบ PDF จะบวมกลับไปอีก
  */
 async function startServer() {
+  /*
+   * ถ้ามีเซิร์ฟเวอร์เปิดอยู่แล้วก็ใช้ตัวนั้นเลย (ปกติคือ `npm run dev`)
+   *
+   * เหตุผลไม่ใช่แค่เร็วกว่า แต่เป็นเรื่องความถูกต้อง: เซิร์ฟเวอร์ที่เราเปิดเอง
+   * อ่านจาก `.next` ซึ่งเป็นผลของ `next build` ครั้งล่าสุด ถ้าเพิ่งแก้เนื้อหา
+   * แล้วยังไม่ build ใหม่ มันจะสร้าง PDF จากโค้ดเก่าอย่างเงียบๆ แล้วรายงานว่า
+   * สำเร็จ — เคยเจอมาแล้วจริงตอนทดสอบ ส่วน dev server hot-reload อยู่แล้ว
+   * จึงเห็นของล่าสุดเสมอ
+   *
+   * ตอน build บน CI ไม่มีใครเปิด dev ไว้ ก็ตกไปเปิดเองตามเดิม
+   */
+  for (const port of [3000, PORT]) {
+    try {
+      const probe = `http://127.0.0.1:${port}/credential`;
+      const res = await fetch(probe, { signal: AbortSignal.timeout(2000) });
+      if (res.ok) {
+        console.log(`[credential pdf] ใช้เซิร์ฟเวอร์ที่เปิดอยู่แล้วที่พอร์ต ${port}`);
+        return { origin: `http://127.0.0.1:${port}`, close: async () => {} };
+      }
+    } catch {
+      // ไม่มีใครเปิดอยู่ ก็เปิดเอง
+    }
+  }
+
+  const ORIGIN = `http://127.0.0.1:${PORT}`;
   const app = next({ dev: false, dir: ROOT });
   await app.prepare();
   const handler = app.getRequestHandler();
@@ -142,7 +161,15 @@ async function startServer() {
   while (Date.now() < deadline) {
     try {
       const res = await fetch(`${ORIGIN}/credential`, { signal: AbortSignal.timeout(3000) });
-      if (res.ok) return { close: async () => { await app.close?.(); server.close(); } };
+      if (res.ok) {
+        return {
+          origin: ORIGIN,
+          close: async () => {
+            await app.close?.();
+            server.close();
+          },
+        };
+      }
     } catch {
       // ยังไม่พร้อม
     }
@@ -152,7 +179,7 @@ async function startServer() {
   throw new Error(`deck server did not become ready on ${ORIGIN} within 60s`);
 }
 
-async function renderDeck(browser, slug) {
+async function renderDeck(browser, origin, slug) {
   const page = await browser.newPage();
   try {
     // เท่ากับเฟรมออกแบบ เพื่อให้ทุกอย่างที่อิง viewport (svh, --fit) ตรงกับบนจอ
@@ -195,7 +222,7 @@ async function renderDeck(browser, slug) {
       });
     });
 
-    const url = `${ORIGIN}/credential${slug ? `/${slug}` : ""}`;
+    const url = `${origin}/credential${slug ? `/${slug}` : ""}`;
     await page.goto(url, { waitUntil: "networkidle0", timeout: 60_000 });
 
     await page.evaluate(async () => {
@@ -303,7 +330,7 @@ async function main() {
   let server;
   let browser;
   try {
-    const { executablePath, args } = await resolveBrowser();
+    const { executablePath, args } = resolveBrowser();
     console.log(`[credential pdf] chromium: ${executablePath}`);
 
     server = await startServer();
@@ -318,12 +345,12 @@ async function main() {
 
     for (const deck of decks) {
       const started = Date.now();
-      const pdf = await renderDeck(browser, deck.slug);
+      const pdf = await renderDeck(browser, server.origin, deck.slug);
       await writeFile(path.join(OUT_DIR, deck.file), pdf);
       const kb = Math.round(pdf.length / 1024);
       console.log(`  ✓ ${deck.file} — ${kb}KB in ${((Date.now() - started) / 1000).toFixed(1)}s`);
     }
-    console.log(`[credential pdf] ${decks.length} deck(s) written to public/credential-pdf/`);
+    console.log(`[credential pdf] เสร็จแล้ว ${decks.length} ไฟล์ อยู่ใน public/credential-pdf/`);
   } finally {
     await browser?.close();
     await server?.close();

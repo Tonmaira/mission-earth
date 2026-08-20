@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/gen-credential-pdf.mjs",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "pdf": "node scripts/gen-credential-pdf.mjs"
   },
   "devDependencies": {
-    "@sparticuz/chromium": "^149.0.0",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",

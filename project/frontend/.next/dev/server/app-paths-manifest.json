@@ -1,3 +1,4 @@
 {
-  "/credential/[client]/page": "app/credential/[client]/page.js"
+  "/credential/[client]/page": "app/credential/[client]/page.js",
+  "/credential/page": "app/credential/page.js"
 }
