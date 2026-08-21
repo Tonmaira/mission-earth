@@ -6,6 +6,13 @@ const BASE = "/EkidenWeb";
 const NAVY = "#002740";
 // TODO: ใส่ลิงก์หน้าจ่ายเงินจริงเมื่อมี (เช่น หน้าสมัคร/payment gateway)
 const PAYMENT_URL = "#";
+// ปุ่มชวนเป็นพาร์ตเนอร์ — ยังไม่มีหน้าเฉพาะ ส่งไปหน้าติดต่อรวมก่อน
+const PARTNER_URL = "/contact";
+
+// ป้ายสปอนเซอร์ทั้งสามชั้นยังเป็นโลโก้ mock จาก Figma ยังไม่มีสปอนเซอร์จริง จึงซ่อนไว้ก่อน
+// ทุกป้ายวางแบบ absolute อยู่แล้ว ปิดตรงนี้จึงไม่กระทบตำแหน่งของ hero card หรืออย่างอื่นในหน้า
+// ได้สปอนเซอร์จริงเมื่อไร เปลี่ยนเป็น true แล้วสลับไฟล์รูปในแต่ละ SponsorLabel
+const SHOW_SPONSORS = false;
 
 // รูป hero ที่สลับทุก 5 วิ — เพิ่มไฟล์ใหม่ที่นี่ (แนวตั้ง ~3:4 เช่น 1280×1720)
 // lightText: true = รูปทึบ ต้องเปลี่ยน SARABURI/RELAY RUN เป็นขาวเพื่อให้อ่านออก
@@ -111,12 +118,24 @@ function InfoPanel() {
           <span className="text-[32px] leading-none sm:text-[36px]" aria-hidden>›</span>
         </div>
 
-        {/* ปุ่ม REGISTER NOW — ย้ายมาจากบนรูป hero */}
-        <a
-          href={PAYMENT_URL}
-          className="mt-5 flex w-full items-center justify-center rounded-md bg-[#032740] px-10 py-3 text-[15px] font-semibold uppercase tracking-[0.15em] text-[#f0eee9] transition-colors hover:bg-[#0a3a5a]"
+        {/* ปุ่ม REGISTER NOW — ย้ายมาจากบนรูป hero
+            ยังเปิดรับสมัครไม่ได้ จึงเป็น <button disabled> ไม่ใช่ <a> ที่ทำให้จางเฉย ๆ
+            (แท็ก a ไม่มี disabled กดยังไงก็ยังพาไปที่ href) */}
+        <button
+          type="button"
+          disabled
+          className="mt-5 flex w-full cursor-not-allowed items-center justify-center rounded-md bg-[#032740] px-10 py-3 text-[15px] font-semibold uppercase tracking-[0.15em] text-[#f0eee9] opacity-40"
         >
           Register Now
+        </button>
+
+        {/* ระหว่างที่ยังไม่เปิดรับสมัคร ปุ่มนี้เป็นทางเดียวที่กดต่อได้จริงในกล่องนี้ */}
+        <a
+          href={PARTNER_URL}
+          style={{ fontFamily: "var(--font-noto-sans-thai), sans-serif" }}
+          className="mt-2 flex w-full items-center justify-center rounded-md border-2 border-[#032740] px-10 py-3 text-[16px] font-semibold text-[#032740] transition-colors hover:bg-[#032740] hover:text-[#f0eee9] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#032740]"
+        >
+          ร่วมมือกับเรา
         </a>
       </div>
     </div>
@@ -131,11 +150,13 @@ function HeroBlock() {
         {/* คอลัมน์ซ้าย: Prime + hero card + สปอนเซอร์ (กล่อง aspect ย่อพอดีความสูงจอ) */}
         <div className="relative aspect-[640/800] h-[min(calc(100vh_-_110px),calc(min(100vw_-_2rem,600px)*1.25))]">
           {/* PRIME PARTNER — บนสุด ตำแหน่งพรีเมียม */}
-          <SponsorLabel
-            src="PrimePartnerBlue.svg"
-            alt="Prime Partner"
-            className="absolute left-[34.4%] top-0 h-[7.37%] w-[31.25%]"
-          />
+          {SHOW_SPONSORS && (
+            <SponsorLabel
+              src="PrimePartnerBlue.svg"
+              alt="Prime Partner"
+              className="absolute left-[34.4%] top-0 h-[7.37%] w-[31.25%]"
+            />
+          )}
 
           {/* Hero card */}
           <div className="absolute left-0 top-[5.37%] h-[82.07%] w-full">
@@ -143,18 +164,22 @@ function HeroBlock() {
           </div>
 
           {/* OFFICIAL SUPPORTER × 3 */}
-          <div className="absolute left-0 top-[89.26%] grid h-[4.75%] w-full grid-cols-3 gap-x-[11.56%]">
-            {[0, 1, 2].map((i) => (
-              <SponsorLabel key={i} src="OfficialSupporterBlue.svg" alt="Official Supporter" className="h-full w-full" />
-            ))}
-          </div>
+          {SHOW_SPONSORS && (
+            <div className="absolute left-0 top-[89.26%] grid h-[4.75%] w-full grid-cols-3 gap-x-[11.56%]">
+              {[0, 1, 2].map((i) => (
+                <SponsorLabel key={i} src="OfficialSupporterBlue.svg" alt="Official Supporter" className="h-full w-full" />
+              ))}
+            </div>
+          )}
 
           {/* IMPACT PARTNER × 5 */}
-          <div className="absolute left-0 top-[96.75%] grid h-[3.25%] w-full grid-cols-5 gap-x-[7.8%]">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <SponsorLabel key={i} src="ImpactPartnerBlue.svg" alt="Impact Partner" className="h-full w-full" />
-            ))}
-          </div>
+          {SHOW_SPONSORS && (
+            <div className="absolute left-0 top-[96.75%] grid h-[3.25%] w-full grid-cols-5 gap-x-[7.8%]">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <SponsorLabel key={i} src="ImpactPartnerBlue.svg" alt="Impact Partner" className="h-full w-full" />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* คอลัมน์ขวา: panel วันที่ + ระยะ + register as team */}

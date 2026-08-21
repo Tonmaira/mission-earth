@@ -1,9 +1,11 @@
 "use client";
 import { useEffect } from "react";
+import { getPageScroller, getPageScrollTop, onPageScroll } from "@/lib/pageScroll";
 
-/* หน้า Home เลื่อนด้วย <main> เอง (overflow-y-scroll h-screen snap-y) ไม่ใช่ document
+/* หน้า Home บนเดสก์ท็อปเลื่อนด้วย <main> เอง (overflow-y-scroll h-screen snap-y) ไม่ใช่ document
    เบราว์เซอร์กับ Next จำตำแหน่ง scroll ให้อัตโนมัติเฉพาะ scroller ของหน้าเท่านั้น
    ตัวที่เราทำเองจึงต้องเก็บ/คืนตำแหน่งเอง
+   (บนมือถือกลับไปเลื่อนด้วย document แล้ว ตรงนั้นเบราว์เซอร์จำเองได้ แต่คืนซ้ำก็ไม่เสียหาย)
 
    popstate ยิงตอนยังอยู่หน้าเดิม ก่อน React จะ mount หน้าใหม่ ธงเลยต้องอยู่นอก component
    ไม่งั้นค่าจะหายไปพร้อมกับ component ที่ถูก unmount */
@@ -25,8 +27,7 @@ const MAX_RESTORE_FRAMES = 40;
  *  ถ้าเข้าหน้านี้ด้วยวิธีอื่น (กด Home บน navbar, พิมพ์ URL, เปิดลิงก์ใหม่) จะเริ่มที่บนสุดตามปกติ */
 export default function ScrollRestore({ selector = "main", storageKey }) {
   useEffect(() => {
-    const el = document.querySelector(selector);
-    if (!el) return;
+    if (!document.querySelector(selector)) return;
 
     // อ่านค่าที่เก็บไว้ให้เสร็จก่อนติด listener เสมอ
     // ไม่งั้น scroll event ตอนหน้าเพิ่งโหลด (ยังอยู่ที่ 0) จะเขียนทับค่าเดิมทิ้ง
@@ -38,18 +39,22 @@ export default function ScrollRestore({ selector = "main", storageKey }) {
 
     // ปิด smooth ชั่วคราว ไม่งั้นจะเห็นหน้าไถลจากบนสุดลงมาแทนที่จะโผล่ตรงจุดเดิมเลย
     const applyRestore = () => {
-      const prev = el.style.scrollBehavior;
-      el.style.scrollBehavior = "auto";
-      el.scrollTop = saved;
-      el.style.scrollBehavior = prev;
-      return Math.abs(el.scrollTop - saved) <= 1;
+      // ตัวเลื่อนเป็น <main> (เดสก์ท็อป) หรือ document (มือถือ) ก็ได้ — ดู lib/pageScroll.js
+      const scroller = getPageScroller(selector);
+      const styleEl = scroller ?? document.documentElement;
+      const prev = styleEl.style.scrollBehavior;
+      styleEl.style.scrollBehavior = "auto";
+      if (scroller) scroller.scrollTop = saved;
+      else window.scrollTo(0, saved);
+      styleEl.style.scrollBehavior = prev;
+      return Math.abs(getPageScrollTop(selector) - saved) <= 1;
     };
 
     if (cameFromHistory && saved > 0) {
       restoring = true;
 
-      // ตั้งแบบ synchronous ไปเลยก่อน — ปกติเนื้อหาสูงครบตั้งแต่ mount แล้ว (section เป็น h-dvh)
-      // rAF ไว้เป็นทางสำรองเฉพาะตอนที่ยังไม่ครบ
+      // ตั้งแบบ synchronous ไปเลยก่อน — เดสก์ท็อปเนื้อหาสูงครบตั้งแต่ mount แล้ว (section เป็น h-dvh)
+      // rAF ไว้เป็นทางสำรองตอนที่ยังไม่ครบ ซึ่งบนมือถือเกิดบ่อยเพราะความสูงขึ้นกับรูปที่ยังโหลดไม่เสร็จ
       if (applyRestore()) {
         cameFromHistory = false;
         restoring = false;
@@ -74,15 +79,15 @@ export default function ScrollRestore({ selector = "main", storageKey }) {
     const save = () => {
       saveRaf = null;
       if (restoring) return; // ระหว่างกำลังคืนตำแหน่ง อย่าเพิ่งบันทึกทับ
-      sessionStorage.setItem(storageKey, String(Math.round(el.scrollTop)));
+      sessionStorage.setItem(storageKey, String(Math.round(getPageScrollTop(selector))));
     };
     const onScroll = () => {
       if (saveRaf === null) saveRaf = requestAnimationFrame(save);
     };
 
-    el.addEventListener("scroll", onScroll, { passive: true });
+    const stopListening = onPageScroll(onScroll, selector);
     return () => {
-      el.removeEventListener("scroll", onScroll);
+      stopListening();
       if (saveRaf !== null) cancelAnimationFrame(saveRaf);
       if (restoreRaf !== null) cancelAnimationFrame(restoreRaf);
       // ไม่บันทึกซ้ำตอน cleanup — ค่าล่าสุดถูกเก็บจาก scroll ไปแล้ว

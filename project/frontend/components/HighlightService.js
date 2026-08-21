@@ -35,10 +35,10 @@ export default function HighlightService() {
   const prevSlide = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
   return (
-    <section className="relative w-full h-full pt-[85px] bg-[#002740] overflow-hidden flex flex-col items-center">
+    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] md:overflow-hidden flex flex-col items-center">
 
       {/* 1. Header Section */}
-      <div className="relative w-full flex-[2] md:flex-[3] min-h-0 max-w-flex mx-auto overflow-hidden flex items-end justify-center pb-4 md:pb-10 mb-2">
+      <div className="relative w-full md:flex-[3] md:min-h-0 max-w-flex mx-auto overflow-hidden flex items-end justify-center pt-10 pb-4 md:pt-0 md:pb-10 mb-2">
         <div className="absolute top-0 bottom-0 w-full h-20 bg-gradient-to-b from-[#002740] to-transparent z-10 pointer-events-none" />
 
                     <Image
@@ -68,7 +68,7 @@ export default function HighlightService() {
       </div>
 
       {/* 2. Banner Slider */}
-      <div className="relative w-full flex justify-center items-center flex-[2] md:flex-[4] min-h-0">
+      <div className="relative w-full flex justify-center items-center h-[380px] md:h-auto md:flex-[4] md:min-h-0">
         <div className="relative w-full h-full flex items-center justify-center">
           {items.map((item, index) => {
             const isActive = index === activeIndex;

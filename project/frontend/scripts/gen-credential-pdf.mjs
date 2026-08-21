@@ -14,9 +14,9 @@
  * Chromium ใหม่ แถมมันรัน --single-process ซึ่งช้ากับหน้าหนักๆ) บนเครื่องเรา
  * ใช้ Chrome ที่มีอยู่แล้ว จบใน 5 วินาที
  *
- * ถ้าวันหนึ่งอยากให้ลูกค้าโหลดเองได้: เอาไฟล์ออกจาก .gitignore, commit ขึ้นไป,
- * แล้วเอาเงื่อนไข NODE_ENV ใน DeckShell.js ออก — แต่ต้องมีวินัยรัน `npm run pdf`
- * ทุกครั้งที่แก้เนื้อหา ไม่งั้นลูกค้าจะได้ไฟล์ที่ตัวเลขไม่ตรงกับเว็บ
+ * ถ้าวันหนึ่งอยากให้ลูกค้าโหลดเองได้: อัปไฟล์ที่ได้ขึ้น Google Drive เอง แล้ว
+ * เปลี่ยนปุ่มใน DeckShell.js เป็น <a href="ลิงก์ Drive"> (เอาเงื่อนไข NODE_ENV ออก)
+ * — จะได้เปลี่ยนไฟล์ได้โดยไม่ต้อง deploy ใหม่ ไม่ต้องเอา PDF เข้า git
  */
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";

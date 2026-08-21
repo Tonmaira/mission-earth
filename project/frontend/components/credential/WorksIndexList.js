@@ -44,7 +44,7 @@ function Group({ label, rows }) {
     <section className="relative">
       {/* the label rides the first row's line, hard against the column's right
           edge — `pr` on the rows keeps a long title from running under it */}
-      <p className="absolute right-0 top-[3px] text-[10px] uppercase tracking-[0.25em] text-me-gold/55 lg:text-[12px] 3xl:text-[14px]!">
+      <p className="absolute right-0 top-[3px] text-[10px] uppercase tracking-[0.25em] text-me-gold/55 lg:text-[15px] 3xl:text-[20px]!">
         {label}
       </p>
       <ul className="flex flex-col gap-[6px] pr-[9rem]">

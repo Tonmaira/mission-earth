@@ -8,6 +8,7 @@ import SocialMediaPackHorizon from "./SocialMediaPackHorizon";
 import { useLang } from "@/lib/LanguageContext";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { getPageScrollTop, onPageScroll } from "@/lib/pageScroll";
 
 export default function Navbar() {
   const [showLogo, setShowLogo] = useState(false);
@@ -38,14 +39,10 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollEl = document.querySelector("main");
-      const scrollY = scrollEl ? scrollEl.scrollTop : window.scrollY;
-      setShowLogo(scrollY > 350);
-    };
-    const scrollEl = document.querySelector("main") ?? window;
-    scrollEl.addEventListener("scroll", handleScroll);
-    return () => scrollEl.removeEventListener("scroll", handleScroll);
+    // ตัวเลื่อนเป็น <main> หรือ document ก็ได้ แล้วแต่หน้าและขนาดจอ — ดู lib/pageScroll.js
+    const handleScroll = () => setShowLogo(getPageScrollTop() > 350);
+    handleScroll();
+    return onPageScroll(handleScroll);
   }, []);
 
   return (

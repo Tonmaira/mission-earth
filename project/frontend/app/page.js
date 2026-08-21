@@ -12,14 +12,17 @@ import SuccessCaseSection from "@/components/SuccessCaseSection";
 import ScrollRestore from "@/components/ScrollRestore";
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#002740] text-white snap-y snap-mandatory overflow-y-scroll h-screen">
-      {/* กด back กลับมาแล้วให้อยู่ตำแหน่งเดิม — main เป็นตัวเลื่อนเอง เบราว์เซอร์เลยจำให้ไม่ได้ */}
+    /* มือถือ — ไม่ snap แล้ว section สูงตามเนื้อหา เลื่อนยาวเป็นหน้าเดียวตามปกติ
+       md ขึ้นไป — snap ทีละ section เต็มจอเหมือนเดิม
+       ตัวเลื่อนจึงเป็นคนละตัวกัน ดู lib/pageScroll.js */
+    <main className="min-h-screen bg-[#002740] text-white md:snap-y md:snap-mandatory md:overflow-y-scroll md:h-screen">
+      {/* กด back กลับมาแล้วให้อยู่ตำแหน่งเดิม — เดสก์ท็อป main เป็นตัวเลื่อนเอง เบราว์เซอร์เลยจำให้ไม่ได้ */}
       <ScrollRestore storageKey="home-scroll" />
       <Navbar />
       <SocialMediaPack />
 
       {/* --- Hero / Logo Section --- */}
-      <section className="flex flex-col items-center justify-center h-dvh w-full px-4 py-10 snap-start snap-always">
+      <section className="flex flex-col items-center justify-center h-dvh w-full px-4 py-10 md:snap-start md:snap-always">
 
   <div className="flex flex-col items-center">
     <div className="relative w-70 h-25 md:w-[349.81px] md:h-[109px]"> 
@@ -44,27 +47,27 @@ Empowered by Experts.
   </section>
 
       {/* --- About Us --- */}
-      <section className="snap-start snap-always h-dvh overflow-hidden">
+      <section className="md:snap-start md:snap-always md:h-dvh md:overflow-hidden">
           <AboutUsPre />
       </section>
       {/* --- Highlight Service --- */}
-      <section className="snap-start snap-always h-dvh overflow-hidden">
+      <section className="md:snap-start md:snap-always md:h-dvh md:overflow-hidden">
       {/* 2. ต้องมี services={...} และตัวแปรข้างในต้องตรงกับที่ Import มา */}
       <HighlightService services={ServicesCard} />
     </section>
 
       {/* --- Success Cases --- */}
-      <section className="snap-start snap-always h-dvh overflow-hidden">
+      <section className="md:snap-start md:snap-always md:h-dvh md:overflow-hidden">
         <SuccessCaseSection />
       </section>
 
     {/* --- Activities --- */}
-      <section className="snap-start snap-always h-dvh overflow-hidden">
+      <section className="md:snap-start md:snap-always md:h-dvh md:overflow-hidden">
           <ExploreActivities />
       </section>
 
       {/* --- Earth Feed --- */}
-      <section className="snap-start snap-always h-dvh overflow-hidden">
+      <section className="md:snap-start md:snap-always md:h-dvh md:overflow-hidden">
         <EarthFeedSection />
       </section>
 
@@ -75,7 +78,7 @@ Empowered by Experts.
               <SlideServices /> --- */}
 
       {/* --- Footer --- */}
-      <section className="snap-start snap-always">
+      <section className="md:snap-start md:snap-always">
       <FooterSection />
       </section>
     </main>

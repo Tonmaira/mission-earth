@@ -13,7 +13,7 @@ export default function EarthFeedSection() {
   const sideItems = items.slice(3, 8);
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#001a2c] pt-[85px]">
+    <div className="w-full md:h-full flex flex-col bg-[#001a2c] pt-[85px]">
 
       {/* Header */}
       <div className="h-[72px] shrink-0 flex items-center justify-between px-6 md:px-14 border-l-4 border-[#CEA870] ml-0">
@@ -25,10 +25,10 @@ export default function EarthFeedSection() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 min-h-0 flex flex-col md:flex-row gap-0 overflow-hidden">
+      <div className="md:flex-1 md:min-h-0 flex flex-col md:flex-row gap-0 md:overflow-hidden">
 
         {/* Left grid: top 1 big + bottom 2 small */}
-        <div className="flex-[3] flex flex-col min-h-0 gap-[2px]">
+        <div className="md:flex-[3] flex flex-col h-[520px] md:h-auto md:min-h-0 gap-[2px]">
           {/* Top — big featured */}
           <div className="flex-[2] min-h-0">
             <FeedCard item={top} loading={loading} titleSize="text-2xl md:text-[28px]" />
@@ -45,14 +45,14 @@ export default function EarthFeedSection() {
         </div>
 
         {/* Latest Stories — right */}
-        <div className="flex-[2] flex flex-col bg-[#001a2c] border-l border-white/10 overflow-y-auto">
+        <div className="md:flex-[2] flex flex-col bg-[#001a2c] border-l border-white/10 md:overflow-y-auto">
           <div className="px-6 md:px-8 pt-5 pb-3 border-b border-white/10 shrink-0">
             <p className="text-white font-bold text-[13px] tracking-[0.25em] uppercase">
               Latest Stories
             </p>
           </div>
 
-          <div className="flex flex-col divide-y divide-white/10 overflow-y-auto">
+          <div className="flex flex-col divide-y divide-white/10 md:overflow-y-auto">
             {loading
               ? [...Array(4)].map((_, i) => (
                   <div key={i} className="flex gap-3 px-6 md:px-8 py-4 items-center animate-pulse">

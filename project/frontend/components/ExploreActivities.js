@@ -46,12 +46,15 @@ function SearchIcon({ className }) {
 /** ปุ่ม pill ขอบทอง ขนาดตาม Figma (สูง 40 · radius 27 · 16px sentence-case)
  *  ไม่ใช้ components/ui/OutlineBtn เพราะตัวนั้นเป็น uppercase + semibold + 10-12px
  *  ซึ่งจะทำให้เครื่องหมาย "!" กับตัวพิมพ์เล็กในดีไซน์หายไป */
-function PillButton({ label, onClick }) {
+function PillButton({ label, onClick, disabled }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="flex h-10 shrink-0 items-center justify-center rounded-[27px] border border-me-gold px-5 text-[16px] text-me-gold transition-colors duration-300 hover:bg-me-gold hover:text-white"
+      disabled={disabled}
+      className={`flex h-10 shrink-0 items-center justify-center rounded-[27px] border border-me-gold px-5 text-[16px] text-me-gold transition-colors duration-300 ${
+        disabled ? "cursor-not-allowed opacity-40" : "hover:bg-me-gold hover:text-white"
+      }`}
     >
       {label}
     </button>
@@ -60,15 +63,21 @@ function PillButton({ label, onClick }) {
 
 /** การ์ดในลิสต์ฝั่งขวา — สูง 64 radius 16 พื้นฝ้าขาวจาง ๆ บนพื้นกรมท่า
  *  sub ไม่ใส่ก็ได้ (การ์ด "See All" มีแต่หัวข้อ) */
-function ListCard({ title, sub, onClick }) {
+function ListCard({ title, sub, note, onClick, disabled }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="flex h-16 w-full items-center rounded-2xl border border-white/30 bg-white/10 p-2 text-left transition-colors hover:bg-white/20"
+      disabled={disabled}
+      className={`flex h-16 w-full items-center rounded-2xl border border-white/30 bg-white/10 p-2 text-left transition-colors ${
+        disabled ? "cursor-not-allowed opacity-40" : "hover:bg-white/20"
+      }`}
     >
       <span className="min-w-0">
-        <span className="block truncate text-[21px] leading-tight text-white">{title}</span>
+        <span className="block truncate text-[21px] leading-tight text-white">
+          {title}
+          {note && <span className="ml-2 text-[14px] text-white/80">{note}</span>}
+        </span>
         {sub && <span className="block truncate text-[14px] leading-tight text-white/90">{sub}</span>}
       </span>
     </button>
@@ -113,14 +122,15 @@ function OriginalCard({ item, title }) {
 /** Explore Workshops & Activities — Figma node 2295:2892 (แท็บ Original) / 2295:3620 (แท็บ All)
  *
  *  แบนเนอร์ในแท็บ Original ลิงก์ไปหน้าจริงแล้ว (/forest_bathing, /ekiden)
- *  ส่วนปุ่ม ช่องค้นหา และการ์ดหมวด ยังเป็น MOCK ยังไม่ผูกปลายทาง
+ *  ส่วนปุ่มสองอันและการ์ดหมวดในแท็บ All ปิดไว้ (disabled + จาง + กำกับ Soon) เพราะยังไม่มีปลายทาง
+ *  ช่องค้นหายังเป็น MOCK ยังไม่ผูกปลายทาง
  *  แท็บสลับได้จริงเพราะเป็นการเปลี่ยนเนื้อหาในที่เดียว ไม่ใช่การนำทาง
  *
  *  ดีไซน์มีแค่เฟรมเดสก์ท็อป 1440 — จอแคบกว่านั้นสลับเป็นคอลัมน์เดียว (ตีความเอง)
  *
- *  อยู่ในหน้า Home ซึ่งแต่ละ section เป็น snap แบบ h-dvh overflow-hidden
- *  จึงใช้ h-full + overflow-y-auto แบบเดียวกับ EarthFeed เพื่อให้จอเตี้ย/มือถือ
- *  ที่เนื้อหาสูงเกินหนึ่งหน้าจอยังเลื่อนอ่านในกรอบได้ ไม่โดนตัดหาย */
+ *  หน้า Home บนเดสก์ท็อปเป็น snap ทีละ section แบบ h-dvh overflow-hidden
+ *  จึงใช้ md:h-full + md:overflow-y-auto ให้จอเตี้ยยังเลื่อนอ่านในกรอบได้ ไม่โดนตัดหาย
+ *  ส่วนมือถือไม่ snap แล้ว ปล่อยสูงตามเนื้อหาแล้วเลื่อนไปกับหน้า ไม่ต้องเลื่อนซ้อนในกรอบ */
 export default function ExploreActivities() {
   const { t } = useLang();
   const [tab, setTab] = useState("original");
@@ -134,7 +144,7 @@ export default function ExploreActivities() {
   ];
 
   return (
-    <section className="h-full w-full overflow-y-auto bg-me-navy pt-[85px]">
+    <section className="w-full bg-me-navy pt-[85px] md:h-full md:overflow-y-auto">
       {/* จอกว้าง: ยึดหัวคอลัมน์ทั้งสองฝั่งให้เสมอกันด้วย items-start + ระยะบนคงที่ 127px (ตาม Figma)
           ห้ามใช้ items-center เพราะความสูงฝั่งขวาเปลี่ยนตามแท็บที่เลือก
           ถ้าจัดกลาง เนื้อหาทั้งสองฝั่งจะเด้งขึ้นลงทุกครั้งที่สลับแท็บ */}
@@ -160,8 +170,8 @@ export default function ExploreActivities() {
             </div>
 
             <div className="flex flex-wrap gap-2.5">
-              <PillButton label={t("exploreActivities.exploreBtn")} />
-              <PillButton label={t("exploreActivities.vendorBtn")} />
+              <PillButton label={t("exploreActivities.exploreBtn")} disabled />
+              <PillButton label={t("exploreActivities.vendorBtn")} disabled />
             </div>
           </div>
         </div>
@@ -203,9 +213,15 @@ export default function ExploreActivities() {
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              <ListCard title={t("exploreActivities.seeAll")} />
+              <ListCard title={t("exploreActivities.seeAll")} note={t("exploreActivities.soon")} disabled />
               {categories.map((c) => (
-                <ListCard key={c.title} title={c.title} sub={c.sub} />
+                <ListCard
+                  key={c.title}
+                  title={c.title}
+                  sub={c.sub}
+                  note={t("exploreActivities.soon")}
+                  disabled
+                />
               ))}
             </div>
           )}

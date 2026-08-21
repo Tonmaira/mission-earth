@@ -37,7 +37,7 @@ export default function SuccessCaseSection() {
   }));
 
   return (
-    <section className="relative w-full h-full pt-[85px] bg-[#002740] overflow-hidden flex flex-col items-center">
+    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] md:overflow-hidden flex flex-col items-center">
       <ScrollReveal>
         <div className="relative z-10 text-center px-6 md:px-6 max-w-4xl mx-auto mb-8 md:mb-12">
           <h4 className="text-[#CEA870] text-xs md:text-sm tracking-[0.4em] uppercase mb-1 md:mb-4 font-medium">
@@ -52,7 +52,7 @@ export default function SuccessCaseSection() {
         </div>
       </ScrollReveal>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6 flex-1 min-h-0">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6 md:flex-1 md:min-h-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 h-full">
           {items.map((item, i) => (
             <Link
