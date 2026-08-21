@@ -23,6 +23,19 @@ const MOCK_GALLERY = Array.from(
     ][i % 6]
 );
 
+// รูปจริงของ Urban Forest Bathing ที่คุ้งบางกะเจ้า — ไฟล์อยู่ใน /public/forestBathing/Bangkajao
+// เพิ่มรูปใหม่ = วางไฟล์ในโฟลเดอร์นั้นแล้วเติมชื่อไฟล์ที่นี่ ป้ายนับรูปกับแกลเลอรีอัปเดตตามเอง
+const BANGKAJAO_GALLERY = [
+  "DSC09611.jpg",
+  "DSC09625.jpg",
+  "DSC09643.jpg",
+  "DSC09645.jpg",
+  "DSC09709.jpg",
+  "DSC09717.jpg",
+  "DSC09736.jpg",
+  "DSC09790.jpg",
+].map((file) => `/forestBathing/Bangkajao/${file}`);
+
 // รายละเอียดรายหัวข้อที่แถบไอคอนซ้ายใน modal จองใช้กระโดดไปหา (ตาม Figma)
 // แถบจะโชว์ครบทุกหัวข้อเสมอ หัวข้อไหนไม่มีข้อมูลจะขึ้นข้อความ "กำลังจัดเตรียม" แทน
 // จึงเติมทีละหัวข้อได้ โดยไม่ต้องแก้ component
@@ -31,6 +44,8 @@ const MOCK_GALLERY = Array.from(
 //   forestBathing.locations.items.<id>.sections = {
 //     info:     [{ title, desc }],           // จุดเด่นของทริป (ต่อจาก blurb)
 //     location: { address, gettingThere },
+//               // gettingThere ใส่เป็นข้อความก้อนเดียว หรือเป็น
+//               // [{ title, desc, steps: [...] }] เมื่อมีหลายทางเลือก
 //     schedule: [{ day, items: [{ time, title }] }],
 //     prepare:  ["สิ่งที่ต้องเตรียม", ...],
 //     includes: ["สิ่งที่รวมในราคา", ...],
@@ -86,9 +101,9 @@ export const LOCATIONS = [
     // fullPrice = ราคาเต็มก่อนลด ใส่เมื่อไหร่ราคานั้นจะขึ้นขีดฆ่าคู่กับ % ที่ลด
     // ให้อัตโนมัติ (% คำนวณสดจากสองตัวเลขนี้ ไม่ต้องกรอกเอง) ทริปไหนไม่ลดราคา
     // ก็ไม่ต้องใส่ จะโชว์ราคาเดียวเหมือนเดิม
-    trips: [{ start: "2026-08-30", end: "2026-08-30", hours: 2, fullPrice: 2490, price: 1590 }], // 08.00–10.00 น.
+    trips: [{ start: "2026-08-30", end: "2026-08-30", hours: 2, fullPrice: 1590, price: 990 }], // 08.00–10.00 น.
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfK2ur5n-kLubB92sQdtvAUjgmrbrdbKL24H4BvEeJ0WWY_UQ/viewform?usp=publish-editor", // TODO: ใส่ลิงก์รับสมัครจริง (เช่น Google Form) ของ Urban Forest Bathing
-    gallery: MOCK_GALLERY, // MOCK: รอรูปตัวอย่างจริง
+    gallery: BANGKAJAO_GALLERY,
     instructors: ["yanudchara"],
     // ข้อความทุกหัวข้ออยู่ใน messages/{en,th}.json (ดูหมายเหตุบน LOCATIONS) เหลือที่นี่แค่ลิงก์แผนที่
     sections: { location: { mapUrl: "https://maps.google.com/?q=Bang+Krachao" } },

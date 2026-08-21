@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import ForestBathingCalendar from "@/components/ForestBathingCalendar";
 import IconClose from "@/components/IconClose";
@@ -308,7 +309,7 @@ function RailButton({ item, size, active, onJump }) {
 
 /** แถบไอคอนซ้าย — ซ่อนบนมือถือ เพราะที่นั่นทั้ง modal เลื่อนรวมเป็นคอลัมน์เดียว
  *  ตัว <nav> ยืดเต็มความสูงเนื้อหาเพื่อให้เส้นขอบขวาลากยาวตลอด ส่วนปุ่มข้างในปักไว้ที่ขอบบน */
-function SectionRail({ active, onJump }) {
+function SectionRail({ active, onJump, hasReviews }) {
   const { t } = useLang();
 
   return (
@@ -328,7 +329,7 @@ function SectionRail({ active, onJump }) {
         ))}
 
         <div className="mt-2 flex w-[38px] flex-col items-center gap-2 border-t border-[#e6e6e6] pt-3">
-          {RAIL_EXTRA.map((item) => (
+          {RAIL_EXTRA.filter((item) => item.id !== "reviews" || hasReviews).map((item) => (
             <RailButton
               key={item.id}
               item={item}
@@ -542,6 +543,7 @@ function PosterPanel({
   const jumpTo = (id) => sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
 
   const sections = useLocationSections(viewLocation);
+  const hasReviews = sections.reviews?.length > 0;
   const sectionProps = {
     register: registerSection,
     scrollOffset: shrunkBandHeight(contentH) + JUMP_GAP,
@@ -602,7 +604,7 @@ function PosterPanel({
       {/* แถบไอคอนซ้าย + เนื้อหา — แถบเริ่มใต้รูปปกตาม Figma และปักค้างขอบบนตอนเลื่อน
           ตัว <nav> ยืดเต็มความสูงของแถวนี้อยู่แล้ว (flex stretch) เส้นขอบขวาจึงลากยาวตลอดเนื้อหา */}
       <div className="flex">
-        <SectionRail active={activeSection} onJump={jumpTo} />
+        <SectionRail active={activeSection} onJump={jumpTo} hasReviews={hasReviews} />
 
         <div className="min-w-0 flex-1">
       {/* หัวข้อ — sticky ค้างขอบบน พื้นทึบให้เนื้อหาเลื่อนลอดใต้ */}
@@ -630,9 +632,9 @@ function PosterPanel({
           </h3>
           <div className="mt-2 flex items-center gap-2">
             <PinIcon className="h-4 w-4 shrink-0 text-[#828282]" />
-            <p className="text-[13px] text-[#828282] sm:text-[16px]">
-              {name}, {region}
-            </p>
+            {/* โชว์แค่ region — หัวเรื่องเหนือบรรทัดนี้บอกชื่ออยู่แล้ว
+                (ถ้าไม่ได้ตั้ง campaignTitle หัวเรื่องจะใช้ name ทำให้ซ้ำกันสองบรรทัดติด) */}
+            <p className="text-[13px] text-[#828282] sm:text-[16px]">{region}</p>
           </div>
         </div>
       </div>
@@ -674,16 +676,44 @@ function PosterPanel({
           <div className="flex items-start gap-2">
             <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#828282]" />
             <div>
-              <p className="text-[14px] text-[#484848] sm:text-[15px]">
-                {name}, {region}
-              </p>
+              <p className="text-[14px] text-[#484848] sm:text-[15px]">{region}</p>
               {sections.location?.address && (
                 <p className="mt-0.5 text-[13px] text-[#828282]">{sections.location.address}</p>
               )}
             </div>
           </div>
 
-          {sections.location?.gettingThere ? (
+          {/* วิธีเดินทางรับได้สองแบบ
+              - array = หลายทางเลือก แต่ละอันมีหัวข้อ + คำอธิบาย/ขั้นตอนย่อย (ใส่อย่างใดอย่างหนึ่งหรือทั้งคู่)
+              - string = ข้อความก้อนเดียวแบบเดิม สำหรับที่ที่มีทางเดียว ไม่ต้องแตกเป็นข้อ */}
+          {Array.isArray(sections.location?.gettingThere) ? (
+            <ol className="mt-3 flex flex-col gap-4">
+              {sections.location.gettingThere.map((opt, i) => (
+                <li key={`${i}-${opt.title}`}>
+                  <p className="text-[14px] font-semibold text-[#484848]">
+                    {i + 1}. {opt.title}
+                  </p>
+                  {opt.desc && (
+                    <p className="mt-1 text-[13px] font-light leading-relaxed text-[#484848]/80 sm:text-[15px]">
+                      {opt.desc}
+                    </p>
+                  )}
+                  {opt.steps?.length > 0 && (
+                    <ul className="mt-1.5 flex flex-col gap-1.5">
+                      {opt.steps.map((step, k) => (
+                        <li key={`${k}-${step}`} className={BULLET_CLASS}>
+                          <span aria-hidden className="text-[#b6b6b6]">
+                            •
+                          </span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ol>
+          ) : sections.location?.gettingThere ? (
             <p className="mt-3 text-[13px] font-light leading-relaxed text-[#484848]/80 sm:text-[15px]">
               {sections.location.gettingThere}
             </p>
@@ -766,8 +796,11 @@ function PosterPanel({
           )}
         </ContentSection>
 
-        <ContentSection id="reviews" {...sectionProps}>
-          {sections.reviews?.length > 0 ? (
+        {/* รีวิวต่างจากหัวข้ออื่น — หัวข้ออื่นที่ยังไม่มีข้อมูลขึ้น "กำลังจัดเตรียม" ได้
+            แต่ทริปที่ยังไม่เคยจัดย่อมไม่มีรีวิว การโชว์หัวข้อว่างไว้เลยดูเหมือนของขาด
+            จึงซ่อนทั้งหัวข้อและปุ่มในแถบไอคอน แล้วจะกลับมาเองเมื่อมีรีวิวจริง */}
+        {hasReviews && (
+          <ContentSection id="reviews" {...sectionProps}>
             <div className="flex flex-col gap-3">
               {sections.reviews.map((r, i) => (
                 <figure key={`${i}-${r.name}`} className="rounded-xl bg-black/[0.03] px-4 py-3">
@@ -778,10 +811,8 @@ function PosterPanel({
                 </figure>
               ))}
             </div>
-          ) : (
-            <SectionEmpty />
-          )}
-        </ContentSection>
+          </ContentSection>
+        )}
 
         <ContentSection id="photos" {...sectionProps}>
           {hasGallery ? (
@@ -947,7 +978,7 @@ function ActivityCalendarPanel({ selectedTrip, onSelectDate }) {
   );
 }
 
-function LocationModal({ location, onClose }) {
+function LocationModal({ location, onClose, onLocationChange }) {
   const { t, lang, toggleLang } = useLang();
   // สถานที่ที่ modal กำลังแสดงอยู่ตอนนี้ — เปลี่ยนได้ถ้าผู้ใช้กดวันของสถานที่อื่นในปฏิทิน
   const [viewLocation, setViewLocation] = useState(location);
@@ -989,8 +1020,20 @@ function LocationModal({ location, onClose }) {
     const found = tripAndLocationForDate(iso);
     if (!found) return;
     setSelectedTrip(found.trip);
-    if (found.location.id !== viewLocation.id) setViewLocation(found.location);
+    if (found.location.id !== viewLocation.id) {
+      setViewLocation(found.location);
+      onLocationChange?.(found.location.id); // ให้ URL ตามไปด้วย
+    }
   };
+
+  // ทางกลับกัน: URL เปลี่ยนจากข้างนอก (กด back/forward หรือเปิดลิงก์ตรง ๆ) ให้ modal ตาม
+  // ปรับ state ระหว่าง render ไม่ใช่ใน effect — React จะ render ซ้ำให้ทันทีก่อนวาดจริง
+  // จึงไม่เห็นเฟรมที่ยังเป็นสถานที่เก่าค้างอยู่ และเช็ค id กันวนกับ onLocationChange ข้างบน
+  // (ถ้าไม่เช็ค วันที่ผู้ใช้เพิ่งเลือกจะโดนรีเซ็ตทิ้งทุกครั้งที่ URL ขยับ)
+  if (location.id !== viewLocation.id) {
+    setViewLocation(location);
+    setSelectedTrip(nextTrip(location));
+  }
 
   const eyebrow = viewLocation.campaignEyebrow ?? "Mission Earth";
   const title = viewLocation.campaignTitle ?? name;
@@ -1129,18 +1172,45 @@ function LocationModal({ location, onClose }) {
   );
 }
 
+/** ชื่อพารามิเตอร์ใน URL ที่บอกว่าเปิดทริปไหนอยู่ — /forest_bathing?trip=urban-bangkok */
+const TRIP_PARAM = "trip";
+
+/** อ่านจาก URL ว่าจะเปิด modal ของสถานที่ไหน
+ *  แยกเป็นคอมโพเนนต์ของตัวเองเพราะ useSearchParams ต้องอยู่ใต้ <Suspense>
+ *  ไม่งั้น Next จะ error ตอน build (หน้านี้ prerender เป็น static)
+ *  id ที่ไม่รู้จักคืน null เฉย ๆ — พิมพ์ URL มั่วมาก็แค่ไม่เปิด ไม่พัง */
+function BookingModalFromUrl({ onClose, onLocationChange }) {
+  const params = useSearchParams();
+  const location = LOCATIONS.find((l) => l.id === params.get(TRIP_PARAM));
+  if (!location) return null;
+  return (
+    <LocationModal location={location} onClose={onClose} onLocationChange={onLocationChange} />
+  );
+}
+
 export default function ForestBathingLocations() {
-  const [active, setActive] = useState(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const urlFor = (id) => `${pathname}?${TRIP_PARAM}=${id}`;
+
+  // เปิด = push เพื่อให้ปุ่มย้อนกลับของเบราว์เซอร์ปิด modal ได้
+  // ปิด/สลับสถานที่ = replace เพื่อไม่ให้กด back แล้ววนกลับมาเปิดใหม่
+  // scroll: false กันหน้าเด้งขึ้นบนสุดตอนเปลี่ยน URL
+  const openTrip = (l) => router.push(urlFor(l.id), { scroll: false });
+  const switchTrip = (id) => router.replace(urlFor(id), { scroll: false });
+  const closeTrip = () => router.replace(pathname, { scroll: false });
 
   return (
     <>
       <div className="grid w-full grid-cols-1 gap-[17px] md:grid-cols-3">
         {LOCATIONS.map((l) => (
-          <LocationCard key={l.id} location={l} onOpen={setActive} />
+          <LocationCard key={l.id} location={l} onOpen={openTrip} />
         ))}
       </div>
 
-      {active && <LocationModal location={active} onClose={() => setActive(null)} />}
+      <Suspense fallback={null}>
+        <BookingModalFromUrl onClose={closeTrip} onLocationChange={switchTrip} />
+      </Suspense>
     </>
   );
 }

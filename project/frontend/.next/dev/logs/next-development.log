@@ -299,3 +299,215 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [23:15:36.549] Server  LOG     ✓ Compiled in 66ms
 [23:15:36.829] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
 [23:15:36.944] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:23:42.436] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:23:42.437] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:29:49.926] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:29:49.943] Server  LOG     ✓ Compiled in 96ms
+[23:29:49.944] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:29:50.289] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[23:29:50.365] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:29:50.492] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:30:10.552] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:30:18.697] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:30:44.441] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:30:52.533] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:32:56.603] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:32:56.605] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:32:56.743] Server  LOG     ✓ Compiled in 66ms
+[23:32:56.877] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:32:57.163] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[23:32:57.172] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:33:37.904] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:34:29.067] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:34:37.203] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:52:10.763] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:52:10.770] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:52:10.877] Server  LOG     ✓ Compiled in 83ms
+[23:52:11.147] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[23:52:11.245] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:52:15.340] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:54:06.632] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:54:06.637] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:54:06.704] Server  LOG     ✓ Compiled in 82ms
+[23:54:06.915] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[23:54:07.000] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:54:09.027] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[24:03:12.169] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:03:12.171] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:03:12.249] Server  LOG     ✓ Compiled in 74ms
+[24:03:12.473] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[24:03:12.553] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:03:16.128] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[24:07:01.996] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:07:02.000] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:07:02.060] Server  LOG     ✓ Compiled in 69ms
+[24:07:02.273] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[24:07:02.359] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:07:05.363] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[24:09:11.241] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:09:11.241] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:09:11.307] Server  LOG     ✓ Compiled in 76ms
+[24:09:11.520] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[24:09:11.616] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:09:14.277] Browser WARN    Image with src "/forestBathing/shinrin-yogu1st-1.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[24:52:32.991] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:52:33.000] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[24:52:33.110] Server  LOG     ✓ Compiled in 80ms
+[24:52:33.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:52:33.348] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[24:52:33.576] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:00:14.618] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:00:14.626] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:00:14.698] Server  LOG     ✓ Compiled in 58ms
+[25:00:14.922] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:00:15.004] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:00:15.144] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:07:01.971] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:07:01.974] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:07:02.066] Server  LOG     ✓ Compiled in 72ms
+[25:07:02.355] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:07:02.432] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:07:02.562] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:07:08.967] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:07:08.969] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:07:09.032] Server  LOG     ✓ Compiled in 67ms
+[25:07:09.190] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:07:09.260] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:07:09.260] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:11:08.335] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:11:08.336] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:11:08.383] Server  LOG     ✓ Compiled in 68ms
+[25:11:08.606] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:11:08.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:11:08.779] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:11:30.016] Server  LOG     ✓ Compiled in 63ms
+[25:11:57.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:12:05.912] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:15:36.244] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:15:36.249] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:15:36.291] Server  LOG     ✓ Compiled in 68ms
+[25:15:36.501] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:15:36.586] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:15:48.161] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:15:56.296] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:17:59.316] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:17:59.318] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:17:59.364] Server  LOG     ✓ Compiled in 76ms
+[25:17:59.580] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:17:59.649] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:17:59.751] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:22:17.874] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:22:17.877] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:22:17.962] Server  LOG     ✓ Compiled in 62ms
+[25:22:18.205] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:22:18.307] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:22:47.188] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:22:47.189] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:22:47.250] Server  LOG     ✓ Compiled in 62ms
+[25:22:47.418] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:22:47.515] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:22:47.663] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:23:31.252] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:23:31.253] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:23:31.312] Server  LOG     ✓ Compiled in 43ms
+[25:23:31.527] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:23:31.597] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:23:31.698] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:26:42.162] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:26:42.168] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:26:42.226] Server  LOG     ✓ Compiled in 72ms
+[25:26:42.442] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:26:42.525] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:27:52.461] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:27:52.463] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:27:52.512] Server  LOG     ✓ Compiled in 69ms
+[25:27:52.732] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:27:52.812] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:27:52.914] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:28:07.261] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:28:15.428] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:35:53.305] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:35:53.307] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:35:53.359] Server  LOG     ✓ Compiled in 69ms
+[25:35:53.615] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:35:53.684] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:35:53.811] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:36:29.227] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:36:29.229] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:36:29.276] Server  LOG     ✓ Compiled in 44ms
+[25:36:29.490] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:36:29.579] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:36:51.473] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:36:59.611] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:37:35.599] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:37:43.746] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:45:11.611] Server  LOG     ✓ Compiled in 72ms
+[25:45:27.736] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:45:35.879] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:48:54.592] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:49:02.745] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:51:47.867] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:51:48.007] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:51:55.453] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:51:55.583] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:52:01.545] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:55:34.669] Server  LOG     ✓ Compiled in 63ms
+[25:55:52.078] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:56:00.228] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[25:58:50.787] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:58:50.812] Server  LOG     ✓ Compiled in 64ms
+[25:58:50.880] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/th.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[25:58:50.972] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:58:51.187] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[25:58:51.192] Browser WARN    Image with src "/forestBathing/ASP_VisualWalkAndRun-138.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:05:49.622] Server  LOG     ✓ Compiled in 327ms
+[26:06:20.791] Server  LOG     ✓ Compiled in 65ms
+[26:06:48.500] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:06:59.568] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:07:00.025] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:07:08.671] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:07:42.013] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:07:53.095] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:07:53.241] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:08:02.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:08:26.566] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:08:37.692] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:08:37.858] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[26:08:46.787] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:11:15.489] Server  LOG     ✓ Compiled in 65ms

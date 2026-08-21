@@ -160,58 +160,96 @@
         },
         "urban-bangkok": {
           "name": "EXPLORE THE ORIGINAL ART OF FOREST BATHING",
-          "region": "Chaloem Phrakiat 80 Phansa Park, Khung Bang Kachao, Samut Prakan",
+          "region": "Chaloem Phrakiat 80 Phansa Park, Khung Bang Kachao",
           "blurb": "Breathe with the forest. A mindful morning of Japanese forest bathing at Bang Krachao — Bangkok's green lung. Slow down, reconnect, and leave feeling lighter.",
           "sections": {
             "info": [
               {
-                "title": "Guided Breathwork",
-                "desc": "Start with slow, guided breathing to settle the mind before entering the forest trail."
+                "title": "Forest Bathing",
+                "desc": "or Shinrin-yoku, originated in Japan as a wellness practice that invites us to reconnect with nature — spending time mindfully among the trees through all six senses: sight, sound, smell, taste, touch, and heart. The experience is divided into 6 stations:"
               },
               {
-                "title": "Sensory Walk",
-                "desc": "A slow walk through Bang Krachao's green canopy, engaging all five senses along the way."
+                "title": "Station 1 — Sight",
+                "desc": "Observe the forest, the trees, the leaves, the ground"
               },
               {
-                "title": "Tea Ceremony",
-                "desc": "Close the session with a quiet tea ceremony under the trees, reflecting on the morning."
+                "title": "Station 2 — Sound",
+                "desc": "Listen to the stillness — wind, rustling leaves, birds, insects"
               },
               {
-                "title": "Who it's for",
-                "desc": "No fitness level required. The whole route is flat and slow-paced, suitable for children from age 10 and for anyone new to forest bathing. Come alone or bring someone — most people arrive on their own and leave having shared something with the group."
+                "title": "Station 3 — Smell",
+                "desc": "Breathe in the scent of leaves and fresh air, enhanced with essential oil aromas"
               },
               {
-                "title": "What you'll take home",
-                "desc": "A simple set of practices you can repeat in any green space near you: how to slow your pace deliberately, how to notice what your senses pick up, and how to let a short walk actually reset your attention rather than just move your body."
+                "title": "Station 4 — Taste",
+                "desc": "Sip tea and awaken your sense of taste"
+              },
+              {
+                "title": "Station 5 — Touch",
+                "desc": "Feel your physical connection with nature"
+              },
+              {
+                "title": "Station 6 — Heart",
+                "desc": "Give thanks to the forest, give thanks to nature"
               }
             ],
             "location": {
-              "address": "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
-              "gettingThere": "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across."
+              "address": "Samut Prakan",
+              "gettingThere": [
+                {
+                  "title": "Ferry crossing (most popular + scenic)",
+                  "desc": "The classic way into Bang Kachao, great if you don't have a car.",
+                  "steps": [
+                    "Take the BTS to Bang Na station → grab a taxi or motorbike taxi to Wat Bang Na Nok Pier (about 5–10 minutes).",
+                    "Hop on the cross-river ferry to the Bang Kachao side (just a few baht; you can bring a bicycle across too).",
+                    "Once ashore, rent a bike or take a motorbike taxi / songthaew (local shared truck) to the park."
+                  ]
+                },
+                {
+                  "title": "By private car",
+                  "steps": [
+                    "From Bangkok, take Suksawat Road toward Phra Pradaeng, enter the Bang Kachao area via Songkanong Subdistrict, then follow signs to the park.",
+                    "Or cross the Bhumibol Bridge (Industrial Ring Road Bridge), come down on the Phra Pradaeng side, and drive in.",
+                    "There's parking at the park — convenient if you're coming as a group or carrying gear."
+                  ]
+                },
+                {
+                  "title": "Taxi / Grab straight to the park",
+                  "desc": "The easiest option. Just drop a pin on “Chaloem Phrakiat 80th Anniversary Park, Khung Bang Kachao” — the driver takes the road route (no ferry needed). Best if you'd rather not make multiple transfers."
+                },
+                {
+                  "title": "By bicycle (for cyclists)",
+                  "desc": "Many people cross by ferry and then cycle around Bang Kachao — stopping at Sri Nakhon Khuean Khan Park, Bang Nam Phueng Floating Market, and this park all in one trip. Bike rental shops are plentiful near the pier."
+                }
+              ]
             },
             "schedule": [
               {
                 "day": "Sunday morning",
                 "items": [
                   {
+                    "time": "07.30",
+                    "title": "Meet at Chaloem Phrakiat 80 Phansa Park, Enjoy the welcome drink"
+                  },
+                  {
                     "time": "08.00",
-                    "title": "Meet at the pier, cross the river together"
+                    "title": "Introduction to the forest bathing practice, before stepping through the forest gate"
                   },
                   {
-                    "time": "08.20",
-                    "title": "Guided breathwork and opening circle"
-                  },
-                  {
-                    "time": "08.45",
-                    "title": "Sensory walk through the canopy"
+                    "time": "08.15",
+                    "title": "Forest bathing — experiencing all six senses"
                   },
                   {
                     "time": "09.30",
-                    "title": "Tea ceremony under the trees"
+                    "title": "Grounding"
+                  },
+                  {
+                    "time": "09.45",
+                    "title": "Session wrap-up"
                   },
                   {
                     "time": "10.00",
-                    "title": "Closing circle, head back"
+                    "title": "Head back"
                   }
                 ]
               }
@@ -223,21 +261,12 @@
               "A light rain jacket — the session runs rain or shine"
             ],
             "includes": [
-              "A certified forest bathing facilitator for the whole session",
-              "Cross-river boat fare",
-              "Tea ceremony and light refreshments",
-              "Group size limited to 20 people",
-              "Full refund if you cancel at least 7 days ahead"
-            ],
-            "reviews": [
-              {
-                "name": "Ploy S.",
-                "text": "I expected a walk and got something closer to a reset. Two hours felt longer than they were, in a good way."
-              },
-              {
-                "name": "Nathan K.",
-                "text": "The facilitator never rushed anyone. First time I have noticed how many different sounds there are in one place."
-              }
+              "Forest bathing facilitator for the whole session",
+              "Welcome drink",
+              "Tea during the session",
+              "Snap by Photographer",
+              "Bang Kachao's Treats",
+              "Time Capsule Postcard"
             ]
           }
         }
