@@ -164,3 +164,133 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [19:06:37.724] Server  LOG     ✓ Compiled in 75ms
 [19:07:01.219] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [19:07:08.574] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:16:06.004] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:16:06.005] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:16:06.013] Server  LOG     ✓ Compiled in 105ms
+[20:16:06.598] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[20:16:06.811] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:16:43.008] Browser ERROR   ./lib/forestBathing.js:113:7
+Parsing ecmascript source code failed
+  111 |         },
+  112 |       ],
+> 113 |       location: {
+      |       ^^^^^^^^
+  114 |         address: "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
+  115 |         gettingThere:
+  116 |           "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across.",
+
+'const' declarations must be initialized
+
+Import traces:
+  Client Component Browser:
+    ./lib/forestBathing.js [Client Component Browser]
+    ./components/ForestBathingLocations.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Server Component]
+
+  Client Component SSR:
+    ./lib/forestBathing.js [Client Component SSR]
+    ./components/ForestBathingLocations.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Server Component]
+[20:16:43.008] Browser ERROR   ./lib/forestBathing.js:113:15
+Parsing ecmascript source code failed
+  111 |         },
+  112 |       ],
+> 113 |       location: {
+      |               ^
+  114 |         address: "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
+  115 |         gettingThere:
+  116 |           "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across.",
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./lib/forestBathing.js [Client Component Browser]
+    ./components/ForestBathingLocations.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Server Component]
+
+  Client Component SSR:
+    ./lib/forestBathing.js [Client Component SSR]
+    ./components/ForestBathingLocations.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Server Component]
+[20:16:43.024] Browser ERROR   ./lib/forestBathing.js:113:7
+Parsing ecmascript source code failed
+  111 |         },
+  112 |       ],
+> 113 |       location: {
+      |       ^^^^^^^^
+  114 |         address: "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
+  115 |         gettingThere:
+  116 |           "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across.",
+
+'const' declarations must be initialized
+
+Import traces:
+  Client Component Browser:
+    ./lib/forestBathing.js [Client Component Browser]
+    ./components/ForestBathingLocations.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Server Component]
+
+  Client Component SSR:
+    ./lib/forestBathing.js [Client Component SSR]
+    ./components/ForestBathingLocations.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Server Component]
+[20:16:43.025] Browser ERROR   ./lib/forestBathing.js:113:15
+Parsing ecmascript source code failed
+  111 |         },
+  112 |       ],
+> 113 |       location: {
+      |               ^
+  114 |         address: "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
+  115 |         gettingThere:
+  116 |           "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across.",
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./lib/forestBathing.js [Client Component Browser]
+    ./components/ForestBathingLocations.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Client Component Browser]
+    ./app/forest_bathing/page.js [Server Component]
+
+  Client Component SSR:
+    ./lib/forestBathing.js [Client Component SSR]
+    ./components/ForestBathingLocations.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Client Component SSR]
+    ./app/forest_bathing/page.js [Server Component]
+[20:17:14.208] Server  LOG     ✓ Compiled in 56ms
+[20:18:38.770] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:18:46.908] Browser WARN    Image with src "/forestBathing/shinrin-yogu-ggf-banner.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[20:19:05.306] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:19:35.368] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:19:43.493] Browser WARN    Image with src "/forestBathing/ROH-forest-to-soul-original.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[20:31:05.834] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:09:58.348] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:09:58.489] Browser WARN    Image with src "/DSC07451.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[23:10:16.335] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:10:16.477] Browser WARN    Image with src "/DSC07451.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[23:10:58.717] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:10:58.859] Browser WARN    Image with src "/DSC07451.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[23:11:49.938] Server  LOG     ✓ Compiled in 81ms
+[23:11:53.628] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:11:53.769] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:12:17.705] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:12:17.847] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:12:25.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:12:25.364] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:12:56.758] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:12:56.894] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading

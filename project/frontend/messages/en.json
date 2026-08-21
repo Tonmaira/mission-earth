@@ -159,9 +159,87 @@
           "blurb": "Highland watershed forest in Chiang Rai. Cool year-round, with natural walking trails."
         },
         "urban-bangkok": {
-          "name": "Urban Forest Bathing",
-          "region": "Bang KraChao, Samut Prakarn",
-          "blurb": "Breathe with the forest. A mindful morning of Japanese forest bathing at Bang Krachao — Bangkok's green lung. Slow down, reconnect, and leave feeling lighter."
+          "name": "EXPLORE THE ORIGINAL ART OF FOREST BATHING",
+          "region": "Chaloem Phrakiat 80 Phansa Park, Khung Bang Kachao, Samut Prakan",
+          "blurb": "Breathe with the forest. A mindful morning of Japanese forest bathing at Bang Krachao — Bangkok's green lung. Slow down, reconnect, and leave feeling lighter.",
+          "sections": {
+            "info": [
+              {
+                "title": "Guided Breathwork",
+                "desc": "Start with slow, guided breathing to settle the mind before entering the forest trail."
+              },
+              {
+                "title": "Sensory Walk",
+                "desc": "A slow walk through Bang Krachao's green canopy, engaging all five senses along the way."
+              },
+              {
+                "title": "Tea Ceremony",
+                "desc": "Close the session with a quiet tea ceremony under the trees, reflecting on the morning."
+              },
+              {
+                "title": "Who it's for",
+                "desc": "No fitness level required. The whole route is flat and slow-paced, suitable for children from age 10 and for anyone new to forest bathing. Come alone or bring someone — most people arrive on their own and leave having shared something with the group."
+              },
+              {
+                "title": "What you'll take home",
+                "desc": "A simple set of practices you can repeat in any green space near you: how to slow your pace deliberately, how to notice what your senses pick up, and how to let a short walk actually reset your attention rather than just move your body."
+              }
+            ],
+            "location": {
+              "address": "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
+              "gettingThere": "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across."
+            },
+            "schedule": [
+              {
+                "day": "Sunday morning",
+                "items": [
+                  {
+                    "time": "08.00",
+                    "title": "Meet at the pier, cross the river together"
+                  },
+                  {
+                    "time": "08.20",
+                    "title": "Guided breathwork and opening circle"
+                  },
+                  {
+                    "time": "08.45",
+                    "title": "Sensory walk through the canopy"
+                  },
+                  {
+                    "time": "09.30",
+                    "title": "Tea ceremony under the trees"
+                  },
+                  {
+                    "time": "10.00",
+                    "title": "Closing circle, head back"
+                  }
+                ]
+              }
+            ],
+            "prepare": [
+              "Comfortable walking shoes",
+              "Insect repellent",
+              "A reusable water bottle",
+              "A light rain jacket — the session runs rain or shine"
+            ],
+            "includes": [
+              "A certified forest bathing facilitator for the whole session",
+              "Cross-river boat fare",
+              "Tea ceremony and light refreshments",
+              "Group size limited to 20 people",
+              "Full refund if you cancel at least 7 days ahead"
+            ],
+            "reviews": [
+              {
+                "name": "Ploy S.",
+                "text": "I expected a walk and got something closer to a reset. Two hours felt longer than they were, in a good way."
+              },
+              {
+                "name": "Nathan K.",
+                "text": "The facilitator never rushed anyone. First time I have noticed how many different sounds there are in one place."
+              }
+            ]
+          }
         }
       }
     },

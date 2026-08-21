@@ -37,7 +37,7 @@ export default function SuccessCaseSection() {
   }));
 
   return (
-    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] md:overflow-hidden flex flex-col items-center">
+    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] overflow-hidden flex flex-col items-center">
       <ScrollReveal>
         <div className="relative z-10 text-center px-6 md:px-6 max-w-4xl mx-auto mb-8 md:mb-12">
           <h4 className="text-[#CEA870] text-xs md:text-sm tracking-[0.4em] uppercase mb-1 md:mb-4 font-medium">

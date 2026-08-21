@@ -27,14 +27,19 @@ const MOCK_GALLERY = Array.from(
 // แถบจะโชว์ครบทุกหัวข้อเสมอ หัวข้อไหนไม่มีข้อมูลจะขึ้นข้อความ "กำลังจัดเตรียม" แทน
 // จึงเติมทีละหัวข้อได้ โดยไม่ต้องแก้ component
 //
-//   sections: {
+// ตัวข้อความทั้งหมดอยู่ใน messages/{en,th}.json ที่
+//   forestBathing.locations.items.<id>.sections = {
 //     info:     [{ title, desc }],           // จุดเด่นของทริป (ต่อจาก blurb)
-//     location: { address, gettingThere, mapUrl },
+//     location: { address, gettingThere },
 //     schedule: [{ day, items: [{ time, title }] }],
 //     prepare:  ["สิ่งที่ต้องเตรียม", ...],
 //     includes: ["สิ่งที่รวมในราคา", ...],
 //     reviews:  [{ name, text }],
 //   }
+// เติมภาษาไหนก่อนก็ได้ ภาษาที่ยังไม่มีคำแปลจะขึ้น "กำลังจัดเตรียม" แทน
+//
+// ส่วน sections ในไฟล์นี้เหลือไว้เฉพาะค่าที่ไม่ใช่ข้อความ (ตอนนี้คือ location.mapUrl)
+// จะได้ไม่ต้องเขียนลิงก์เดิมซ้ำในไฟล์ภาษาทั้งสอง
 //
 // หัวข้อ Photo ไม่ต้องใส่ที่นี่ — ดึงจาก gallery ของสถานที่นั้นเอง
 //
@@ -71,7 +76,6 @@ export const LOCATIONS = [
     instructors: ["roh", "khemupsorn"],
     // TODO: รอเนื้อหาจริงจากทีม — ใส่ตามรูปแบบที่คอมเมนต์ไว้บน LOCATIONS
     // ระหว่างนี้แต่ละหัวข้อจะขึ้น "กำลังจัดเตรียมรายละเอียด" ใน modal
-    sections: {},
   },
 
   {
@@ -86,72 +90,8 @@ export const LOCATIONS = [
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfK2ur5n-kLubB92sQdtvAUjgmrbrdbKL24H4BvEeJ0WWY_UQ/viewform?usp=publish-editor", // TODO: ใส่ลิงก์รับสมัครจริง (เช่น Google Form) ของ Urban Forest Bathing
     gallery: MOCK_GALLERY, // MOCK: รอรูปตัวอย่างจริง
     instructors: ["yanudchara"],
-    // MOCK: ข้อมูลจำลองไว้ทดสอบ scroll + แถบไอคอนซ้ายของ modal — ลบ/แก้เป็นของจริงทีหลัง
-    sections: {
-      info: [
-        {
-          title: "Guided Breathwork",
-          desc: "Start with slow, guided breathing to settle the mind before entering the forest trail.",
-        },
-        {
-          title: "Sensory Walk",
-          desc: "A slow walk through Bang Krachao's green canopy, engaging all five senses along the way.",
-        },
-        {
-          title: "Tea Ceremony",
-          desc: "Close the session with a quiet tea ceremony under the trees, reflecting on the morning.",
-        },
-        {
-          title: "Who it's for",
-          desc: "No fitness level required. The whole route is flat and slow-paced, suitable for children from age 10 and for anyone new to forest bathing. Come alone or bring someone — most people arrive on their own and leave having shared something with the group.",
-        },
-        {
-          title: "What you'll take home",
-          desc: "A simple set of practices you can repeat in any green space near you: how to slow your pace deliberately, how to notice what your senses pick up, and how to let a short walk actually reset your attention rather than just move your body.",
-        },
-      ],
-      location: {
-        address: "Bang Krachao pier, Phra Pradaeng, Samut Prakarn",
-        gettingThere:
-          "Bang Krachao sits directly across the river from Khlong Toei. From BTS Bang Na take a taxi to Wat Klong Phra Udom pier (about 20 minutes), then the cross-river boat runs every few minutes. If you drive, park at the pier — parking is free and the boat takes you and your bicycle across.",
-        mapUrl: "https://maps.google.com/?q=Bang+Krachao",
-      },
-      schedule: [
-        {
-          day: "Sunday morning",
-          items: [
-            { time: "08.00", title: "Meet at the pier, cross the river together" },
-            { time: "08.20", title: "Guided breathwork and opening circle" },
-            { time: "08.45", title: "Sensory walk through the canopy" },
-            { time: "09.30", title: "Tea ceremony under the trees" },
-            { time: "10.00", title: "Closing circle, head back" },
-          ],
-        },
-      ],
-      prepare: [
-        "Comfortable walking shoes",
-        "Insect repellent",
-        "A reusable water bottle",
-        "A light rain jacket — the session runs rain or shine",
-      ],
-      includes: [
-        "A certified forest bathing facilitator for the whole session",
-        "Cross-river boat fare",
-        "Tea ceremony and light refreshments",
-        "Group size limited to 20 people",
-        "Full refund if you cancel at least 7 days ahead",
-      ],
-      reviews: [
-        {
-          name: "Ploy S.",
-          text: "I expected a walk and got something closer to a reset. Two hours felt longer than they were, in a good way.",
-        },
-        {
-          name: "Nathan K.",
-          text: "The facilitator never rushed anyone. First time I have noticed how many different sounds there are in one place.",
-        },
-      ],
-    },
+    // ข้อความทุกหัวข้ออยู่ใน messages/{en,th}.json (ดูหมายเหตุบน LOCATIONS) เหลือที่นี่แค่ลิงก์แผนที่
+    sections: { location: { mapUrl: "https://maps.google.com/?q=Bang+Krachao" } },
   },
 
   {

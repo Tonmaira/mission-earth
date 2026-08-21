@@ -43,6 +43,19 @@ const useLocationText = (id) => {
   };
 };
 
+/** เนื้อหารายหัวข้อในป็อปอัพจอง ตามภาษาที่เลือก
+ *  ข้อความอยู่ใน messages/{en,th}.json ส่วนค่าที่ไม่ใช่ข้อความ (mapUrl)
+ *  อยู่กับตัวสถานที่ใน lib/forestBathing.js — ที่นี่รวมสองฝั่งเข้าด้วยกัน */
+const useLocationSections = (location) => {
+  const { t } = useLang();
+  const text = t(`forestBathing.locations.items.${location.id}.sections`);
+  // t() คืนชื่อคีย์เป็น string กลับมาเมื่อยังไม่มีคำแปล
+  // สถานที่ที่ยังไม่ได้เขียนเนื้อหา (หรือยังแปลไม่ครบภาษา) จะเข้าทางนี้ แล้วขึ้น "กำลังจัดเตรียม"
+  const translated = text && typeof text === "object" ? text : {};
+  const { mapUrl } = location.sections?.location ?? {};
+  return { ...translated, location: { ...translated.location, mapUrl } };
+};
+
 const formatPrice = (n) => `THB ${n.toLocaleString("en-US")}`;
 
 /**
@@ -528,7 +541,7 @@ function PosterPanel({
   // ปล่อยให้เบราว์เซอร์เลื่อนเอง แล้วเผื่อระยะแถบหัวข้อผ่าน scrollMarginTop ของแต่ละ section
   const jumpTo = (id) => sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
 
-  const sections = viewLocation.sections ?? {};
+  const sections = useLocationSections(viewLocation);
   const sectionProps = {
     register: registerSection,
     scrollOffset: shrunkBandHeight(contentH) + JUMP_GAP,

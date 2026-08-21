@@ -35,7 +35,7 @@ export default function HighlightService() {
   const prevSlide = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
   return (
-    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] md:overflow-hidden flex flex-col items-center">
+    <section className="relative w-full md:h-full pt-[85px] bg-[#002740] overflow-hidden flex flex-col items-center">
 
       {/* 1. Header Section */}
       <div className="relative w-full md:flex-[3] md:min-h-0 max-w-flex mx-auto overflow-hidden flex items-end justify-center pt-10 pb-4 md:pt-0 md:pb-10 mb-2">
