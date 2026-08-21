@@ -294,3 +294,8 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [23:12:56.758] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [23:12:56.894] Browser WARN    Image with src "/full-logo-me.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[23:15:36.480] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:15:36.490] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[23:15:36.549] Server  LOG     ✓ Compiled in 66ms
+[23:15:36.829] Server  ERROR   ⨯ TypeError: Cannot convert argument to a ByteString because the character at index 1008 has a value of 3585 which is greater than 255.
+[23:15:36.944] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
