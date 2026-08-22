@@ -48,15 +48,17 @@ const useLocationText = (id) => {
  *  อยู่กับตัวสถานที่ใน lib/forestBathing.js — ที่นี่รวมสองฝั่งเข้าด้วยกัน */
 const useLocationSections = (location) => {
   const { t } = useLang();
-  // t.raw() เพราะค่าที่ได้เป็นอ็อบเจ็กต์ ไม่ใช่ข้อความ — t() รับได้เฉพาะข้อความ
-  // สถานที่ที่ยังไม่ได้เขียนเนื้อหาจะไม่มีคีย์นี้ next-intl คืน undefined มา
-  // แล้วหน้าจะขึ้น "กำลังจัดเตรียม" ตามเดิม
-  let text;
-  try {
-    text = t.raw(`forestBathing.locations.items.${location.id}.sections`);
-  } catch {
-    text = undefined;
-  }
+  const key = `forestBathing.locations.items.${location.id}.sections`;
+
+  /* สถานที่ที่ยังไม่ได้เขียนเนื้อหา (Chet Kot, Doi Tung) ไม่มีคีย์นี้ในไฟล์ภาษา
+     ซึ่งเป็นเรื่องปกติ ไม่ใช่ความผิดพลาด — หน้าจะขึ้น "กำลังจัดเตรียม" แทน
+
+     ต้องเช็คด้วย t.has() ก่อนเสมอ อย่าเรียก t.raw() แล้วดักด้วย try/catch
+     เพราะ next-intl ไม่ได้ throw แต่ไปเรียกตัวจัดการ error ซึ่งพ่น
+     MISSING_MESSAGE ขึ้น console ให้เห็นทุกครั้งที่เปิดหน้า
+
+     t.raw() เพราะค่าที่ได้เป็นอ็อบเจ็กต์ ไม่ใช่ข้อความ — t() รับได้เฉพาะข้อความ */
+  const text = t.has(key) ? t.raw(key) : undefined;
   const translated = text && typeof text === "object" ? text : {};
   const { mapUrl } = location.sections?.location ?? {};
   return { ...translated, location: { ...translated.location, mapUrl } };
