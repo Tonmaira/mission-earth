@@ -5,7 +5,8 @@ import Image from "next/image";
 import IconHamburger from "./IconHamburger";
 import IconClose from "./IconClose";
 import SocialMediaPackHorizon from "./SocialMediaPackHorizon";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations, useLocale } from "next-intl";
+import { useLanguageToggle } from "@/lib/useLanguageToggle";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { getPageScrollTop, onPageScroll } from "@/lib/pageScroll";
@@ -18,7 +19,9 @@ export default function Navbar() {
   const [session, setSession] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const { t, toggleLang, lang } = useLang();
+  const t = useTranslations();
+  const lang = useLocale();
+  const toggleLang = useLanguageToggle();
   const router = useRouter();
 
   useEffect(() => {

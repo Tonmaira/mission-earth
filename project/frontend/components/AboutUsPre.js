@@ -2,11 +2,11 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from 'next/image';
 import LocaleLink from "@/components/LocaleLink";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
 
 
 export default function AboutUsPre() {
-    const { t } = useLang();
+    const t = useTranslations();
     return (
     <main className="max-w-flex mx-auto">
 

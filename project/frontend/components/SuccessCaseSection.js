@@ -2,7 +2,7 @@
 import Image from "next/image";
 import LocaleLink from "@/components/LocaleLink";
 import ScrollReveal from "@/components/ScrollReveal";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
 
 /*
  * The three cases the home page leads with. `href` points at each one's own
@@ -29,7 +29,7 @@ const CASES = [
 ];
 
 export default function SuccessCaseSection() {
-  const { t } = useLang();
+  const t = useTranslations();
 
   const items = [0, 1, 2].map((i) => ({
     ...CASES[i],

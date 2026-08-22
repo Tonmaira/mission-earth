@@ -4,10 +4,11 @@ import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 import CalendarWidget from "./CalendarWidget";
 import { useCalendarEvents } from "./useEarthFeed";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function ActivitiesPanel() {
-  const { t, lang } = useLang();
+  const t = useTranslations();
+  const lang = useLocale();
   const now = new Date();
 
   const [activities, setActivities] = useState([]);

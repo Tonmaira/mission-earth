@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import LocaleLink from "@/components/LocaleLink";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
 
 /** แบนเนอร์กิจกรรมของ Mission Earth เอง (แท็บแรก)
  *  พื้นหลัง + โลโก้ export มาจาก Figma โดยตรง เก็บไว้ที่ /public/ActivitiesExplore
@@ -132,7 +132,7 @@ function OriginalCard({ item, title }) {
  *  จึงใช้ md:h-full + md:overflow-y-auto ให้จอเตี้ยยังเลื่อนอ่านในกรอบได้ ไม่โดนตัดหาย
  *  ส่วนมือถือไม่ snap แล้ว ปล่อยสูงตามเนื้อหาแล้วเลื่อนไปกับหน้า ไม่ต้องเลื่อนซ้อนในกรอบ */
 export default function ExploreActivities() {
-  const { t } = useLang();
+  const t = useTranslations();
   const [tab, setTab] = useState("original");
 
   // t() คืนได้เฉพาะข้อความ ลิสต์ต้องใช้ t.raw()

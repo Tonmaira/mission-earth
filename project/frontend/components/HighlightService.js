@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
 import { useLocalePath } from "@/lib/useLocalePath";
 
 const HREFS = [
@@ -21,7 +21,7 @@ const IMAGES = [
 export default function HighlightService() {
   const path = useLocalePath();
   const [activeIndex, setActiveIndex] = useState(0);
-  const { t } = useLang();
+  const t = useTranslations();
 
   const items = [0, 1, 2].map((i) => ({
     id: i + 1,

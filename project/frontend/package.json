@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "pdf": "node scripts/gen-credential-pdf.mjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

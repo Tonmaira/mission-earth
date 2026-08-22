@@ -6,7 +6,8 @@ import IconHamburger from "@/components/IconHamburger";
 import IconClose from "@/components/IconClose";
 import TranslateIcon from "@/components/TranslateIcon";
 import ForestBathingLocations from "@/components/ForestBathingLocations";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations, useLocale } from "next-intl";
+import { useLanguageToggle } from "@/lib/useLanguageToggle";
 
 const BASE = "/MEForestBathing";
 const BOOK_URL = "#locations";
@@ -25,7 +26,8 @@ const NAV_LINKS = [
 ];
 
 function LangToggle({ className = "" }) {
-  const { lang, toggleLang } = useLang();
+  const lang = useLocale();
+  const toggleLang = useLanguageToggle();
   return (
     <button
       onClick={toggleLang}
@@ -49,7 +51,7 @@ function BookNowBadge({ className = "" }) {
 }
 
 export default function ForestBathingPage() {
-  const { t } = useLang();
+  const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // พื้นหลัง navbar: ใสตอนอยู่บน hero แล้วค่อย ๆ เฟดเข้ามาช่วงท้ายของ hero
