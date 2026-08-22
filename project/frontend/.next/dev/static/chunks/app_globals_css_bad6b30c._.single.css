@@ -1812,10 +1812,6 @@
     flex: 2;
   }
 
-  .flex-\[3\] {
-    flex: 3;
-  }
-
   .flex-none {
     flex: none;
   }
@@ -1988,10 +1984,6 @@
 
   .snap-start {
     scroll-snap-align: start;
-  }
-
-  .snap-always {
-    scroll-snap-stop: always;
   }
 
   .scroll-mt-\[74px\] {
@@ -5206,12 +5198,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-\[\#0a3a5a\]:hover {
-      background-color: #0a3a5a;
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-\[\#032740\]:hover {
       background-color: #032740;
     }
@@ -7037,12 +7023,6 @@
     .lg\:text-5xl {
       font-size: var(--text-5xl);
       line-height: var(--tw-leading, var(--text-5xl--line-height));
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .lg\:text-\[12px\] {
-      font-size: 12px;
     }
   }
 
