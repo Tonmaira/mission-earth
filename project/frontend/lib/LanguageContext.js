@@ -25,7 +25,17 @@ export function useLang() {
   // สลับภาษา = ไปอีก URL หนึ่ง ไม่ใช่เปลี่ยน state ในหน้าเดิม
   const toggleLang = useCallback(() => {
     const next = lang === "en" ? "th" : "en";
-    router.push(localePath(stripLocale(pathname), next));
+
+    // ต้องพา query string ไปด้วย — usePathname() ไม่รวมให้
+    // หน้าอาบป่าใช้ ?trip=<id> เป็นตัวบอกว่าเปิดป็อปอัพจองของทริปไหนอยู่
+    // ถ้าทิ้งไว้ กดเปลี่ยนภาษาระหว่างดูทริปแล้วป็อปอัพจะปิดหายไปเลย
+    //
+    // อ่านจาก window ตอนกด ไม่ใช้ useSearchParams เพราะ hook นั้นจะทำให้
+    // ทุกหน้าที่อยู่ใต้ provider นี้ (คือทั้งเว็บ) กลายเป็น dynamic แทนที่จะ prerender ได้
+    const search = typeof window === "undefined" ? "" : window.location.search;
+
+    // scroll: false ไม่งั้นหน้าเด้งขึ้นบนสุดทุกครั้งที่เปลี่ยนภาษา
+    router.push(localePath(stripLocale(pathname), next) + search, { scroll: false });
   }, [lang, pathname, router]);
 
   return { t, lang, toggleLang };
