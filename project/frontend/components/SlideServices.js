@@ -155,7 +155,6 @@ export default function SlideServices() {
   // ดึงข้อมูลมาเตรียมโชว์
     const currentTag = allTags[activeSlideIndex]; // สำหรับ Mobile
     const currentData = ServicesCard[currentSlide];
-    const currentDetail = currentData?.tags?.[activeTagIndex]?.detail ?? "";
 
   return (
     <section id="slide-services" className="max-w-flex bg-[#052032] text-white">
@@ -198,13 +197,6 @@ export default function SlideServices() {
             <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-center text-center z-30">
                 <h3 className="text-[#CEA870] text-[18px] font-semibold mb-1 uppercase tracking-wide">{tag.name}</h3>
                 <p className="text-[11px] text-gray-400 mb-6 font-regular italic leading-tight">"{tag.summary}"</p>
-          
-            <div className="grid grid-cols-2 gap-2 w-full">
-                <MobileInfoItem label="ภาษา" value={tag.detail.lang} />
-                <MobileInfoItem label="ระยะเวลา" value={tag.detail.time} />
-                <MobileInfoItem label="รูปแบบ" value={tag.detail.type} />
-                <MobileInfoItem label="เครื่องมือ" value={tag.detail.tool} />
-            </div>
           
           {/* --- more information (Mobile) --- */}
             <a
@@ -393,13 +385,6 @@ export default function SlideServices() {
         </div>
       </div>
 
-      {/* information box */}
-      <div className="hidden md:grid md:grid-cols-4 gap-6 mt-6">
-        <InfoItem label="ภาษา" value={currentDetail.lang} />
-        <InfoItem label="ระยะเวลา" value={currentDetail.time} />
-        <InfoItem label="รูปแบบ" value={currentDetail.type} />
-        <InfoItem label="เครื่องมือ" value={currentDetail.tool} />
-      </div>
 
 
 
@@ -418,24 +403,5 @@ export default function SlideServices() {
 
         </div>
         </section>
-  );
-}
-
-    {/* label */}
-function InfoItem({ label, value }) {
-  return (
-    <div className="p-8 border border-[#CEA870]/20 rounded-2xl bg-[#001f33]/60 backdrop-blur-sm hover:border-[#CEA870]/50 transition-colors">
-      <p className="text-[#CEA870] text-[16px] font-bold mb-4">{label}</p>
-      <p className="text-sm font-light text-gray-200 leading-relaxed">{value}</p>
-    </div>
-  );
-}
-
-function MobileInfoItem({ label, value }) {
-  return (
-    <div className="border border-[#CEA870]/30 rounded-2xl py-3 bg-black/20 backdrop-blur-sm">
-      <p className="text-[10px] text-[#CEA870] font-bold uppercase mb-1">{label}</p>
-      <p className="text-[11px] text-white font-light">{value}</p>
-    </div>
   );
 }
