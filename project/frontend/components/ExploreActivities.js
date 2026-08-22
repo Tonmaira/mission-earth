@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useLang } from "@/lib/LanguageContext";
+import LocaleLink from "@/components/LocaleLink";
+import { useTranslations } from "next-intl";
 
 /** แบนเนอร์กิจกรรมของ Mission Earth เอง (แท็บแรก)
  *  พื้นหลัง + โลโก้ export มาจาก Figma โดยตรง เก็บไว้ที่ /public/ActivitiesExplore
@@ -87,7 +87,7 @@ function ListCard({ title, sub, note, onClick, disabled }) {
 /** แบนเนอร์หนึ่งใบในแท็บ Mission Earth's Original — ลิงก์ไปหน้าที่ทำไว้แล้ว (/forest_bathing, /ekiden) */
 function OriginalCard({ item, title }) {
   return (
-    <Link
+    <LocaleLink
       href={item.href}
       aria-label={title}
       className="group relative block h-[160px] w-full overflow-hidden rounded-2xl border border-white/30"
@@ -115,7 +115,7 @@ function OriginalCard({ item, title }) {
           />
         ))}
       </span>
-    </Link>
+    </LocaleLink>
   );
 }
 
@@ -132,11 +132,12 @@ function OriginalCard({ item, title }) {
  *  จึงใช้ md:h-full + md:overflow-y-auto ให้จอเตี้ยยังเลื่อนอ่านในกรอบได้ ไม่โดนตัดหาย
  *  ส่วนมือถือไม่ snap แล้ว ปล่อยสูงตามเนื้อหาแล้วเลื่อนไปกับหน้า ไม่ต้องเลื่อนซ้อนในกรอบ */
 export default function ExploreActivities() {
-  const { t } = useLang();
+  const t = useTranslations();
   const [tab, setTab] = useState("original");
 
-  const categories = t("exploreActivities.categories");
-  const originals = t("exploreActivities.originals");
+  // t() คืนได้เฉพาะข้อความ ลิสต์ต้องใช้ t.raw()
+  const categories = t.raw("exploreActivities.categories");
+  const originals = t.raw("exploreActivities.originals");
 
   const tabs = [
     { id: "original", label: t("exploreActivities.tabOriginal") },

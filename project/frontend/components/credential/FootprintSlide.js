@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import { useState } from "react";
 import { PROVINCE_BY_CODE } from "@/lib/thaiProvinces";
 import SlideTopBar from "./SlideTopBar";
@@ -108,14 +108,14 @@ export default function FootprintSlide({ preparedFor }) {
                   {shown.slice(0, MAX_LISTED).map((work) => (
                     <li key={work.slug}>
                       {/* เปิดแท็บใหม่ ไม่ให้คนนำเสนออยู่ๆ หลุดออกจากเด็คกลางคัน */}
-                      <Link
+                      <LocaleLink
                         href={`/portfolio/work/${work.slug}`}
                         target="_blank"
                         rel="noreferrer"
                         className="block text-[15px] leading-snug text-me-cream/70 transition-colors duration-200 hover:text-me-gold lg:text-[17px] 3xl:text-[22px]!"
                       >
                         {work.title}
-                      </Link>
+                      </LocaleLink>
                     </li>
                   ))}
                   {shown.length > MAX_LISTED && (

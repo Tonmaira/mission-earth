@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import { WORKS, activeTypes, activeYears, worksOfType } from "./works";
 
 /**
@@ -70,9 +70,9 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
       rows: worksOfType(type).map((work) => ({
         key: work.slug,
         node: (
-          <Link href={`/portfolio/work/${work.slug}`} className={rowClass} {...away}>
+          <LocaleLink href={`/portfolio/work/${work.slug}`} className={rowClass} {...away}>
             {work.title}
-          </Link>
+          </LocaleLink>
         ),
       })),
     })),
@@ -81,9 +81,9 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
       rows: activeYears().map((year) => ({
         key: `year-${year}`,
         node: (
-          <Link href={`/portfolio/year/${year}`} className={rowClass} {...away}>
+          <LocaleLink href={`/portfolio/year/${year}`} className={rowClass} {...away}>
             {year}
-          </Link>
+          </LocaleLink>
         ),
       })),
     },

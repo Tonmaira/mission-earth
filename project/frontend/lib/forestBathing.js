@@ -74,6 +74,12 @@ export const INSTRUCTORS = {
   roh: { photo: "/forestBathing/instructorROH.png" }, // TODO: ใส่โลโก้/รูป ROH — ระหว่างนี้ขึ้นวงกลมเทา
 };
 
+// posterRatio = สัดส่วนของรูปปกในป็อปอัพจอง (กว้าง / สูง)
+// จำเป็นเพราะกล่องปกต้องรู้ความสูงตั้งแต่ก่อนรูปโหลดเสร็จ ถ้าไม่บอกไว้
+// มันจะใช้ค่ากลาง 2.4 ไปก่อนแล้วค่อยกระตุกเปลี่ยนตอนรูปโหลดเสร็จ
+// เห็นชัดมากตอนสลับภาษา เพราะคอมโพเนนต์ถูกสร้างใหม่ ค่าที่วัดไว้เลยหายไป
+// ไม่ใส่ก็ได้ — จะกลับไปใช้พฤติกรรมเดิมคือวัดจากรูปตอนโหลด
+//
 // instructors: ["<id ใน INSTRUCTORS>", ...] — ใส่กี่คนก็ได้ เรียงตามที่อยากให้โชว์
 // ไม่ใส่ / ใส่ array ว่าง = ไม่ขึ้นแถวผู้นำกิจกรรมเลย
 export const LOCATIONS = [
@@ -81,6 +87,7 @@ export const LOCATIONS = [
     id: "chet-kot",
     image: "/forestBathing/ASP_VisualWalkAndRun-138.jpg",
     posterImage: "/forestBathing/ROH-forest-to-soul-original.jpg", // โปสเตอร์แคมเปญที่โชว์ในป็อปอัพจอง (ต่างจาก image ที่ใช้บนการ์ด)
+    posterRatio: 1920 / 800,
     campaignEyebrow: "Mission Earth x ROH",
     campaignTitle: "FOREST TO SOUL",
     isOpen: true,
@@ -97,6 +104,7 @@ export const LOCATIONS = [
     id: "urban-bangkok",
     image: "/forestBathing/shinrin-yogu1st-1.png",
     posterImage: "/forestBathing/shinrin-yogu-ggf-banner.png", // ปกในป็อปอัพจอง (การ์ดยังใช้ image ตัวบน)
+    posterRatio: 2400 / 755,
     isOpen: true,
     // fullPrice = ราคาเต็มก่อนลด ใส่เมื่อไหร่ราคานั้นจะขึ้นขีดฆ่าคู่กับ % ที่ลด
     // ให้อัตโนมัติ (% คำนวณสดจากสองตัวเลขนี้ ไม่ต้องกรอกเอง) ทริปไหนไม่ลดราคา
@@ -112,6 +120,7 @@ export const LOCATIONS = [
   {
     id: "doi-tung",
     image: "/forestBathing/DSC07655-2.jpg",
+    posterRatio: 2048 / 1365, // ไม่มี posterImage จึงใช้ image ตัวเดียวกันเป็นปก
     isOpen: false,
     withRoh: true,
     trips: [],

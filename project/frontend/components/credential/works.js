@@ -251,7 +251,7 @@ const SHEET_WORKS = [
     target: "ผู้มีความเกี่ยวข้องหรือสนใจในธุรกิจท่องเที่ยว",
     type: "COURSE",
     timeline: "2025",
-    image: "/project/20250912tattripforearth/กระเป๋าผ้า-Trip-for-EARTH_print.png",
+    image: "/project/20250912tattripforearth/tote-bag-Trip-for-EARTH_print.png",
     description: "Sustainable tourism boot camp promoting responsible tourism marketing and environmental awareness.",
     year: 2025,
     dateLabel: "12-14 September, 2025",
@@ -483,7 +483,20 @@ export const activeYears = () =>
 
 export const worksOfYear = (year) => WORKS.filter((w) => w.year === Number(year));
 
-export const workBySlug = (slug) => WORKS.find((w) => w.slug === slug);
+/* ผลงานสามชิ้นใช้ชื่อไทยเป็น slug (เช่น "คู่มือการป้องกันการเผาในที่โล่ง")
+ * Next ส่ง route param ของ URL พวกนี้มาแบบ percent-encoded — "%E0%B8%84..."
+ * ไม่ใช่ตัวอักษรไทย เทียบกับค่าที่เก็บไว้ตรง ๆ จึงไม่มีวันตรงและกลายเป็น 404
+ * เทียบทั้งแบบถอดรหัสแล้วและแบบดิบ เผื่อบางที่ส่งมาถอดรหัสไว้ให้แล้ว */
+export const workBySlug = (slug) => {
+  if (!slug) return undefined;
+  let decoded = slug;
+  try {
+    decoded = decodeURIComponent(slug);
+  } catch {
+    // URL พิมพ์มาผิดรูป (มี % ลอย ๆ) — ใช้ค่าดิบต่อไป แล้วปล่อยให้จบที่ notFound ตามปกติ
+  }
+  return WORKS.find((w) => w.slug === decoded || w.slug === slug);
+};
 
 /*
  * พื้นที่ที่เราลงไปทำจริง — ใช้โดยสไลด์แผนที่ (FootprintSlide)

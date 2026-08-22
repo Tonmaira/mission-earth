@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
-
+import LocaleLink from "@/components/LocaleLink";
 export default function PopupRegister() {
   const [closed, setClosed] = useState(false);
 
@@ -19,7 +18,7 @@ export default function PopupRegister() {
       >
         ✕
       </button>
-      <Link href="/activities/dek-sang-nan-2">
+      <LocaleLink href="/activities/dek-sang-nan-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/image/activities/dek-sang-nan-2/component/popup-register.png"
@@ -27,7 +26,7 @@ export default function PopupRegister() {
           width={180}
           className="drop-shadow-xl"
         />
-      </Link>
+      </LocaleLink>
     </div>
   );
 }

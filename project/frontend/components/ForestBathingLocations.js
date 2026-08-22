@@ -5,7 +5,9 @@ import Image from "next/image";
 import ForestBathingCalendar from "@/components/ForestBathingCalendar";
 import IconClose from "@/components/IconClose";
 import TranslateIcon from "@/components/TranslateIcon";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations, useLocale } from "next-intl";
+import { useLanguageToggle } from "@/lib/useLanguageToggle";
+import { useLocalePath } from "@/lib/useLocalePath";
 import {
   INSTRUCTORS,
   LOCATIONS,
@@ -20,23 +22,21 @@ import {
 /** "2 วัน 1 คืน" / "2 days, 1 night" — เลือก key ให้ถูกพจน์ตอนคืนมากกว่า 1
  *  ทริปวันเดียวที่มี trip.hours (เช่น Urban Forest Bathing) โชว์เป็นจำนวนชั่วโมงแทน */
 const useTripDuration = () => {
-  const { t } = useLang();
+  const t = useTranslations();
   return (trip) => {
     if (trip.hours) {
       const key = trip.hours === 1 ? "hour" : "hours";
-      return t(`forestBathing.booking.${key}`).replace("{hours}", trip.hours);
+      return t(`forestBathing.booking.${key}`, { hours: trip.hours });
     }
     const { days, nights } = tripLength(trip);
     const key = nights === 1 ? "duration" : "durationPlural";
-    return t(`forestBathing.booking.${key}`)
-      .replace("{days}", days)
-      .replace("{nights}", nights);
+    return t(`forestBathing.booking.${key}`, { days, nights });
   };
 };
 
 /** ชื่อ + จังหวัด + คำบรรยายของสถานที่ ตามภาษาที่เลือก */
 const useLocationText = (id) => {
-  const { t } = useLang();
+  const t = useTranslations();
   return {
     name: t(`forestBathing.locations.items.${id}.name`),
     region: t(`forestBathing.locations.items.${id}.region`),
@@ -48,10 +48,18 @@ const useLocationText = (id) => {
  *  ข้อความอยู่ใน messages/{en,th}.json ส่วนค่าที่ไม่ใช่ข้อความ (mapUrl)
  *  อยู่กับตัวสถานที่ใน lib/forestBathing.js — ที่นี่รวมสองฝั่งเข้าด้วยกัน */
 const useLocationSections = (location) => {
-  const { t } = useLang();
-  const text = t(`forestBathing.locations.items.${location.id}.sections`);
-  // t() คืนชื่อคีย์เป็น string กลับมาเมื่อยังไม่มีคำแปล
-  // สถานที่ที่ยังไม่ได้เขียนเนื้อหา (หรือยังแปลไม่ครบภาษา) จะเข้าทางนี้ แล้วขึ้น "กำลังจัดเตรียม"
+  const t = useTranslations();
+  const key = `forestBathing.locations.items.${location.id}.sections`;
+
+  /* สถานที่ที่ยังไม่ได้เขียนเนื้อหา (Chet Kot, Doi Tung) ไม่มีคีย์นี้ในไฟล์ภาษา
+     ซึ่งเป็นเรื่องปกติ ไม่ใช่ความผิดพลาด — หน้าจะขึ้น "กำลังจัดเตรียม" แทน
+
+     ต้องเช็คด้วย t.has() ก่อนเสมอ อย่าเรียก t.raw() แล้วดักด้วย try/catch
+     เพราะ next-intl ไม่ได้ throw แต่ไปเรียกตัวจัดการ error ซึ่งพ่น
+     MISSING_MESSAGE ขึ้น console ให้เห็นทุกครั้งที่เปิดหน้า
+
+     t.raw() เพราะค่าที่ได้เป็นอ็อบเจ็กต์ ไม่ใช่ข้อความ — t() รับได้เฉพาะข้อความ */
+  const text = t.has(key) ? t.raw(key) : undefined;
   const translated = text && typeof text === "object" ? text : {};
   const { mapUrl } = location.sections?.location ?? {};
   return { ...translated, location: { ...translated.location, mapUrl } };
@@ -125,7 +133,8 @@ function CoBrandLockup() {
 }
 
 function LocationCard({ location, onOpen }) {
-  const { t, lang } = useLang();
+  const t = useTranslations();
+  const lang = useLocale();
   const { name, region, blurb } = useLocationText(location.id);
   const duration = useTripDuration();
   const next = nextTrip(location);
@@ -183,7 +192,7 @@ function LocationCard({ location, onOpen }) {
 }
 
 function NotifyForm({ location, name }) {
-  const { t } = useLang();
+  const t = useTranslations();
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle"); // idle | sending | done | error
   const [message, setMessage] = useState("");
@@ -230,7 +239,7 @@ function NotifyForm({ location, name }) {
   return (
     <form onSubmit={submit} className="flex flex-col gap-3">
       <label htmlFor="notify-email" className="text-[14px] text-[#484848]/70">
-        {t("forestBathing.notify.label").replace("{name}", name)}
+        {t("forestBathing.notify.label", { name })}
       </label>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input
@@ -277,7 +286,7 @@ const RAIL_SECTIONS = [...RAIL_MAIN, ...RAIL_EXTRA];
  *  ไฟล์ไอคอนใน /public/icon เป็นเส้นสีดำล้วน จึงคุมน้ำหนักด้วย opacity แทนการเปลี่ยนสี
  *  0.3 บนพื้นขาว ≈ #b6b6b6 ตาม Figma ส่วนหัวข้อที่กำลังอ่านอยู่ใช้เต็ม 100% */
 function RailButton({ item, size, active, onJump }) {
-  const { t } = useLang();
+  const t = useTranslations();
 
   return (
     <button
@@ -310,7 +319,7 @@ function RailButton({ item, size, active, onJump }) {
 /** แถบไอคอนซ้าย — ซ่อนบนมือถือ เพราะที่นั่นทั้ง modal เลื่อนรวมเป็นคอลัมน์เดียว
  *  ตัว <nav> ยืดเต็มความสูงเนื้อหาเพื่อให้เส้นขอบขวาลากยาวตลอด ส่วนปุ่มข้างในปักไว้ที่ขอบบน */
 function SectionRail({ active, onJump, hasReviews }) {
-  const { t } = useLang();
+  const t = useTranslations();
 
   return (
     <nav
@@ -347,7 +356,7 @@ function SectionRail({ active, onJump, hasReviews }) {
 /** กรอบหัวข้อหนึ่งอันในเนื้อหาฝั่งซ้าย
  *  scrollMarginTop เผื่อความสูงแถบหัวข้อที่ปักขอบบนไว้ เวลากดจากแถบไอคอนจะได้ไม่โดนบัง */
 function ContentSection({ id, register, scrollOffset, children }) {
-  const { t } = useLang();
+  const t = useTranslations();
 
   return (
     <section
@@ -366,7 +375,7 @@ function ContentSection({ id, register, scrollOffset, children }) {
 /** ข้อความแทนหัวข้อที่ยังไม่มีข้อมูลจริง — แถบไอคอนโชว์ครบทุกหัวข้อเสมอตาม Figma
  *  เนื้อหาจริงเติมได้ทีละหัวข้อที่ sections ใน lib/forestBathing.js */
 function SectionEmpty() {
-  const { t } = useLang();
+  const t = useTranslations();
   return <p className="text-[13px] italic text-[#b6b6b6]">{t("forestBathing.sections.empty")}</p>;
 }
 
@@ -376,12 +385,14 @@ const BULLET_CLASS = "flex gap-2 text-[13px] font-light leading-relaxed text-[#4
  *  ชื่อ/ตำแหน่งมาจาก messages/{en,th}.json ส่วนรูปมาจาก INSTRUCTORS ใน lib/forestBathing.js
  *  ไม่มีรูปก็ได้ — จะเป็นวงกลมเทาตามดีไซน์ */
 function InstructorItem({ id }) {
-  const { t } = useLang();
+  const t = useTranslations();
   const photo = INSTRUCTORS[id]?.photo;
   const name = t(`forestBathing.instructors.${id}.name`);
-  // t คืนตัว key กลับมาเวลาหาไม่เจอ (ดู lib/LanguageContext.js) ใช้เช็คว่าใส่ role ไว้มั้ย
+  /* role จะใส่หรือไม่ใส่ก็ได้ ไม่ใส่ก็ขึ้นคำว่า "ผู้นำกิจกรรม" กลาง ๆ แทน
+     ต้องเช็คด้วย t.has() — ระบบแปลเดิมคืนชื่อคีย์กลับมาเมื่อหาไม่เจอ จึงเทียบกับชื่อคีย์ได้
+     แต่ next-intl พ่น MISSING_MESSAGE ขึ้น console แทน ทางเดิมจึงใช้ไม่ได้แล้ว */
   const roleKey = `forestBathing.instructors.${id}.role`;
-  const role = t(roleKey);
+  const role = t.has(roleKey) ? t(roleKey) : t("forestBathing.sections.instructor");
 
   return (
     <div className="flex items-center gap-2.5">
@@ -390,7 +401,7 @@ function InstructorItem({ id }) {
       </div>
       <div className="min-w-0 text-[12px] leading-normal text-[#828282]">
         <p className="font-semibold">
-          {role === roleKey ? t("forestBathing.sections.instructor") : role}
+          {role}
         </p>
         <p>{name}</p>
       </div>
@@ -445,6 +456,7 @@ const SPY_SLACK = 28;
 function PosterPanel({
   viewLocation,
   poster,
+  knownPosterRatio,
   eyebrow,
   title,
   name,
@@ -454,13 +466,19 @@ function PosterPanel({
   gallery = [],
   onOpenGallery,
 }) {
-  const { t, lang } = useLang();
+  const t = useTranslations();
+  const lang = useLocale();
   const hasGallery = gallery.length > 0 && typeof onOpenGallery === "function";
 
   // สัดส่วนรูปปก — อ่านจากขนาดจริงของไฟล์ตอนโหลดเสร็จ จะได้ไม่ต้องมาไล่ใส่ขนาดเองทุกครั้งที่เปลี่ยนรูป
   // ระหว่างรอโหลดใช้ 624/260 ตามกรอบ Figma ไปก่อน กันไม่ให้ layout กระโดด
-  const [posterRatio, setPosterRatio] = useState(null);
-  useEffect(() => setPosterRatio(null), [poster]);
+  /* สัดส่วนปก: ใช้ค่าที่บันทึกไว้ใน lib/forestBathing.js ตั้งแต่ render แรก
+     ถ้าสถานที่ไหนยังไม่ได้บันทึก ค่อยตกไปวัดจากรูปตอนโหลดเสร็จเหมือนเดิม
+     เริ่มจาก null แล้ววัดทีหลังทำให้ปกกระตุกเปลี่ยนขนาด และเห็นชัดตอนสลับภาษา
+     เพราะคอมโพเนนต์ถูกสร้างใหม่ ค่าที่วัดไว้รอบก่อนจึงหายไป */
+  const [measuredRatio, setMeasuredRatio] = useState(null);
+  const posterRatio = knownPosterRatio ?? measuredRatio;
+  const setPosterRatio = setMeasuredRatio;
   const scrollRef = useRef(null);
   const imageRef = useRef(null);
   const contentRef = useRef(null);
@@ -842,7 +860,7 @@ function PosterPanel({
                   onClick={() => onOpenGallery(0)}
                   className="mt-3 text-[13px] text-[#0F8C82] underline underline-offset-2 hover:text-[#26A9E0]"
                 >
-                  {t("forestBathing.sections.viewAllPhotos").replace("{count}", gallery.length)}
+                  {t("forestBathing.sections.viewAllPhotos", { count: gallery.length })}
                 </button>
               )}
             </>
@@ -949,7 +967,7 @@ function GalleryLightbox({ images, startIndex = 0, onClose }) {
 
 /** Sidebar ปฏิทิน — พื้นไล่สีฟ้า-เขียว ตาม Figma, โชว์ทริปของทุกสถานที่ที่เปิดจอง */
 function ActivityCalendarPanel({ selectedTrip, onSelectDate }) {
-  const { t } = useLang();
+  const t = useTranslations();
   const selectedDates = selectedTrip ? tripDates(selectedTrip) : [];
 
   return (
@@ -979,7 +997,9 @@ function ActivityCalendarPanel({ selectedTrip, onSelectDate }) {
 }
 
 function LocationModal({ location, onClose, onLocationChange }) {
-  const { t, lang, toggleLang } = useLang();
+  const t = useTranslations();
+  const lang = useLocale();
+  const toggleLang = useLanguageToggle();
   // สถานที่ที่ modal กำลังแสดงอยู่ตอนนี้ — เปลี่ยนได้ถ้าผู้ใช้กดวันของสถานที่อื่นในปฏิทิน
   const [viewLocation, setViewLocation] = useState(location);
   // เริ่มด้วยทริปถัดไปที่ถูกเลือกไว้แล้ว (วันที่จัดกิจกรรมของสถานที่นี้)
@@ -1086,6 +1106,7 @@ function LocationModal({ location, onClose, onLocationChange }) {
               <PosterPanel
                 viewLocation={viewLocation}
                 poster={poster}
+                knownPosterRatio={viewLocation.posterRatio}
                 eyebrow={eyebrow}
                 title={title}
                 name={name}
@@ -1134,10 +1155,7 @@ function LocationModal({ location, onClose, onLocationChange }) {
                   rel="noopener noreferrer"
                   className="rounded-lg bg-[#FDF164] px-8 py-3 text-center text-[15px] font-medium text-[#484848] transition-colors hover:bg-[#f5e94f]"
                 >
-                  {t("forestBathing.booking.bookOn").replace(
-                    "{date}",
-                    formatTrip(selectedTrip, lang)
-                  )}
+                  {t("forestBathing.booking.bookOn", { date: formatTrip(selectedTrip, lang) })}
                 </a>
               ) : (
                 <button
@@ -1191,14 +1209,16 @@ function BookingModalFromUrl({ onClose, onLocationChange }) {
 export default function ForestBathingLocations() {
   const router = useRouter();
   const pathname = usePathname();
-  const urlFor = (id) => `${pathname}?${TRIP_PARAM}=${id}`;
+  const path = useLocalePath();
+  // pathname มี prefix ภาษาติดมาอยู่แล้วตั้งแต่เฟส 2 จึงส่งผ่านตัวช่วยเพื่อกันการใส่ซ้ำ
+  const urlFor = (id) => `${path(pathname)}?${TRIP_PARAM}=${id}`;
 
   // เปิด = push เพื่อให้ปุ่มย้อนกลับของเบราว์เซอร์ปิด modal ได้
   // ปิด/สลับสถานที่ = replace เพื่อไม่ให้กด back แล้ววนกลับมาเปิดใหม่
   // scroll: false กันหน้าเด้งขึ้นบนสุดตอนเปลี่ยน URL
   const openTrip = (l) => router.push(urlFor(l.id), { scroll: false });
   const switchTrip = (id) => router.replace(urlFor(id), { scroll: false });
-  const closeTrip = () => router.replace(pathname, { scroll: false });
+  const closeTrip = () => router.replace(path(pathname), { scroll: false });
 
   return (
     <>

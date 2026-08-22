@@ -2,7 +2,6 @@
 import TranslateIcon from "@/components/TranslateIcon";
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function VisionMission() {
   return (

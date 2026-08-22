@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "pdf": "node scripts/gen-credential-pdf.mjs"
+    "pdf": "node scripts/gen-credential-pdf.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,6 +23,7 @@
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
+    "next-intl": "^4.13.7",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-easy-crop": "^6.0.2"

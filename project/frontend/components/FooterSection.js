@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import IconInstagram from "@/components/IconInstagram";
 import IconFacebook from "@/components/IconFacebook";
 import IconLine from "@/components/IconLine";
@@ -34,10 +34,10 @@ export default function FooterSection() {
           {/* Social icons */}
           <div className="flex gap-4 mt-2">
             {socials.map(({ name, href, Icon }) => (
-              <Link key={name} href={href} target="_blank" rel="noopener noreferrer"
+              <LocaleLink key={name} href={href} target="_blank" rel="noopener noreferrer"
                 className="group transition-transform hover:scale-110">
                 <Icon className="w-6 h-6 text-[#CEA870] group-hover:text-white transition-all duration-300" />
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>
@@ -46,10 +46,10 @@ export default function FooterSection() {
         <div className="flex flex-col gap-3">
           <p className="text-[#CEA870] text-xs tracking-widest uppercase font-semibold mb-2">Navigation</p>
           {navLinks.map((l) => (
-            <Link key={l.label} href={l.href}
+            <LocaleLink key={l.label} href={l.href}
               className="text-white/60 text-[14px] hover:text-[#CEA870] transition-colors duration-200 w-fit">
               {l.label}
-            </Link>
+            </LocaleLink>
           ))}
         </div>
 

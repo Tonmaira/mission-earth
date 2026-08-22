@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
+import { useLocalePath } from "@/lib/useLocalePath";
 
 const HREFS = [
   "/services?cat=Sustainable Travel&tag=อาบป่า (Forest Bathing / Shinrin-yoku Experience)#slide-services",
@@ -18,8 +19,9 @@ const IMAGES = [
 ];
 
 export default function HighlightService() {
+  const path = useLocalePath();
   const [activeIndex, setActiveIndex] = useState(0);
-  const { t } = useLang();
+  const t = useTranslations();
 
   const items = [0, 1, 2].map((i) => ({
     id: i + 1,
@@ -60,7 +62,7 @@ export default function HighlightService() {
         <p className="md:hidden text-gray-300 font-light leading-relaxed text-[13px] opacity-90 mb-4">
           {t("home.highlight.desc")}
         </p>
-        <a href="/services" className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold">
+        <a href={path("/services")} className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold">
           {t("home.highlight.more")}
         </a>
         </div>

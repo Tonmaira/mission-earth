@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 import { useFeedItems } from "./useEarthFeed";
-import { useLang } from "@/lib/LanguageContext";
+import { useTranslations } from "next-intl";
 
 const MOCK_FEED = [
   { id: 1, cat: "ME Update", date: "Mar 7, 2026", title: "Forest Bathing in City", sub: "with 6 senses", imageUrl: "/image/earthfeed/forestbathingincity.jpg" },
@@ -15,7 +14,7 @@ const MOCK_FEED = [
 ];
 
 export default function EarthFeedPanel() {
-  const { t } = useLang();
+  const t = useTranslations();
   const { data: rawFeed, loading, error } = useFeedItems();
   const feedItems = rawFeed.length > 0 ? rawFeed : MOCK_FEED;
 
