@@ -450,6 +450,7 @@ const SPY_SLACK = 28;
 function PosterPanel({
   viewLocation,
   poster,
+  knownPosterRatio,
   eyebrow,
   title,
   name,
@@ -464,8 +465,13 @@ function PosterPanel({
 
   // สัดส่วนรูปปก — อ่านจากขนาดจริงของไฟล์ตอนโหลดเสร็จ จะได้ไม่ต้องมาไล่ใส่ขนาดเองทุกครั้งที่เปลี่ยนรูป
   // ระหว่างรอโหลดใช้ 624/260 ตามกรอบ Figma ไปก่อน กันไม่ให้ layout กระโดด
-  const [posterRatio, setPosterRatio] = useState(null);
-  useEffect(() => setPosterRatio(null), [poster]);
+  /* สัดส่วนปก: ใช้ค่าที่บันทึกไว้ใน lib/forestBathing.js ตั้งแต่ render แรก
+     ถ้าสถานที่ไหนยังไม่ได้บันทึก ค่อยตกไปวัดจากรูปตอนโหลดเสร็จเหมือนเดิม
+     เริ่มจาก null แล้ววัดทีหลังทำให้ปกกระตุกเปลี่ยนขนาด และเห็นชัดตอนสลับภาษา
+     เพราะคอมโพเนนต์ถูกสร้างใหม่ ค่าที่วัดไว้รอบก่อนจึงหายไป */
+  const [measuredRatio, setMeasuredRatio] = useState(null);
+  const posterRatio = knownPosterRatio ?? measuredRatio;
+  const setPosterRatio = setMeasuredRatio;
   const scrollRef = useRef(null);
   const imageRef = useRef(null);
   const contentRef = useRef(null);
@@ -1091,6 +1097,7 @@ function LocationModal({ location, onClose, onLocationChange }) {
               <PosterPanel
                 viewLocation={viewLocation}
                 poster={poster}
+                knownPosterRatio={viewLocation.posterRatio}
                 eyebrow={eyebrow}
                 title={title}
                 name={name}
