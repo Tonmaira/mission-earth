@@ -6,6 +6,7 @@ import ForestBathingCalendar from "@/components/ForestBathingCalendar";
 import IconClose from "@/components/IconClose";
 import TranslateIcon from "@/components/TranslateIcon";
 import { useLang } from "@/lib/LanguageContext";
+import { useLocalePath } from "@/lib/useLocalePath";
 import {
   INSTRUCTORS,
   LOCATIONS,
@@ -24,13 +25,11 @@ const useTripDuration = () => {
   return (trip) => {
     if (trip.hours) {
       const key = trip.hours === 1 ? "hour" : "hours";
-      return t(`forestBathing.booking.${key}`).replace("{hours}", trip.hours);
+      return t(`forestBathing.booking.${key}`, { hours: trip.hours });
     }
     const { days, nights } = tripLength(trip);
     const key = nights === 1 ? "duration" : "durationPlural";
-    return t(`forestBathing.booking.${key}`)
-      .replace("{days}", days)
-      .replace("{nights}", nights);
+    return t(`forestBathing.booking.${key}`, { days, nights });
   };
 };
 
@@ -49,9 +48,15 @@ const useLocationText = (id) => {
  *  อยู่กับตัวสถานที่ใน lib/forestBathing.js — ที่นี่รวมสองฝั่งเข้าด้วยกัน */
 const useLocationSections = (location) => {
   const { t } = useLang();
-  const text = t(`forestBathing.locations.items.${location.id}.sections`);
-  // t() คืนชื่อคีย์เป็น string กลับมาเมื่อยังไม่มีคำแปล
-  // สถานที่ที่ยังไม่ได้เขียนเนื้อหา (หรือยังแปลไม่ครบภาษา) จะเข้าทางนี้ แล้วขึ้น "กำลังจัดเตรียม"
+  // t.raw() เพราะค่าที่ได้เป็นอ็อบเจ็กต์ ไม่ใช่ข้อความ — t() รับได้เฉพาะข้อความ
+  // สถานที่ที่ยังไม่ได้เขียนเนื้อหาจะไม่มีคีย์นี้ next-intl คืน undefined มา
+  // แล้วหน้าจะขึ้น "กำลังจัดเตรียม" ตามเดิม
+  let text;
+  try {
+    text = t.raw(`forestBathing.locations.items.${location.id}.sections`);
+  } catch {
+    text = undefined;
+  }
   const translated = text && typeof text === "object" ? text : {};
   const { mapUrl } = location.sections?.location ?? {};
   return { ...translated, location: { ...translated.location, mapUrl } };
@@ -230,7 +235,7 @@ function NotifyForm({ location, name }) {
   return (
     <form onSubmit={submit} className="flex flex-col gap-3">
       <label htmlFor="notify-email" className="text-[14px] text-[#484848]/70">
-        {t("forestBathing.notify.label").replace("{name}", name)}
+        {t("forestBathing.notify.label", { name })}
       </label>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input
@@ -842,7 +847,7 @@ function PosterPanel({
                   onClick={() => onOpenGallery(0)}
                   className="mt-3 text-[13px] text-[#0F8C82] underline underline-offset-2 hover:text-[#26A9E0]"
                 >
-                  {t("forestBathing.sections.viewAllPhotos").replace("{count}", gallery.length)}
+                  {t("forestBathing.sections.viewAllPhotos", { count: gallery.length })}
                 </button>
               )}
             </>
@@ -1134,10 +1139,7 @@ function LocationModal({ location, onClose, onLocationChange }) {
                   rel="noopener noreferrer"
                   className="rounded-lg bg-[#FDF164] px-8 py-3 text-center text-[15px] font-medium text-[#484848] transition-colors hover:bg-[#f5e94f]"
                 >
-                  {t("forestBathing.booking.bookOn").replace(
-                    "{date}",
-                    formatTrip(selectedTrip, lang)
-                  )}
+                  {t("forestBathing.booking.bookOn", { date: formatTrip(selectedTrip, lang) })}
                 </a>
               ) : (
                 <button
@@ -1191,14 +1193,16 @@ function BookingModalFromUrl({ onClose, onLocationChange }) {
 export default function ForestBathingLocations() {
   const router = useRouter();
   const pathname = usePathname();
-  const urlFor = (id) => `${pathname}?${TRIP_PARAM}=${id}`;
+  const path = useLocalePath();
+  // pathname มี prefix ภาษาติดมาอยู่แล้วตั้งแต่เฟส 2 จึงส่งผ่านตัวช่วยเพื่อกันการใส่ซ้ำ
+  const urlFor = (id) => `${path(pathname)}?${TRIP_PARAM}=${id}`;
 
   // เปิด = push เพื่อให้ปุ่มย้อนกลับของเบราว์เซอร์ปิด modal ได้
   // ปิด/สลับสถานที่ = replace เพื่อไม่ให้กด back แล้ววนกลับมาเปิดใหม่
   // scroll: false กันหน้าเด้งขึ้นบนสุดตอนเปลี่ยน URL
   const openTrip = (l) => router.push(urlFor(l.id), { scroll: false });
   const switchTrip = (id) => router.replace(urlFor(id), { scroll: false });
-  const closeTrip = () => router.replace(pathname, { scroll: false });
+  const closeTrip = () => router.replace(path(pathname), { scroll: false });
 
   return (
     <>

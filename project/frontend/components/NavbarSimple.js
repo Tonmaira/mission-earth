@@ -7,6 +7,7 @@ import IconClose from "@/components/IconClose";
 import SocialMediaPackHorizon from "@/components/SocialMediaPackHorizon";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { useLocalePath } from "@/lib/useLocalePath";
 
 const DEFAULT_LINKS = [
   { href: "/", label: "Home", hoverColor: "#CEA870" },
@@ -18,9 +19,10 @@ const DEFAULT_LINKS = [
 
 function NavLink({ href, label, hoverColor, textColor }) {
   const [hovered, setHovered] = useState(false);
+  const path = useLocalePath();
   return (
     <a
-      href={href}
+      href={path(href)}
       style={{ color: hovered ? hoverColor : textColor, transition: "color 0.2s" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -31,6 +33,7 @@ function NavLink({ href, label, hoverColor, textColor }) {
 }
 
 export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", navLinks = DEFAULT_LINKS, solid = false }) {
+  const path = useLocalePath();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,7 +58,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/");
+    router.push(path("/"));
   };
 
   return (
@@ -65,7 +68,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
       <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
 
         {/* Logo */}
-        <a href="/"><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
+        <a href={path("/")}><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
 
         {/* Desktop menu */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light" style={{ color: textColor }}>
@@ -87,7 +90,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-[#002740] border border-white/10 rounded-2xl shadow-xl overflow-hidden">
                   <a
-                    href="/admin"
+                    href={path("/admin")}
                     className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-[#CEA870] transition-colors"
                     onClick={() => setDropdownOpen(false)}
                   >
@@ -110,7 +113,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
               )}
             </div>
           ) : (
-            <a href="/login" className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
+            <a href={path("/login")} className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
               Login
             </a>
           )}
@@ -132,17 +135,17 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
         isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 text-center tracking-widest">
-          <a href="/"          className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</a>
-          <a href="/about"     className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>About Us</a>
-          <a href="/services"  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
-          <a href="/portfolio" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
-          <a href="/contact"   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
+          <a href={path("/")}          className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</a>
+          <a href={path("/about")}     className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>About Us</a>
+          <a href={path("/services")}  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
+          <a href={path("/portfolio")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
+          <a href={path("/contact")}   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-4">
             <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
             {session ? (
               <>
-                <a href="/admin" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">
+                <a href={path("/admin")} className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">
                   Admin Management
                 </a>
                 <button onClick={handleLogout} className="text-gray-500 text-sm hover:text-red-400 transition-colors">
@@ -150,7 +153,7 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
                 </button>
               </>
             ) : (
-              <a href="/login" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">
+              <a href={path("/login")} className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">
                 Login
               </a>
             )}

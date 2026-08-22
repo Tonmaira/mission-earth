@@ -1,6 +1,6 @@
 "use client";
 import { useFeedItems } from "./useEarthFeed";
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 
@@ -65,7 +65,7 @@ export default function EarthFeedSection() {
                   </div>
                 ))
               : sideItems.map((item) => (
-                  <Link
+                  <LocaleLink
                     key={item.id}
                     href={`/feed/${item.id}`}
                     className="flex gap-4 px-6 md:px-8 py-4 items-center group hover:bg-white/[0.03] transition-colors"
@@ -96,7 +96,7 @@ export default function EarthFeedSection() {
                         <p className="text-white/40 text-[11px] mt-0.5 line-clamp-1">{item.sub}</p>
                       )}
                     </div>
-                  </Link>
+                  </LocaleLink>
                 ))}
 
             {!loading && sideItems.length === 0 && (
@@ -113,7 +113,7 @@ function FeedCard({ item, loading, titleSize = "text-xl" }) {
   if (loading) return <div className="w-full h-full bg-[#052032] animate-pulse" />;
   if (!item) return <div className="w-full h-full bg-[#052032]" />;
   return (
-    <Link href={`/feed/${item.id}`} className="relative block w-full h-full overflow-hidden group">
+    <LocaleLink href={`/feed/${item.id}`} className="relative block w-full h-full overflow-hidden group">
       {item.imageUrl ? (
         <Image
           src={item.imageUrl}
@@ -139,6 +139,6 @@ function FeedCard({ item, loading, titleSize = "text-xl" }) {
           <p className="text-white/50 text-xs mt-1 line-clamp-1">{item.sub}</p>
         )}
       </div>
-    </Link>
+    </LocaleLink>
   );
 }

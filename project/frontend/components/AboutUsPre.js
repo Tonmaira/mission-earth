@@ -1,7 +1,7 @@
 "use client";
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from 'next/image';
-import Link from 'next/link';
+import LocaleLink from "@/components/LocaleLink";
 import { useLang } from "@/lib/LanguageContext";
 
 
@@ -45,9 +45,9 @@ export default function AboutUsPre() {
                     {t("home.about.desc")}
                   </p>
 
-                  <Link href="/about" className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold inline-block">
+                  <LocaleLink href="/about" className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold inline-block">
                     {t("home.about.button")}
-                  </Link>
+                  </LocaleLink>
                 </div>
               </ScrollReveal>
             </div>

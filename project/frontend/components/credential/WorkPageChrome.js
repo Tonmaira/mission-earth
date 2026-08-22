@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import NavbarSimple from "@/components/NavbarSimple";
 import FooterSection from "@/components/FooterSection";
 
@@ -15,12 +15,12 @@ export default function WorkPageChrome({ children }) {
       <NavbarSimple />
 
       <div className="px-6 pb-20 pt-32 md:px-12 md:pt-40 lg:px-[144px]">
-        <Link
+        <LocaleLink
           href="/portfolio"
           className="text-[11px] uppercase tracking-[0.25em] text-white/50 transition-colors hover:text-[#CEA870]"
         >
           ← Back to portfolio
-        </Link>
+        </LocaleLink>
 
         <div className="mt-10">{children}</div>
       </div>

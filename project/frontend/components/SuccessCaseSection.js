@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import LocaleLink from "@/components/LocaleLink";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLang } from "@/lib/LanguageContext";
 
@@ -55,7 +55,7 @@ export default function SuccessCaseSection() {
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6 md:flex-1 md:min-h-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 h-full">
           {items.map((item, i) => (
-            <Link
+            <LocaleLink
               key={i}
               href={item.href}
               className="group relative rounded-[10px] overflow-hidden min-h-[180px] md:min-h-0"
@@ -76,18 +76,18 @@ export default function SuccessCaseSection() {
                   {item.subtitle}
                 </p>
               </div>
-            </Link>
+            </LocaleLink>
           ))}
         </div>
       </div>
 
       <div className="relative z-10 py-6 md:py-10">
-        <Link
+        <LocaleLink
           href="/portfolio"
           className="border border-[#CEA870] text-[#CEA870] px-8 py-3 rounded-full hover:bg-[#CEA870] hover:text-white transition-all duration-500 uppercase tracking-widest text-xs font-semibold"
         >
           {t("home.successCase.more")}
-        </Link>
+        </LocaleLink>
       </div>
     </section>
   );

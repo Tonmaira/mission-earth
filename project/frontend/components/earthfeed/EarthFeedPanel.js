@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import OutlineBtn from "../ui/OutlineBtn";
 import { useFeedItems } from "./useEarthFeed";

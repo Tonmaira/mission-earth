@@ -9,8 +9,10 @@ import { useLang } from "@/lib/LanguageContext";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { getPageScrollTop, onPageScroll } from "@/lib/pageScroll";
+import { useLocalePath } from "@/lib/useLocalePath";
 
 export default function Navbar() {
+  const path = useLocalePath();
   const [showLogo, setShowLogo] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState(null);
@@ -35,7 +37,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/");
+    router.push(path("/"));
   };
 
   useEffect(() => {
@@ -59,16 +61,16 @@ export default function Navbar() {
         <div className={`z-[60] transition-all duration-1000 transform ${
           showLogo || isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
         }`}>
-          <a href="/"><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
+          <a href={path("/")}><Image src="/full-logo-me.svg" alt="Mission Earth Logo" width={120} height={37} className="object-contain" /></a>
         </div>
 
         {/* Desktop Menu (แสดงเฉพาะจอใหญ่) */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light text-gray-300">
-          <a href="/" className="hover:text-[#CEA870] transition-colors">{t("navbar.home")}</a>
-          <a href="/about" className="hover:text-[#CEA870] transition-colors">{t("navbar.about")}</a>
-          <a href="/services" className="hover:text-[#CEA870] transition-colors">{t("navbar.services")}</a>
-          <a href="/portfolio" className="hover:text-[#CEA870] transition-colors">{t("navbar.portfolio")}</a>
-          <a href="/contact" className="hover:text-[#CEA870] transition-colors">{t("navbar.contact")}</a>
+          <a href={path("/")} className="hover:text-[#CEA870] transition-colors">{t("navbar.home")}</a>
+          <a href={path("/about")} className="hover:text-[#CEA870] transition-colors">{t("navbar.about")}</a>
+          <a href={path("/services")} className="hover:text-[#CEA870] transition-colors">{t("navbar.services")}</a>
+          <a href={path("/portfolio")} className="hover:text-[#CEA870] transition-colors">{t("navbar.portfolio")}</a>
+          <a href={path("/contact")} className="hover:text-[#CEA870] transition-colors">{t("navbar.contact")}</a>
           <div className="group flex items-center gap-2">
             <button onClick={toggleLang} className="flex items-center gap-1">
               <TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" />
@@ -86,7 +88,7 @@ export default function Navbar() {
               </button>
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-[#002740] border border-white/10 rounded-2xl shadow-xl overflow-hidden">
-                  <a href="/admin" className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-[#CEA870] transition-colors" onClick={() => setDropdownOpen(false)}>
+                  <a href={path("/admin")} className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/5 hover:text-[#CEA870] transition-colors" onClick={() => setDropdownOpen(false)}>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     Admin Management
                   </a>
@@ -98,7 +100,7 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <a href="/login" className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
+            <a href={path("/login")} className="border border-[#CEA870] px-6 py-2 rounded-full text-[#CEA870] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300 font-medium text-sm">
               Login
             </a>
           )}
@@ -121,11 +123,11 @@ export default function Navbar() {
         isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
         <div className="flex flex-col items-center justify-center min-h-full space-y-6 text-center tracking-widest py-24 overflow-y-auto">
-          <a href="/" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.home")}</a>
-          <a href="/about" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.about")}</a>
-          <a href="/services" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.services")}</a>
-          <a href="/portfolio" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.portfolio")}</a>
-          <a href="/contact" className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.contact")}</a>
+          <a href={path("/")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.home")}</a>
+          <a href={path("/about")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.about")}</a>
+          <a href={path("/services")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.services")}</a>
+          <a href={path("/portfolio")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.portfolio")}</a>
+          <a href={path("/contact")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("navbar.contact")}</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-8">
             <button onClick={toggleLang} className="flex items-center gap-2">
@@ -134,7 +136,7 @@ export default function Navbar() {
             </button>
             {session ? (
               <>
-                <a href="/admin" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
+                <a href={path("/admin")} className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
                   Admin Management
                 </a>
                 <button onClick={handleLogout} className="text-gray-500 text-sm hover:text-red-400 transition-colors">
@@ -142,7 +144,7 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <a href="/login" className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
+              <a href={path("/login")} className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
                 Login
               </a>
             )}
