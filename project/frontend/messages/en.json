@@ -371,46 +371,57 @@
     },
     "members": {
       "pcherry": {
+        "name": "Khemupsorn Sirisukha",
         "role": "Chief Executive Officer",
         "bio": "Leading Mission Earth with a vision to make sustainability a way of life for individuals and organizations across Thailand."
       },
       "ajwid": {
+        "name": "Nattawin Chawaloephonshiya, PhD",
         "role": "Chief Operating Officer",
         "bio": "Driving operational excellence with deep expertise in environmental science and sustainable development."
       },
       "fiat": {
+        "name": "Muantawan Onnam",
         "role": "Chief Product Officer",
         "bio": "Crafting impactful learning experiences and sustainability programs that translate complexity into clarity."
       },
       "zom": {
+        "name": "Chonakporn Suthaporncharoenkhai",
         "role": "Chief Financial Officer",
         "bio": "Ensuring Mission Earth's financial health while supporting our mission to grow sustainable impact."
       },
       "tonmai": {
+        "name": "Rattabhorn Sanitwong na Ayudhya",
         "role": "Creative Director",
         "bio": "Shaping the visual identity and creative direction of Mission Earth across all platforms and activations."
       },
       "film": {
+        "name": "Yanudhara Nuonpon",
         "role": "Project Coordinator",
         "bio": "Coordinating projects end-to-end to ensure every activity runs smoothly and delivers meaningful impact."
       },
       "mart": {
+        "name": "Nawapat Chothang",
         "role": "Project Coordinator",
         "bio": "Supporting communities and partners in bringing sustainability initiatives to life on the ground."
       },
       "praew": {
+        "name": "Pannita Karnjompanitcharoen",
         "role": "Admin",
         "bio": "Keeping Mission Earth running day-to-day with care, precision, and a passion for our shared mission."
       },
       "advisor-vitchayut": {
+        "name": "Vitchayut Tupwongse, PhD",
         "role": "Advisor",
         "bio": "Providing strategic guidance and expertise to advance Mission Earth's sustainability mission."
       },
       "advisor-onanong": {
+        "name": "On-anong Larpparisudthi, PhD",
         "role": "Advisor",
         "bio": "Contributing academic expertise and research insight to shape Mission Earth's programs and impact."
       },
       "advisor-chuchart": {
+        "name": "Chuchart Vinitwatanakhun, MD",
         "role": "Senior Advisor",
         "bio": "Guiding Mission Earth with senior-level expertise in health, environment, and sustainable development."
       }

@@ -3,25 +3,29 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-/* ชื่อคนไม่ได้อยู่ในไฟล์ภาษา เพราะเป็นชื่อจริงของคน ไม่ใช่ข้อความที่แปลได้
-   ส่วนตำแหน่งกับคำบรรยายอยู่ที่ team.members.<id> ใน messages/{en,th}.json
-   id มาจากชื่อไฟล์รูป เพิ่มคนใหม่ต้องเติมทั้งที่นี่และในไฟล์ภาษาทั้งสอง
+/* ไฟล์นี้เก็บแค่ id กับรูป ส่วนชื่อ ตำแหน่ง และคำบรรยาย อยู่ที่
+   team.members.<id> ใน messages/{en,th}.json — id มาจากชื่อไฟล์รูป
+
+   ชื่อในไฟล์ภาษาไทยยังเป็นอักษรโรมันอยู่ เพราะยังไม่มีการสะกดภาษาไทยที่ยืนยันแล้ว
+   ได้มาเมื่อไรแก้ที่ th.json ได้เลย ไม่ต้องแตะโค้ด
+
+   เพิ่มคนใหม่ต้องเติมทั้งที่นี่และในไฟล์ภาษาทั้งสอง
    (npm run check:i18n จะเตือนถ้าใส่ไม่ครบ) */
 const members = [
-  { id: "pcherry", name: "Khemupsorn Sirisukha", image: "/pcherry.png" },
-  { id: "ajwid", name: "Nattawin Chawaloephonshiya, PhD", image: "/ajwid.png" },
-  { id: "fiat", name: "Muantawan Onnam", image: "/fiat.jpg" },
-  { id: "zom", name: "Chonakporn Suthaporncharoenkhai", image: "/zom.jpg" },
-  { id: "tonmai", name: "Rattabhorn Sanitwong na Ayudhya", image: "/tonmai.JPG" },
-  { id: "film", name: "Yanudhara Nuonpon", image: "/film.jpg" },
-  { id: "mart", name: "Nawapat Chothang", image: "/Mart.jpg" },
-  { id: "praew", name: "Pannita Karnjompanitcharoen", image: "/praew.jpg" },
+  { id: "pcherry", image: "/pcherry.png" },
+  { id: "ajwid", image: "/ajwid.png" },
+  { id: "fiat", image: "/fiat.jpg" },
+  { id: "zom", image: "/zom.jpg" },
+  { id: "tonmai", image: "/tonmai.JPG" },
+  { id: "film", image: "/film.jpg" },
+  { id: "mart", image: "/Mart.jpg" },
+  { id: "praew", image: "/praew.jpg" },
 ];
 
 const advisors = [
-  { id: "advisor-vitchayut", name: "Vitchayut Tupwongse, PhD", image: "/advisor-vitchayut.jpg" },
-  { id: "advisor-onanong", name: "On-anong Larpparisudthi, PhD", image: "/advisor-onanong.jpg" },
-  { id: "advisor-chuchart", name: "Chuchart Vinitwatanakhun, MD", image: "/advisor-chuchart.jpg" },
+  { id: "advisor-vitchayut", image: "/advisor-vitchayut.jpg" },
+  { id: "advisor-onanong", image: "/advisor-onanong.jpg" },
+  { id: "advisor-chuchart", image: "/advisor-chuchart.jpg" },
 ];
 
 export default function TeamSection() {
@@ -38,10 +42,10 @@ export default function TeamSection() {
         {hovered !== null ? (
           <div className="relative w-full h-full overflow-hidden rounded-sm animate-fade-in">
             {(() => { const m = hovered < members.length ? members[hovered] : advisors[hovered - members.length]; return (<>
-              <Image src={m.image} alt={m.name} fill className="object-cover object-top transition-all duration-500" />
+              <Image src={m.image} alt={t(`members.${m.id}.name`)} fill className="object-cover object-top transition-all duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/90 via-[#002740]/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
-                <p className="font-semibold text-white text-[20px] leading-snug">{m.name}</p>
+                <p className="font-semibold text-white text-[20px] leading-snug">{t(`members.${m.id}.name`)}</p>
                 <p className="text-[#CEA870] text-[14px] tracking-widest uppercase">{t(`members.${m.id}.role`)}</p>
                 <p className="text-white/80 text-[14px] leading-relaxed mt-1">{t(`members.${m.id}.bio`)}</p>
               </div>
@@ -61,7 +65,7 @@ export default function TeamSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
           {members.map((member, i) => (
             <div
-              key={member.name}
+              key={member.id}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => setSelected(i)}
@@ -70,14 +74,14 @@ export default function TeamSection() {
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
                 <Image
                   src={member.image}
-                  alt={member.name}
+                  alt={t(`members.${member.id}.name`)}
                   fill
                   className={`object-cover object-top transition-all duration-500 ${hovered === i ? "scale-105 brightness-110" : "brightness-75"}`}
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <p className={`font-semibold text-[13px] md:text-[15px] leading-snug transition-colors duration-300 [overflow-wrap:anywhere] ${hovered === i ? "text-[#CEA870]" : "text-white"}`}>
-                  {member.name}
+                  {t(`members.${member.id}.name`)}
                 </p>
                 <p className="text-[#CEA870] text-[10px] md:text-[12px] tracking-widest uppercase [overflow-wrap:anywhere]">{t(`members.${member.id}.role`)}</p>
               </div>
@@ -90,7 +94,7 @@ export default function TeamSection() {
         <div className="flex flex-row gap-3 md:gap-4">
           {advisors.map((member, i) => (
             <div
-              key={member.name}
+              key={member.id}
               onMouseEnter={() => setHovered(members.length + i)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => setSelected(members.length + i)}
@@ -99,14 +103,14 @@ export default function TeamSection() {
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
                 <Image
                   src={member.image}
-                  alt={member.name}
+                  alt={t(`members.${member.id}.name`)}
                   fill
                   className={`object-cover object-top transition-all duration-500 ${hovered === members.length + i ? "scale-105 brightness-110" : "brightness-75"}`}
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <p className={`font-semibold text-[13px] md:text-[15px] leading-snug transition-colors duration-300 [overflow-wrap:anywhere] ${hovered === members.length + i ? "text-[#CEA870]" : "text-white"}`}>
-                  {member.name}
+                  {t(`members.${member.id}.name`)}
                 </p>
                 <p className="text-[#CEA870] text-[10px] md:text-[12px] tracking-widest uppercase [overflow-wrap:anywhere]">{t(`members.${member.id}.role`)}</p>
               </div>
@@ -130,14 +134,14 @@ export default function TeamSection() {
           <div className="relative h-[420px] w-full">
             <Image
               src={selected < members.length ? members[selected].image : advisors[selected - members.length].image}
-              alt={selected < members.length ? members[selected].name : advisors[selected - members.length].name}
+              alt={t(`members.${(selected < members.length ? members[selected] : advisors[selected - members.length]).id}.name`)}
               fill
               className="object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#002740]/95 via-[#002740]/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
               {(() => { const m = selected < members.length ? members[selected] : advisors[selected - members.length]; return (<>
-                <p className="font-semibold text-white text-[18px] leading-snug">{m.name}</p>
+                <p className="font-semibold text-white text-[18px] leading-snug">{t(`members.${m.id}.name`)}</p>
                 <p className="text-[#CEA870] text-[12px] tracking-widest uppercase">{t(`members.${m.id}.role`)}</p>
                 <p className="text-white/80 text-[13px] leading-relaxed mt-1">{t(`members.${m.id}.bio`)}</p>
               </>); })()}
