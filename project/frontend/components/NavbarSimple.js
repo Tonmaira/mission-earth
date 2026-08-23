@@ -7,14 +7,17 @@ import IconClose from "@/components/IconClose";
 import SocialMediaPackHorizon from "@/components/SocialMediaPackHorizon";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useLocalePath } from "@/lib/useLocalePath";
 
+/* เก็บเป็นคีย์ ไม่ใช่ข้อความ — เมนูนี้ใช้ร่วมกัน 8 หน้า
+   ถ้าฝังข้อความไว้ หน้าไทยจะขึ้นเมนูอังกฤษทั้งที่เนื้อหาแปลแล้ว */
 const DEFAULT_LINKS = [
-  { href: "/", label: "Home", hoverColor: "#CEA870" },
-  { href: "/about", label: "About Us", hoverColor: "#CEA870" },
-  { href: "/services", label: "Services", hoverColor: "#CEA870" },
-  { href: "/portfolio", label: "Portfolio", hoverColor: "#CEA870" },
-  { href: "/contact", label: "Contact Us", hoverColor: "#CEA870" },
+  { href: "/", labelKey: "home", hoverColor: "#CEA870" },
+  { href: "/about", labelKey: "about", hoverColor: "#CEA870" },
+  { href: "/services", labelKey: "services", hoverColor: "#CEA870" },
+  { href: "/portfolio", labelKey: "portfolio", hoverColor: "#CEA870" },
+  { href: "/contact", labelKey: "contact", hoverColor: "#CEA870" },
 ];
 
 function NavLink({ href, label, hoverColor, textColor }) {
@@ -33,6 +36,7 @@ function NavLink({ href, label, hoverColor, textColor }) {
 }
 
 export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", navLinks = DEFAULT_LINKS, solid = false }) {
+  const t = useTranslations("navbar");
   const path = useLocalePath();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState(null);
@@ -73,7 +77,12 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
         {/* Desktop menu */}
         <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-light" style={{ color: textColor }}>
           {navLinks.map((link) => (
-            <NavLink key={link.href} {...link} textColor={textColor} />
+            <NavLink
+              key={link.href}
+              {...link}
+              label={link.labelKey ? t(link.labelKey) : link.label}
+              textColor={textColor}
+            />
           ))}
           <div className="group flex items-center gap-2">
             <a href="#"><TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" /></a>
@@ -135,11 +144,11 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
         isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 text-center tracking-widest">
-          <a href={path("/")}          className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</a>
-          <a href={path("/about")}     className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>About Us</a>
-          <a href={path("/services")}  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Services</a>
-          <a href={path("/portfolio")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Portfolio</a>
-          <a href={path("/contact")}   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</a>
+          <a href={path("/")}          className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("home")}</a>
+          <a href={path("/about")}     className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("about")}</a>
+          <a href={path("/services")}  className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("services")}</a>
+          <a href={path("/portfolio")} className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("portfolio")}</a>
+          <a href={path("/contact")}   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("contact")}</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-4">
             <TranslateIcon className="w-10 h-10 text-[#CEA870]" />

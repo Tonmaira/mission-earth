@@ -82,8 +82,9 @@ const PAGE_LOCALES = {
   "/survey/readiness": ["th"],
   "/brand-guide": ["th"],
 
+  "/about": ["th", "en"],
+
   // เขียนเป็นภาษาอังกฤษ ยังไม่มีเวอร์ชันไทย
-  "/about": ["en"],
   "/contact": ["en"],
   "/portfolio": ["en"],
   "/credential": ["en"],

@@ -4,6 +4,7 @@ import FooterSection from "@/components/FooterSection";
 import Image from "next/image";
 import TeamSection from "@/components/TeamSection";
 import { pageMetadata, seoFor } from "@/lib/seo";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // metadata ของหน้านี้ — canonical กับ hreflang สร้างจาก lib/seo.js ที่เดียว
 export async function generateMetadata({ params }) {
@@ -11,7 +12,14 @@ export async function generateMetadata({ params }) {
   return pageMetadata({ locale, path: "/about", ...seoFor("/about", locale) });
 }
 
-export default function AboutPage() {
+export default async function AboutPage({ params }) {
+  /* server component แปลได้ตั้งแต่ฝั่งเซิร์ฟเวอร์ ไม่ต้องส่ง messages ลงไปที่เบราว์เซอร์เลย
+     ต้องส่ง locale เข้าไปเอง — getTranslations() เปล่า ๆ จะไม่รู้ว่ากำลังเรนเดอร์ภาษาไหน
+     ตอนที่ Next สร้างหน้าไว้ล่วงหน้า แล้วตกไปใช้ภาษาเริ่มต้นทั้งสอง URL */
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "about" });
+
   return (
     <main className="min-h-screen bg-[#002740] text-white">
       <NavbarSimple />
@@ -19,13 +27,10 @@ export default function AboutPage() {
       {/* 1. Welcome */}
       <section className="flex flex-col justify-center px-6 md:px-12 lg:px-[144px] py-24 pt-32 md:pt-40">
         <h1 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-6">
-          Welcome to Mission Earth
+          {t("welcomeTitle")}
         </h1>
         <p className="text-white text-[14px] md:text-[15px] lg:text-[16px] tracking-[0.16px] leading-relaxed">
-          We are a team of environmental experts and passionate partners on a mission to make sustainability
-          a way of life. From ESG training to hands-on environmental activities, we bring knowledge,
-          experience, and heart to everything we do — empowering individuals and organizations to take
-          meaningful action for our planet. Together, let&apos;s build a greener, more sustainable future.
+          {t("welcomeBody")}
         </p>
       </section>
 
@@ -36,22 +41,18 @@ export default function AboutPage() {
           <div className="lg:ml-10 flex flex-col gap-[28px] w-full lg:w-[662px]">
             <div>
               <h2 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-2">
-                Vision
+                {t("visionTitle")}
               </h2>
               <p className="text-white text-[14px] md:text-[15px] lg:text-[16px] tracking-[0.16px] leading-relaxed">
-                To be the trusted partner in sustainability training, empowering green economy with capability
-                for lasting environmental impact and lead the transition to a greener future.
+                {t("visionBody")}
               </p>
             </div>
             <div>
               <h2 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-4">
-                Mission
+                {t("missionTitle")}
               </h2>
               <div className="flex flex-col gap-[10px]">
-                {[
-                  "To provide training on sustainability capability and expertise.",
-                  "To create activities that deliver sustainability to communities",
-                ].map((item) => (
+                {t.raw("missionPoints").map((item) => (
                   <div key={item} className="flex gap-[10px] items-center">
                     <div className="w-[28px] h-[1px] bg-[#CEA870] shrink-0" />
                     <p className="text-white text-[14px] md:text-[15px] lg:text-[16px] tracking-[0.16px] leading-relaxed">{item}</p>
@@ -72,7 +73,7 @@ export default function AboutPage() {
           <div className="hidden lg:block shrink-0 w-[424px]" />
           <div className="lg:ml-10 w-full">
             <h2 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-4">
-              Partners
+              {t("partnersTitle")}
             </h2>
             <div className="flex flex-wrap gap-[10px] items-center">
               {[
@@ -97,16 +98,14 @@ export default function AboutPage() {
           <div className="lg:ml-10 flex flex-col gap-[32px] w-full lg:w-[718px]">
             <div>
               <h2 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-2">
-                What we do
+                {t("whatWeDoTitle")}
               </h2>
               <p className="text-white text-[14px] md:text-[15px] lg:text-[16px] tracking-[0.16px] leading-relaxed">
-                From ESG training and nature camps to creative events and sustainable travel — we design
-                experiences that make people care, learn, and take action. Backed by experts and trusted
-                by leading organizations across Thailand.
+                {t("whatWeDoBody")}
               </p>
             </div>
             <LocaleLink href="/portfolio" className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit flex items-center">
-              See Our Work in Action
+              {t("seeWork")}
             </LocaleLink>
           </div>
         </div>
@@ -119,15 +118,14 @@ export default function AboutPage() {
           <div className="lg:ml-10 flex flex-col gap-[32px] w-full lg:w-[718px]">
             <div>
               <h2 className="font-semibold italic text-[#CEA870] text-[28px] md:text-[36px] lg:text-[48px] tracking-[0.48px] mb-2">
-                Contact Us
+                {t("contactTitle")}
               </h2>
               <p className="text-white text-[14px] md:text-[15px] lg:text-[16px] tracking-[0.16px] leading-relaxed">
-                Ready to bring sustainability to your organization or community? Let&apos;s talk! Our team
-                is here to help you find the right solution — big or small.
+                {t("contactBody")}
               </p>
             </div>
             <LocaleLink href="/contact" className="border border-[#CEA870] text-[#CEA870] px-[20px] h-[40px] rounded-full text-[14px] lg:text-[16px] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-500 w-fit flex items-center">
-              Contact Us
+              {t("contactCta")}
             </LocaleLink>
           </div>
         </div>

@@ -344,5 +344,76 @@
       "network": "Connection failed. Please try again."
     },
     "close": "Close"
+  },
+  "about": {
+    "welcomeTitle": "Welcome to Mission Earth",
+    "welcomeBody": "We are a team of environmental experts and passionate partners on a mission to make sustainability a way of life. From ESG training to hands-on environmental activities, we bring knowledge, experience, and heart to everything we do — empowering individuals and organizations to take meaningful action for our planet. Together, let's build a greener, more sustainable future.",
+    "visionTitle": "Vision",
+    "visionBody": "To be the trusted partner in sustainability training, empowering green economy with capability for lasting environmental impact and lead the transition to a greener future.",
+    "missionTitle": "Mission",
+    "missionPoints": [
+      "To provide training on sustainability capability and expertise.",
+      "To create activities that deliver sustainability to communities"
+    ],
+    "partnersTitle": "Partners",
+    "whatWeDoTitle": "What we do",
+    "whatWeDoBody": "From ESG training and nature camps to creative events and sustainable travel — we design experiences that make people care, learn, and take action. Backed by experts and trusted by leading organizations across Thailand.",
+    "seeWork": "See Our Work in Action",
+    "contactTitle": "Contact Us",
+    "contactBody": "Ready to bring sustainability to your organization or community? Let's talk! Our team is here to help you find the right solution — big or small.",
+    "contactCta": "Contact Us"
+  },
+  "team": {
+    "ui": {
+      "title": "Our Team",
+      "intro": "Mission Earth is a passionate team of environmental experts and dedicated partners committed to making sustainability accessible to everyone.",
+      "advisors": "Advisors"
+    },
+    "members": {
+      "pcherry": {
+        "role": "Chief Executive Officer",
+        "bio": "Leading Mission Earth with a vision to make sustainability a way of life for individuals and organizations across Thailand."
+      },
+      "ajwid": {
+        "role": "Chief Operating Officer",
+        "bio": "Driving operational excellence with deep expertise in environmental science and sustainable development."
+      },
+      "fiat": {
+        "role": "Chief Product Officer",
+        "bio": "Crafting impactful learning experiences and sustainability programs that translate complexity into clarity."
+      },
+      "zom": {
+        "role": "Chief Financial Officer",
+        "bio": "Ensuring Mission Earth's financial health while supporting our mission to grow sustainable impact."
+      },
+      "tonmai": {
+        "role": "Creative Director",
+        "bio": "Shaping the visual identity and creative direction of Mission Earth across all platforms and activations."
+      },
+      "film": {
+        "role": "Project Coordinator",
+        "bio": "Coordinating projects end-to-end to ensure every activity runs smoothly and delivers meaningful impact."
+      },
+      "mart": {
+        "role": "Project Coordinator",
+        "bio": "Supporting communities and partners in bringing sustainability initiatives to life on the ground."
+      },
+      "praew": {
+        "role": "Admin",
+        "bio": "Keeping Mission Earth running day-to-day with care, precision, and a passion for our shared mission."
+      },
+      "advisor-vitchayut": {
+        "role": "Advisor",
+        "bio": "Providing strategic guidance and expertise to advance Mission Earth's sustainability mission."
+      },
+      "advisor-onanong": {
+        "role": "Advisor",
+        "bio": "Contributing academic expertise and research insight to shape Mission Earth's programs and impact."
+      },
+      "advisor-chuchart": {
+        "role": "Senior Advisor",
+        "bio": "Guiding Mission Earth with senior-level expertise in health, environment, and sustainable development."
+      }
+    }
   }
 }

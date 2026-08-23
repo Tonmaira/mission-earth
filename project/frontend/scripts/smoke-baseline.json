@@ -3,7 +3,7 @@
     "route": "/contact",
     "status": 308,
     "redirectTo": "/th/contact",
-    "ms": 2
+    "ms": 1
   },
   {
     "route": "/en",
@@ -18,7 +18,7 @@
     "thaiPct": 0,
     "textLength": 2441,
     "hasJsonLd": false,
-    "ms": 27
+    "ms": 33
   },
   {
     "route": "/en/about",
@@ -33,7 +33,7 @@
     "thaiPct": 0,
     "textLength": 2243,
     "hasJsonLd": false,
-    "ms": 28
+    "ms": 31
   },
   {
     "route": "/en/contact",
@@ -48,7 +48,7 @@
     "thaiPct": 0,
     "textLength": 863,
     "hasJsonLd": false,
-    "ms": 32
+    "ms": 29
   },
   {
     "route": "/en/ekiden",
@@ -63,7 +63,7 @@
     "thaiPct": 76,
     "textLength": 1050,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 22
   },
   {
     "route": "/en/forest_bathing",
@@ -78,7 +78,7 @@
     "thaiPct": 0,
     "textLength": 1495,
     "hasJsonLd": false,
-    "ms": 29
+    "ms": 21
   },
   {
     "route": "/en/login",
@@ -93,7 +93,7 @@
     "thaiPct": 0,
     "textLength": 163,
     "hasJsonLd": false,
-    "ms": 20
+    "ms": 18
   },
   {
     "route": "/en/portfolio",
@@ -108,7 +108,7 @@
     "thaiPct": 32,
     "textLength": 5934,
     "hasJsonLd": false,
-    "ms": 38
+    "ms": 42
   },
   {
     "route": "/en/portfolio/work/15th-cpa-tutor-2025",
@@ -123,7 +123,7 @@
     "thaiPct": 12,
     "textLength": 775,
     "hasJsonLd": false,
-    "ms": 25
+    "ms": 24
   },
   {
     "route": "/en/portfolio/work/alive-sustainable-board-game-workshop",
@@ -138,7 +138,7 @@
     "thaiPct": 2,
     "textLength": 819,
     "hasJsonLd": false,
-    "ms": 22
+    "ms": 23
   },
   {
     "route": "/en/portfolio/work/alive-sustainable-planet-1st-edition",
@@ -153,7 +153,7 @@
     "thaiPct": 3,
     "textLength": 651,
     "hasJsonLd": false,
-    "ms": 28
+    "ms": 23
   },
   {
     "route": "/en/portfolio/work/biocourse",
@@ -183,7 +183,7 @@
     "thaiPct": 11,
     "textLength": 680,
     "hasJsonLd": false,
-    "ms": 20
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/bkkcaw-2025",
@@ -198,7 +198,7 @@
     "thaiPct": 3,
     "textLength": 763,
     "hasJsonLd": false,
-    "ms": 20
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/carbon-neutral-in-daily-life",
@@ -213,7 +213,7 @@
     "thaiPct": 17,
     "textLength": 703,
     "hasJsonLd": false,
-    "ms": 26
+    "ms": 27
   },
   {
     "route": "/en/portfolio/work/dcce-stop-the-climate-crisis-together",
@@ -243,7 +243,7 @@
     "thaiPct": 32,
     "textLength": 735,
     "hasJsonLd": false,
-    "ms": 35
+    "ms": 26
   },
   {
     "route": "/en/portfolio/work/dek-sang-nan-2",
@@ -258,7 +258,7 @@
     "thaiPct": 29,
     "textLength": 708,
     "hasJsonLd": false,
-    "ms": 20
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/designing-the-future-we-want-to-live-in",
@@ -273,7 +273,7 @@
     "thaiPct": 10,
     "textLength": 788,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 27
   },
   {
     "route": "/en/portfolio/work/ent-2026",
@@ -288,7 +288,7 @@
     "thaiPct": 2,
     "textLength": 739,
     "hasJsonLd": false,
-    "ms": 32
+    "ms": 25
   },
   {
     "route": "/en/portfolio/work/forest-bathing",
@@ -303,7 +303,7 @@
     "thaiPct": 3,
     "textLength": 747,
     "hasJsonLd": false,
-    "ms": 24
+    "ms": 26
   },
   {
     "route": "/en/portfolio/work/green-mission",
@@ -318,7 +318,7 @@
     "thaiPct": 23,
     "textLength": 699,
     "hasJsonLd": false,
-    "ms": 20
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/green-mission-1-press-conference",
@@ -348,7 +348,7 @@
     "thaiPct": 7,
     "textLength": 671,
     "hasJsonLd": false,
-    "ms": 24
+    "ms": 23
   },
   {
     "route": "/en/portfolio/work/pttep-bif",
@@ -363,7 +363,7 @@
     "thaiPct": 9,
     "textLength": 724,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 23
   },
   {
     "route": "/en/portfolio/work/scg-prayotsuk",
@@ -378,7 +378,7 @@
     "thaiPct": 16,
     "textLength": 622,
     "hasJsonLd": false,
-    "ms": 28
+    "ms": 31
   },
   {
     "route": "/en/portfolio/work/transition-in-action",
@@ -393,7 +393,7 @@
     "thaiPct": 16,
     "textLength": 717,
     "hasJsonLd": false,
-    "ms": 22
+    "ms": 26
   },
   {
     "route": "/en/portfolio/work/trip-for-earth",
@@ -408,7 +408,7 @@
     "thaiPct": 8,
     "textLength": 737,
     "hasJsonLd": false,
-    "ms": 21
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/water-workshop",
@@ -423,7 +423,7 @@
     "thaiPct": 26,
     "textLength": 721,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 27
   },
   {
     "route": "/en/portfolio/work/ความหลากหลายทางชีวภาพและคุณภาพชีวิต",
@@ -438,7 +438,7 @@
     "thaiPct": 19,
     "textLength": 793,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 22
   },
   {
     "route": "/en/portfolio/work/คู่มือการป้องกันการเผาในที่โล่ง",
@@ -453,7 +453,7 @@
     "thaiPct": 42,
     "textLength": 831,
     "hasJsonLd": false,
-    "ms": 29
+    "ms": 23
   },
   {
     "route": "/en/portfolio/work/โครงการการจัดการไฟป่า-ลดปัญหาหมอกควัน",
@@ -468,7 +468,7 @@
     "thaiPct": 33,
     "textLength": 721,
     "hasJsonLd": false,
-    "ms": 25
+    "ms": 27
   },
   {
     "route": "/en/portfolio/year/2024",
@@ -483,7 +483,7 @@
     "thaiPct": 42,
     "textLength": 2045,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 28
   },
   {
     "route": "/en/portfolio/year/2025",
@@ -498,7 +498,7 @@
     "thaiPct": 25,
     "textLength": 2371,
     "hasJsonLd": false,
-    "ms": 133
+    "ms": 33
   },
   {
     "route": "/en/portfolio/year/2026",
@@ -513,7 +513,7 @@
     "thaiPct": 16,
     "textLength": 1617,
     "hasJsonLd": false,
-    "ms": 32
+    "ms": 31
   },
   {
     "route": "/en/services",
@@ -523,12 +523,12 @@
     "title": "Our Services | Mission Earth",
     "lang": "en",
     "h1": "Our Services",
-    "thaiChars": 4350,
-    "latinChars": 1895,
-    "thaiPct": 70,
-    "textLength": 7216,
+    "thaiChars": 3185,
+    "latinChars": 1235,
+    "thaiPct": 72,
+    "textLength": 4957,
     "hasJsonLd": false,
-    "ms": 34
+    "ms": 37
   },
   {
     "route": "/en/survey/readiness",
@@ -543,7 +543,7 @@
     "thaiPct": 70,
     "textLength": 263,
     "hasJsonLd": false,
-    "ms": 18
+    "ms": 19
   },
   {
     "route": "/feed",
@@ -564,22 +564,22 @@
     "thaiPct": 59,
     "textLength": 2427,
     "hasJsonLd": false,
-    "ms": 55
+    "ms": 89
   },
   {
     "route": "/th/about",
     "status": 200,
     "error": null,
-    "robots": "noindex, follow",
+    "robots": "",
     "title": "เกี่ยวกับเรา | Mission Earth",
     "lang": "th",
-    "h1": "Welcome to Mission Earth",
-    "thaiChars": 12,
-    "latinChars": 1837,
-    "thaiPct": 1,
-    "textLength": 2247,
+    "h1": "ยินดีต้อนรับสู่ Mission Earth",
+    "thaiChars": 1390,
+    "latinChars": 542,
+    "thaiPct": 72,
+    "textLength": 2126,
     "hasJsonLd": false,
-    "ms": 29
+    "ms": 46
   },
   {
     "route": "/th/brand-guide",
@@ -589,12 +589,12 @@
     "title": "Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 1681,
-    "latinChars": 711,
-    "thaiPct": 70,
-    "textLength": 2822,
+    "thaiChars": 1721,
+    "latinChars": 674,
+    "thaiPct": 72,
+    "textLength": 2823,
     "hasJsonLd": false,
-    "ms": 24
+    "ms": 22
   },
   {
     "route": "/th/contact",
@@ -604,12 +604,12 @@
     "title": "ติดต่อเรา | Mission Earth",
     "lang": "th",
     "h1": "Contact Us",
-    "thaiChars": 9,
-    "latinChars": 641,
-    "thaiPct": 1,
-    "textLength": 862,
+    "thaiChars": 89,
+    "latinChars": 567,
+    "thaiPct": 14,
+    "textLength": 864,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 98
   },
   {
     "route": "/th/credential",
@@ -624,7 +624,7 @@
     "thaiPct": 33,
     "textLength": 7454,
     "hasJsonLd": false,
-    "ms": 160
+    "ms": 69
   },
   {
     "route": "/th/ekiden",
@@ -639,7 +639,7 @@
     "thaiPct": 76,
     "textLength": 1050,
     "hasJsonLd": false,
-    "ms": 26
+    "ms": 22
   },
   {
     "route": "/th/forest_bathing",
@@ -654,7 +654,7 @@
     "thaiPct": 91,
     "textLength": 1258,
     "hasJsonLd": false,
-    "ms": 21
+    "ms": 23
   },
   {
     "route": "/th/login",
@@ -669,7 +669,7 @@
     "thaiPct": 0,
     "textLength": 163,
     "hasJsonLd": false,
-    "ms": 19
+    "ms": 27
   },
   {
     "route": "/th/portfolio",
@@ -679,12 +679,12 @@
     "title": "ผลงานที่ผ่านมา | Mission Earth",
     "lang": "th",
     "h1": "Portfolio",
-    "thaiChars": 1573,
-    "latinChars": 3245,
-    "thaiPct": 33,
-    "textLength": 5940,
+    "thaiChars": 1653,
+    "latinChars": 3171,
+    "thaiPct": 34,
+    "textLength": 5942,
     "hasJsonLd": false,
-    "ms": 46
+    "ms": 130
   },
   {
     "route": "/th/portfolio/work/15th-cpa-tutor-2025",
@@ -694,12 +694,12 @@
     "title": "15th CPA Tutor 2025 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 67,
-    "latinChars": 515,
-    "thaiPct": 12,
-    "textLength": 775,
+    "thaiChars": 147,
+    "latinChars": 441,
+    "thaiPct": 25,
+    "textLength": 777,
     "hasJsonLd": false,
-    "ms": 24
+    "ms": 50
   },
   {
     "route": "/th/portfolio/work/alive-sustainable-board-game-workshop",
@@ -709,12 +709,12 @@
     "title": "Alive Sustainable Board Game Workshop | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 13,
-    "latinChars": 608,
-    "thaiPct": 2,
-    "textLength": 819,
+    "thaiChars": 93,
+    "latinChars": 534,
+    "thaiPct": 15,
+    "textLength": 821,
     "hasJsonLd": false,
-    "ms": 25
+    "ms": 30
   },
   {
     "route": "/th/portfolio/work/alive-sustainable-planet-1st-edition",
@@ -724,10 +724,10 @@
     "title": "Alive Sustainable Planet 1st Edition | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 13,
-    "latinChars": 483,
-    "thaiPct": 3,
-    "textLength": 651,
+    "thaiChars": 93,
+    "latinChars": 409,
+    "thaiPct": 19,
+    "textLength": 653,
     "hasJsonLd": false,
     "ms": 23
   },
@@ -739,12 +739,12 @@
     "title": "BIOCOURSE | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 189,
-    "latinChars": 494,
-    "thaiPct": 28,
-    "textLength": 837,
+    "thaiChars": 269,
+    "latinChars": 420,
+    "thaiPct": 39,
+    "textLength": 839,
     "hasJsonLd": false,
-    "ms": 21
+    "ms": 24
   },
   {
     "route": "/th/portfolio/work/biogang-challenge-2024",
@@ -754,12 +754,12 @@
     "title": "Biogang Challenge 2024 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 56,
-    "latinChars": 464,
-    "thaiPct": 11,
-    "textLength": 680,
+    "thaiChars": 136,
+    "latinChars": 390,
+    "thaiPct": 26,
+    "textLength": 682,
     "hasJsonLd": false,
-    "ms": 22
+    "ms": 24
   },
   {
     "route": "/th/portfolio/work/bkkcaw-2025",
@@ -769,10 +769,10 @@
     "title": "BKKCAW Workshop 2025 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 17,
-    "latinChars": 562,
-    "thaiPct": 3,
-    "textLength": 763,
+    "thaiChars": 97,
+    "latinChars": 488,
+    "thaiPct": 17,
+    "textLength": 765,
     "hasJsonLd": false,
     "ms": 24
   },
@@ -784,12 +784,12 @@
     "title": "Carbon Neutral in Daily Life | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 94,
-    "latinChars": 456,
-    "thaiPct": 17,
-    "textLength": 703,
+    "thaiChars": 174,
+    "latinChars": 382,
+    "thaiPct": 31,
+    "textLength": 705,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 22
   },
   {
     "route": "/th/portfolio/work/dcce-stop-the-climate-crisis-together",
@@ -799,12 +799,12 @@
     "title": "DCCE Stop the Climate Crisis Together | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 94,
-    "latinChars": 460,
-    "thaiPct": 17,
-    "textLength": 705,
+    "thaiChars": 174,
+    "latinChars": 386,
+    "thaiPct": 31,
+    "textLength": 707,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 22
   },
   {
     "route": "/th/portfolio/work/dek-sang-nan-1",
@@ -814,12 +814,12 @@
     "title": "เด็กสร้างน่าน ปีที่ 1 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 183,
-    "latinChars": 387,
-    "thaiPct": 32,
-    "textLength": 735,
+    "thaiChars": 263,
+    "latinChars": 313,
+    "thaiPct": 46,
+    "textLength": 737,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 23
   },
   {
     "route": "/th/portfolio/work/dek-sang-nan-2",
@@ -829,12 +829,12 @@
     "title": "เด็กสร้างน่าน ปีที่ 2 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 157,
-    "latinChars": 387,
-    "thaiPct": 29,
-    "textLength": 708,
+    "thaiChars": 237,
+    "latinChars": 313,
+    "thaiPct": 43,
+    "textLength": 710,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 24
   },
   {
     "route": "/th/portfolio/work/designing-the-future-we-want-to-live-in",
@@ -844,10 +844,10 @@
     "title": "Designing the Future We Want to Live In | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 64,
-    "latinChars": 546,
-    "thaiPct": 10,
-    "textLength": 788,
+    "thaiChars": 144,
+    "latinChars": 472,
+    "thaiPct": 23,
+    "textLength": 790,
     "hasJsonLd": false,
     "ms": 22
   },
@@ -859,12 +859,12 @@
     "title": "ENT 2026 | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 13,
-    "latinChars": 547,
-    "thaiPct": 2,
-    "textLength": 739,
+    "thaiChars": 93,
+    "latinChars": 473,
+    "thaiPct": 16,
+    "textLength": 741,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 29
   },
   {
     "route": "/th/portfolio/work/forest-bathing",
@@ -874,10 +874,10 @@
     "title": "Forest Bathing | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 17,
-    "latinChars": 558,
-    "thaiPct": 3,
-    "textLength": 747,
+    "thaiChars": 97,
+    "latinChars": 484,
+    "thaiPct": 17,
+    "textLength": 749,
     "hasJsonLd": false,
     "ms": 26
   },
@@ -889,12 +889,12 @@
     "title": "Green Mission | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 125,
-    "latinChars": 411,
-    "thaiPct": 23,
-    "textLength": 699,
+    "thaiChars": 205,
+    "latinChars": 337,
+    "thaiPct": 38,
+    "textLength": 701,
     "hasJsonLd": false,
-    "ms": 22
+    "ms": 27
   },
   {
     "route": "/th/portfolio/work/green-mission-1-press-conference",
@@ -904,12 +904,12 @@
     "title": "Green Mission 1 : Press Conference | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 23,
-    "latinChars": 576,
-    "thaiPct": 4,
-    "textLength": 773,
+    "thaiChars": 103,
+    "latinChars": 502,
+    "thaiPct": 17,
+    "textLength": 775,
     "hasJsonLd": false,
-    "ms": 23
+    "ms": 22
   },
   {
     "route": "/th/portfolio/work/pathways-to-a-sustainable-urban-future",
@@ -919,10 +919,10 @@
     "title": "Pathways to a Sustainable Urban Future | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 38,
-    "latinChars": 476,
-    "thaiPct": 7,
-    "textLength": 671,
+    "thaiChars": 118,
+    "latinChars": 402,
+    "thaiPct": 23,
+    "textLength": 673,
     "hasJsonLd": false,
     "ms": 28
   },
@@ -934,12 +934,12 @@
     "title": "PTTEP-BIF | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 53,
-    "latinChars": 509,
-    "thaiPct": 9,
-    "textLength": 724,
+    "thaiChars": 133,
+    "latinChars": 435,
+    "thaiPct": 23,
+    "textLength": 726,
     "hasJsonLd": false,
-    "ms": 22
+    "ms": 26
   },
   {
     "route": "/th/portfolio/work/scg-prayotsuk",
@@ -949,12 +949,12 @@
     "title": "ประโยชน์สุข | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 74,
-    "latinChars": 392,
-    "thaiPct": 16,
-    "textLength": 622,
+    "thaiChars": 154,
+    "latinChars": 318,
+    "thaiPct": 33,
+    "textLength": 624,
     "hasJsonLd": false,
-    "ms": 27
+    "ms": 102
   },
   {
     "route": "/th/portfolio/work/transition-in-action",
@@ -964,10 +964,10 @@
     "title": "การบรรยายหัวข้อ “Transition in Action ความยั่งยืนที่ทำได้จริง” | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 89,
-    "latinChars": 465,
-    "thaiPct": 16,
-    "textLength": 717,
+    "thaiChars": 169,
+    "latinChars": 391,
+    "thaiPct": 30,
+    "textLength": 719,
     "hasJsonLd": false,
     "ms": 22
   },
@@ -979,12 +979,12 @@
     "title": "TRIP for EARTH | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 45,
-    "latinChars": 523,
-    "thaiPct": 8,
-    "textLength": 737,
+    "thaiChars": 125,
+    "latinChars": 449,
+    "thaiPct": 22,
+    "textLength": 739,
     "hasJsonLd": false,
-    "ms": 24
+    "ms": 25
   },
   {
     "route": "/th/portfolio/work/water-workshop",
@@ -994,12 +994,12 @@
     "title": "Workshop: การจัดการน้ำ | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 147,
-    "latinChars": 413,
-    "thaiPct": 26,
-    "textLength": 721,
+    "thaiChars": 227,
+    "latinChars": 339,
+    "thaiPct": 40,
+    "textLength": 723,
     "hasJsonLd": false,
-    "ms": 27
+    "ms": 26
   },
   {
     "route": "/th/portfolio/work/ความหลากหลายทางชีวภาพและคุณภาพชีวิต",
@@ -1009,12 +1009,12 @@
     "title": "ความหลากหลายทางชีวภาพและคุณภาพชีวิต | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 119,
-    "latinChars": 508,
-    "thaiPct": 19,
-    "textLength": 793,
+    "thaiChars": 199,
+    "latinChars": 434,
+    "thaiPct": 31,
+    "textLength": 795,
     "hasJsonLd": false,
-    "ms": 32
+    "ms": 25
   },
   {
     "route": "/th/portfolio/work/คู่มือการป้องกันการเผาในที่โล่ง",
@@ -1024,12 +1024,12 @@
     "title": "คู่มือการป้องกันการเผาในที่โล่ง | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 287,
-    "latinChars": 393,
-    "thaiPct": 42,
-    "textLength": 831,
+    "thaiChars": 367,
+    "latinChars": 319,
+    "thaiPct": 53,
+    "textLength": 833,
     "hasJsonLd": false,
-    "ms": 27
+    "ms": 23
   },
   {
     "route": "/th/portfolio/work/โครงการการจัดการไฟป่า-ลดปัญหาหมอกควัน",
@@ -1039,12 +1039,12 @@
     "title": "โครงการการจัดการไฟป่า ลดปัญหาหมอกควัน | Mission Earth",
     "lang": "th",
     "h1": "",
-    "thaiChars": 192,
-    "latinChars": 389,
-    "thaiPct": 33,
-    "textLength": 721,
+    "thaiChars": 272,
+    "latinChars": 315,
+    "thaiPct": 46,
+    "textLength": 723,
     "hasJsonLd": false,
-    "ms": 25
+    "ms": 22
   },
   {
     "route": "/th/portfolio/year/2024",
@@ -1054,12 +1054,12 @@
     "title": "2024 | Mission Earth",
     "lang": "th",
     "h1": "2024",
-    "thaiChars": 694,
-    "latinChars": 967,
-    "thaiPct": 42,
-    "textLength": 2045,
+    "thaiChars": 774,
+    "latinChars": 893,
+    "thaiPct": 46,
+    "textLength": 2047,
     "hasJsonLd": false,
-    "ms": 28
+    "ms": 27
   },
   {
     "route": "/th/portfolio/year/2025",
@@ -1069,12 +1069,12 @@
     "title": "2025 | Mission Earth",
     "lang": "th",
     "h1": "2025",
-    "thaiChars": 465,
-    "latinChars": 1396,
-    "thaiPct": 25,
-    "textLength": 2371,
+    "thaiChars": 545,
+    "latinChars": 1322,
+    "thaiPct": 29,
+    "textLength": 2373,
     "hasJsonLd": false,
-    "ms": 31
+    "ms": 29
   },
   {
     "route": "/th/portfolio/year/2026",
@@ -1084,12 +1084,12 @@
     "title": "2026 | Mission Earth",
     "lang": "th",
     "h1": "2026",
-    "thaiChars": 201,
-    "latinChars": 1043,
-    "thaiPct": 16,
-    "textLength": 1617,
+    "thaiChars": 281,
+    "latinChars": 969,
+    "thaiPct": 22,
+    "textLength": 1619,
     "hasJsonLd": false,
-    "ms": 30
+    "ms": 108
   },
   {
     "route": "/th/services",
@@ -1099,12 +1099,12 @@
     "title": "บริการของเรา | Mission Earth",
     "lang": "th",
     "h1": "Our Services",
-    "thaiChars": 4362,
-    "latinChars": 1884,
-    "thaiPct": 70,
-    "textLength": 7216,
+    "thaiChars": 3277,
+    "latinChars": 1150,
+    "thaiPct": 74,
+    "textLength": 4959,
     "hasJsonLd": false,
-    "ms": 50
+    "ms": 132
   },
   {
     "route": "/th/survey/readiness",
@@ -1119,6 +1119,6 @@
     "thaiPct": 82,
     "textLength": 267,
     "hasJsonLd": false,
-    "ms": 21
+    "ms": 23
   }
 ]
