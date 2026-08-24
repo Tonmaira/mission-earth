@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "tagline": "Your Trusted Partner in Sustainable Growth, Empowered by Experts."
+  },
+  "about": {
+    "label": "Get to know",
+    "desc": "Mission Earth works as a trusted partner in sustainable growth, bringing together expertise, process, and people. We design learning journeys and collaborative processes that translate complexity into clarity.",
+    "button": "About Us"
+  },
+  "highlight": {
+    "label": "let's dive into",
+    "title": "OUR SERVICES",
+    "desc": "Discover the world of ESG through our multi-dimensional services, tailored for everyone from global businesses to individual explorers. From expert training and events to sustainable tourism and interactive board games, we make sustainability actionable for all.",
+    "more": "More Services",
+    "items": [
+      {
+        "tag": "Forest Bathing",
+        "title": "SUSTAINABLE TOURISM",
+        "desc": "We offer science-backed, sensory immersions that bridge the gap between nature and wellbeing.",
+        "button": "Explore"
+      },
+      {
+        "tag": "Training",
+        "title": "COURSE",
+        "desc": "Translate complexity into clarity through our collaborative ESG learning journeys.",
+        "button": "Learn more"
+      },
+      {
+        "tag": "Board Game",
+        "title": "ESG TOOLS",
+        "desc": "Making sustainability actionable for all through interactive board games and creative tools.",
+        "button": "See more"
+      }
+    ]
+  },
+  "successCase": {
+    "label": "proven impact",
+    "title": "SUCCESS CASES",
+    "desc": "From ESG training and nature camps to creative events and sustainable travel, see how we've partnered with leading organizations across Thailand to turn sustainability into action.",
+    "more": "View All Success Cases",
+    "items": [
+      {
+        "title": "Building Sustainable Communities with SCG"
+      },
+      {
+        "title": "Youth Restoring Nan's Headwater Forest"
+      },
+      {
+        "title": "Awaken All Six Senses with Nature"
+      }
+    ]
+  }
+}

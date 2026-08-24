@@ -1,0 +1,50 @@
+{
+  "eyebrow": "Explore the Sustainable",
+  "titleLine1": "Workshops",
+  "titleLine2": "& Activities",
+  "lead": "Discover thoughtfully curated experiences from us and our trusted partners",
+  "body": "Art workshops, mindfulness sessions, academic classes, wellness activities, seminars, learning trips, games, and adventures for every age.",
+  "closing": "Book the ones that inspire you, or join us as a vendor and share your own.",
+  "exploreBtn": "Explore Activities! (Soon)",
+  "vendorBtn": "Join us as Vendor! (Soon)",
+  "searchPlaceholder": "Search by Activities, Destination",
+  "searchLabel": "Search activities",
+  "tabOriginal": "Mission Earth's Original",
+  "tabAll": "All Activities",
+  "seeAll": "See All",
+  "soon": "(Soon)",
+  "originals": [
+    {
+      "title": "Forest Bathing"
+    },
+    {
+      "title": "Ekiden"
+    }
+  ],
+  "categories": [
+    {
+      "title": "Mindfulness Activities",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    },
+    {
+      "title": "Art Workshops",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    },
+    {
+      "title": "Academic Classes",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    },
+    {
+      "title": "Games Workshops",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    },
+    {
+      "title": "Adventures",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    },
+    {
+      "title": "Others",
+      "sub": "Forest Bathing, Sound Bath, Yoga, etc."
+    }
+  ]
+}

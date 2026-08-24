@@ -18,19 +18,48 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { localesForPath } from "../lib/locale.js";
+import { NAMESPACES } from "../i18n/namespaces.js";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(HERE, "..");
 const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 
 const LOCALES = ["th", "en"];
-const messages = Object.fromEntries(
-  LOCALES.map((l) => [l, read(path.join(ROOT, "messages", `${l}.json`))])
-);
 
 const problems = [];
 const fail = (msg) => problems.push({ level: "fail", msg });
 const warn = (msg) => problems.push({ level: "warn", msg });
+
+/* ── 0: ไฟล์บนดิสก์ตรงกับ NAMESPACES ไหม ───────────────────
+   สร้างไฟล์ใหม่แล้วลืมเติมชื่อใน i18n/namespaces.js = ข้อความในไฟล์นั้นจะไม่ถูกโหลดเลย
+   หน้าเว็บจะขึ้น MISSING_MESSAGE โดยที่ไฟล์ก็อยู่ตรงนั้น หาสาเหตุยากมาก */
+for (const locale of LOCALES) {
+  const dir = path.join(ROOT, "messages", locale);
+  const onDisk = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => f.replace(/\.json$/, ""));
+  for (const f of onDisk) {
+    if (!NAMESPACES.includes(f)) {
+      fail(`messages/${locale}/${f}.json มีอยู่ แต่ไม่ได้ลงทะเบียนใน i18n/namespaces.js — ข้อความในไฟล์นี้จะไม่ถูกโหลด`);
+    }
+  }
+  for (const ns of NAMESPACES) {
+    if (!onDisk.includes(ns)) fail(`ลงทะเบียน "${ns}" ไว้ แต่ไม่มีไฟล์ messages/${locale}/${ns}.json`);
+  }
+}
+
+/* โหลดหลังตรวจไฟล์แล้ว และข้าม namespace ที่ไม่มีไฟล์ — รายงานไปแล้วข้างบน
+   ถ้าโหลดก่อน สคริปต์จะตายตอนอ่านไฟล์ที่ไม่มี แล้วไม่ทันได้รายงานอะไรเลย */
+const messages = Object.fromEntries(
+  LOCALES.map((l) => [
+    l,
+    Object.fromEntries(
+      NAMESPACES.filter((ns) => fs.existsSync(path.join(ROOT, "messages", l, `${ns}.json`)))
+        .map((ns) => [ns, read(path.join(ROOT, "messages", l, `${ns}.json`))])
+    ),
+  ])
+);
 
 /* ── 1-3: เทียบไฟล์ภาษาสองไฟล์ ─────────────────────────── */
 
@@ -137,7 +166,7 @@ if (!fs.existsSync(baselinePath)) {
 
 const counts = Object.fromEntries(LOCALES.map((l) => [l, flat[l].size]));
 console.log(
-  `\n  ตรวจ ${LOCALES.map((l) => `${l} ${counts[l]} คีย์`).join(" · ")} · ` +
+  `\n  ตรวจ ${NAMESPACES.length} namespace · ${LOCALES.map((l) => `${l} ${counts[l]} คีย์`).join(" · ")} · ` +
     `คู่หน้าที่ตรวจทะเบียน ${checkedRegistry} คู่\n`
 );
 
