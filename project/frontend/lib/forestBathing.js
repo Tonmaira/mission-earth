@@ -34,6 +34,9 @@ const BANGKAJAO_GALLERY = [
   "DSC09717.jpg",
   "DSC09736.jpg",
   "DSC09790.jpg",
+  "DSC09619.jpg",
+  "DSC09833.jpg",
+  "MAP-bangkajao.png",
 ].map((file) => `/forestBathing/Bangkajao/${file}`);
 
 // รายละเอียดรายหัวข้อที่แถบไอคอนซ้ายใน modal จองใช้กระโดดไปหา (ตาม Figma)

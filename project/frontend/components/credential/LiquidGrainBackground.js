@@ -46,7 +46,14 @@ export const DEFAULT_TUNING = {
   cycle: 27, // seconds for one full left → right → left tide
 };
 
-export default function LiquidGrainBackground({ className = "", tuning }) {
+/* placement — ค่าเริ่มต้นคือคลุมทั้งจอแบบ fixed ตามที่เด็ค credential ใช้
+   หน้า home ส่ง "absolute inset-0 z-0" มาแทน เพื่อให้อยู่แค่ในกรอบ Hero
+   ไม่ใช่วิ่งอยู่หลังทั้งหน้าโดยที่ section อื่นบังไว้จนมองไม่เห็น */
+export default function LiquidGrainBackground({
+  className = "",
+  tuning,
+  placement = "fixed inset-0 -z-10",
+}) {
   const liquidRef = useRef(null);
   const grainRef = useRef(null);
   const sparkRef = useRef(null);
@@ -352,7 +359,7 @@ export default function LiquidGrainBackground({ className = "", tuning }) {
   return (
     <div
       aria-hidden="true"
-      className={`credential-bg fixed inset-0 -z-10 overflow-hidden bg-me-navy ${className}`}
+      className={`credential-bg ${placement} overflow-hidden bg-me-navy ${className}`}
     >
       <canvas
         ref={liquidRef}

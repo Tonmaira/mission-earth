@@ -1,13 +1,14 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import TranslateIcon from "@/components/TranslateIcon";
+import TranslateIcon from "@/components/icons/TranslateIcon";
 import Image from "next/image";
-import IconHamburger from "@/components/IconHamburger";
-import IconClose from "@/components/IconClose";
+import IconHamburger from "@/components/icons/IconHamburger";
+import IconClose from "@/components/icons/IconClose";
 import SocialMediaPackHorizon from "@/components/SocialMediaPackHorizon";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { useLanguageToggle } from "@/lib/useLanguageToggle";
 import { useLocalePath } from "@/lib/useLocalePath";
 
 /* เก็บเป็นคีย์ ไม่ใช่ข้อความ — เมนูนี้ใช้ร่วมกัน 8 หน้า
@@ -38,6 +39,8 @@ function NavLink({ href, label, hoverColor, textColor }) {
 export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", navLinks = DEFAULT_LINKS, solid = false }) {
   const t = useTranslations("navbar");
   const path = useLocalePath();
+  const lang = useLocale();
+  const toggleLang = useLanguageToggle();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -85,7 +88,10 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
             />
           ))}
           <div className="group flex items-center gap-2">
-            <a href="#"><TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" /></a>
+            <button onClick={toggleLang} className="flex items-center gap-1">
+              <TranslateIcon className="w-7 h-7 text-[#CEA870] group-hover:text-white transition-all duration-300" />
+              <span className="text-xs text-[#CEA870] group-hover:text-white transition-colors">{lang === "en" ? "TH" : "EN"}</span>
+            </button>
           </div>
 
           {session ? (
@@ -151,7 +157,10 @@ export default function NavbarSimple({ bg = "#002740", textColor = "#d1d5db", na
           <a href={path("/contact")}   className="text-2xl text-gray-300" onClick={() => setIsMenuOpen(false)}>{t("contact")}</a>
           <SocialMediaPackHorizon />
           <div className="pt-8 border-t border-white/10 w-4/5 flex flex-col items-center gap-4">
-            <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
+            <button onClick={toggleLang} className="flex items-center gap-2">
+              <TranslateIcon className="w-10 h-10 text-[#CEA870]" />
+              <span className="text-[#CEA870] text-lg">{lang === "en" ? "ภาษาไทย" : "English"}</span>
+            </button>
             {session ? (
               <>
                 <a href={path("/admin")} className="w-full max-w-xs border border-[#CEA870] py-4 rounded-full text-[#CEA870] text-lg font-medium text-center hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300">

@@ -2,10 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import LocaleLink from "@/components/LocaleLink";
-import IconHamburger from "@/components/IconHamburger";
-import IconClose from "@/components/IconClose";
-import TranslateIcon from "@/components/TranslateIcon";
+import IconHamburger from "@/components/icons/IconHamburger";
+import IconClose from "@/components/icons/IconClose";
+import TranslateIcon from "@/components/icons/TranslateIcon";
 import ForestBathingLocations from "@/components/ForestBathingLocations";
+import FooterSection from "@/components/FooterSection";
 import { useTranslations, useLocale } from "next-intl";
 import { useLanguageToggle } from "@/lib/useLanguageToggle";
 
@@ -254,6 +255,8 @@ export default function ForestBathingPage() {
         ตัว ForestBathingCalendar ยังใช้อยู่ในการ์ดแต่ละสถานที่ ไม่ได้ลบทิ้ง
         จะเอากลับมาตอนมีรอบเยอะพอ ก็แค่ใส่ section คืนพร้อม allSessionDates()
       */}
+
+      <FooterSection />
     </main>
   );
 }

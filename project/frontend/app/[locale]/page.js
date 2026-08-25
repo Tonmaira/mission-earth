@@ -10,6 +10,7 @@ import ExploreActivities from "@/components/ExploreActivities";
 import EarthFeedSection from "@/components/earthfeed/EarthFeedSection";
 import SuccessCaseSection from "@/components/SuccessCaseSection";
 import ScrollRestore from "@/components/ScrollRestore";
+import LiquidGrainBackground from "@/components/credential/LiquidGrainBackground";
 import { pageMetadata, seoFor } from "@/lib/seo";
 
 // metadata ของหน้านี้ — canonical กับ hreflang สร้างจาก lib/seo.js ที่เดียว
@@ -28,10 +29,14 @@ export default function Home() {
       <Navbar />
       <SocialMediaPack />
 
-      {/* --- Hero / Logo Section --- */}
-      <section className="flex flex-col items-center justify-center h-dvh w-full px-4 py-10 md:snap-start md:snap-always">
+      {/* --- Hero / Logo Section ---
+           พื้นหลังผืนน้ำมันตัวเดียวกับเด็ค credential แต่จำกัดอยู่แค่ Hero
+           ถ้าปล่อยเป็น fixed คลุมทั้งหน้า section อื่นมีพื้นหลังทึบของตัวเองอยู่แล้ว
+           จะบังจนมองไม่เห็น แถมแอนิเมชันยังวิ่งทิ้งไว้ตลอดโดยเปล่าประโยชน์ */}
+      <section className="relative flex flex-col items-center justify-center h-dvh w-full px-4 py-10 md:snap-start md:snap-always">
+        <LiquidGrainBackground placement="absolute inset-0 z-0" />
 
-  <div className="flex flex-col items-center">
+  <div className="relative z-10 flex flex-col items-center">
     <div className="relative w-70 h-25 md:w-[349.81px] md:h-[109px]"> 
       <Image
         src="/full-logo-me.svg" 
