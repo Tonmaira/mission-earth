@@ -1,5 +1,5 @@
 "use client";
-import TranslateIcon from "@/components/TranslateIcon";
+import TranslateIcon from "@/components/icons/TranslateIcon";
 import ScrollReveal from "@/components/ScrollReveal";
 import Image from "next/image";
 

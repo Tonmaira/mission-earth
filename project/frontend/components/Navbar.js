@@ -1,9 +1,9 @@
 "use client";
-import TranslateIcon from "@/components/TranslateIcon";
+import TranslateIcon from "@/components/icons/TranslateIcon";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import IconHamburger from "./IconHamburger";
-import IconClose from "./IconClose";
+import IconHamburger from "./icons/IconHamburger";
+import IconClose from "./icons/IconClose";
 import SocialMediaPackHorizon from "./SocialMediaPackHorizon";
 import { useTranslations, useLocale } from "next-intl";
 import { useLanguageToggle } from "@/lib/useLanguageToggle";

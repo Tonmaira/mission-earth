@@ -1,8 +1,8 @@
 import Image from "next/image";
 import LocaleLink from "@/components/LocaleLink";
-import IconInstagram from "@/components/IconInstagram";
-import IconFacebook from "@/components/IconFacebook";
-import IconLine from "@/components/IconLine";
+import IconInstagram from "@/components/icons/IconInstagram";
+import IconFacebook from "@/components/icons/IconFacebook";
+import IconLine from "@/components/icons/IconLine";
 
 const socials = [
   { name: "Facebook",  href: "https://www.facebook.com/profile.php?id=61567764698039", Icon: IconFacebook },

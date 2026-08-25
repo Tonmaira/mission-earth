@@ -1,7 +1,7 @@
 "use client";
-import IconInstagram from "@/components/IconInstagram";
-import IconFacebook from "@/components/IconFacebook";
-import IconLine from "@/components/IconLine";
+import IconInstagram from "@/components/icons/IconInstagram";
+import IconFacebook from "@/components/icons/IconFacebook";
+import IconLine from "@/components/icons/IconLine";
 
 export default function SocialMediaPack() {
   return (

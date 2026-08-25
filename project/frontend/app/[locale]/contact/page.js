@@ -1,8 +1,8 @@
 import NavbarSimple from "@/components/NavbarSimple";
 import FooterSection from "@/components/FooterSection";
-import IconFacebook from "@/components/IconFacebook";
-import IconInstagram from "@/components/IconInstagram";
-import IconLine from "@/components/IconLine";
+import IconFacebook from "@/components/icons/IconFacebook";
+import IconInstagram from "@/components/icons/IconInstagram";
+import IconLine from "@/components/icons/IconLine";
 import LocaleLink from "@/components/LocaleLink";
 import { pageMetadata, seoFor } from "@/lib/seo";
 
