@@ -15,6 +15,41 @@ function formatDateTH(dateStr) {
   return new Date(dateStr).toLocaleDateString("th-TH", { day: "numeric", month: "long", year: "numeric" });
 }
 
+export async function generateMetadata({ params }) {
+  const { id, locale } = await params;
+  const { data: activity } = await supabase
+    .from("activities")
+    .select("en_title, th_title, en_desc, th_desc, image_url")
+    .eq("id", id)
+    .single();
+  if (!activity) return {};
+
+  const title = (locale === "en" ? activity.en_title : activity.th_title) || activity.en_title;
+  const description = (locale === "en" ? activity.en_desc : activity.th_desc) || "";
+  const canonical = `https://www.missionearth.co/${locale}/activities/${id}`;
+
+  return {
+    title: `${title} | Mission Earth`,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: "Mission Earth",
+      images: activity.image_url ? [{ url: activity.image_url, width: 1200, height: 630, alt: title }] : [],
+      locale: locale === "en" ? "en_US" : "th_TH",
+      type: "website",
+    },
+    twitter: {
+      card: activity.image_url ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: activity.image_url ? [activity.image_url] : [],
+    },
+  };
+}
+
 export default async function ActivityDetailPage({ params }) {
   const { id } = await params;
 

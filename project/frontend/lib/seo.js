@@ -92,6 +92,10 @@ export const PAGE_SEO = {
     th: { title: "คู่มือแบรนด์", description: "แนวทางการใช้โลโก้ สี และตัวอักษรของ Mission Earth" },
     en: { title: "Brand Guide", description: "How to use the Mission Earth logo, colours, and typefaces." },
   },
+  "/activities": {
+    th: { title: "กิจกรรมทั้งหมด", description: "รวมกิจกรรมของ Mission Earth และพาร์ทเนอร์ ทั้งอบรม ทริปเรียนรู้ และกิจกรรมเพื่อความยั่งยืน" },
+    en: { title: "Activities", description: "Explore Mission Earth's activities and partner events — training, learning trips, and sustainability programmes." },
+  },
 };
 
 /** ดึงชื่อ/คำอธิบายของหน้าตาม path และภาษา — ไม่มีก็คืน undefined ให้ไปใช้ค่าเริ่มต้น */
