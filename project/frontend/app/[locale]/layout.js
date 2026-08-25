@@ -1,9 +1,12 @@
 import { Poppins, Noto_Sans_Thai } from "next/font/google";
+import Script from "next/script";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { LOCALES, isLocale, DEFAULT_LOCALE } from "@/lib/locale";
+
+const GA_MEASUREMENT_ID = "G-1N6XMXMBJF";
 
 /* บอก Next ว่ามีภาษาอะไรบ้าง เพื่อสร้างหน้าไว้ล่วงหน้าทั้งสองภาษาตอน build
    ถ้าไม่มีตัวนี้ ทุกหน้าจะกลายเป็น dynamic แล้วช้าลงทั้งเว็บ */
@@ -57,6 +60,15 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={lang} className={`${poppins.variable} ${poppinsItalic.variable} ${notoTh.variable}`}>
       <body className="font-sans antialiased bg-[#002740]">
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <NextIntlClientProvider locale={lang} messages={messages}>
           {children}
         </NextIntlClientProvider>
