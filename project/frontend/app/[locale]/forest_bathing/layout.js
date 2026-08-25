@@ -29,6 +29,7 @@ export async function generateMetadata({ params }) {
     locale,
     path: "/forest_bathing",
     keywords: KEYWORDS,
+    image: "https://www.missionearth.co/forestBathing/FBhero.png",
     ...(COPY[locale] ?? COPY.th),
   });
 }

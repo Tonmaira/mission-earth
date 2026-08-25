@@ -65,22 +65,31 @@ export function pageMetadata({ locale, path, title, description, image, keywords
  *  ข้อความการตลาดควรให้ทีมตรวจอีกรอบ — ตอนนี้เขียนจากเนื้อหาที่มีอยู่บนหน้า */
 export const PAGE_SEO = {
   "/": {
+    // ยังไม่มีรูปจริงของ Hero (มีแค่โลโก้บนพื้นแอนิเมชัน) เลยยืมรูปเคส SCG จาก
+    // SuccessCaseSection มาก่อน อย่างน้อยลิงก์แชร์ก็มีรูปขึ้น ไม่ใช่การ์ดว่าง
+    image: "https://www.missionearth.co/credential/case-scg/hero.jpg",
     th: { title: "ที่ปรึกษาด้านความยั่งยืน", description: "Mission Earth พาองค์กรลงมือเรื่องความยั่งยืนได้จริง ทั้งอบรม กิจกรรม ทริปเรียนรู้ และบอร์ดเกม" },
     en: { title: "Sustainability Partner", description: "Mission Earth turns sustainability into something your organisation can actually do — training, events, learning trips, and board games." },
   },
   "/about": {
+    // หน้านี้ไม่มีรูปแนวนอนของตัวเอง (มีแต่รูปทีมแนวตั้งกับโลโก้พาร์ทเนอร์) ยืมรูปเดียวกับหน้าแรกไปก่อน
+    image: "https://www.missionearth.co/credential/case-scg/hero.jpg",
     th: { title: "เกี่ยวกับเรา", description: "ทีม Mission Earth คือใคร ทำอะไร และทำไมเราถึงเชื่อว่าความยั่งยืนต้องจับต้องได้" },
     en: { title: "About Us", description: "Who Mission Earth is, what we do, and why we believe sustainability has to be something people can act on." },
   },
   "/services": {
+    image: "https://www.missionearth.co/image/services/2-service-training.jpg",
     th: { title: "บริการของเรา", description: "อบรม ESG จัดอีเวนต์ ทริปเรียนรู้ และบอร์ดเกมเพื่อความยั่งยืน สำหรับองค์กรทุกขนาด" },
     en: { title: "Our Services", description: "ESG training, events, learning trips, and sustainability board games for organisations of every size." },
   },
   "/portfolio": {
+    image: "https://www.missionearth.co/project/20260214rohxmeforest%20bathing/IMG_7238-2.jpg",
     th: { title: "ผลงานที่ผ่านมา", description: "โครงการความยั่งยืนที่ Mission Earth ทำร่วมกับองค์กรชั้นนำทั่วประเทศไทย" },
     en: { title: "Our Work", description: "Sustainability projects Mission Earth has delivered with leading organisations across Thailand." },
   },
   "/contact": {
+    // ไม่มีรูปเลยในหน้านี้ (มีแต่ข้อความ+ไอคอนโซเชียล) ยืมรูปเดียวกับหน้าแรกไปก่อน
+    image: "https://www.missionearth.co/credential/case-scg/hero.jpg",
     th: { title: "ติดต่อเรา", description: "คุยกับ Mission Earth เรื่องอบรม กิจกรรม หรือโครงการความยั่งยืนขององค์กรคุณ" },
     en: { title: "Contact Us", description: "Talk to Mission Earth about training, events, or a sustainability programme for your organisation." },
   },
@@ -93,12 +102,19 @@ export const PAGE_SEO = {
     en: { title: "Brand Guide", description: "How to use the Mission Earth logo, colours, and typefaces." },
   },
   "/activities": {
+    image: "https://www.missionearth.co/ActivitiesExplore/original-forestbathing-bg.jpg",
     th: { title: "กิจกรรมทั้งหมด", description: "รวมกิจกรรมของ Mission Earth และพาร์ทเนอร์ ทั้งอบรม ทริปเรียนรู้ และกิจกรรมเพื่อความยั่งยืน" },
     en: { title: "Activities", description: "Explore Mission Earth's activities and partner events — training, learning trips, and sustainability programmes." },
   },
 };
 
-/** ดึงชื่อ/คำอธิบายของหน้าตาม path และภาษา — ไม่มีก็คืน undefined ให้ไปใช้ค่าเริ่มต้น */
-export const seoFor = (path, locale) => PAGE_SEO[path]?.[isLocale(locale) ? locale : DEFAULT_LOCALE];
+/** ดึงชื่อ/คำอธิบาย(/รูป ถ้ามี)ของหน้าตาม path และภาษา — ไม่มีก็คืน undefined ให้ไปใช้ค่าเริ่มต้น
+ *  image อยู่ระดับหน้า ไม่แยกตามภาษา จึงต้องรวมเข้ากับ title/description ของภาษานั้นเอง */
+export const seoFor = (path, locale) => {
+  const entry = PAGE_SEO[path]?.[isLocale(locale) ? locale : DEFAULT_LOCALE];
+  if (!entry) return entry;
+  const { image } = PAGE_SEO[path];
+  return image ? { ...entry, image } : entry;
+};
 
 export { LOCALES };
