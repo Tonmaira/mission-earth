@@ -1,13 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+import { supabase } from "@/lib/supabase";
+import ActivityModal from "@/components/activities/ActivityModal";
 
 function formatDateTH(dateStr) {
   if (!dateStr) return "";
@@ -15,20 +12,48 @@ function formatDateTH(dateStr) {
   return d.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" });
 }
 
+/** กิจกรรมที่มีทริป (จาก admin ใหม่) เปิดเป็นป็อปอัพรายละเอียดแบบ Forest Bathing
+ *  กิจกรรมเดิมที่ยังไม่มีทริป (เพิ่มผ่านฟอร์มแบบเก่า) ยังพาไปหน้า page_url / /activities/[id] เหมือนเดิม */
+const hasTrips = (item) => (item.activity_trips?.length ?? 0) > 0;
+
+const PARAM = "activity";
+
+function ActivityModalFromUrl({ activities, onClose, onActivityChange }) {
+  const params = useSearchParams();
+  const activity = activities.find((a) => a.id === params.get(PARAM));
+  if (!activity) return null;
+  return (
+    <ActivityModal
+      activity={activity}
+      allActivities={activities.filter(hasTrips)}
+      onClose={onClose}
+      onActivityChange={onActivityChange}
+    />
+  );
+}
+
 export default function ActivitiesPage() {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     supabase
       .from("activities")
-      .select("*")
+      .select("*, activity_trips(*)")
       .order("start_date", { ascending: true })
+      .order("sort_order", { foreignTable: "activity_trips", ascending: true })
       .then(({ data }) => {
         setActivities(data ?? []);
         setLoading(false);
       });
   }, []);
+
+  const urlFor = (id) => `${pathname}?${PARAM}=${id}`;
+  const openActivity = (id) => router.push(urlFor(id), { scroll: false });
+  const switchActivity = (id) => router.replace(urlFor(id), { scroll: false });
+  const closeActivity = () => router.replace(pathname, { scroll: false });
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: "#001a2c" }}>
@@ -53,73 +78,87 @@ export default function ActivitiesPage() {
           <p className="text-center text-gray-500 py-20">ยังไม่มีกิจกรรม</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {activities.map((item) => (
-              <a
-                key={item.id}
-                href={item.page_url || `/activities/${item.id}`}
-                className="rounded-2xl overflow-hidden border border-white/5 group flex flex-col hover:border-[#CEA870]/30 transition-colors"
-                style={{ backgroundColor: "#052032" }}
-              >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden shrink-0">
-                  {item.image_url ? (
-                    <Image
-                      src={item.image_url}
-                      alt={item.en_title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-white/5 flex items-center justify-center">
-                      <svg className="w-10 h-10 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            {activities.map((item) => {
+              const rich = hasTrips(item);
+              const CardTag = rich ? "button" : "a";
+              const cardProps = rich
+                ? { type: "button", onClick: () => openActivity(item.id) }
+                : { href: item.page_url || `/activities/${item.id}` };
+
+              return (
+                <CardTag
+                  key={item.id}
+                  {...cardProps}
+                  className="text-left rounded-2xl overflow-hidden border border-white/5 group flex flex-col hover:border-[#CEA870]/30 transition-colors"
+                  style={{ backgroundColor: "#052032" }}
+                >
+                  {/* Image */}
+                  <div className="relative h-52 overflow-hidden shrink-0">
+                    {item.image_url ? (
+                      <Image
+                        src={item.image_url}
+                        alt={item.en_title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-white/5 flex items-center justify-center">
+                        <svg className="w-10 h-10 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#052032]/80 to-transparent" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5 flex flex-col gap-3 flex-1">
+                    <div className="flex-1">
+                      <p className="text-[#CEA870] text-xs uppercase tracking-widest mb-1.5">กิจกรรม</p>
+                      <h2 className="text-white font-semibold text-lg leading-snug">{item.en_title}</h2>
+                      {item.en_desc && (
+                        <p className="text-gray-400 text-sm mt-2 leading-relaxed line-clamp-3">{item.en_desc}</p>
+                      )}
+                    </div>
+
+                    {/* Date */}
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
+                      {formatDateTH(item.start_date)}
+                      {item.end_date && item.end_date !== item.start_date && <> — {formatDateTH(item.end_date)}</>}
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#052032]/80 to-transparent" />
-                </div>
 
-                {/* Content */}
-                <div className="p-5 flex flex-col gap-3 flex-1">
-                  <div className="flex-1">
-                    <p className="text-[#CEA870] text-xs uppercase tracking-widest mb-1.5">กิจกรรม</p>
-                    <h2 className="text-white font-semibold text-lg leading-snug">{item.en_title}</h2>
-                    {item.en_desc && (
-                      <p className="text-gray-400 text-sm mt-2 leading-relaxed line-clamp-3">{item.en_desc}</p>
+                    {/* Tags */}
+                    {item.en_tags?.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.en_tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-0.5 rounded-full text-[10px] border border-[#CEA870]/30 text-[#CEA870] uppercase tracking-wide"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
-
-                  {/* Date */}
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    {formatDateTH(item.start_date)}
-                    {item.end_date && item.end_date !== item.start_date && (
-                      <> — {formatDateTH(item.end_date)}</>
-                    )}
-                  </div>
-
-                  {/* Tags */}
-                  {item.en_tags?.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.en_tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-0.5 rounded-full text-[10px] border border-[#CEA870]/30 text-[#CEA870] uppercase tracking-wide"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </a>
-            ))}
+                </CardTag>
+              );
+            })}
           </div>
         )}
       </section>
+
+      <Suspense fallback={null}>
+        <ActivityModalFromUrl
+          activities={activities}
+          onClose={closeActivity}
+          onActivityChange={switchActivity}
+        />
+      </Suspense>
     </main>
   );
 }

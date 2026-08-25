@@ -1,0 +1,54 @@
+{
+  "card": {
+    "nextSession": "Next session",
+    "notOpen": "Not open for booking yet",
+    "book": "Choose a date",
+    "notify": "Notify me"
+  },
+  "booking": {
+    "activityDateTitle": "Your Activity Date",
+    "activityDateSubtitle": "Select Other Date to See Other Activities",
+    "pickFirst": "Pick a trip first",
+    "bookOn": "Book {date}",
+    "duration": "{days} days, {nights} night",
+    "durationPlural": "{days} days, {nights} nights",
+    "hour": "{hours} hour",
+    "hours": "{hours} hours"
+  },
+  "sections": {
+    "nav": {
+      "info": "Info",
+      "location": "Location",
+      "schedule": "Schedule",
+      "prepare": "Prepare",
+      "includes": "What's include",
+      "reviews": "Review",
+      "photos": "Photo"
+    },
+    "heading": {
+      "info": "About this activity",
+      "location": "Location & getting there",
+      "schedule": "Schedule",
+      "prepare": "What to prepare",
+      "includes": "What's included",
+      "reviews": "Reviews",
+      "photos": "Photos"
+    },
+    "navLabel": "Activity details",
+    "instructor": "Instructor",
+    "empty": "Details for this activity are still being prepared.",
+    "viewMap": "Open in Google Maps",
+    "viewAllPhotos": "View all {count} photos"
+  },
+  "notify": {
+    "label": "Leave your email and we will tell you the moment {name} opens for booking.",
+    "placeholder": "you@example.com",
+    "submit": "Notify me",
+    "sending": "Saving…",
+    "done": "Done! We will email you when booking opens.",
+    "already": "This email is already on the list. We will let you know when booking opens.",
+    "failed": "Could not save. Please try again.",
+    "network": "Connection failed. Please try again."
+  },
+  "close": "Close"
+}

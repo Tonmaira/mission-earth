@@ -3,6 +3,7 @@ import FooterSection from "@/components/FooterSection";
 import Image from "next/image";
 import LocaleLink from "@/components/LocaleLink";
 import { createClient } from "@supabase/supabase-js";
+import ActivityDetailPanel from "@/components/activities/ActivityDetailPanel";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -19,8 +20,9 @@ export default async function ActivityDetailPage({ params }) {
 
   const { data: activity } = await supabase
     .from("activities")
-    .select("*")
+    .select("*, activity_trips(*)")
     .eq("id", id)
+    .order("sort_order", { foreignTable: "activity_trips", ascending: true })
     .single();
 
   if (!activity) {
@@ -37,6 +39,20 @@ export default async function ActivityDetailPage({ params }) {
     .select("id, en_title, en_desc, image_url, start_date")
     .neq("id", id)
     .limit(3);
+
+  // กิจกรรมที่มีทริป (สร้างผ่านแอดมินใหม่) โชว์เป็นเนื้อหาแบบเดียวกับป็อปอัพจองใน Forest Bathing
+  // กิจกรรมเดิมที่ยังไม่มีทริปยังใช้เลย์เอาต์แบบเดิมด้านล่าง ไม่ต้องมีข้อมูลครบทุกช่องก็ใช้ได้
+  if (activity.activity_trips?.length > 0) {
+    return (
+      <main className="min-h-screen bg-[#002740] text-white">
+        <NavbarSimple />
+        <div className="px-4 pb-16 pt-[105px] sm:px-8">
+          <ActivityDetailPanel activity={activity} />
+        </div>
+        <FooterSection />
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#002740] text-white">

@@ -12,6 +12,7 @@ export const NAMESPACES = [
   "home",
   "exploreActivities",
   "forestBathing",
+  "activities",
   "about",
   "team",
 ];
