@@ -6,23 +6,128 @@
     "contact": "Contact Us"
   },
   "info": {
-    "eyebrow": "What is",
-    "title": "What is Forest Bathing?",
-    "lead": "Forest Bathing, or “Shinrin-yoku”, is the practice of spending slow, deliberate time in the forest with all five senses open. It is not a hike to conquer a summit — it is stopping, listening, smelling, touching, and letting the forest do its work on your body and mind.",
-    "points": [
+    "title": "อาบป่า | Forest Bathing | 森林浴",
+    "tagline": "Slow down for a day\nand let the forest bring you back to yourself",
+    "lead": "Forest bathing is not a hike to wear you out, and it is not a miracle cure. It is real rest for a brain worn down by screens and the city — opening all six senses, slowly. Anyone can do it: no fitness, no gear, no skills needed.",
+    "topics": [
       {
-        "title": "Walk slowly",
-        "desc": "Short distances over a long time. The point is what you notice, not how far you go."
+        "key": "what",
+        "label": "What is forest bathing",
+        "eyebrow": "Getting to know it",
+        "title": "What is forest bathing?",
+        "heading": "Forest bathing is not a hike\nit is being with the forest",
+        "lead": "Forest bathing, or shinrin-yoku (森林浴), began in Japan in 1982 when the Forestry Agency coined the term to invite people back to nature, at a time when city life was slowly eating up their time and their quiet.\nThe idea is simple: spend time in the forest slowly, with every sense open to what is right in front of you. There is no goal to reach, no summit to conquer, no distance to beat. Only you, the trees, the light, the sound, the scent, and time."
       },
       {
-        "title": "Open your senses",
-        "desc": "Listen to the forest, smell the soil and leaves, feel the bark and the wind."
+        "key": "senses",
+        "label": "The six senses in forest bathing",
+        "eyebrow": "The heart of the practice",
+        "title": "The six senses",
+        "heading": "Let the forest speak\nto every sense you have",
+        "lead": "City life teaches us to use only our eyes and our head — staring at screens, thinking, planning, deciding — until the other senses go quiet. Forest bathing opens them back up one at a time, and these are the six ways the forest brings you back to the present.",
+        "items": [
+          {
+            "name": "Eyes — seeing",
+            "desc": "Forest green is not one shade but a hundred, from the pale green of new shoots to the deep green of old leaves. Watch the light filtering through the canopy, the movement of leaves, shadows drifting slowly. Eyes used to a screen finally rest at a longer, gentler distance."
+          },
+          {
+            "name": "Ears — hearing",
+            "desc": "Leaves brushing together, birds calling from opposite directions, wind arriving in waves — and the silences in between. In the city we almost never hear a quiet that isn't cut through by engines or notifications."
+          },
+          {
+            "name": "Nose — smelling",
+            "desc": "Earth after rain, leaves, damp wood in the air. Forests also carry phytoncides, compounds trees release to protect themselves. Researchers are still studying how they may support the immune system and relaxation. We don't know everything yet, but we do know that breathing air like this genuinely settles the mind."
+          },
+          {
+            "name": "Tongue — tasting the forest",
+            "desc": "Forest air has a taste — fresher and cleaner than what you're used to. Some sessions end with a herbal tea made from the leaves around you, or seasonal wild fruit: another way of taking the forest into your body."
+          },
+          {
+            "name": "Body — holding the forest",
+            "desc": "Rest a hand on rough bark, walk barefoot on cool ground, feel the wind across your skin or the change in temperature as you step into shade. Your body registers all of this all the time. We just rarely listen to it."
+          },
+          {
+            "name": "Heart — thanking nature",
+            "desc": "When the first five senses open together, a sixth appears: an inner sense telling you that you are really here, right now. Your breath slows on its own, tight shoulders let go, racing thoughts go quiet. This is the moment many people describe as feeling like meeting themselves again."
+          }
+        ]
       },
       {
-        "title": "Guided throughout",
-        "desc": "A facilitator leads you through activities that connect you with nature along the way."
+        "key": "pillars",
+        "label": "The pillars of Nature Connect",
+        "eyebrow": "Why it works",
+        "title": "The pillars of Nature Connect",
+        "heading": "Feeling better after forest bathing is no accident",
+        "lead": "Other activities give you one pillar at a time — the gym gives you the physical, meditation rests the mind. Only forest bathing gives you all four at once, while you do nothing more than walk slowly. Behind the calm you feel are four mechanisms we can explain.",
+        "items": [
+          {
+            "name": "Physical",
+            "en": "Physical",
+            "desc": "Gentle walking, daylight that helps reset your body clock, and clean air to breathe — the effects science is most confident about: lower blood pressure and better sleep."
+          },
+          {
+            "name": "Sensory / Biochemical",
+            "en": "Sensory/Biochemical",
+            "desc": "Scent, sound, green, and the phytoncides trees release gradually wake up the senses the city had quieted."
+          },
+          {
+            "name": "Attention / Cognitive",
+            "en": "Attention/Cognitive",
+            "desc": "Nature holds your attention softly, letting the part of the brain worn out by screens and focused effort recover."
+          },
+          {
+            "name": "Social / Inspiration",
+            "en": "Social/Inspiration",
+            "desc": "Being among other people, and feeling connected to something larger than yourself, sends you home with the heart to take things on again."
+          }
+        ]
+      },
+      {
+        "key": "why",
+        "label": "Why forest bathing",
+        "eyebrow": "What nothing else replaces",
+        "title": "Why forest bathing",
+        "heading": "Everything nature gives\nin something anyone can do",
+        "lead": "Trekking gives you exercise, meditation gives you calm, diving gives you awe — but each asks for fitness, skill, or gear in return. Forest bathing gives you all of it and asks nothing of you.",
+        "items": [
+          {
+            "name": "All four pillars at once, in a single act",
+            "desc": "You don't have to switch between the gym, a meditation class, and a day off. Forest bathing folds them into one thing.\nWalk slowly and deliberately, and body, senses, mind, and heart all rest at the same time."
+          },
+          {
+            "name": "Open to everyone",
+            "desc": "No fitness, no gear, no skills. The only skill involved is slowing down and staying open. Older people, people recovering, people worn out by work, or people who have never set foot in a forest can all start on day one."
+          }
+        ]
+      },
+      {
+        "key": "benefits",
+        "label": "What you get out of it",
+        "body": "Copy coming soon"
+      },
+      {
+        "key": "how",
+        "label": "What a session is like",
+        "body": "Copy coming soon"
+      },
+      {
+        "key": "guide",
+        "label": "The role of the guide (why there's a facilitator)",
+        "body": "Copy coming soon"
+      },
+      {
+        "key": "who",
+        "label": "Who it's for",
+        "body": "Copy coming soon"
+      },
+      {
+        "key": "faq",
+        "label": "FAQ",
+        "body": "Copy coming soon"
       }
-    ]
+    ],
+    "senseNo": "Sense {n}",
+    "strengthNo": "Strength {n}"
   },
   "locations": {
     "eyebrow": "Locations",
@@ -175,7 +280,9 @@
     "nextSession": "Next session",
     "notOpen": "Not open for booking yet",
     "book": "Choose a date",
-    "notify": "Notify me"
+    "notify": "Notify me",
+    "details": "Details",
+    "finished": "This session has ended"
   },
   "booking": {
     "activityDateTitle": "Your Activity Date",
@@ -187,7 +294,8 @@
     "duration": "{days} days, {nights} night",
     "durationPlural": "{days} days, {nights} nights",
     "hour": "{hours} hour",
-    "hours": "{hours} hours"
+    "hours": "{hours} hours",
+    "contact": "Ask us for details"
   },
   "sections": {
     "nav": {

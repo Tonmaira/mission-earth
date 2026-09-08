@@ -126,7 +126,11 @@ export const LOCATIONS = [
     posterRatio: 2048 / 1365, // ไม่มี posterImage จึงใช้ image ตัวเดียวกันเป็นปก
     isOpen: false,
     withRoh: true,
-    trips: [],
+    trips: [], // ยังไม่มีรอบ → การ์ดขึ้นปุ่ม "รายละเอียด" แล้วใน modal ให้ทักไลน์
+    gallery: MOCK_GALLERY, // MOCK: รอรูปจริงของดอยตุง
+    instructors: ["roh", "khemupsorn"], // MOCK: รอทีมยืนยันว่าใครเป็นผู้นำกิจกรรมที่ดอยตุง
+    // TODO: รอเนื้อหาจริงจากทีม — ใส่ตามรูปแบบที่คอมเมนต์ไว้บน LOCATIONS
+    // ระหว่างนี้แต่ละหัวข้อจะขึ้น "กำลังจัดเตรียมรายละเอียด" ใน modal เหมือน Chet Kot
   },
 ];
 
@@ -182,6 +186,16 @@ export function nextTrip(location, today = new Date()) {
       .sort((a, b) => a.start.localeCompare(b.start))[0] ?? null
   );
 }
+
+/** จองได้จริงไหม — ต้องเปิดจองอยู่ และยังมีรอบที่ยังไม่จบ
+ *  ที่เหลือ (ยังไม่เปิดจอง หรือรอบผ่านไปหมดแล้ว) การ์ดจะเป็นปุ่ม "รายละเอียด"
+ *  แล้วใน modal ให้ทักไลน์ถามแทนปุ่มจอง */
+export const isBookable = (location, today = new Date()) =>
+  Boolean(location.isOpen && nextTrip(location, today));
+
+/** รอบจัดครบไปแล้ว (เคยมีรอบ แต่ผ่านไปหมด) — ต่างจาก "ยังไม่เปิดรับสมัคร" ที่ยังไม่เคยมีรอบเลย */
+export const isFinished = (location, today = new Date()) =>
+  location.trips.length > 0 && !nextTrip(location, today);
 
 const TH_MONTHS = [
   "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",

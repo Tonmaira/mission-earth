@@ -6,6 +6,7 @@ import IconHamburger from "@/components/icons/IconHamburger";
 import IconClose from "@/components/icons/IconClose";
 import TranslateIcon from "@/components/icons/TranslateIcon";
 import ForestBathingLocations from "@/components/ForestBathingLocations";
+import ForestBathingTopics from "@/components/ForestBathingTopics";
 import FooterSection from "@/components/FooterSection";
 import { useTranslations, useLocale } from "next-intl";
 import { useLanguageToggle } from "@/lib/useLanguageToggle";
@@ -43,11 +44,35 @@ function LangToggle({ className = "" }) {
   );
 }
 
-function BookNowBadge({ className = "" }) {
+function BookNowBadge({ className = "", heightClass = "h-[42px]" }) {
   return (
     <a href={BOOK_URL} className={`block shrink-0 transition-transform duration-300 hover:scale-110 ${className}`}>
-      <Image src={`${BASE}/BookNow.svg`} alt="Book Now" width={54} height={42} priority className="h-[42px] w-auto" />
+      <Image src={`${BASE}/BookNow.svg`} alt="Book Now" width={54} height={42} priority className={`${heightClass} w-auto`} />
     </a>
+  );
+}
+
+// การ์ดจองโผล่ 2 ที่: ก่อนเนื้อหา 9 หัวข้อ และปิดท้ายอีกรอบหลังอ่านจบ
+// id="locations" ใส่ได้แค่อันบน — navbar กับปุ่ม Book Now ชี้มาที่นั่น
+function LocationsSection({ id }) {
+  const t = useTranslations();
+
+  return (
+    <section id={id} className="scroll-mt-[74px] px-6 py-28">
+      <div className="mx-auto max-w-[1321px]">
+        <h2 className="text-[24px] font-bold leading-tight text-[#FDF164]">
+          {t("forestBathing.locations.title")}
+        </h2>
+        <p className="mt-1 text-[16px] text-white">
+          {t("forestBathing.locations.lead")}
+        </p>
+
+        <div className="mt-6">
+          {/* modal อ่านจาก URL ให้ชุดบนเรนเดอร์ตัวเดียวพอ ไม่งั้นเปิดทริปแล้วได้ modal ซ้อนกัน 2 อัน */}
+          <ForestBathingLocations withModal={Boolean(id)} />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -206,48 +231,49 @@ export default function ForestBathingPage() {
       </section>
 
       {/* What is Forest Bathing */}
-      {/* TODO: copy ยังเป็นร่าง รอข้อความจริงจากทีม — แก้ได้ที่ messages/{en,th}.json */}
       <section id="info" className="scroll-mt-[74px] px-6 py-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[14px] uppercase tracking-[0.3em] text-[#CEA870]">
-            {t("forestBathing.info.eyebrow")}
-          </p>
-          <h2 className="mt-3 text-[36px] leading-tight text-white sm:text-[44px]">
+        <div className="mx-auto flex max-w-[1344px] flex-col items-center gap-14 sm:gap-[85px]">
+          <h2 className="text-center text-[26px] font-semibold leading-tight text-[#FDF164] sm:text-[32px] lg:text-[40px]">
             {t("forestBathing.info.title")}
           </h2>
-          <p className="mt-6 text-[16px] leading-relaxed text-white/70">
-            {t("forestBathing.info.lead")}
-          </p>
-        </div>
 
-        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-10 sm:grid-cols-3">
-          {t.raw("forestBathing.info.points").map((point, i) => (
-            <div key={point.title} className="text-center">
-              <span className="text-[14px] tracking-widest text-[#CEA870]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-2 text-[20px] text-white">{point.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-white/60">{point.desc}</p>
+          {/* เส้นคั่นล่างอยู่ติดกับก้อนนี้ตาม Figma ไม่ใช่ขอบล่างของทั้ง section */}
+          <div className="flex w-full max-w-[765px] flex-col items-center gap-[30px] border-b-2 border-[#FDF164] pb-10">
+            <p className="whitespace-pre-line text-center text-[20px] leading-normal text-[#FDF164] sm:text-[24px]">
+              {t("forestBathing.info.tagline")}
+            </p>
+            <p className="max-w-[700px] text-center text-[15px] leading-relaxed text-[#FDF164] sm:text-[16px]">
+              {t("forestBathing.info.lead")}
+            </p>
+
+            <BookNowBadge heightClass="h-[80px]" />
+
+            <div className="flex max-w-[765px] flex-wrap items-start justify-center gap-2">
+              {t.raw("forestBathing.info.topics").map((topic) => (
+                <a
+                  key={topic.key}
+                  href={`#info-${topic.key}`}
+                  className="rounded-[22px] border border-[#FDF164] px-4 py-2 text-[15px] font-semibold text-[#FDF164] transition-colors duration-200 hover:bg-[#FDF164] hover:text-[#002740] sm:text-[16px]"
+                >
+                  {topic.label}
+                </a>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
       {/* Locations */}
-      <section id="locations" className="scroll-mt-[74px] px-6 py-28">
-        <div className="mx-auto max-w-[1321px]">
-          <h2 className="text-[24px] font-bold leading-tight text-[#FDF164]">
-            {t("forestBathing.locations.title")}
-          </h2>
-          <p className="mt-1 text-[16px] text-white">
-            {t("forestBathing.locations.lead")}
-          </p>
+      <LocationsSection id="locations" />
 
-          <div className="mt-6">
-            <ForestBathingLocations />
-          </div>
-        </div>
+      {/* เนื้อหาของ 9 หัวข้อ — pill ใน #info เป็น anchor เลื่อนลงมาที่นี่
+          วางไว้หลังการ์ด locations เพื่อให้คนเจอปุ่มจองก่อน แล้วค่อยอ่านรายละเอียด */}
+      <section className="px-6">
+        <ForestBathingTopics />
       </section>
+
+      {/* Locations (ซ้ำ) — ปิดท้ายหน้าด้วยการ์ดจอง คนอ่านรายละเอียดจบแล้วกดจองต่อได้เลย */}
+      <LocationsSection />
 
       {/*
         เอา section ปฏิทินรวมออกแล้ว — ยังมีรอบน้อยเกินไป (ปฏิทิน 4 เดือนเพื่อโชว์ 2 วัน)

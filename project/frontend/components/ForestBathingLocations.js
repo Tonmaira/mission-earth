@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useRef, useId, Suspense } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import ForestBathingCalendar from "@/components/ForestBathingCalendar";
@@ -12,12 +12,18 @@ import {
   INSTRUCTORS,
   LOCATIONS,
   formatTrip,
+  isBookable,
+  isFinished,
   nextTrip,
   tripDates,
   tripLength,
   tripAndLocationForDate,
   openLocationDates,
 } from "@/lib/forestBathing";
+
+// ไลน์ Mission Earth — ตัวเดียวกับที่หน้า /contact ใช้
+// ทริปที่จองไม่ได้แล้ว (จบไปแล้ว/ยังไม่เปิด) ให้ทักมาถามทางนี้แทนปุ่มจอง
+const LINE_URL = "https://lin.ee/MDN9uJ4";
 
 /** "2 วัน 1 คืน" / "2 days, 1 night" — เลือก key ให้ถูกพจน์ตอนคืนมากกว่า 1
  *  ทริปวันเดียวที่มี trip.hours (เช่น Urban Forest Bathing) โชว์เป็นจำนวนชั่วโมงแทน */
@@ -138,6 +144,7 @@ function LocationCard({ location, onOpen }) {
   const { name, region, blurb } = useLocationText(location.id);
   const duration = useTripDuration();
   const next = nextTrip(location);
+  const bookable = isBookable(location);
 
   return (
     <button
@@ -165,7 +172,7 @@ function LocationCard({ location, onOpen }) {
         {/* NOTE: Figma ไม่มีบรรทัดสถานะกับปุ่มนี้ แต่หน้านี้มีไว้เพื่อจอง
             ถ้าไม่มี คนจะแยกไม่ออกว่าที่ไหนเปิด/ไม่เปิด และไม่มีอะไรให้กด */}
         <div className="mt-4 flex flex-col gap-3 border-t border-white/20 pt-4">
-          {location.isOpen && next ? (
+          {bookable ? (
             <div className="flex flex-col gap-0.5">
               <p className="text-[14px] text-[#FCF063]">
                 {t("forestBathing.card.nextSession")} · {formatTrip(next, lang)}
@@ -173,17 +180,19 @@ function LocationCard({ location, onOpen }) {
               <p className="text-[13px] text-white/50">{duration(next)}</p>
             </div>
           ) : (
-            <p className="text-[14px] text-white/50">{t("forestBathing.card.notOpen")}</p>
+            <p className="text-[14px] text-white/50">
+              {t(isFinished(location) ? "forestBathing.card.finished" : "forestBathing.card.notOpen")}
+            </p>
           )}
 
           <span
             className={`inline-block rounded-full px-5 py-2 text-center text-[14px] font-medium transition-colors ${
-              location.isOpen
+              bookable
                 ? "bg-[#FCF063] text-[#002740] group-hover:bg-white"
                 : "border border-white/40 text-white/80 group-hover:border-[#FCF063] group-hover:text-[#FCF063]"
             }`}
           >
-            {location.isOpen ? t("forestBathing.card.book") : t("forestBathing.card.notify")}
+            {bookable ? t("forestBathing.card.book") : t("forestBathing.card.details")}
           </span>
         </div>
       </div>
@@ -191,8 +200,28 @@ function LocationCard({ location, onOpen }) {
   );
 }
 
+/** ปุ่มทักไลน์ — ขึ้นแทนปุ่มจองในทริปที่จองไม่ได้แล้ว (จบไปแล้ว หรือยังไม่เปิดรอบ) */
+function LineContactButton({ className = "" }) {
+  const t = useTranslations();
+
+  return (
+    <a
+      href={LINE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-block rounded-lg bg-[#FDF164] px-8 py-3 text-center text-[15px] font-medium text-[#484848] transition-colors hover:bg-[#f5e94f] ${className}`}
+    >
+      {t("forestBathing.booking.contact")}
+    </a>
+  );
+}
+
+// พักไว้ก่อน — ตอนนี้ที่ที่ยังไม่เปิดรอบใช้ปุ่มทักไลน์แทน
+// ถ้าจะเอาฟอร์มแจ้งเตือนกลับมา ก็วางคู่กับปุ่มในแถบท้าย modal ได้ (API /api/forest-bathing/notify ยังอยู่)
 function NotifyForm({ location, name }) {
   const t = useTranslations();
+  // การ์ดชุดนี้ถูกเรนเดอร์ซ้ำได้หลายที่ในหน้าเดียว id ตายตัวจะชนกัน label เลยไปโฟกัสช่องแรกเสมอ
+  const emailId = useId();
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle"); // idle | sending | done | error
   const [message, setMessage] = useState("");
@@ -238,12 +267,12 @@ function NotifyForm({ location, name }) {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-3">
-      <label htmlFor="notify-email" className="text-[14px] text-[#484848]/70">
+      <label htmlFor={emailId} className="text-[14px] text-[#484848]/70">
         {t("forestBathing.notify.label", { name })}
       </label>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input
-          id="notify-email"
+          id={emailId}
           type="email"
           required
           value={email}
@@ -1058,6 +1087,7 @@ function LocationModal({ location, onClose, onLocationChange }) {
   const eyebrow = viewLocation.campaignEyebrow ?? "Mission Earth";
   const title = viewLocation.campaignTitle ?? name;
   const poster = viewLocation.posterImage ?? viewLocation.image;
+  const bookable = isBookable(viewLocation);
 
   return (
     <div
@@ -1096,87 +1126,80 @@ function LocationModal({ location, onClose, onLocationChange }) {
           </button>
         </div>
 
-        {viewLocation.isOpen ? (
-          <>
-            {/* บนมือถือ (คอลัมน์เดียว) ทั้งบล็อกนี้ scroll รวมกัน — บนจอกว้าง โปสเตอร์กับปฏิทิน scroll อิสระจากกัน (ดู sm:overflow-y-auto ในแต่ละคอลัมน์) */}
-            <div
-              ref={mobileScrollRef}
-              className="flex min-h-0 flex-1 flex-col overflow-y-auto sm:flex-row sm:overflow-hidden"
-            >
-              <PosterPanel
-                viewLocation={viewLocation}
-                poster={poster}
-                knownPosterRatio={viewLocation.posterRatio}
-                eyebrow={eyebrow}
-                title={title}
-                name={name}
-                region={region}
-                blurb={blurb}
-                selectedTrip={selectedTrip}
-                gallery={viewLocation.gallery ?? []}
-                onOpenGallery={(i = 0) => setGalleryIndex(i)}
-              />
+        {/* ทุกสถานที่ใช้หน้าตาเดียวกันหมด ที่ยังไม่เปิดรอบก็เห็นรายละเอียดครบ
+            หัวข้อไหนยังไม่มีเนื้อหาจะขึ้น "กำลังจัดเตรียมรายละเอียด" ให้เอง */}
+        {/* บนมือถือ (คอลัมน์เดียว) ทั้งบล็อกนี้ scroll รวมกัน — บนจอกว้าง โปสเตอร์กับปฏิทิน scroll อิสระจากกัน (ดู sm:overflow-y-auto ในแต่ละคอลัมน์) */}
+        <div
+          ref={mobileScrollRef}
+          className="flex min-h-0 flex-1 flex-col overflow-y-auto sm:flex-row sm:overflow-hidden"
+        >
+          <PosterPanel
+            viewLocation={viewLocation}
+            poster={poster}
+            knownPosterRatio={viewLocation.posterRatio}
+            eyebrow={eyebrow}
+            title={title}
+            name={name}
+            region={region}
+            blurb={blurb}
+            selectedTrip={selectedTrip}
+            gallery={viewLocation.gallery ?? []}
+            onOpenGallery={(i = 0) => setGalleryIndex(i)}
+          />
 
-              <ActivityCalendarPanel selectedTrip={selectedTrip} onSelectDate={handleSelectDate} />
-            </div>
+          <ActivityCalendarPanel selectedTrip={selectedTrip} onSelectDate={handleSelectDate} />
+        </div>
 
-            {/* แถบราคา + ปุ่มจอง — ปักอยู่นอก scroll เห็นตลอด. location.registerUrl ยังเป็น placeholder "#" สำหรับบางสถานที่ (lib/forestBathing.js) */}
-            <div className="flex shrink-0 flex-col gap-3 border-t border-black/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
-                {selectedTrip?.price && (
-                  <p className="flex items-baseline gap-2 text-[16px] font-semibold text-[#484848]">
-                    {/* ราคาเต็มขีดฆ่านำหน้า แล้วตามด้วยราคาจริงกับ % ที่ลด —
-                        ทั้งสองชิ้นขึ้นเฉพาะทริปที่ตั้ง fullPrice ไว้เท่านั้น
-                        ทริปที่ไม่ได้ลดราคาจะเห็นแค่ราคาเดียวเหมือนเดิม */}
-                    {discountPct(selectedTrip) > 0 && (
-                      <span className="text-[13px] font-normal text-[#828282] line-through">
-                        {formatPrice(selectedTrip.fullPrice)}
-                      </span>
-                    )}
-                    <span>{formatPrice(selectedTrip.price)}</span>
-                    {discountPct(selectedTrip) > 0 && (
-                      <span className="text-[13px] font-semibold text-[#0F8C82]">
-                        (-{discountPct(selectedTrip)}%)
-                      </span>
-                    )}
-                  </p>
+        {/* แถบราคา + ปุ่มจอง — ปักอยู่นอก scroll เห็นตลอด. location.registerUrl ยังเป็น placeholder "#" สำหรับบางสถานที่ (lib/forestBathing.js) */}
+        <div className="flex shrink-0 flex-col gap-3 border-t border-black/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+            {selectedTrip?.price && (
+              <p className="flex items-baseline gap-2 text-[16px] font-semibold text-[#484848]">
+                {/* ราคาเต็มขีดฆ่านำหน้า แล้วตามด้วยราคาจริงกับ % ที่ลด —
+                    ทั้งสองชิ้นขึ้นเฉพาะทริปที่ตั้ง fullPrice ไว้เท่านั้น
+                    ทริปที่ไม่ได้ลดราคาจะเห็นแค่ราคาเดียวเหมือนเดิม */}
+                {discountPct(selectedTrip) > 0 && (
+                  <span className="text-[13px] font-normal text-[#828282] line-through">
+                    {formatPrice(selectedTrip.fullPrice)}
+                  </span>
                 )}
-                {selectedTrip && (
-                  <p className="text-[12px] text-[#484848]/70">
-                    {duration(selectedTrip)} · {formatTrip(selectedTrip, lang)}
-                  </p>
+                <span>{formatPrice(selectedTrip.price)}</span>
+                {discountPct(selectedTrip) > 0 && (
+                  <span className="text-[13px] font-semibold text-[#0F8C82]">
+                    (-{discountPct(selectedTrip)}%)
+                  </span>
                 )}
-              </div>
-
-              {selectedTrip ? (
-                <a
-                  href={viewLocation.registerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg bg-[#FDF164] px-8 py-3 text-center text-[15px] font-medium text-[#484848] transition-colors hover:bg-[#f5e94f]"
-                >
-                  {t("forestBathing.booking.bookOn", { date: formatTrip(selectedTrip, lang) })}
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  className="rounded-lg bg-[#FDF164] px-8 py-3 text-[15px] font-medium text-[#484848] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {t("forestBathing.booking.pickFirst")}
-                </button>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-10">
-            <h3 className="text-[24px] font-semibold leading-tight text-[#484848]">{name}</h3>
-            <p className="mt-1 text-[16px] text-[#828282]">{region}</p>
-            <p className="mb-8 mt-3 text-[14px] font-light text-[#484848]/70">{blurb}</p>
-
-            <NotifyForm location={viewLocation} name={name} />
+              </p>
+            )}
+            {selectedTrip && (
+              <p className="text-[12px] text-[#484848]/70">
+                {duration(selectedTrip)} · {formatTrip(selectedTrip, lang)}
+              </p>
+            )}
           </div>
-        )}
+
+          {/* รอบจบไปแล้วก็ไม่มีอะไรให้จอง เหลือแค่ให้ทักไลน์มาถาม */}
+          {!bookable ? (
+            <LineContactButton />
+          ) : selectedTrip ? (
+            <a
+              href={viewLocation.registerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg bg-[#FDF164] px-8 py-3 text-center text-[15px] font-medium text-[#484848] transition-colors hover:bg-[#f5e94f]"
+            >
+              {t("forestBathing.booking.bookOn", { date: formatTrip(selectedTrip, lang) })}
+            </a>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="rounded-lg bg-[#FDF164] px-8 py-3 text-[15px] font-medium text-[#484848] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {t("forestBathing.booking.pickFirst")}
+            </button>
+          )}
+        </div>
       </div>
 
       {galleryOpen && (
@@ -1206,7 +1229,10 @@ function BookingModalFromUrl({ onClose, onLocationChange }) {
   );
 }
 
-export default function ForestBathingLocations() {
+/** withModal=false ไว้ใช้ตอนเรนเดอร์การ์ดซ้ำในหน้าเดียว
+ *  modal อ่านสถานะจาก URL ล้วน ๆ ถ้าปล่อยให้ทุกชุดเรนเดอร์เอง จะได้ modal ซ้อนกันหลายอัน
+ *  ตัวมันเป็น fixed overlay อยู่แล้ว เรนเดอร์จากชุดไหนก็เหมือนกัน */
+export default function ForestBathingLocations({ withModal = true }) {
   const router = useRouter();
   const pathname = usePathname();
   const path = useLocalePath();
@@ -1228,9 +1254,11 @@ export default function ForestBathingLocations() {
         ))}
       </div>
 
-      <Suspense fallback={null}>
-        <BookingModalFromUrl onClose={closeTrip} onLocationChange={switchTrip} />
-      </Suspense>
+      {withModal && (
+        <Suspense fallback={null}>
+          <BookingModalFromUrl onClose={closeTrip} onLocationChange={switchTrip} />
+        </Suspense>
+      )}
     </>
   );
 }
