@@ -60,8 +60,19 @@ function Group({ label, rows }) {
  * @param newTab  open the pages in a new tab. The deck sets this: a row there
  *   leads out to the public site, and a presenter mid-pitch should not lose
  *   their place in the deck to follow one.
+ * @param columns  2 (default) splits the groups across two columns; 1 runs
+ *   them down a single one. The A4 export uses 1 — a printed sheet is narrow
+ *   enough that two columns leave no title room and wrap nearly every line.
+ * @param showYears  the YEARS group at the end. Off for the A4 export, where
+ *   the sheet is a list of the works themselves.
  */
-export default function WorksIndexList({ showHeading = true, newTab = false, className = "" }) {
+export default function WorksIndexList({
+  showHeading = true,
+  newTab = false,
+  columns = 2,
+  showYears = true,
+  className = "",
+}) {
   const away = newTab ? { target: "_blank", rel: "noreferrer" } : {};
 
   const groups = [
@@ -76,20 +87,24 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
         ),
       })),
     })),
-    {
-      label: "Years",
-      rows: activeYears().map((year) => ({
-        key: `year-${year}`,
-        node: (
-          <LocaleLink href={`/portfolio/year/${year}`} className={rowClass} {...away}>
-            {year}
-          </LocaleLink>
-        ),
-      })),
-    },
+    ...(showYears
+      ? [
+          {
+            label: "Years",
+            rows: activeYears().map((year) => ({
+              key: `year-${year}`,
+              node: (
+                <LocaleLink href={`/portfolio/year/${year}`} className={rowClass} {...away}>
+                  {year}
+                </LocaleLink>
+              ),
+            })),
+          },
+        ]
+      : []),
   ].filter((group) => group.rows.length > 0);
 
-  const [left, right] = splitColumns(groups);
+  const layout = columns === 1 ? [groups] : splitColumns(groups);
 
   return (
     <div className={`flex flex-col gap-8 ${className}`}>
@@ -101,8 +116,12 @@ export default function WorksIndexList({ showHeading = true, newTab = false, cla
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 lg:gap-x-24">
-        {[left, right].map((column, i) => (
+      <div
+        className={`grid grid-cols-1 gap-x-16 gap-y-10 lg:gap-x-24 ${
+          columns === 2 ? "md:grid-cols-2" : ""
+        }`}
+      >
+        {layout.map((column, i) => (
           <div key={i} className="flex flex-col gap-9">
             {column.map((group) => (
               <Group key={group.label} label={group.label} rows={group.rows} />

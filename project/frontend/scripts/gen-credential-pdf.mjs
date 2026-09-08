@@ -323,6 +323,28 @@ async function renderDeck(browser, origin, slug) {
   }
 }
 
+/*
+ * /portfolio/print — just WorksIndexList, no images and no responsive slide
+ * chrome, so none of renderDeck's viewport/breakpoint/lazy-image handling
+ * applies. @page in print.css already pins the sheet to A4.
+ */
+async function renderPortfolioIndex(browser, origin) {
+  const page = await browser.newPage();
+  try {
+    await page.setViewport({ width: 900, height: 1200 });
+    await page.goto(`${origin}/portfolio/print`, { waitUntil: "networkidle0", timeout: 60_000 });
+    await page.evaluateHandle("document.fonts.ready");
+
+    return await page.pdf({
+      printBackground: true,
+      // ใช้ @page { size: A4 } ใน print.css
+      preferCSSPageSize: true,
+    });
+  } finally {
+    await page.close();
+  }
+}
+
 async function main() {
   const decks = await decksToRender();
   await mkdir(OUT_DIR, { recursive: true });
@@ -350,7 +372,15 @@ async function main() {
       const kb = Math.round(pdf.length / 1024);
       console.log(`  ✓ ${deck.file} — ${kb}KB in ${((Date.now() - started) / 1000).toFixed(1)}s`);
     }
-    console.log(`[credential pdf] เสร็จแล้ว ${decks.length} ไฟล์ อยู่ใน public/credential-pdf/`);
+    const indexStarted = Date.now();
+    const indexPdf = await renderPortfolioIndex(browser, server.origin);
+    const indexFile = "mission-earth-all-works-index.pdf";
+    await writeFile(path.join(OUT_DIR, indexFile), indexPdf);
+    console.log(
+      `  ✓ ${indexFile} — ${Math.round(indexPdf.length / 1024)}KB in ${((Date.now() - indexStarted) / 1000).toFixed(1)}s`
+    );
+
+    console.log(`[credential pdf] เสร็จแล้ว ${decks.length + 1} ไฟล์ อยู่ใน public/credential-pdf/`);
   } finally {
     await browser?.close();
     await server?.close();

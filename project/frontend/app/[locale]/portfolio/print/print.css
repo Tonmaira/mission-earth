@@ -1,0 +1,34 @@
+/*
+ * /portfolio/print exists to be exported as an A4 PDF (see
+ * scripts/gen-credential-pdf.mjs) — nobody browses to it. It renders the same
+ * WorksIndexList /portfolio and the credential deck already show, as one long
+ * single column, with the YEARS group dropped (both are props on the list).
+ *
+ * The sheet is narrow, and the goal is one work per line — a title that wraps
+ * reads as two entries. So the side margins are tight and the gutter the group
+ * label sits in is cut right down to what the labels actually need, handing the
+ * rest of the width to the titles.
+ */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+  html,
+  body {
+    background: #002740;
+  }
+}
+
+/*
+ * Not inside @media print: the export renders the page as it looks on screen,
+ * and these want to hold either way so what you see at /portfolio/print is
+ * what lands in the PDF.
+ *
+ * The gutter is WorksIndexList's own `pr-[9rem]` (144px), sized for the wide
+ * deck slide. Here that is width the longest Thai titles need in order to stay
+ * on one line, and the labels are short enough to live in far less.
+ */
+.portfolio-print ul {
+  padding-right: 5.5rem;
+}
