@@ -76,7 +76,9 @@ export default function FooterSection() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10 py-5 px-6 md:px-[144px]">
+      {/* pb เผื่อ safe-area ให้หน้าที่เป็น viewport-fit=cover (เช่น /forest_bathing)
+          ไม่ให้แถบล่างของเบราว์เซอร์ทับบรรทัดนี้ — หน้าอื่น env() คืน 0 จึงไม่มีอะไรเปลี่ยน */}
+      <div className="border-t border-white/10 px-6 pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] md:px-[144px]">
         <p className="text-white/30 text-[12px] text-center">
           © {new Date().getFullYear()} Mission Earth Co., Ltd. All rights reserved.
         </p>

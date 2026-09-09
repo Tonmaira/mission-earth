@@ -1,7 +1,12 @@
 import { pageMetadata } from "@/lib/seo";
 
+/* viewport-fit=cover ให้หน้าเว็บวาดยาวลอดใต้แถบของ Safari
+   บน iOS 26 แถบล่างจึงกลายเป็นกระจกลอยทับเนื้อหาแทนแถบทึบที่ถูกย้อมด้วย themeColor
+   (พื้นหลังหน้านี้เป็น gradient แบบ fixed ก้นจอเป็นม่วงเสมอ ย้อมสีเดียวให้ตรงทั้งบนล่างไม่ได้)
+   แลกกับต้องกัน safe-area เองที่ navbar กับ footer — ดู env(safe-area-inset-*) ในไฟล์เหล่านั้น */
 export const viewport = {
   themeColor: "#002740",
+  viewportFit: "cover",
 };
 
 /* title ขึ้นต้นด้วย "อาบป่า" เพราะเป็นคำที่คนไทยใช้ค้นจริง

@@ -121,12 +121,14 @@ export default function ForestBathingPage() {
 
       {/* Top bar — พื้นหลังชิดขอบบน/ข้าง ไล่ #002740 จาก 100% ลงมาเป็น 0
           ทั้งแผ่นเฟดเข้า-ออกตาม scroll (navBg) จึงไม่กระตุก */}
-      <nav className="fixed inset-x-0 top-0 z-50 p-4">
+      {/* pt เผื่อ safe-area เพราะหน้านี้เป็น viewport-fit=cover แถบสถานะเลยทับลงมาถึงตรงนี้
+          (บนเบราว์เซอร์ที่ไม่ได้อยู่โหมดนั้น env() คืน 0 ระยะจึงเท่าเดิม) */}
+      <nav className="fixed inset-x-0 top-0 z-50 px-4 pb-4 pt-[calc(1rem+env(safe-area-inset-top))]">
         {/* สูง 120px (เกินตัว navbar 74px) เพื่อให้มีที่ไล่จาง
             ทึบ 100% ถึง 50% ของความสูง = คลุมตัวหนังสือเมนูจนพ้น แล้วค่อยจางเป็น 0 */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[120px] bg-[linear-gradient(180deg,rgba(0,39,64,1)_0%,rgba(0,39,64,1)_50%,rgba(0,39,64,0)_100%)]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[calc(120px+env(safe-area-inset-top))] bg-[linear-gradient(180deg,rgba(0,39,64,1)_0%,rgba(0,39,64,1)_50%,rgba(0,39,64,0)_100%)]"
           style={{ opacity: navBg }}
         />
 
@@ -191,7 +193,7 @@ export default function ForestBathingPage() {
         <button
           onClick={() => setIsMenuOpen(false)}
           aria-label="Close menu"
-          className="absolute right-4 top-4 p-1 text-[#FCF063] active:scale-90 transition-transform"
+          className="absolute right-4 top-[calc(1rem+env(safe-area-inset-top))] p-1 text-[#FCF063] active:scale-90 transition-transform"
         >
           <IconClose size={32} />
         </button>
