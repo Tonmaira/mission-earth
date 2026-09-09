@@ -295,7 +295,8 @@
     "durationPlural": "{days} days, {nights} nights",
     "hour": "{hours} hour",
     "hours": "{hours} hours",
-    "contact": "Ask us for details"
+    "contact": "Ask us for details",
+    "forPeople": "For {people}"
   },
   "sections": {
     "nav": {

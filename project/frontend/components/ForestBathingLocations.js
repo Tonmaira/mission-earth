@@ -11,6 +11,7 @@ import { useLocalePath } from "@/lib/useLocalePath";
 import {
   INSTRUCTORS,
   LOCATIONS,
+  orderedLocations,
   formatTrip,
   isBookable,
   isFinished,
@@ -77,10 +78,12 @@ const formatPrice = (n) => `THB ${n.toLocaleString("en-US")}`;
  * ส่วนลดเป็น % จากราคาเต็ม ปัดเป็นจำนวนเต็ม — คำนวณสด ไม่ได้เก็บไว้ในข้อมูล
  * เพื่อไม่ให้ตัวเลข % ค้างเป็นค่าเก่าเวลามีคนแก้ราคาแล้วลืมแก้ %
  * คืน 0 เมื่อไม่ได้ตั้งราคาเต็มไว้ หรือราคาเต็มไม่ได้สูงกว่าราคาขาย
+ *
+ * รับได้ทั้งตัว trip เองและ trip.bundle เพราะทั้งคู่มีคู่ fullPrice/price เหมือนกัน
  */
-const discountPct = (trip) => {
-  const full = Number(trip?.fullPrice) || 0;
-  const now = Number(trip?.price) || 0;
+const discountPct = (priced) => {
+  const full = Number(priced?.fullPrice) || 0;
+  const now = Number(priced?.price) || 0;
   if (!full || !now || full <= now) return 0;
   return Math.round(((full - now) / full) * 100);
 };
@@ -1152,28 +1155,50 @@ function LocationModal({ location, onClose, onLocationChange }) {
 
         {/* แถบราคา + ปุ่มจอง — ปักอยู่นอก scroll เห็นตลอด. location.registerUrl ยังเป็น placeholder "#" สำหรับบางสถานที่ (lib/forestBathing.js) */}
         <div className="flex shrink-0 flex-col gap-3 border-t border-black/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
-            {selectedTrip?.price && (
-              <p className="flex items-baseline gap-2 text-[16px] font-semibold text-[#484848]">
-                {/* ราคาเต็มขีดฆ่านำหน้า แล้วตามด้วยราคาจริงกับ % ที่ลด —
-                    ทั้งสองชิ้นขึ้นเฉพาะทริปที่ตั้ง fullPrice ไว้เท่านั้น
-                    ทริปที่ไม่ได้ลดราคาจะเห็นแค่ราคาเดียวเหมือนเดิม */}
-                {discountPct(selectedTrip) > 0 && (
-                  <span className="text-[13px] font-normal text-[#828282] line-through">
-                    {formatPrice(selectedTrip.fullPrice)}
+          <div className="flex flex-col gap-0.5">
+            <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+              {selectedTrip?.price && (
+                <p className="flex items-baseline gap-2 text-[16px] font-semibold text-[#484848]">
+                  {/* ราคาเต็มขีดฆ่านำหน้า แล้วตามด้วยราคาจริงกับ % ที่ลด —
+                      ทั้งสองชิ้นขึ้นเฉพาะทริปที่ตั้ง fullPrice ไว้เท่านั้น
+                      ทริปที่ไม่ได้ลดราคาจะเห็นแค่ราคาเดียวเหมือนเดิม */}
+                  {discountPct(selectedTrip) > 0 && (
+                    <span className="text-[13px] font-normal text-[#828282] line-through">
+                      {formatPrice(selectedTrip.fullPrice)}
+                    </span>
+                  )}
+                  <span>{formatPrice(selectedTrip.price)}</span>
+                  {discountPct(selectedTrip) > 0 && (
+                    <span className="text-[13px] font-semibold text-[#0F8C82]">
+                      (-{discountPct(selectedTrip)}%)
+                    </span>
+                  )}
+                </p>
+              )}
+              {selectedTrip && (
+                <p className="text-[12px] text-[#484848]/70">
+                  {duration(selectedTrip)} · {formatTrip(selectedTrip, lang)}
+                </p>
+              )}
+            </div>
+
+            {/* โปรมากันหลายคน — บรรทัดของตัวเองใต้ราคาเดี่ยว จะได้ไม่เบียดกันบนจอกว้าง */}
+            {selectedTrip?.bundle?.price && (
+              <p className="flex flex-wrap items-baseline gap-x-2 text-[13px] text-[#484848]">
+                <span className="font-medium">
+                  {t("forestBathing.booking.forPeople", { people: selectedTrip.bundle.people })}
+                </span>
+                {discountPct(selectedTrip.bundle) > 0 && (
+                  <span className="text-[#828282] line-through">
+                    {formatPrice(selectedTrip.bundle.fullPrice)}
                   </span>
                 )}
-                <span>{formatPrice(selectedTrip.price)}</span>
-                {discountPct(selectedTrip) > 0 && (
-                  <span className="text-[13px] font-semibold text-[#0F8C82]">
-                    (-{discountPct(selectedTrip)}%)
+                <span className="font-semibold">{formatPrice(selectedTrip.bundle.price)}</span>
+                {discountPct(selectedTrip.bundle) > 0 && (
+                  <span className="font-semibold text-[#0F8C82]">
+                    (-{discountPct(selectedTrip.bundle)}%)
                   </span>
                 )}
-              </p>
-            )}
-            {selectedTrip && (
-              <p className="text-[12px] text-[#484848]/70">
-                {duration(selectedTrip)} · {formatTrip(selectedTrip, lang)}
               </p>
             )}
           </div>
@@ -1249,7 +1274,7 @@ export default function ForestBathingLocations({ withModal = true }) {
   return (
     <>
       <div className="grid w-full grid-cols-1 gap-[17px] md:grid-cols-3">
-        {LOCATIONS.map((l) => (
+        {orderedLocations().map((l) => (
           <LocationCard key={l.id} location={l} onOpen={openTrip} />
         ))}
       </div>

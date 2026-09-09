@@ -295,7 +295,8 @@
     "durationPlural": "{days} วัน {nights} คืน",
     "hour": "{hours} ชั่วโมง",
     "hours": "{hours} ชั่วโมง",
-    "contact": "สอบถามรายละเอียดเพิ่มเติม"
+    "contact": "สอบถามรายละเอียดเพิ่มเติม",
+    "forPeople": "{people} ท่าน"
   },
   "sections": {
     "nav": {

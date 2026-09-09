@@ -85,9 +85,13 @@ export const INSTRUCTORS = {
 //
 // instructors: ["<id ใน INSTRUCTORS>", ...] — ใส่กี่คนก็ได้ เรียงตามที่อยากให้โชว์
 // ไม่ใส่ / ใส่ array ว่าง = ไม่ขึ้นแถวผู้นำกิจกรรมเลย
+// order = ลำดับการ์ดบนหน้าเว็บ เลขน้อยขึ้นก่อน ใช้เลขอะไรก็ได้ขอแค่เรียงถูก
+// อยากสลับการ์ดก็แก้แค่ตัวเลข ไม่ต้องยกก้อนข้อมูลทั้งบล็อกขึ้นลง
+// ไม่ใส่ = ไปต่อท้าย เรียงตามที่เขียนไว้ในไฟล์นี้
 export const LOCATIONS = [
   {
     id: "chet-kot",
+    order: 3,
     image: "/forestBathing/ASP_VisualWalkAndRun-138.jpg",
     posterImage: "/forestBathing/ROH-forest-to-soul-original.jpg", // โปสเตอร์แคมเปญที่โชว์ในป็อปอัพจอง (ต่างจาก image ที่ใช้บนการ์ด)
     posterRatio: 1920 / 800,
@@ -105,14 +109,19 @@ export const LOCATIONS = [
 
   {
     id: "urban-bangkok",
-    image: "/forestBathing/shinrin-yogu1st-1.png",
-    posterImage: "/forestBathing/shinrin-yogu-ggf-banner.png", // ปกในป็อปอัพจอง (การ์ดยังใช้ image ตัวบน)
+    order: 1,
+    image: "/forestBathing/shinrin-yogu-ggf-cover-2.png",
+    posterImage: "/forestBathing/shinrin-yogu-ggf-banner-2.png", // ปกในป็อปอัพจอง (การ์ดยังใช้ image ตัวบน)
     posterRatio: 2400 / 755,
     isOpen: true,
     // fullPrice = ราคาเต็มก่อนลด ใส่เมื่อไหร่ราคานั้นจะขึ้นขีดฆ่าคู่กับ % ที่ลด
     // ให้อัตโนมัติ (% คำนวณสดจากสองตัวเลขนี้ ไม่ต้องกรอกเอง) ทริปไหนไม่ลดราคา
     // ก็ไม่ต้องใส่ จะโชว์ราคาเดียวเหมือนเดิม
-    trips: [{ start: "2026-08-30", end: "2026-08-30", hours: 2, fullPrice: 1590, price: 990 }], // 08.00–10.00 น.
+    //
+    // bundle = โปรมากันหลายคน ขึ้นเป็นอีกบรรทัดใต้ราคาเดี่ยวในแถบราคาของ modal
+    // มี fullPrice/price ชุดของตัวเอง เพราะราคาเต็มของแพ็กไม่จำเป็นต้องเท่ากับราคาเดี่ยวคูณจำนวนคน
+    // ทริปไหนไม่มีโปรก็ไม่ต้องใส่ แถบราคาจะเหลือบรรทัดเดียวเหมือนเดิม
+    trips: [{ start: "2026-09-20", end: "2026-09-20", hours: 2, fullPrice: 1590, price: 1590, bundle: { people: 2, fullPrice: 3180, price: 2890 } }], // 08.00–10.00 น.
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfK2ur5n-kLubB92sQdtvAUjgmrbrdbKL24H4BvEeJ0WWY_UQ/viewform?usp=publish-editor", // TODO: ใส่ลิงก์รับสมัครจริง (เช่น Google Form) ของ Urban Forest Bathing
     gallery: BANGKAJAO_GALLERY,
     instructors: ["yanudchara"],
@@ -122,6 +131,7 @@ export const LOCATIONS = [
 
   {
     id: "doi-tung",
+    order: 2,
     image: "/forestBathing/DSC07655-2.jpg",
     posterRatio: 2048 / 1365, // ไม่มี posterImage จึงใช้ image ตัวเดียวกันเป็นปก
     isOpen: false,
@@ -133,6 +143,10 @@ export const LOCATIONS = [
     // ระหว่างนี้แต่ละหัวข้อจะขึ้น "กำลังจัดเตรียมรายละเอียด" ใน modal เหมือน Chet Kot
   },
 ];
+
+/** วันในรูปแบบ "2026-09-20" — nextTrip กับ openLocationDates ต้องใช้เกณฑ์เดียวกัน
+ *  ไม่งั้นการ์ดกับปฏิทินจะไม่ตรงกันว่ารอบไหน "ผ่านไปแล้ว" */
+const isoOf = (date) => date.toISOString().slice(0, 10);
 
 const addDays = (iso, n) => {
   const [y, m, d] = iso.split("-").map(Number);
@@ -153,16 +167,28 @@ export function tripLength(trip) {
   return { days, nights: Math.max(0, days - 1) };
 }
 
+/** สถานที่เรียงตามลำดับที่อยากให้โชว์ (ดูฟิลด์ order บน LOCATIONS)
+ *  แยกจาก LOCATIONS เพราะลำดับที่โชว์ไม่จำเป็นต้องเป็นลำดับเดียวกับที่เขียนในไฟล์ */
+export const orderedLocations = () =>
+  LOCATIONS.map((location, i) => ({ location, order: location.order ?? Infinity, i }))
+    .sort((a, b) => a.order - b.order || a.i - b.i)
+    .map((entry) => entry.location);
+
 /** ทุกวันที่มีกิจกรรมของสถานที่หนึ่ง */
 export const locationDates = (location) => location.trips.flatMap(tripDates);
 
 /** ทุกวันที่มีกิจกรรม จากทุกสถานที่ — เผื่อใช้กับปฏิทินรวม */
 export const allSessionDates = () => LOCATIONS.flatMap(locationDates);
 
-/** ทุกวันที่มีกิจกรรม จากสถานที่ที่เปิดจองแล้วเท่านั้น
- *  ใช้โชว์เป็น event date ในปฏิทินของ modal จองเดียว ให้ข้ามไปเลือกทริปของสถานที่อื่นได้เลย */
-export const openLocationDates = () =>
-  LOCATIONS.filter((l) => l.isOpen).flatMap(locationDates);
+/** ทุกวันที่ยังจองได้ จากสถานที่ที่เปิดจองแล้ว
+ *  ใช้โชว์เป็น event date ในปฏิทินของ modal จองเดียว ให้ข้ามไปเลือกทริปของสถานที่อื่นได้เลย
+ *  รอบที่ผ่านไปแล้วไม่ติดมาด้วย เพราะในปฏิทินมันจะขึ้นกรอบชวนให้กด ทั้งที่กดไปก็จองไม่ได้ */
+export const openLocationDates = (today = new Date()) => {
+  const iso = isoOf(today);
+  return LOCATIONS.filter((l) => l.isOpen).flatMap((l) =>
+    l.trips.filter((t) => t.end >= iso).flatMap(tripDates)
+  );
+};
 
 /** ทริปที่ครอบวันนี้ (ใช้ตอนกดวันในปฏิทิน) */
 export const tripForDate = (location, iso) =>
@@ -179,7 +205,7 @@ export function tripAndLocationForDate(iso) {
 
 /** ทริปถัดไปที่ยังไม่จบ — null ถ้าไม่มี */
 export function nextTrip(location, today = new Date()) {
-  const todayIso = today.toISOString().slice(0, 10);
+  const todayIso = isoOf(today);
   return (
     location.trips
       .filter((t) => t.end >= todayIso)
