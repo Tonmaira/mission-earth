@@ -5,6 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
 import ServicePopup from '@/components/ServicePopup';
 import { ServicesCard } from '@/components/ServiceData';
+import LocaleLink from '@/components/LocaleLink';
+
+const LINE_URL = "https://lin.ee/MDN9uJ4";
+
+/* ปุ่มท้ายการ์ดบริการ — ปกติพาไปทักไลน์
+   บริการที่มีหน้าของตัวเองแล้ว (ใส่ href ไว้ใน ServiceData) ให้เข้าหน้านั้นแทน
+   ใช้ LocaleLink เพื่อให้ติดภาษาไปด้วย จะได้ไม่ต้องวิ่งผ่าน 308 ของ /forest_bathing */
+function TagCta({ tag, className, children }) {
+  if (tag?.href) {
+    return <LocaleLink href={tag.href} className={className}>{children}</LocaleLink>;
+  }
+
+  return (
+    <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  );
+}
 
 
 export default function SlideServices() {
@@ -199,17 +217,15 @@ export default function SlideServices() {
                 <p className="text-[11px] text-gray-400 mb-6 font-regular italic leading-tight">"{tag.summary}"</p>
           
           {/* --- more information (Mobile) --- */}
-            <a
-                href="https://lin.ee/MDN9uJ4"
-                target="_blank"
-                rel="noopener noreferrer"
+            <TagCta
+                tag={tag}
                 className="w-full py-3 rounded-full border border-[#CEA870] text-[#CEA870] text-[10px] font-bold uppercase tracking-[0.2em] active:bg-[#CEA870] active:text-[#002740] transition-all flex items-center justify-center gap-2 mb-2 mt-2"
             >
                 <span>ติดต่อสอบถาม</span>
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-            </a>
+            </TagCta>
 
             </div>
             </div>
@@ -363,12 +379,9 @@ export default function SlideServices() {
 
       
             {/* more information */}
-                <motion.a
-                    href="https://lin.ee/MDN9uJ4"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <TagCta
+                    tag={currentData.tags[activeTagIndex]}
                     className="group flex items-center gap-3 border border-[#CEA870] text-[#CEA870] px-10 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#CEA870] hover:text-[#002740] transition-all duration-300"
                 >
                     <span>ติดต่อสอบถาม</span>
@@ -378,7 +391,8 @@ export default function SlideServices() {
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                </motion.a>
+                </TagCta>
+                </motion.div>
                 </motion.div>
             </AnimatePresence>
             </div>

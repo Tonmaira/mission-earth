@@ -51,6 +51,9 @@ export const ServicesCard = [
     tags: [
       { name: "อาบป่า (Forest Bathing / Shinrin-yoku Experience)", 
         tagImage: "/image/services/10-sustaintravel-forest.jpg",
+        // มีหน้าของตัวเองแล้ว ปุ่มท้ายการ์ดจึงพาเข้าหน้านั้นแทนการทักไลน์
+        // บริการอื่นไม่ต้องใส่ href ปุ่มจะพาไปไลน์เหมือนเดิม
+        href: "/forest_bathing",
         icon: <span className="w-2 h-2 bg-[#CEA870]" />, 
         summary: "ประสบการณ์การพักผ่อนและเยียวยาจิตใจผ่านธรรมชาติ ฝึกการรับรู้ด้วยประสาทสัมผัสและเชื่อมโยงกับสิ่งแวดล้อมอย่างลึกซึ้ง",
         detail: { lang: "ไทย", time: "2 วัน 1 คืน", type: "walk2", tool: "blank2" } },
