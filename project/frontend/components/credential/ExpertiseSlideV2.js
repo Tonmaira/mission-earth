@@ -21,19 +21,19 @@ const LENSES = [
     copy: "ESG & scientific expertise.",
   },
   {
-    lens: "nature",
-    title: "Nature Connected",
-    copy: "Deep understanding of the living world.",
+    lens: "creative",
+    title: "Creative & Communication",
+    copy: "We make sustainability tangible, visible, and trusted.",
   },
   {
     lens: "people",
     title: "People Engagement",
-    copy: "Turning insight into collective action.",
+    copy: "We bridge understanding and real-world behavior.",
   },
   {
-    lens: "creative",
-    title: "Creative & Communication",
-    copy: "Turning complexity into compelling stories.",
+    lens: "nature",
+    title: "Ecological Expertise",
+    copy: "We address impacts on nature and ecosystems.",
   },
 ];
 

@@ -51,7 +51,7 @@ export const SCG_PRAYOTSUK = {
   label: "ประโยชน์สุข · SCG",
   title: "ประโยชน์สุข",
   quote: "“เอสซีจีร่วมสร้างชุมชนยั่งยืน”",
-  photo: { src: "/credential/case-scg/hero.jpg", alt: "ประโยชน์สุข" },
+  photo: { src: "/profilecredential/case_scg_prayoth.jpg", alt: "ประโยชน์สุข" },
   meta: [
     { label: "Client", value: "SCG" },
     { label: "Timeline", value: "11 months", sub: "Jan to Nov 2025" },
@@ -183,7 +183,7 @@ export const WATER_WORKSHOP = {
   stats: [
     { figure: "200+", label: "Engagement" },
     { figure: "24K+", label: "Reach" },
-    { figure: "30+", label: "Concept Proposals" },
+    { figure: "32/34", label: "Approved Projects" },
   ],
   catalystMix: { core: 34, action: 66, traceability: 0 },
   catalyst: [
@@ -216,17 +216,18 @@ export const FOREST_BATHING = {
   photo: { src: "/profilecredential/expertise_nature.jpg", alt: "กิจกรรม Forest Bathing ในป่า" }, // no hero photo supplied yet
   meta: [
     { label: "Client", value: "Royal Orchid Holidays (ROH)" },
-    { label: "Timeline", value: "3 months", sub: "Dec 2025 to Feb 2026" },
+    { label: "Trips Completed", value: "3" },
+    { label: "Destinations", value: "Chiangrai, Saraburi" },
+    { label: "Timeline", value: "8 months", sub: "Dec 2025 to Present" },
     { label: "Target", value: "ประชาชนทั่วประเทศ" },
   ],
   sdgGoals: [3, 15, 8],
   stats: [
-    { figure: "30+", label: "Engagement" },
+    { figure: "64", label: "Engagement" },
     { figure: "500K+", label: "Reach" },
-    { figure: "฿300k", label: "To Local Hands" },
-    { figure: "90%", label: "CSAT" },
+    { figure: "฿550k", label: "To Local Hands" },
   ],
-  catalystMix: { core: 40, action: 60, traceability: 0 },
+  catalystMix: { core: 35, action: 55, traceability: 10 },
   catalyst: [
     {
       key: "core",
@@ -243,8 +244,8 @@ export const FOREST_BATHING = {
     {
       key: "traceability",
       name: "TRACEABILITY",
-      lead: "",
-      body: "",
+      lead: "Communicate the Impact with Evidence",
+      body: "Post-Activity Survey",
     },
   ],
 };
