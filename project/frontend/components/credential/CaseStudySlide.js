@@ -205,7 +205,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
                 {/* `whitespace-pre-line`: the source sheet uses real line breaks
                     inside a cell (a two-line client name, say) and HTML would
                     otherwise run them together into one paragraph */}
-                <dd className="w-[68%] whitespace-pre-line text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
+                <dd className="w-[68%] shrink-0 whitespace-pre-line text-sm font-semibold md:text-[15px] 3xl:text-[19px]!">
                   {m.value}
                   {m.sub && (
                     <span className="block text-xs font-normal md:text-[13px] 3xl:text-[17px]!">
@@ -235,7 +235,7 @@ export default function CaseStudySlide({ study, preparedFor }) {
                 how many goals a case cites, so one goal and eight goals both
                 just read as a short row of badges.
               */}
-              <dd className="w-[68%]">
+              <dd className="w-[68%] shrink-0">
                 <div className="grid w-fit grid-cols-4 gap-2">
                   {goals.map((g) => (
                     <Image
