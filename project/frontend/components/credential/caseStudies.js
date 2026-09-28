@@ -1,3 +1,5 @@
+import { clientCaseIds } from "./clients";
+
 /**
  * Case-study content for the deck's "ผลงาน" slides, kept out of the component
  * the way partnerLogos.js is — one object per case, so a second case is a new
@@ -286,6 +288,106 @@ export const BKKCAW_2025 = {
       name: "TRACEABILITY",
       lead: "Monitoring & Measurement, Reporting & Data, Communication",
       body: "ประเมินความรู้ก่อน-หลังㆍจัดทำสื่อเผยแพร่ผลงานทาง social media",
+    },
+  ],
+};
+
+/**
+ * โครงการการจัดการไฟป่า ลดปัญหาหมอกควัน — งานเดียวกับรายการชื่อเดียวกันใน
+ * works.js ซึ่งชี้กลับมาที่นี่ด้วย `caseId: "wildfire"`
+ *
+ * กรอกไว้เท่าที่ชีตงานรู้จริง: ลูกค้า กลุ่มเป้าหมาย ปีที่ทำ และตัวเลขสองตัว
+ * ส่วน C·A·T กับ SDGs ยังรอเนื้อหา — ทุกบล็อกที่ยังว่างสไลด์ซ่อนให้เอง เคสที่
+ * ยังไม่เสร็จจึงออกมาเป็นสไลด์ที่สั้นกว่าเพื่อน ไม่ใช่สไลด์ที่มีช่องโหว่
+ */
+export const WILDFIRE = {
+  id: "wildfire",
+  label: "จัดการไฟป่า",
+  title: "โครงการการจัดการไฟป่า",
+  quote: "ลดปัญหาหมอกควัน",
+  photo: {
+    src: "/profilecredential/case_wildfire.jpg",
+    alt: "ลงพื้นที่ดูงานจัดการไฟป่ากับชุมชนจังหวัดเชียงใหม่",
+  },
+  meta: [
+    {
+      label: "Client",
+      value:
+        "กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม\nกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม",
+    },
+    { label: "Timeline", value: "4 months", sub: "Jan to April 2024" },
+    { label: "Target", value: "ผู้เกี่ยวข้องและประชาชนจังหวัดเชียงใหม่" },
+  ],
+  sdgGoals: [3, 4, 11, 13],
+  stats: [
+    { figure: "300+", label: "Engagement" },
+    { figure: "1000+", label: "Reach" },
+  ],
+  catalystMix: { core: 43, action: 33, traceability: 24 },
+  catalyst: [
+    {
+      key: "core",
+      name: "CORE",
+      lead: "Assessment & Baseline, Strategy & Framework, Foundational Training",
+      body: "จัดทำฐานข้อมูลไฟป่าในภาคเหนือㆍออกแบบหลักสูตรㆍบรรยายเรื่องการจัดการไฟป่า",
+    },
+    {
+      key: "action",
+      name: "ACTION",
+      lead: "Skill Development, Experiential Learning, Field Implementation",
+      body: "อบรมชุมชนด้านการจัดการไฟป่าㆍจัด Workshop แนวทางลดปัญหาหมอกควันㆍลงพื้นที่ดูงาน",
+    },
+    {
+      key: "traceability",
+      name: "TRACEABILITY",
+      lead: "Monitoring & Measurement, Reporting & Data",
+      body: "ประเมินผลการจัดกิจกรรมㆍจัดทำรายงาน",
+    },
+  ],
+};
+
+export const BIOCOURSE = {
+  id: "biocourse",
+  label: "biocourse",
+  title: "BioCourse",
+  quote: "โครงการพัฒนาหลักสูตรด้านการอนุรักษ์และใช้ประโยชน์จากความหลากหลายทางชีวภาพเพื่อการเสริมสร้างศักยภาพองค์กรปกครองส่วนท้องถิ่น",
+  photo: {
+    src: "/profilecredential/case_biocourse.jpg",
+    alt: "บรรยายหลักสูตรความหลากหลายทางชีวภาพให้เจ้าหน้าที่และผู้บริหารท้องถิ่น",
+  },
+  meta: [
+    {
+      label: "Client",
+      value:
+        "ศูนย์บริการวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย",
+    },
+    { label: "Timeline", value: "7 months", sub: "Jan to Jul 2025" },
+    { label: "Target", value: "เจ้าหน้าที่ และผู้บริหารท้องถิ่น ในพื้นที่ต้นแบบ จังหวัดน่าน และสระบุรี" },
+  ],
+  sdgGoals: [4, 12, 15],
+  stats: [
+    { figure: "305", label: "Engagement" },
+    { figure: "1000", label: "Reach" },
+  ],
+  catalystMix: { core: 33, action: 27, traceability: 40 },
+  catalyst: [
+    {
+      key: "core",
+      name: "CORE",
+      lead: "Strategy & Framework, Foundational Training",
+      body: "ออกแบบหลักสูตรㆍบรรยายให้ความรู้เรื่องความหลากหลายทางชีวภาพ",
+    },
+    {
+      key: "action",
+      name: "ACTION",
+      lead: "Experiential Learning, Tools & Media",
+      body: "จัด Workshop และจัดทำเครื่องมือเพื่อการเรียนรู้เรื่องความหลากหลายทางชีวภาพ",
+    },
+    {
+      key: "traceability",
+      name: "TRACEABILITY",
+      lead: "Monitoring & Measurement, Reporting & Data, Communication",
+      body: "ประเมินผลการจัดกิจกรรมㆍจัดทำรายงานㆍทำเอกสารเผยแพร่",
     },
   ],
 };
