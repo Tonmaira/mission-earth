@@ -305,4 +305,33 @@ export const CASE_STUDIES = [
   WATER_WORKSHOP,
   FOREST_BATHING,
   BKKCAW_2025,
+  WILDFIRE,
+  BIOCOURSE,
 ];
+
+/**
+ * The cases one link should show, in the order it should show them.
+ *
+ * The generic /credential deck, and any client whose entry doesn't pick,
+ * gets CASE_STUDIES as it stands. A client that picks gets exactly its list
+ * — see the `cases` note in clients.js.
+ *
+ * An id nothing answers to throws rather than quietly dropping a slide: the
+ * deck is a thing we send to a client, and a typo in a slug is far cheaper to
+ * find here than to notice mid-pitch.
+ */
+export function casesFor(client) {
+  const picked = clientCaseIds(client);
+  if (!picked) return CASE_STUDIES;
+
+  return picked.map((id) => {
+    const study = caseById(id);
+    if (!study) {
+      throw new Error(
+        `clients.js: "${client}" asks for the case "${id}", which no case in ` +
+          `caseStudies.js has. Known ids: ${CASE_STUDIES.map((c) => c.id).join(", ")}`
+      );
+    }
+    return study;
+  });
+}

@@ -5,7 +5,7 @@ import CatModelSlide from "./CatModelSlide";
 import ClientBriefSlide from "./ClientBriefSlide";
 import ContactSlide from "./ContactSlide";
 import CoverSlide from "./CoverSlide";
-import { CASE_STUDIES } from "./caseStudies";
+import { casesFor } from "./caseStudies";
 import { clientBrief } from "./clientBriefs";
 import DeckShell from "./DeckShell";
 import ExpertiseSlideV2 from "./ExpertiseSlideV2";
@@ -21,7 +21,9 @@ import WorksIndexSlide from "./WorksIndexSlide";
  *
  * Every slide is a <Slide>; `scrollable` marks the ones allowed to grow past a
  * viewport and `bleed` the ones that lay out their own full frame. The case
- * studies come from caseStudies.js, so their number and order live there.
+ * studies come from caseStudies.js, so their number and order live there —
+ * unless the clients.js entry behind this link picks its own set, which is
+ * what casesFor() resolves.
  *
  * `preparedFor` is decided by the route: blank on /credential, and the name
  * behind a client's own link on /credential/<slug>. See clients.js.
@@ -70,7 +72,7 @@ export default function CredentialDeck({ preparedFor = "", client = "" }) {
         </Slide>
 
         {/* 07+ — case studies, from the Figma frame at node 34:161 */}
-        {CASE_STUDIES.map((study) => (
+        {casesFor(client).map((study) => (
           <Slide
             key={study.id}
             id={study.id}
