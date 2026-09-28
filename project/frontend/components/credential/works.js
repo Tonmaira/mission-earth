@@ -297,6 +297,7 @@ const SHEET_WORKS = [
   {
     slug: "biocourse",
     title: "BIOCOURSE",
+    caseId: "biocourse",
     quote: "โครงการพัฒนาหลักสูตรด้านการอนุรักษ์และใช้ประโยชน์จากความหลากหลายทางชีวภาพเพื่อการเสริมสร้างศักยภาพองค์กรปกครองส่วนท้องถิ่น",
     client: "Biodiversity-Based Economy Development Office (BEDO)\nin collaboration with Chulalongkorn University",
     target: "เจ้าหน้าที่ และผู้บริหารท้องถิ่น ในพื้นที่ต้นแบบ จังหวัดน่าน และสระบุรี",
