@@ -32,7 +32,17 @@
 
 export const CLIENTS = {
   "001osot": "Osotspa Public Company Limited",
-  "MFLF": { name: "มูลนิธิแม่ฟ้าหลวง ในพระบรมราชูปถัมภ์", cases: ["scg-prayotsuk", "wildfire", "biocourse", "water-workshop", "dek-sang-nan-1", "forest-bathing"] },
+  "mflfa690d9": {
+    name: "มูลนิธิแม่ฟ้าหลวง ในพระบรมราชูปถัมภ์",
+    cases: [
+      "scg-prayotsuk",
+      "wildfire",
+      "biocourse",
+      "water-workshop",
+      "dek-sang-nan-1",
+      "forest-bathing",
+    ],
+  },
 };
 
 /** A client's entry in one shape, whichever of the two was written above. */
