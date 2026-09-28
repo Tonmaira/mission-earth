@@ -299,7 +299,7 @@ const SHEET_WORKS = [
     title: "BIOCOURSE",
     caseId: "biocourse",
     quote: "โครงการพัฒนาหลักสูตรด้านการอนุรักษ์และใช้ประโยชน์จากความหลากหลายทางชีวภาพเพื่อการเสริมสร้างศักยภาพองค์กรปกครองส่วนท้องถิ่น",
-    client: "Biodiversity-Based Economy Development Office (BEDO)\nin collaboration with Chulalongkorn University",
+    client: "ศูนย์บริการวิชาการแห่งจุฬาลงกรณ์มหาวิทยาลัย",
     target: "เจ้าหน้าที่ และผู้บริหารท้องถิ่น ในพื้นที่ต้นแบบ จังหวัดน่าน และสระบุรี",
     type: "COURSE",
     timeline: "2025",
@@ -307,8 +307,8 @@ const SHEET_WORKS = [
     description: "",
     year: 2025,
     provinces: ["TH-55", "TH-19"],
-    reach: 250,
-    engagement: 250,
+    reach: 1_000,
+    engagement: 305,
   },
   {
     slug: "pathways-to-a-sustainable-urban-future",
@@ -388,7 +388,7 @@ const SHEET_WORKS = [
     description: "",
     year: 2024,
     provinces: ["TH-50", "TH-51", "TH-57"],
-    reach: 300,
+    reach: 1_000,
     engagement: 300,
   },
   {
