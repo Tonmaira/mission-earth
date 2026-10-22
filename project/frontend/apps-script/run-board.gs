@@ -17,7 +17,7 @@
  */
 
 // แท็บที่หน้าเว็บอ่านและเขียนได้ กับคอลัมน์ขวาสุดที่ยอมให้เขียน
-var SHEETS = { 'Progress': 7, 'Commu Plan': 5 };
+var SHEETS = { 'Progress': 8, 'Commu Plan': 5 }; // Progress H = ดาว
 var LOG_SHEET = 'Web Log';
 
 function doGet(e) {

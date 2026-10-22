@@ -141,3 +141,15 @@ test("เพิ่มขั้นต่อท้ายคิว และไม�
   // บรรทัดว่างหรือขึ้นบรรทัดเกินในช่องเดิมไม่กลายเป็นขั้นผี
   assert.deepEqual(parseSteps({ status: "", next: "สั่ง packaging\nสั่งทำสติกเกอร์\n" }).queue, ["สั่ง packaging", "สั่งทำสติกเกอร์"]);
 });
+
+test("ช่องดาว (H) มีอะไรอยู่ = ติดดาว รวมถึงแถวเก่าที่ยังไม่มีคอลัมน์นี้", () => {
+  const rows = [
+    row("ลำดับ", "รายการ", "", "", "", "", "Done"),
+    row("1", "Productions"),
+    [...row("", "เสื้อ", "", "", "", "", "FALSE"), "★"],
+    [...row("", "หมวก", "", "", "", "", "FALSE"), "x"],
+    row("", "เหรียญ", "", "", "", "", "FALSE"), // 7 ช่อง: ข้อมูลจากสคริปต์รุ่นก่อนมีคอลัมน์ดาว
+  ];
+  const [cat] = parseProgress(rows).categories;
+  assert.deepEqual(cat.items.map((t) => t.starred), [true, true, false]);
+});

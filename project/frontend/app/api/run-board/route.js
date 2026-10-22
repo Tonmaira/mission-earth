@@ -10,7 +10,7 @@ import { timingSafeEqual } from "node:crypto";
 
 export const dynamic = "force-dynamic";
 
-const SHEETS = { Progress: 7, "Commu Plan": 5 };
+const SHEETS = { Progress: 8, "Commu Plan": 5 };
 
 function authorized(request) {
   const expected = process.env.RUN_BOARD_TOKEN || "";

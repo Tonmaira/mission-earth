@@ -15,7 +15,8 @@
 export const SHEETS = { progress: "Progress", commu: "Commu Plan" };
 
 // คอลัมน์ของแท็บ Progress (เริ่มที่ 1 แบบ Sheet)
-export const P = { no: 1, name: 2, detail: 3, status: 4, next: 5, owner: 6, done: 7 };
+// star (H) เพิ่มทีหลัง: มีอะไรอยู่ในช่อง (ปกติคือ ★) = ติดดาว ทีมพิมพ์เองใน Sheet ก็ได้
+export const P = { no: 1, name: 2, detail: 3, status: 4, next: 5, owner: 6, done: 7, star: 8 };
 // คอลัมน์ของแท็บ Commu Plan
 export const C = { channel: 1, date: 2, platform: 3, content: 4, caption: 5 };
 
@@ -89,6 +90,7 @@ export function parseProgress(values) {
         owners: splitOwners(cell(r, P.owner)),
         ownerText: cell(r, P.owner),
         done: done === "TRUE",
+        starred: cell(r, P.star) !== "",
       });
       continue;
     }

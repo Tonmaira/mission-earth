@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, Plus, Undo2 } from "lucide-react";
+import { Check, ChevronDown, Plus, Star, Undo2 } from "lucide-react";
 import EditSheet, { Field, TextArea, TextInput } from "./EditSheet";
 import {
   P, SHEETS, addStep, addTarget, asText, completeStep, parseSteps, splitOwners, undoStep,
@@ -37,6 +37,7 @@ export default function ProgressView({ progress, raw, save, people }) {
     save({ op: "write", sheet: SHEETS.progress, row: t.row, expect: raw[t.row - 1], cells }, { toast: true });
 
   const toggleDone = (t) => write(t, [{ col: P.done, value: !t.done }]);
+  const toggleStar = (t) => write(t, [{ col: P.star, value: t.starred ? "" : "★" }]);
 
   // ขั้นตอนเก็บอยู่ในช่องสถานะกับ Next Step (ดู parseSteps) เขียนสองช่องพร้อมกันเสมอ
   const writeSteps = (t, change) =>
@@ -50,6 +51,11 @@ export default function ProgressView({ progress, raw, save, people }) {
     undo: (t) => writeSteps(t, undoStep(t)),
     add: (t, text) => writeSteps(t, addStep(t, text)),
   };
+
+  // งานติดดาวที่ยังไม่เสร็จ ขึ้นกล่องบนสุด (ยังอยู่ในหมวดเดิมด้วย) เสร็จแล้วหลุดจากกล่องเอง
+  const starred = progress.categories.flatMap((c) =>
+    c.items.filter((t) => t.type === "task" && t.starred && !t.done && visible(t)).map((t) => ({ t, c })),
+  );
 
   const openTask = (category, t) =>
     setEditing({
@@ -93,6 +99,27 @@ export default function ProgressView({ progress, raw, save, people }) {
       </label>
 
       <div className="mt-4 space-y-4">
+        {starred.length > 0 && (
+          <section className="overflow-hidden rounded-2xl bg-white shadow-sm ring-2 ring-me-gold/50">
+            <h3 className="flex items-center gap-2 bg-me-gold/10 px-4 py-3 font-semibold text-me-navy">
+              <Star size={18} className="fill-me-gold text-me-gold" />
+              งานติดดาว
+              <span className="text-sm font-normal text-me-navy/50">{starred.length}</span>
+            </h3>
+            {starred.map(({ t, c }) => (
+              <TaskRow
+                key={t.row}
+                task={t}
+                context={c.name}
+                onToggle={() => toggleDone(t)}
+                onStar={() => toggleStar(t)}
+                onOpen={() => openTask(c, t)}
+                steps={steps}
+              />
+            ))}
+          </section>
+        )}
+
         {progress.categories.map((c) => {
           const tasks = c.items.filter((i) => i.type === "task");
           const done = tasks.filter((t) => t.done).length;
@@ -122,7 +149,14 @@ export default function ProgressView({ progress, raw, save, people }) {
 
               {isOpen && (
                 <div className="border-t border-me-navy/5">
-                  <Items items={c.items} visible={visible} onToggle={toggleDone} onOpen={(t) => openTask(c, t)} steps={steps} />
+                  <Items
+                    items={c.items}
+                    visible={visible}
+                    onToggle={toggleDone}
+                    onStar={toggleStar}
+                    onOpen={(t) => openTask(c, t)}
+                    steps={steps}
+                  />
                   <button
                     type="button"
                     onClick={() => openNew(c)}
@@ -150,7 +184,7 @@ export default function ProgressView({ progress, raw, save, people }) {
   );
 }
 
-function Items({ items, visible, onToggle, onOpen, steps }) {
+function Items({ items, visible, onToggle, onStar, onOpen, steps }) {
   const out = [];
   items.forEach((item, i) => {
     if (item.type === "group") {
@@ -168,16 +202,24 @@ function Items({ items, visible, onToggle, onOpen, steps }) {
     }
     if (!visible(item)) return;
     out.push(
-      <TaskRow key={item.row} task={item} onToggle={() => onToggle(item)} onOpen={() => onOpen(item)} steps={steps} />,
+      <TaskRow
+        key={item.row}
+        task={item}
+        onToggle={() => onToggle(item)}
+        onStar={() => onStar(item)}
+        onOpen={() => onOpen(item)}
+        steps={steps}
+      />,
     );
   });
   if (!out.length) out.push(<p key="empty" className="px-4 py-3 text-sm text-me-navy/40">ยังไม่มีงาน</p>);
   return out;
 }
 
-function TaskRow({ task: t, onToggle, onOpen, steps }) {
+/* context = ชื่อหมวด ใช้ตอนงานโชว์อยู่นอกหมวดของตัวเอง (กล่องงานติดดาว) */
+function TaskRow({ task: t, context, onToggle, onStar, onOpen, steps }) {
   return (
-    <div className={`flex gap-1 border-b border-me-navy/5 last:border-0 ${t.group ? "pl-3" : ""}`}>
+    <div className={`flex gap-1 border-b border-me-navy/5 last:border-0 ${t.group && !context ? "pl-3" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -192,8 +234,14 @@ function TaskRow({ task: t, onToggle, onOpen, steps }) {
           {t.done && <Check size={16} strokeWidth={3} />}
         </span>
       </button>
-      <div className="min-w-0 flex-1 py-3 pr-4 pl-2">
+      <div className="min-w-0 flex-1 py-3 pl-2">
         <button type="button" onClick={onOpen} className="block w-full text-left">
+          {context && (
+            <span className="block text-[11px] font-medium text-me-navy/40">
+              {context}
+              {t.group ? ` · ${t.group}` : ""}
+            </span>
+          )}
           <span className={`block font-medium ${t.done ? "text-me-navy/40 line-through" : "text-me-navy"}`}>
             {t.name}
             {t.detail && <span className="ml-2 text-sm font-normal whitespace-pre-line text-me-navy/45">{t.detail}</span>}
@@ -210,6 +258,18 @@ function TaskRow({ task: t, onToggle, onOpen, steps }) {
           </button>
         )}
       </div>
+      <button
+        type="button"
+        onClick={onStar}
+        aria-label={t.starred ? "เอาดาวออก" : "ติดดาว"}
+        aria-pressed={t.starred}
+        className="shrink-0 self-start py-3 pr-3 pl-1"
+      >
+        <Star
+          size={20}
+          className={t.starred ? "fill-me-gold text-me-gold" : "text-me-navy/20 hover:text-me-gold"}
+        />
+      </button>
     </div>
   );
 }
