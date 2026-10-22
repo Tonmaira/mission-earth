@@ -65,15 +65,12 @@ export default function ProgressView({ progress, raw, save, people }) {
       form: { name: t.name, detail: t.detail, status: t.status, next: t.next, owner: t.ownerText, done: t.done },
     });
 
-  const openNew = (category) => {
-    const target = addTarget(category);
+  // category = null คือกดจากปุ่มบนสุด ให้เลือกหมวดในหน้าต่างเอง
+  const openNew = (category = null) =>
     setEditing({
       category,
-      target,
-      expect: raw[target.row - 1],
       form: { name: "", detail: "", status: "", next: "", owner: owner && owner !== NO_OWNER ? owner : "", done: false },
     });
-  };
 
   return (
     <div>
@@ -93,10 +90,19 @@ export default function ProgressView({ progress, raw, save, people }) {
           </Chip>
         )}
       </div>
-      <label className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm text-me-navy/70">
-        <input type="checkbox" checked={hideDone} onChange={(e) => setHideDone(e.target.checked)} className="accent-me-navy" />
-        ซ่อนงานที่เสร็จแล้ว
-      </label>
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-me-navy/70">
+          <input type="checkbox" checked={hideDone} onChange={(e) => setHideDone(e.target.checked)} className="accent-me-navy" />
+          ซ่อนงานที่เสร็จแล้ว
+        </label>
+        <button
+          type="button"
+          onClick={() => openNew()}
+          className="flex shrink-0 items-center gap-1.5 rounded-full bg-me-navy px-4 py-2 text-sm font-semibold text-white shadow-sm"
+        >
+          <Plus size={16} strokeWidth={2.5} /> เพิ่มงาน
+        </button>
+      </div>
 
       <div className="mt-4 space-y-4">
         {starred.length > 0 && (
@@ -175,8 +181,13 @@ export default function ProgressView({ progress, raw, save, people }) {
         <TaskEditor
           editing={editing}
           people={people}
+          categories={progress.categories}
+          raw={raw}
           onClose={() => setEditing(null)}
-          onSaved={() => setEditing(null)}
+          onSaved={(catRow) => {
+            setEditing(null);
+            if (catRow) setCollapsed((c) => ({ ...c, [catRow]: false })); // ให้เห็นงานที่เพิ่งเพิ่ม
+          }}
           save={save}
         />
       )}
@@ -380,9 +391,12 @@ function Steps({ task: t, steps, onOpen }) {
   );
 }
 
-function TaskEditor({ editing, people, onClose, onSaved, save }) {
-  const { task, category, target, expect } = editing;
+function TaskEditor({ editing, people, categories, raw, onClose, onSaved, save }) {
+  const { task, category, expect } = editing;
   const [form, setForm] = useState(editing.form);
+  // จำหมวดด้วยเลข+ชื่อ ไม่ใช่เลขแถว ถ้ามีคนแทรกแถวใน Sheet ระหว่างเปิดหน้าต่างไว้ เลขแถวจะเลื่อน
+  const catKey = (c) => `${c.no}|${c.name}`;
+  const [picked, setPicked] = useState(category ? catKey(category) : null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
@@ -392,6 +406,9 @@ function TaskEditor({ editing, people, onClose, onSaved, save }) {
     setForm({ ...form, owner: (owners.includes(p) ? owners.filter((o) => o !== p) : [...owners, p]).join(", ") });
 
   const submit = async () => {
+    // หาตำแหน่งตอนกดบันทึก ไม่ใช่ตอนเปิดหน้าต่าง ระหว่างนั้น Sheet อาจมีแถวเพิ่มหรือลดไปแล้ว
+    const cat = categories.find((c) => catKey(c) === picked);
+    if (!task && !cat) return setError("เลือกหมวดก่อน");
     if (!form.name.trim()) return setError("ใส่ชื่องานก่อน");
     // งานในกลุ่มย่อยต้องคง "- " ไว้ ไม่งั้นใน Sheet จะหลุดออกจากกลุ่ม
     const name = task?.group ? `- ${form.name.trim()}` : form.name.trim();
@@ -410,24 +427,51 @@ function TaskEditor({ editing, people, onClose, onSaved, save }) {
     setError("");
     const payload = task
       ? { op: "write", sheet: SHEETS.progress, row: task.row, expect, cells }
-      : { op: "add", sheet: SHEETS.progress, position: target.position, row: target.row, expect, cells };
+      : (() => {
+          const target = addTarget(cat);
+          return { op: "add", sheet: SHEETS.progress, position: target.position, row: target.row, expect: raw[target.row - 1], cells };
+        })();
     const res = await save(payload);
     setSaving(false);
-    if (res.ok) onSaved();
+    if (res.ok) onSaved(task ? null : cat.row);
     else setError(res.message);
   };
 
   return (
     <EditSheet
-      title={task ? "แก้ไขงาน" : `เพิ่มงานใน ${category.name}`}
-      subtitle={task ? `${category.name}${task.group ? ` · ${task.group}` : ""} · แถว ${task.row} ใน Sheet` : "จะไปต่อท้ายหมวดนี้ใน Sheet"}
+      title={task ? "แก้ไขงาน" : "เพิ่มงาน"}
+      subtitle={task ? `${category.name}${task.group ? ` · ${task.group}` : ""} · แถว ${task.row} ใน Sheet` : "จะไปต่อท้ายหมวดที่เลือกใน Sheet"}
       onClose={onClose}
       onSave={submit}
       saving={saving}
       error={error}
     >
+      {!task && (
+        <div>
+          <span className="mb-1.5 block text-xs font-medium text-me-navy/60">หมวด</span>
+          <div className="flex flex-wrap gap-1.5">
+            {categories.map((c) => (
+              <button
+                key={c.row}
+                type="button"
+                onClick={() => {
+                  setPicked(catKey(c));
+                  setError("");
+                }}
+                aria-pressed={picked === catKey(c)}
+                className={`rounded-full px-3 py-1.5 text-sm ${
+                  picked === catKey(c) ? "bg-me-navy text-white" : "bg-me-cream text-me-navy/70"
+                }`}
+              >
+                {c.no != null && <span className="mr-1 opacity-60">{c.no}</span>}
+                {c.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       <Field label="งาน">
-        <TextInput value={form.name} onChange={set("name")} placeholder="เช่น ป้ายจุด CP" autoFocus={!task} />
+        <TextInput value={form.name} onChange={set("name")} placeholder="เช่น ป้ายจุด CP" autoFocus={!task && !!category} />
       </Field>
       <Field label="รายละเอียด" hint="จำนวน ขนาด ฯลฯ">
         <TextArea value={form.detail} onChange={set("detail")} rows={1} />
