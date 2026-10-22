@@ -83,8 +83,10 @@ export function Field({ label, hint, locked, children }) {
   );
 }
 
+/* ช่องพิมพ์ทุกช่องบนมือถือต้องใหญ่อย่างน้อย 16px ไม่งั้น Safari บน iPhone ซูมเข้าเองทุกครั้งที่แตะ
+ * (ไม่แก้ด้วยการปิดซูมทั้งหน้า เพราะคนที่ต้องซูมอ่านจะซูมไม่ได้เลย) */
 const inputClass =
-  "w-full rounded-xl border border-me-navy/15 bg-white px-3 py-2.5 text-[15px] text-me-navy outline-none " +
+  "w-full rounded-xl border border-me-navy/15 bg-white px-3 py-2.5 text-base sm:text-[15px] text-me-navy outline-none " +
   "placeholder:text-me-navy/30 focus:border-me-gold focus:ring-2 focus:ring-me-gold/30 disabled:bg-me-navy/5 disabled:text-me-navy/50";
 
 export function TextInput(props) {

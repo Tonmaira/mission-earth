@@ -372,7 +372,7 @@ function Steps({ task: t, steps, onOpen }) {
             onBlur={submit}
             onKeyDown={(e) => e.key === "Escape" && (setText(""), setAdding(false))}
             placeholder="ขั้นตอนถัดไป เช่น อนุมัติแบบ"
-            className="min-w-0 flex-1 rounded-lg border border-me-navy/15 px-2.5 py-1.5 text-sm outline-none focus:border-me-gold focus:ring-2 focus:ring-me-gold/30"
+            className="min-w-0 flex-1 rounded-lg border border-me-navy/15 px-2.5 py-1.5 text-base outline-none sm:text-sm focus:border-me-gold focus:ring-2 focus:ring-me-gold/30"
           />
           <button type="submit" className="rounded-lg bg-me-navy px-3 text-sm font-medium text-white">
             เพิ่ม

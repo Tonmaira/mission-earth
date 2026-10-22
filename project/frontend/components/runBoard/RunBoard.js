@@ -268,7 +268,7 @@ function WhoAmI({ me, people, onChange }) {
       <select
         value={me}
         onChange={(e) => onChange(e.target.value)}
-        className={`rounded-full border-0 bg-white px-3 py-1 text-sm font-medium ring-1 ring-me-navy/10 ${me ? "text-me-navy" : "text-me-gold"}`}
+        className={`rounded-full border-0 bg-white px-3 py-1 text-base font-medium sm:text-sm ring-1 ring-me-navy/10 ${me ? "text-me-navy" : "text-me-gold"}`}
       >
         <option value="">เลือกชื่อคุณ</option>
         {people.map((p) => (
