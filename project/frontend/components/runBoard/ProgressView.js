@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Check, ChevronDown, Plus } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { Check, ChevronDown, Plus, Undo2 } from "lucide-react";
 import EditSheet, { Field, TextArea, TextInput } from "./EditSheet";
-import { P, SHEETS, addTarget, asText, splitOwners } from "@/lib/runBoard.mjs";
+import {
+  P, SHEETS, addStep, addTarget, asText, completeStep, parseSteps, splitOwners, undoStep,
+} from "@/lib/runBoard.mjs";
 
 const NO_OWNER = "__none__";
 
@@ -31,11 +33,23 @@ export default function ProgressView({ progress, raw, save, people }) {
     return owner === NO_OWNER ? t.owners.length === 0 : t.owners.includes(owner);
   };
 
-  const toggleDone = (t) =>
-    save(
-      { op: "write", sheet: SHEETS.progress, row: t.row, expect: raw[t.row - 1], cells: [{ col: P.done, value: !t.done }] },
-      { optimistic: { sheet: SHEETS.progress, row: t.row, col: P.done, value: t.done ? "FALSE" : "TRUE" } },
-    );
+  const write = (t, cells) =>
+    save({ op: "write", sheet: SHEETS.progress, row: t.row, expect: raw[t.row - 1], cells }, { toast: true });
+
+  const toggleDone = (t) => write(t, [{ col: P.done, value: !t.done }]);
+
+  // ขั้นตอนเก็บอยู่ในช่องสถานะกับ Next Step (ดู parseSteps) เขียนสองช่องพร้อมกันเสมอ
+  const writeSteps = (t, change) =>
+    change &&
+    write(t, [
+      { col: P.status, value: asText(change.status) },
+      { col: P.next, value: asText(change.next) },
+    ]);
+  const steps = {
+    complete: (t) => writeSteps(t, completeStep(t)),
+    undo: (t) => writeSteps(t, undoStep(t)),
+    add: (t, text) => writeSteps(t, addStep(t, text)),
+  };
 
   const openTask = (category, t) =>
     setEditing({
@@ -108,7 +122,7 @@ export default function ProgressView({ progress, raw, save, people }) {
 
               {isOpen && (
                 <div className="border-t border-me-navy/5">
-                  <Items items={c.items} visible={visible} onToggle={toggleDone} onOpen={(t) => openTask(c, t)} />
+                  <Items items={c.items} visible={visible} onToggle={toggleDone} onOpen={(t) => openTask(c, t)} steps={steps} />
                   <button
                     type="button"
                     onClick={() => openNew(c)}
@@ -136,7 +150,7 @@ export default function ProgressView({ progress, raw, save, people }) {
   );
 }
 
-function Items({ items, visible, onToggle, onOpen }) {
+function Items({ items, visible, onToggle, onOpen, steps }) {
   const out = [];
   items.forEach((item, i) => {
     if (item.type === "group") {
@@ -153,20 +167,22 @@ function Items({ items, visible, onToggle, onOpen }) {
       return;
     }
     if (!visible(item)) return;
-    out.push(<TaskRow key={item.row} task={item} onToggle={() => onToggle(item)} onOpen={() => onOpen(item)} />);
+    out.push(
+      <TaskRow key={item.row} task={item} onToggle={() => onToggle(item)} onOpen={() => onOpen(item)} steps={steps} />,
+    );
   });
   if (!out.length) out.push(<p key="empty" className="px-4 py-3 text-sm text-me-navy/40">ยังไม่มีงาน</p>);
   return out;
 }
 
-function TaskRow({ task: t, onToggle, onOpen }) {
+function TaskRow({ task: t, onToggle, onOpen, steps }) {
   return (
     <div className={`flex gap-1 border-b border-me-navy/5 last:border-0 ${t.group ? "pl-3" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
-        aria-label={t.done ? "ทำเครื่องหมายว่ายังไม่เสร็จ" : "ทำเครื่องหมายว่าเสร็จแล้ว"}
-        className="shrink-0 py-3 pr-1 pl-4"
+        aria-label={t.done ? "ทำเครื่องหมายว่างานยังไม่เสร็จ" : "ทำเครื่องหมายว่างานเสร็จแล้ว"}
+        className="shrink-0 self-start py-3 pr-1 pl-4"
       >
         <span
           className={`flex h-6 w-6 items-center justify-center rounded-md border-2 transition-colors ${
@@ -176,32 +192,130 @@ function TaskRow({ task: t, onToggle, onOpen }) {
           {t.done && <Check size={16} strokeWidth={3} />}
         </span>
       </button>
-      <button type="button" onClick={onOpen} className="min-w-0 flex-1 py-3 pr-4 pl-2 text-left">
-        <span className={`block font-medium ${t.done ? "text-me-navy/40 line-through" : "text-me-navy"}`}>
-          {t.name}
-          {t.detail && <span className="ml-2 text-sm font-normal whitespace-pre-line text-me-navy/45">{t.detail}</span>}
-        </span>
-        {!t.done && (t.status || t.next) && (
-          <span className="mt-1 block space-y-0.5 text-sm">
-            {t.status && <span className="block whitespace-pre-line text-me-navy/70">{t.status}</span>}
-            {t.next && (
-              <span className="block whitespace-pre-line text-me-navy/55">
-                <span className="font-medium text-me-gold">ต่อไป → </span>
-                {t.next}
-              </span>
-            )}
+      <div className="min-w-0 flex-1 py-3 pr-4 pl-2">
+        <button type="button" onClick={onOpen} className="block w-full text-left">
+          <span className={`block font-medium ${t.done ? "text-me-navy/40 line-through" : "text-me-navy"}`}>
+            {t.name}
+            {t.detail && <span className="ml-2 text-sm font-normal whitespace-pre-line text-me-navy/45">{t.detail}</span>}
           </span>
-        )}
+        </button>
+        {!t.done && <Steps task={t} steps={steps} onOpen={onOpen} />}
         {t.owners.length > 0 && (
-          <span className="mt-1.5 flex flex-wrap gap-1">
+          <button type="button" onClick={onOpen} className="mt-1.5 flex flex-wrap gap-1">
             {t.owners.map((o) => (
               <span key={o} className="rounded-full bg-me-cream px-2 py-0.5 text-xs text-me-navy/70">
                 {o}
               </span>
             ))}
-          </span>
+          </button>
         )}
-      </button>
+      </div>
+    </div>
+  );
+}
+
+/* ขั้นที่ทำไปแล้ว (จาง) → ขั้นที่รอติ๊ก → ขั้นที่เพิ่มรอไว้ → ช่องเพิ่มขั้นใหม่ */
+function Steps({ task: t, steps, onOpen }) {
+  const { history, queue } = parseSteps(t);
+  const [adding, setAdding] = useState(false);
+  const [text, setText] = useState("");
+  const sent = useRef(false); // Enter แล้วช่องหายไปจะมี blur ตามมา กันไม่ให้เพิ่มขั้นเดียวกันซ้ำ
+  const lastDone = history.length > 0 && history.at(-1).done;
+
+  const open = () => {
+    sent.current = false;
+    setAdding(true);
+  };
+  const submit = () => {
+    if (sent.current) return;
+    sent.current = true;
+    if (text.trim()) steps.add(t, text);
+    setText("");
+    setAdding(false);
+  };
+
+  return (
+    <div className="mt-1 space-y-1 text-sm">
+      {history.map((h, i) => (
+        <div key={`h${i}`} className="flex items-start gap-2">
+          {h.done ? (
+            <Check size={14} strokeWidth={3} className="mt-[3px] shrink-0 text-emerald-600/50" />
+          ) : (
+            <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-me-navy/30" />
+          )}
+          <button type="button" onClick={onOpen} className={`min-w-0 flex-1 text-left whitespace-pre-line ${h.done ? "text-me-navy/35" : "text-me-navy/70"}`}>
+            {h.text}
+            {h.done && <span className="ml-1">(Done {h.doneOn})</span>}
+          </button>
+          {h.done && i === history.length - 1 && lastDone && (
+            <button
+              type="button"
+              onClick={() => steps.undo(t)}
+              className="-my-1 shrink-0 rounded-full p-1 text-me-navy/30 hover:bg-me-navy/5 hover:text-me-navy/60"
+              aria-label="ย้อนขั้นนี้ (ติ๊กผิด)"
+              title="ย้อนขั้นนี้"
+            >
+              <Undo2 size={14} />
+            </button>
+          )}
+        </div>
+      ))}
+
+      {queue.length > 0 && (
+        <div className="flex items-start gap-2 pt-0.5">
+          <button
+            type="button"
+            onClick={() => steps.complete(t)}
+            aria-label={`ติ๊กว่าเสร็จ: ${queue[0]}`}
+            className="group -m-1 shrink-0 p-1"
+          >
+            <span className="flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 border-me-gold bg-white group-hover:bg-me-gold/15">
+              <Check size={11} strokeWidth={3} className="text-me-gold opacity-0 group-hover:opacity-100" />
+            </span>
+          </button>
+          <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left text-me-navy">
+            <span className="font-medium text-me-gold">ต่อไป → </span>
+            {queue[0]}
+          </button>
+        </div>
+      )}
+      {queue.slice(1).map((q, i) => (
+        <div key={`q${i}`} className="flex items-start gap-2 pl-[26px] text-me-navy/45">
+          <span className="shrink-0">ถัดไป</span>
+          <span className="min-w-0 flex-1">{q}</span>
+        </div>
+      ))}
+
+      {adding ? (
+        <form
+          className="flex gap-2 pt-1 pl-[26px]"
+          onSubmit={(e) => {
+            e.preventDefault();
+            submit();
+          }}
+        >
+          <input
+            autoFocus
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onBlur={submit}
+            onKeyDown={(e) => e.key === "Escape" && (setText(""), setAdding(false))}
+            placeholder="ขั้นตอนถัดไป เช่น อนุมัติแบบ"
+            className="min-w-0 flex-1 rounded-lg border border-me-navy/15 px-2.5 py-1.5 text-sm outline-none focus:border-me-gold focus:ring-2 focus:ring-me-gold/30"
+          />
+          <button type="submit" className="rounded-lg bg-me-navy px-3 text-sm font-medium text-white">
+            เพิ่ม
+          </button>
+        </form>
+      ) : (
+        <button
+          type="button"
+          onClick={open}
+          className="flex items-center gap-1 pt-0.5 pl-[26px] text-xs font-medium text-me-navy/40 hover:text-me-navy/70"
+        >
+          <Plus size={13} /> เพิ่มขั้นตอน
+        </button>
+      )}
     </div>
   );
 }
@@ -258,10 +372,10 @@ function TaskEditor({ editing, people, onClose, onSaved, save }) {
       <Field label="รายละเอียด" hint="จำนวน ขนาด ฯลฯ">
         <TextArea value={form.detail} onChange={set("detail")} rows={1} />
       </Field>
-      <Field label="สถานะตอนนี้">
+      <Field label="สถานะ / ขั้นที่ทำไปแล้ว" hint="บรรทัดละขั้น">
         <TextArea value={form.status} onChange={set("status")} />
       </Field>
-      <Field label="Next Step">
+      <Field label="Next Step" hint="บรรทัดแรก = ขั้นที่รออยู่ ถัดไปคือคิว">
         <TextArea value={form.next} onChange={set("next")} />
       </Field>
       <Field label="คนรับผิดชอบ">

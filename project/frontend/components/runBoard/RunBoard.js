@@ -21,10 +21,12 @@ const STORE = { me: "runBoard.me", tab: "runBoard.tab" };
 const MESSAGES = {
   // หน้าต่างแก้ไขยังถือข้อมูลชุดเก่าอยู่ กดบันทึกซ้ำก็จะชนอีก ต้องปิดแล้วเปิดใหม่ถึงจะได้แถวล่าสุด
   conflict: "มีคนแก้แถวนี้ใน Sheet ไปก่อน (หรือมีการแทรก/ลบแถว) จึงยังไม่ได้บันทึก — หน้าเว็บโหลดข้อมูลล่าสุดแล้ว ปิดหน้าต่างนี้แล้วเปิดแก้ใหม่อีกครั้ง",
+  conflictQuick: "มีคนแก้งานนี้ใน Sheet ไปก่อน จึงยังไม่ได้บันทึก — หน้าเว็บโหลดข้อมูลล่าสุดแล้ว ลองอีกครั้ง",
   forbidden: "ลิงก์นี้ใช้ไม่ได้แล้ว ขอลิงก์ใหม่จากทีม",
   not_configured: "ยังไม่ได้เชื่อมกับ Google Sheet (ยังไม่ได้ตั้งค่า RUN_BOARD_* ใน env)",
   unreachable: "ติดต่อ Google Sheet ไม่ได้ ลองใหม่อีกครั้ง",
   unauthorized: "สคริปต์ใน Sheet ไม่ยอมรับคีย์ — BOARD_KEY ใน Apps Script ไม่ตรงกับ env",
+  busy: "Sheet กำลังบันทึกของคนอื่นอยู่ ยังไม่ได้บันทึก — รอสักครู่แล้วลองใหม่",
 };
 const messageFor = (json) => MESSAGES[json?.error] || json?.message || "บันทึกไม่สำเร็จ ลองใหม่อีกครั้ง";
 
@@ -51,6 +53,7 @@ export default function RunBoard() {
   const [me, setMe] = useState("");
   const [toast, setToast] = useState("");
   const busy = useRef(0); // นับคำขอบันทึกที่ยังค้าง ระหว่างนั้นไม่ดึงข้อมูลมาทับ
+  const edits = useRef(0); // นับครั้งที่กดบันทึก ใช้ทิ้งผลการดึงข้อมูลที่เริ่มก่อนการแก้ล่าสุด
 
   useEffect(() => {
     setToken(decodeURIComponent(window.location.hash.slice(1)));
@@ -61,11 +64,13 @@ export default function RunBoard() {
 
   const load = useCallback(async () => {
     if (!token || busy.current) return;
+    const gen = edits.current;
     setLoading(true);
     try {
       const res = await fetch("/api/run-board", { headers: { "x-board-token": token }, cache: "no-store" });
       const json = await res.json().catch(() => ({}));
-      if (busy.current) return; // มีคนกดบันทึกระหว่างรอ ผลของการบันทึกใหม่กว่า
+      // มีคนกดบันทึกระหว่างรอ ข้อมูลชุดนี้เก่ากว่าสิ่งที่เห็นบนจอแล้ว ทิ้งไป
+      if (busy.current || gen !== edits.current) return;
       if (json.ok) {
         setData(json.data);
         setFetchedAt(new Date());
@@ -93,17 +98,26 @@ export default function RunBoard() {
     };
   }, [token, load]);
 
-  /** ส่งการแก้ไปที่ Sheet คืน { ok, message } ให้หน้าต่างแก้ไขแสดงผล */
+  /**
+   * ส่งการแก้ไปที่ Sheet คืน { ok, message } ให้หน้าต่างแก้ไขแสดงผล
+   * การแก้แถวเดิม (write) โชว์บนจอทันทีโดยไม่รอ Apps Script แล้วค่อยดึงของจริงจาก Sheet มาแทน
+   * toast = ไม่มีหน้าต่างแก้ไขให้แสดงข้อผิดพลาด (เช่นติ๊กจากรายการ) ให้ขึ้นแถบแจ้งเตือนแทน
+   */
   const save = useCallback(
-    async (payload, { optimistic } = {}) => {
+    async (payload, { toast } = {}) => {
       busy.current += 1;
-      if (optimistic) {
-        // ติ๊ก Done ให้เห็นผลทันที ไม่ต้องรอ Apps Script 2-3 วินาที
+      edits.current += 1;
+      if (payload.op === "write") {
+        const shown = Object.fromEntries(
+          payload.cells.map(({ col, value }) => [
+            col,
+            typeof value === "boolean" ? (value ? "TRUE" : "FALSE") : value.replace(/^'/, ""),
+          ]),
+        );
         setData((d) => {
-          const values = d[optimistic.sheet].values.map((r, i) =>
-            i === optimistic.row - 1 ? r.map((v, j) => (j === optimistic.col - 1 ? optimistic.value : v)) : r,
-          );
-          return { ...d, [optimistic.sheet]: { ...d[optimistic.sheet], values } };
+          const sheet = d[payload.sheet];
+          const values = sheet.values.map((r, i) => (i === payload.row - 1 ? r.map((v, j) => shown[j + 1] ?? v) : r));
+          return { ...d, [payload.sheet]: { ...sheet, values } };
         });
       }
       let json = {};
@@ -118,18 +132,11 @@ export default function RunBoard() {
         json = { error: "unreachable" };
       }
       busy.current -= 1;
+      load(); // ทั้งสำเร็จและไม่สำเร็จ ดึงของจริงจาก Sheet มาแทนสิ่งที่เดาไว้บนจอ
 
-      if (json.data) {
-        setData(json.data);
-        setFetchedAt(new Date());
-      }
       if (json.ok) return { ok: true };
-
       const message = messageFor(json);
-      if (optimistic) {
-        setToast(message);
-        if (!json.data) load(); // คืนค่าที่ติ๊กไว้ก่อนหน้า
-      }
+      if (toast) setToast(json.error === "conflict" ? MESSAGES.conflictQuick : message);
       return { ok: false, message };
     },
     [token, me, load],

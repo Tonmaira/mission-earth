@@ -29,12 +29,17 @@ function doGet(e) {
 function doPost(e) {
   var body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
   return run_(body, function () {
+    var started = Date.now();
     var lock = LockService.getScriptLock();
-    lock.waitLock(15000); // สองคนกดบันทึกพร้อมกัน ให้ทำทีละคน ไม่งั้นการเช็คแถวข้างล่างไม่มีความหมาย
+    // สองคนกดบันทึกพร้อมกัน ให้ทำทีละคน ไม่งั้นการเช็คแถวข้างล่างไม่มีความหมาย
+    // รอไม่นาน ถ้ายังไม่ได้คิวก็ตอบไปเลยว่ายุ่ง ดีกว่าให้หน้าเว็บค้างรอ
+    if (!lock.tryLock(10000)) return { ok: false, error: 'busy' };
     try {
       var result = write_(body);
-      SpreadsheetApp.flush();
-      result.data = readAll_(); // ส่งข้อมูลล่าสุดกลับไปเลย หน้าเว็บไม่ต้องยิงมาอ่านซ้ำ
+      // ไม่ flush และไม่อ่านทั้งไฟล์กลับไปตรงนี้: ทั้งสองอย่างบังคับให้ Sheet คำนวณสูตรทั้งไฟล์ให้เสร็จก่อน
+      // ซึ่งรวม IMPORTRANGE ในแท็บอื่นด้วย เคยทำให้การบันทึกครั้งเดียวค้างหลายนาที
+      // หน้าเว็บจะยิงมาอ่านข้อมูลล่าสุดเองหลังบันทึกเสร็จ
+      result.ms = Date.now() - started;
       return result;
     } finally {
       lock.releaseLock();
@@ -109,7 +114,9 @@ function write_(body) {
     throw new Error('ไม่รู้จักคำสั่งนี้');
   }
 
-  var before = sh.getRange(target, 1, 1, maxCol).getDisplayValues()[0];
+  // ค่าก่อน/หลังสำหรับ log คิดเอาเอง ไม่อ่านแถวซ้ำหลังเขียน (อ่านหลังเขียนก็บังคับให้ Sheet คำนวณใหม่เหมือน flush)
+  var before = target === row ? now : now.map(function () { return ''; });
+  var after = before.slice();
   (body.cells || []).forEach(function (c) {
     var col = Number(c.col);
     if (!(col >= 1 && col <= maxCol)) throw new Error('คอลัมน์ไม่ถูกต้อง');
@@ -121,9 +128,10 @@ function write_(body) {
       v = '';
     }
     sh.getRange(target, col).setValue(v);
+    after[col - 1] = String(v).replace(/^'/, '');
   });
 
-  log_(body, target, before, sh.getRange(target, 1, 1, maxCol).getDisplayValues()[0]);
+  log_(body, target, before, after);
   return { ok: true, row: target };
 }
 

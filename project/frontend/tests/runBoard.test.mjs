@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  addTarget, commuAddTarget, parseCommu, parseLooseDate, parseProgress, splitOwners,
+  addStep, addTarget, commuAddTarget, completeStep, parseCommu, parseLooseDate, parseProgress, parseSteps, splitOwners, undoStep,
 } from "../lib/runBoard.mjs";
 
 // ตัดมาจากแท็บ Progress จริงของ Black Ivory (ต.ค. 2026) — หน้าตาเดียวกับที่ getDisplayValues คืนมา
@@ -110,4 +110,34 @@ test("อ่านวันที่หลายรูปแบบที่ป�
   assert.equal(parseLooseDate("5 พ.ย.", 2026).getTime(), d(2026, 11, 5));
   assert.equal(parseLooseDate("", 2026), null);
   assert.equal(parseLooseDate("เร็ว ๆ นี้", 2026), null);
+});
+
+const shirt = { status: "ส่งแบบให้ร้านทำเสื้อแล้ว (21 Oct)", next: "รอดูตัวอย่างภายใน 5 วัน (27 Oct)\nอนุมัติแบบเสื้อ" };
+
+test("ติ๊กขั้นที่รออยู่ ย้ายไปสถานะพร้อมวันที่เสร็จ แล้วเลื่อนขั้นถัดไปขึ้นมา", () => {
+  const after = completeStep(shirt, new Date(2026, 9, 23));
+  assert.deepEqual(after, {
+    status: "ส่งแบบให้ร้านทำเสื้อแล้ว (21 Oct)\nรอดูตัวอย่างภายใน 5 วัน (27 Oct) (Done 23 Oct)",
+    next: "อนุมัติแบบเสื้อ",
+  });
+  const steps = parseSteps(after);
+  // วงเล็บวันที่ของทีมเองยังอยู่ครบ ตัดออกแค่แท็ก Done
+  assert.deepEqual(steps.history[1], { text: "รอดูตัวอย่างภายใน 5 วัน (27 Oct)", doneOn: "23 Oct", done: true });
+  assert.equal(steps.history[0].done, false);
+  assert.deepEqual(steps.queue, ["อนุมัติแบบเสื้อ"]);
+});
+
+test("ย้อนขั้นที่ติ๊กผิด กลับไปเป็นขั้นที่รออยู่ตามเดิม", () => {
+  const after = completeStep(shirt, new Date(2026, 9, 23));
+  assert.deepEqual(undoStep(after), { status: shirt.status, next: shirt.next });
+  // ย้อนได้เฉพาะขั้นที่ติ๊กจากเว็บ สถานะที่พิมพ์เองไม่ถูกดึงไปเป็น Next Step
+  assert.equal(undoStep(shirt), null);
+});
+
+test("เพิ่มขั้นต่อท้ายคิว และไม่มีขั้นรอก็ติ๊กไม่ได้", () => {
+  assert.equal(addStep(shirt, "  สั่งผลิต \n").next, `${shirt.next}\nสั่งผลิต`);
+  assert.equal(addStep(shirt, "   "), null);
+  assert.equal(completeStep({ status: "x", next: "" }), null);
+  // บรรทัดว่างหรือขึ้นบรรทัดเกินในช่องเดิมไม่กลายเป็นขั้นผี
+  assert.deepEqual(parseSteps({ status: "", next: "สั่ง packaging\nสั่งทำสติกเกอร์\n" }).queue, ["สั่ง packaging", "สั่งทำสติกเกอร์"]);
 });

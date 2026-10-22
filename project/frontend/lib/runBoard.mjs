@@ -211,6 +211,59 @@ export function parseLooseDate(text, year = new Date().getFullYear()) {
   return null;
 }
 
+/* ── ขั้นตอนของงาน ──────────────────────────────────────────────────────
+ *
+ * ไม่มีคอลัมน์ใหม่ ใช้สองช่องเดิม บรรทัดละขั้น:
+ *   สถานะ     = สิ่งที่เกิดไปแล้ว ขั้นที่ติ๊กจากเว็บจะลงท้ายด้วย "(Done 23 Oct)"
+ *   Next Step = บรรทัดแรกคือขั้นที่รอติ๊กอยู่ บรรทัดถัดไปคือขั้นที่เพิ่มรอไว้
+ * คนที่แก้ใน Sheet เห็นและแก้ได้แบบเดียวกัน (ขึ้นบรรทัดใหม่ในช่องด้วย ⌘+Enter)
+ */
+
+const DONE_TAG = /\s*\(Done ([^)]*)\)\s*$/i;
+const lines = (text) => String(text || "").split("\n").map((s) => s.trim()).filter(Boolean);
+
+export function parseSteps(task) {
+  return {
+    history: lines(task.status).map((line) => {
+      const m = DONE_TAG.exec(line);
+      return m ? { text: line.slice(0, m.index), doneOn: m[1], done: true } : { text: line, done: false };
+    }),
+    queue: lines(task.next),
+  };
+}
+
+const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+/** "23 Oct" — แบบเดียวกับวันที่ที่ทีมพิมพ์ไว้ใน Sheet อยู่แล้ว */
+export const shortDate = (d) => `${d.getDate()} ${SHORT_MONTHS[d.getMonth()]}`;
+
+/** ติ๊กขั้นที่รออยู่: ย้ายไปท้ายสถานะพร้อมวันที่ แล้วเลื่อนขั้นถัดไปขึ้นมารอ */
+export function completeStep(task, today = new Date()) {
+  const { queue } = parseSteps(task);
+  if (!queue.length) return null;
+  return {
+    status: [...lines(task.status), `${queue[0]} (Done ${shortDate(today)})`].join("\n"),
+    next: queue.slice(1).join("\n"),
+  };
+}
+
+/** ย้อนขั้นที่ติ๊กล่าสุด (ติ๊กผิด): เอาออกจากสถานะ แล้วกลับไปเป็นขั้นที่รออยู่ */
+export function undoStep(task) {
+  const status = lines(task.status);
+  const last = status.at(-1);
+  const m = last && DONE_TAG.exec(last);
+  if (!m) return null;
+  return {
+    status: status.slice(0, -1).join("\n"),
+    next: [last.slice(0, m.index), ...lines(task.next)].join("\n"),
+  };
+}
+
+export function addStep(task, text) {
+  const step = String(text || "").replace(/\s+/g, " ").trim();
+  if (!step) return null;
+  return { status: lines(task.status).join("\n"), next: [...lines(task.next), step].join("\n") };
+}
+
 /* ── ส่งไปเขียน ──────────────────────────────────────────────────────── */
 
 /** ข้อความที่ต้องลงเป็นข้อความเสมอ ไม่ให้ Sheet แปลง "27 Oct" เป็นวันที่หรือ "600" เป็นตัวเลข */
