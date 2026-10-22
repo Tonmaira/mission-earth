@@ -15,7 +15,8 @@ const EVENT = {
   registrationCloses: new Date("2026-11-10T12:00:00+07:00"),
 };
 
-const POLL_MS = 30000;
+// ทีมใช้กัน 4-5 คน ดึงถี่ขนาดนี้ยังห่างเพดานรันพร้อมกันของ Apps Script (~30) มาก
+const POLL_MS = 15000;
 const STORE = { me: "runBoard.me", tab: "runBoard.tab" };
 
 const MESSAGES = {
@@ -85,7 +86,7 @@ export default function RunBoard() {
     }
   }, [token]);
 
-  // ดึงใหม่ทุก 30 วินาทีเฉพาะตอนเปิดหน้านี้อยู่ และทันทีที่สลับกลับมาที่แท็บนี้
+  // ดึงใหม่ทุก 15 วินาทีเฉพาะตอนเปิดหน้านี้อยู่ และทันทีที่สลับกลับมาที่แท็บนี้
   useEffect(() => {
     if (!token) return;
     load();
@@ -281,7 +282,7 @@ function WhoAmI({ me, people, onChange }) {
   );
 }
 
-// นับจากเวลาที่ดึงข้อมูลล่าสุด ซึ่งขยับทุก 30 วินาทีอยู่แล้ว
+// นับจากเวลาที่ดึงข้อมูลล่าสุด ซึ่งขยับทุก 15 วินาทีอยู่แล้ว
 function Countdown({ label, to, now }) {
   const days = Math.ceil((to - now) / 86400000);
   if (days < 0) return null;
