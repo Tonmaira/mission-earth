@@ -49,10 +49,12 @@ const str = (v, max) => typeof v === "string" && v.length <= max;
 function validate(b) {
   const maxCol = SHEETS[b?.sheet];
   if (!maxCol) return false;
-  if (b.op !== "write" && b.op !== "add") return false;
+  if (b.op !== "write" && b.op !== "add" && b.op !== "delete") return false;
+  if (b.op === "delete" && b.sheet !== "Progress") return false; // ลบได้แค่งาน
   if (b.op === "add" && b.position !== "fill" && b.position !== "after") return false;
   if (!Number.isInteger(b.row) || b.row < 2) return false;
   if (!Array.isArray(b.expect) || b.expect.length > maxCol || !b.expect.every((v) => str(v, 50000))) return false;
+  if (b.op === "delete") return Array.isArray(b.expect) && b.expect.some((v) => v.trim()); // ไม่ลบแถวว่าง
   if (!Array.isArray(b.cells) || b.cells.length === 0 || b.cells.length > maxCol) return false;
   return b.cells.every(
     (c) => Number.isInteger(c?.col) && c.col >= 1 && c.col <= maxCol && (typeof c.value === "boolean" || str(c.value, 5000)),

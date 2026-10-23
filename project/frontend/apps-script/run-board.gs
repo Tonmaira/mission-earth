@@ -80,7 +80,7 @@ function readAll_() {
 }
 
 /**
- * body = { op: 'write' | 'add', sheet, row, expect, cells: [{ col, value }], position?, by? }
+ * body = { op: 'write' | 'add' | 'delete', sheet, row, expect, cells: [{ col, value }], position?, by? }
  *
  * expect คือค่าทั้งแถวที่หน้าเว็บเห็นตอนเปิดแก้ ถ้าแถวนั้นใน Sheet ไม่ตรงแล้ว
  * (มีคนแก้ไปก่อน หรือมีคนแทรก/ลบแถวจนแถวเลื่อน) จะไม่เขียนเด็ดขาด
@@ -99,6 +99,14 @@ function write_(body) {
     if (String(now[i]).trim() !== String(expect[i] == null ? '' : expect[i]).trim()) {
       return { ok: false, error: 'conflict' };
     }
+  }
+
+  if (body.op === 'delete') {
+    // ลบได้แค่งานในแท็บ Progress ทั้งแถวที่ถูกลบถูกจดใน Web Log ไว้ กู้คืนได้
+    if (body.sheet !== 'Progress') throw new Error('ลบจากเว็บได้แค่งานในแท็บ Progress');
+    log_(body, row, now, now.map(function () { return ''; }));
+    sh.deleteRow(row);
+    return { ok: true, row: row };
   }
 
   var target = row;
@@ -146,6 +154,6 @@ function log_(body, row, before, after) {
   }
   log.appendRow([
     new Date(), String(body.by || '').slice(0, 40), body.sheet, row,
-    body.op === 'add' ? 'เพิ่ม' : 'แก้', before.join(' | '), after.join(' | '),
+    body.op === 'add' ? 'เพิ่ม' : body.op === 'delete' ? 'ลบ' : 'แก้', before.join(' | '), after.join(' | '),
   ]);
 }

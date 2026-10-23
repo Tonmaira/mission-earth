@@ -101,7 +101,7 @@ export default function RunBoard() {
 
   /**
    * ส่งการแก้ไปที่ Sheet คืน { ok, message } ให้หน้าต่างแก้ไขแสดงผล
-   * การแก้แถวเดิม (write) โชว์บนจอทันทีโดยไม่รอ Apps Script แล้วค่อยดึงของจริงจาก Sheet มาแทน
+   * การแก้แถวเดิม (write) และการลบ โชว์บนจอทันทีโดยไม่รอ Apps Script แล้วค่อยดึงของจริงจาก Sheet มาแทน
    * toast = ไม่มีหน้าต่างแก้ไขให้แสดงข้อผิดพลาด (เช่นติ๊กจากรายการ) ให้ขึ้นแถบแจ้งเตือนแทน
    */
   const save = useCallback(
@@ -119,6 +119,11 @@ export default function RunBoard() {
           const sheet = d[payload.sheet];
           const values = sheet.values.map((r, i) => (i === payload.row - 1 ? r.map((v, j) => shown[j + 1] ?? v) : r));
           return { ...d, [payload.sheet]: { ...sheet, values } };
+        });
+      } else if (payload.op === "delete") {
+        setData((d) => {
+          const sheet = d[payload.sheet];
+          return { ...d, [payload.sheet]: { ...sheet, values: sheet.values.filter((_, i) => i !== payload.row - 1) } };
         });
       }
       let json = {};

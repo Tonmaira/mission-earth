@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, Plus, Star, Undo2 } from "lucide-react";
+import { Check, ChevronDown, Plus, Star, Trash2, Undo2 } from "lucide-react";
 import EditSheet, { Field, TextArea, TextInput } from "./EditSheet";
 import {
   P, SHEETS, addStep, addTarget, asText, completeStep, parseSteps, splitOwners, undoStep,
@@ -397,6 +397,7 @@ function TaskEditor({ editing, people, categories, raw, onClose, onSaved, save }
   // จำหมวดด้วยเลข+ชื่อ ไม่ใช่เลขแถว ถ้ามีคนแทรกแถวใน Sheet ระหว่างเปิดหน้าต่างไว้ เลขแถวจะเลื่อน
   const catKey = (c) => `${c.no}|${c.name}`;
   const [picked, setPicked] = useState(category ? catKey(category) : null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
@@ -435,6 +436,20 @@ function TaskEditor({ editing, people, categories, raw, onClose, onSaved, save }
     setSaving(false);
     if (res.ok) onSaved(task ? null : cat.row);
     else setError(res.message);
+  };
+
+  // กดครั้งแรกแค่ถามยืนยัน กดซ้ำถึงลบจริง กันนิ้วพลาดบนมือถือ
+  const remove = async () => {
+    if (!confirmDelete) return setConfirmDelete(true);
+    setSaving(true);
+    setError("");
+    const res = await save({ op: "delete", sheet: SHEETS.progress, row: task.row, expect });
+    setSaving(false);
+    if (res.ok) onSaved(null);
+    else {
+      setConfirmDelete(false);
+      setError(res.message);
+    }
   };
 
   return (
@@ -508,6 +523,20 @@ function TaskEditor({ editing, people, categories, raw, onClose, onSaved, save }
         />
         เสร็จแล้ว
       </label>
+      {task && (
+        <button
+          type="button"
+          onClick={remove}
+          onBlur={() => setConfirmDelete(false)}
+          disabled={saving}
+          className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-colors ${
+            confirmDelete ? "bg-red-600 text-white" : "text-red-600 hover:bg-red-50"
+          }`}
+        >
+          <Trash2 size={16} />
+          {confirmDelete ? "กดอีกครั้งเพื่อลบ (ลบทั้งแถวใน Sheet)" : "ลบงานนี้"}
+        </button>
+      )}
     </EditSheet>
   );
 }
