@@ -134,11 +134,24 @@ export default function ProgressView({ progress, raw, save, people }) {
           const isOpen = !collapsed[c.row];
 
           return (
-            <section key={c.row} className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-me-navy/5">
+            // ไม่ใส่ overflow-hidden ที่ section: มันทำให้หัวหมวดแบบ sticky ไม่ติด
+            <section key={c.row} className="rounded-2xl bg-white shadow-sm ring-1 ring-me-navy/5">
+              {/* หัวหมวดติดใต้แถบเมนู (top-12) ตอนเลื่อนผ่านหมวดนี้ หมวดถัดไปมาถึงก็ดันขึ้นไปเอง */}
               <button
                 type="button"
-                onClick={() => setCollapsed({ ...collapsed, [c.row]: isOpen })}
-                className="flex w-full items-center gap-3 px-4 py-3.5 text-left"
+                onClick={(e) => {
+                  const section = e.currentTarget.closest("section");
+                  setCollapsed({ ...collapsed, [c.row]: isOpen });
+                  // พับหมวดตอนหัวติดอยู่ด้านบน เนื้อหาข้างล่างจะหดหายแล้วจอกระโดดไปหมวดอื่น
+                  // เลื่อนกลับมาให้หัวหมวดที่เพิ่งพับยังอยู่ตรงหน้า
+                  requestAnimationFrame(() => {
+                    const top = section.getBoundingClientRect().top;
+                    if (top < 48) window.scrollBy(0, top - 64);
+                  });
+                }}
+                className={`sticky top-12 z-20 flex w-full items-center gap-3 bg-white px-4 py-3.5 text-left ${
+                  isOpen ? "rounded-t-2xl border-b border-me-navy/5" : "rounded-2xl"
+                }`}
               >
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-me-navy text-xs font-semibold text-white">
                   {c.no ?? "–"}
@@ -154,7 +167,7 @@ export default function ProgressView({ progress, raw, save, people }) {
               </button>
 
               {isOpen && (
-                <div className="border-t border-me-navy/5">
+                <div>
                   <Items
                     items={c.items}
                     visible={visible}
@@ -166,7 +179,7 @@ export default function ProgressView({ progress, raw, save, people }) {
                   <button
                     type="button"
                     onClick={() => openNew(c)}
-                    className="flex w-full items-center gap-2 px-4 py-3 text-sm font-medium text-me-navy/60 hover:bg-me-cream/60"
+                    className="flex w-full items-center gap-2 rounded-b-2xl px-4 py-3 text-sm font-medium text-me-navy/60 hover:bg-me-cream/60"
                   >
                     <Plus size={16} /> เพิ่มงานใน {c.name}
                   </button>

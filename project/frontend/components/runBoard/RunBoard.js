@@ -213,8 +213,9 @@ export default function RunBoard() {
         </div>
       </header>
 
+      {/* สูงตายตัว h-12 เพราะหัวหมวดใน ProgressView ติดอยู่ใต้แถบนี้ที่ top-12 พอดี เปลี่ยนต้องเปลี่ยนคู่กัน */}
       <div className="sticky top-0 z-30 border-b border-me-navy/10 bg-me-cream/95 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 py-2">
+        <div className="mx-auto flex h-12 max-w-3xl items-center gap-2 px-4">
           {[
             ["progress", "งาน"],
             ["commu", "Commu Plan"],
