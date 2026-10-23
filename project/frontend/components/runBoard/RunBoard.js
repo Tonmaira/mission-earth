@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { RefreshCw } from "lucide-react";
+import { ExternalLink, RefreshCw } from "lucide-react";
 import ProgressView, { Bar } from "./ProgressView";
 import CommuView from "./CommuView";
 import { SHEETS, parseCommu, parseProgress, splitOwners } from "@/lib/runBoard.mjs";
@@ -13,6 +13,8 @@ const EVENT = {
   dates: "20–21 พ.ย. 2026",
   raceDay: new Date("2026-11-20T00:00:00+07:00"),
   registrationCloses: new Date("2026-11-10T12:00:00+07:00"),
+  // เปิดได้เฉพาะคนที่ Sheet แชร์ให้ด้วยอีเมล ลิงก์นี้เองไม่ได้ให้สิทธิ์อะไรเพิ่ม
+  sheetUrl: "https://docs.google.com/spreadsheets/d/1LIsdhA-SRz_Qa8C1IUNWsN7vZgvnmfgZam-d4qN_9xM/edit",
 };
 
 // ทีมใช้กัน 4-5 คน ดึงถี่ขนาดนี้ยังห่างเพดานรันพร้อมกันของ Apps Script (~30) มาก
@@ -224,15 +226,24 @@ export default function RunBoard() {
                 setTab(key);
                 write(STORE.tab, key);
               }}
-              className={`rounded-full px-4 py-1.5 text-sm font-semibold ${tab === key ? "bg-me-navy text-white" : "text-me-navy/60"}`}
+              className={`rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap ${tab === key ? "bg-me-navy text-white" : "text-me-navy/60"}`}
             >
               {label}
             </button>
           ))}
+          <a
+            href={EVENT.sheetUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-medium whitespace-nowrap text-me-navy/70 ring-1 ring-me-navy/15 hover:bg-white"
+            title="เปิด Google Sheet"
+          >
+            <ExternalLink size={13} /> Sheet
+          </a>
           <button
             type="button"
             onClick={load}
-            className="ml-auto flex items-center gap-1.5 rounded-full px-2 py-1.5 text-xs text-me-navy/50"
+            className="flex items-center gap-1.5 rounded-full px-2 py-1.5 text-xs whitespace-nowrap text-me-navy/50"
             title="ดึงข้อมูลล่าสุดจาก Sheet"
           >
             <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
