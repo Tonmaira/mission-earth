@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
-import { Download, ImagePlus } from "lucide-react";
+import { Download, ImagePlus, RotateCcw } from "lucide-react";
 
 /* พิกัดทั้งหมดเป็นพิกัดบนการ์ดขนาดจริง 940x788
    ไฟล์ที่ดาวน์โหลดขยาย SCALE เท่า ตัวหนังสือกับรูปผู้บริจาคจะได้คมพอโพสต์ลง Facebook */
@@ -313,17 +313,28 @@ export default function DonationCard({ fontFamily }) {
     });
   }, [images, photo, cropPixels, name, amountText, fontFamily]);
 
-  const onPick = (e) => {
-    const file = e.target.files?.[0];
-    e.target.value = ""; // เลือกไฟล์เดิมซ้ำได้
-    if (!file) return;
+  const setPhotoFile = (file) => {
     setPhoto(null);
     setCropPixels(null);
     setCrop({ x: 0, y: 0 });
     setZoom(1);
     if (photoUrl) URL.revokeObjectURL(photoUrl);
-    setPhotoUrl(URL.createObjectURL(file));
+    setPhotoUrl(file ? URL.createObjectURL(file) : null);
   };
+
+  const onPick = (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // เลือกไฟล์เดิมซ้ำได้
+    if (file) setPhotoFile(file);
+  };
+
+  // ล้างทุกช่องเพื่อทำการ์ดของผู้บริจาคคนถัดไป
+  const onReset = () => {
+    setName("");
+    setAmount("");
+    setPhotoFile(null);
+  };
+  const dirty = name || amount || photoUrl;
 
   const onCropComplete = useCallback((_, pixels) => setCropPixels(pixels), []);
 
@@ -411,6 +422,16 @@ export default function DonationCard({ fontFamily }) {
               ดาวน์โหลดรูป
             </button>
             {!ready && <p className="-mt-3 text-center text-xs text-slate-500">กรอกชื่อ จำนวนเงิน และใส่รูปให้ครบก่อน</p>}
+            {dirty && (
+              <button
+                type="button"
+                onClick={onReset}
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-600 transition hover:border-slate-400 hover:text-slate-900"
+              >
+                <RotateCcw className="h-4 w-4" />
+                เริ่มใหม่
+              </button>
+            )}
           </section>
 
           <section>
