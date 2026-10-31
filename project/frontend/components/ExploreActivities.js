@@ -12,7 +12,7 @@ const ORIGINALS = [
     id: "forest-bathing",
     href: "/forest_bathing",
     bg: "/ActivitiesExplore/original-forestbathing-bg.jpg",
-    // การ์ดนี้มีฝ้าขาวทับรูปตาม Figma ส่วนของ Ekiden ไม่มี
+    // การ์ดนี้มีฝ้าขาวทับรูปตาม Figma ส่วนของการ์ดที่สองไม่มี
     wash: true,
     objectPosition: "50% 50%",
     logos: [
@@ -21,13 +21,17 @@ const ORIGINALS = [
     ],
   },
   {
-    id: "ekiden",
-    href: "/ekiden",
-    bg: "/ActivitiesExplore/original-ekiden-bg.jpg",
+    id: "black-ivory",
+    href: "/black_ivory",
+    // แบนเนอร์ Black Ivory Trail มีตัวหนังสือในรูปครบแล้ว ไม่ต้องวางโลโก้ทับ
+    bg: "/blackIvory/BITTbanner.png",
     wash: false,
-    // Figma วางรูปสูง 432% แล้วเลื่อนขึ้น 138.75% → เห็นแถบกลางค่อนบน เทียบเท่า object-position แนวตั้ง ~42%
-    objectPosition: "50% 42%",
-    logos: [{ src: "/ActivitiesExplore/original-ekiden-logo.svg", w: 257, h: 101 }],
+    objectPosition: "50% 50%",
+    // รูป 1224×505 มีข้อความเต็มกว้าง → ล็อกสัดส่วนการ์ดตามรูป จอแคบจะได้ไม่ตัดข้อความ
+    // ใช้ 1224/380 = ตัดขอบว่างบน-ล่างของรูปออกข้างละ ~60px (ข้อความอยู่ช่วง y 100–400)
+    // จอกว้างการ์ดกว้าง 513 → สูง ~160 เท่าการ์ด Forest Bathing พอดี
+    aspect: "1224 / 380",
+    logos: [],
   },
 ];
 
@@ -84,13 +88,16 @@ function ListCard({ title, sub, note, onClick, disabled }) {
   );
 }
 
-/** แบนเนอร์หนึ่งใบในแท็บ Mission Earth's Original — ลิงก์ไปหน้าที่ทำไว้แล้ว (/forest_bathing, /ekiden) */
+/** แบนเนอร์หนึ่งใบในแท็บ Mission Earth's Original — ลิงก์ไปหน้าที่ทำไว้แล้ว (/forest_bathing, /black_ivory) */
 function OriginalCard({ item, title }) {
   return (
     <LocaleLink
       href={item.href}
       aria-label={title}
-      className="group relative block h-[160px] w-full overflow-hidden rounded-2xl border border-white/30"
+      className={`group relative block w-full overflow-hidden rounded-2xl border border-white/30 ${
+        item.aspect ? "" : "h-[160px]"
+      }`}
+      style={item.aspect ? { aspectRatio: item.aspect } : undefined}
     >
       <Image
         src={item.bg}
@@ -121,7 +128,7 @@ function OriginalCard({ item, title }) {
 
 /** Explore Workshops & Activities — Figma node 2295:2892 (แท็บ Original) / 2295:3620 (แท็บ All)
  *
- *  แบนเนอร์ในแท็บ Original ลิงก์ไปหน้าจริงแล้ว (/forest_bathing, /ekiden)
+ *  แบนเนอร์ในแท็บ Original ลิงก์ไปหน้าจริงแล้ว (/forest_bathing, /black_ivory)
  *  ส่วนปุ่มสองอันและการ์ดหมวดในแท็บ All ปิดไว้ (disabled + จาง + กำกับ Soon) เพราะยังไม่มีปลายทาง
  *  ช่องค้นหายังเป็น MOCK ยังไม่ผูกปลายทาง
  *  แท็บสลับได้จริงเพราะเป็นการเปลี่ยนเนื้อหาในที่เดียว ไม่ใช่การนำทาง
