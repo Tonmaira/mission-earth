@@ -75,6 +75,7 @@ const PAGE_LOCALES = {
   // แปลครบสองภาษาแล้ว
   "/": ["th", "en"],
   "/forest_bathing": ["th", "en"],
+  "/black_ivory": ["th", "en"],
 
   // เขียนเป็นภาษาไทย ยังไม่มีเวอร์ชันอังกฤษ
   "/services": ["th"],

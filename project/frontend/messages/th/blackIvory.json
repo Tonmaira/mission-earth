@@ -1,0 +1,75 @@
+{
+  "register": "สมัครเลย!",
+  "qrAlt": "QR สมัคร Black Ivory Trail",
+  "place": "อำเภอแม่จริม จังหวัดน่าน",
+  "prizesAlt": "ถ้วยรางวัล หมวก บัฟ และเสื้อวิ่ง Black Ivory Trail",
+  "souvenirHint": "ดูของที่ระลึก & รางวัล",
+  "priceButton": "ดูราคาค่าสมัคร",
+  "discount": "ลด 30%",
+  "fullscreen": {
+    "enter": "เต็มจอ",
+    "exit": "ออกจากโหมดเต็มจอ",
+    "exitHint": "ออกจากโหมดเต็มจอ (Esc)"
+  },
+  "langSwitch": "English",
+  "close": "ปิด",
+  "distances": {
+    "label": "รายละเอียดระยะทาง Black Ivory Trail",
+    "date": "21 Nov 2026",
+    "about": {
+      "5K": [
+        "สำหรับมือใหม่",
+        "ที่อยากลองวิ่งเทรล",
+        "และสัมผัสธรรมชาติ",
+        "อย่างสนุกสนาน"
+      ],
+      "8K": [
+        "สำหรับสายวิ่ง",
+        "ที่อยากเพิ่มความท้าทาย",
+        "และออกสำรวจ",
+        "เส้นทางธรรมชาติ"
+      ],
+      "12K": [
+        "สำหรับสายลุย",
+        "ที่พร้อมทดสอบขีดจำกัด",
+        "และท้าทายตัวเองไปอีกขั้น"
+      ]
+    }
+  },
+  "souvenir": {
+    "label": "ของที่ระลึกและรางวัล Black Ivory Trail",
+    "sizes": "ไซซ์เสื้อ",
+    "items": {
+      "shirts": "เสื้อวิ่ง",
+      "buff": "บัฟ",
+      "box": "กล่องของที่ระลึก",
+      "medal": "เหรียญที่ระลึก",
+      "trophies": "ถ้วยรางวัล",
+      "visor": "หมวก Finisher"
+    },
+    "chest": "รอบอก",
+    "length": "ความยาว",
+    "prizeLabel": "เงินรางวัล · ชาย/หญิง Overall",
+    "top3": "อันดับ 1-3",
+    "baht": "{amount} บาท",
+    "trophyLabel": "ถ้วยรางวัล",
+    "trophyPrefix": "ชาย/หญิง Overall",
+    "trophyRange": "อันดับ {range}",
+    "visorLabel": "หมวก Finisher",
+    "visorPrefix": "สำหรับนักวิ่งที่เข้าเส้นชัย",
+    "visorTop": "50 อันดับแรก",
+    "noRace": "ไม่มีการแข่งขัน",
+    "special": "Overall อันดับ 1-5 ระยะ 12K และ Overall อันดับ 1-3 ระยะ 8K จะได้รับ AMMO Natural Energy Gel",
+    "specialTail": "ท่านละ 1 เซ็ต",
+    "ranks": [
+      "อันดับ 1",
+      "อันดับ 2",
+      "อันดับ 3"
+    ]
+  },
+  "price": {
+    "label": "ราคาค่าสมัคร Black Ivory Trail",
+    "title": "ค่าสมัคร",
+    "baht": "บาท"
+  }
+}

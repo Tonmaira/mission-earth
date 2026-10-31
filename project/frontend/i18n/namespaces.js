@@ -15,4 +15,5 @@ export const NAMESPACES = [
   "activities",
   "about",
   "team",
+  "blackIvory",
 ];

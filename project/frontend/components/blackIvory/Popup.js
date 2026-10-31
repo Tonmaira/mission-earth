@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const BASE = "/blackIvory";
 export const NAVY = "#0b2540";
@@ -20,7 +21,8 @@ const THEMES = {
 export default function Popup({ children, content, label, className = "", theme = "light", width = "max-w-[880px]" }) {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
-  const t = THEMES[theme];
+  const look = THEMES[theme];
+  const t = useTranslations("blackIvory");
 
   // ฟัง close ของ <dialog> ตรง ๆ — ปิดด้วย Esc เบราว์เซอร์ปิดเองโดยไม่ผ่าน state
   // ถ้าไม่ sync กลับ open จะค้างเป็น true: หน้าหลังเลื่อนไม่ได้ และกดเปิดซ้ำไม่ขึ้น
@@ -58,7 +60,7 @@ export default function Popup({ children, content, label, className = "", theme 
         {open && (
           <div
             className="max-h-[92dvh] overflow-y-auto bg-cover bg-center"
-            style={{ backgroundImage: `url(${BASE}/${t.bg})`, color: t.color }}
+            style={{ backgroundImage: `url(${BASE}/${look.bg})`, color: look.color }}
           >
             <header
               className="sticky top-0 z-10 flex items-center justify-between gap-4 px-5 py-3 sm:px-8"
@@ -75,7 +77,7 @@ export default function Popup({ children, content, label, className = "", theme 
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                aria-label="ปิด"
+                aria-label={t("close")}
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5">

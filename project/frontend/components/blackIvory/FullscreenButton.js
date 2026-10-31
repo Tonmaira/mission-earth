@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { useTranslations } from "next-intl";
 
 const IDLE_MS = 3000;
 
@@ -25,6 +26,7 @@ export default function FullscreenButton({ className = "" }) {
   const supported = useSyncExternalStore(onFullscreenChange, readSupported, onServer);
   const isFull = useSyncExternalStore(onFullscreenChange, readIsFull, onServer);
   const [awake, setAwake] = useState(true);
+  const t = useTranslations("blackIvory.fullscreen");
 
   useEffect(() => {
     let timer = setTimeout(() => setAwake(false), IDLE_MS);
@@ -57,8 +59,8 @@ export default function FullscreenButton({ className = "" }) {
     <button
       type="button"
       onClick={toggle}
-      aria-label={isFull ? "ออกจากโหมดเต็มจอ" : "เต็มจอ"}
-      title={isFull ? "ออกจากโหมดเต็มจอ (Esc)" : "เต็มจอ"}
+      aria-label={isFull ? t("exit") : t("enter")}
+      title={isFull ? t("exitHint") : t("enter")}
       className={`flex items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-opacity duration-500 hover:bg-black/55 focus-visible:opacity-100 ${
         awake ? "opacity-100" : "pointer-events-none opacity-0"
       } ${className}`}

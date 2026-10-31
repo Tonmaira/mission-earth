@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import Popup, { NAVY } from "./Popup";
 
 const BASE = "/blackIvory";
@@ -13,11 +14,11 @@ const BLUE = "#2b3f9e"; // น้ำเงินหัวข้อ/ตารา�
  *   trophies.jpg  ← Artboard 3-80.jpg
  *   buff.png      ← ตัดจาก iconPACK.png */
 const RACE_PACK = [
-  { src: "shirts.png", w: 1400, h: 680, label: "เสื้อวิ่ง", span: "col-span-2 sm:col-span-3" },
-  { src: "buff.png", w: 553, h: 700, label: "บัฟ" },
-  { src: "box.png", w: 773, h: 1289, label: "กล่องของที่ระลึก" },
+  { src: "shirts.png", w: 1400, h: 680, id: "shirts", span: "col-span-2 sm:col-span-3" },
+  { src: "buff.png", w: 553, h: 700, id: "buff" },
+  { src: "box.png", w: 773, h: 1289, id: "box" },
   // มือถือมี 2 คอลัมน์ ชิ้นที่ 4 จะเหลือโดดตัวเดียว → ให้กินเต็มแถว
-  { src: "medal.jpg", w: 988, h: 1400, label: "เหรียญที่ระลึก", span: "col-span-2 sm:col-span-1" },
+  { src: "medal.jpg", w: 988, h: 1400, id: "medal", span: "col-span-2 sm:col-span-1" },
 ];
 
 const SIZES = [
@@ -83,6 +84,7 @@ function ItemCard({ src, w, h, label, className = "" }) {
 }
 
 function SizeChart() {
+  const t = useTranslations("blackIvory.souvenir");
   return (
     <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
       <table className="w-full text-center tabular-nums">
@@ -91,8 +93,8 @@ function SizeChart() {
             <th className="py-2.5 font-semibold">
               Size <span className="text-xs font-normal opacity-80">(inch)</span>
             </th>
-            <th className="py-2.5 font-semibold">รอบอก</th>
-            <th className="py-2.5 font-semibold">ความยาว</th>
+            <th className="py-2.5 font-semibold">{t("chest")}</th>
+            <th className="py-2.5 font-semibold">{t("length")}</th>
           </tr>
         </thead>
         <tbody>
@@ -113,6 +115,8 @@ function SizeChart() {
 
 /* หนึ่งแถวต่อหนึ่งระยะ — จอกว้างเรียงเป็นคอลัมน์เหมือนตารางในโปสเตอร์ มือถือซ้อนลงมา */
 function RewardRow({ r }) {
+  const t = useTranslations("blackIvory.souvenir");
+  const ranks = t.raw("ranks");
   return (
     <div className="overflow-hidden rounded-2xl text-white sm:flex" style={{ backgroundColor: BLUE }}>
       <div
@@ -130,34 +134,34 @@ function RewardRow({ r }) {
         <div className="grid flex-1 gap-px bg-white/15 sm:grid-cols-[1.4fr_1fr_1fr]">
           <div className="px-4 py-3" style={{ backgroundColor: BLUE }}>
             <div className="text-xs font-medium text-white/70">
-              เงินรางวัล · ชาย/หญิง Overall <span className="whitespace-nowrap">อันดับ 1-3</span>
+              {t("prizeLabel")} <span className="whitespace-nowrap">{t("top3")}</span>
             </div>
             <ol className="mt-1.5 space-y-1">
               {r.prize.map((baht, i) => (
                 <li key={baht} className="flex items-center gap-2">
                   <span className="rounded-md bg-white px-1.5 text-xs font-semibold" style={{ color: BLUE }}>
-                    อันดับ {i + 1}
+                    {ranks[i]}
                   </span>
-                  <span className="text-lg font-bold">{baht} บาท</span>
+                  <span className="text-lg font-bold">{t("baht", { amount: baht })}</span>
                 </li>
               ))}
             </ol>
           </div>
           <div className="px-4 py-3" style={{ backgroundColor: BLUE }}>
-            <div className="text-xs font-medium text-white/70">ถ้วยรางวัล</div>
+            <div className="text-xs font-medium text-white/70">{t("trophyLabel")}</div>
             <div className="mt-1.5 text-sm font-semibold">
-              ชาย/หญิง Overall <span className="whitespace-nowrap">อันดับ {r.trophy}</span>
+              {t("trophyPrefix")} <span className="whitespace-nowrap">{t("trophyRange", { range: r.trophy })}</span>
             </div>
           </div>
           <div className="px-4 py-3" style={{ backgroundColor: NAVY }}>
-            <div className="text-xs font-medium text-white/70">หมวก Finisher</div>
+            <div className="text-xs font-medium text-white/70">{t("visorLabel")}</div>
             <div className="mt-1.5 text-sm">
-              สำหรับนักวิ่งที่เข้าเส้นชัย <span className="whitespace-nowrap font-bold">50 อันดับแรก</span>
+              {t("visorPrefix")} <span className="whitespace-nowrap font-bold">{t("visorTop")}</span>
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-1 items-center justify-center px-4 py-5 text-lg font-medium">ไม่มีการแข่งขัน</div>
+        <div className="flex flex-1 items-center justify-center px-4 py-5 text-lg font-medium">{t("noRace")}</div>
       )}
     </div>
   );
@@ -165,23 +169,24 @@ function RewardRow({ r }) {
 
 /* pop-up ของที่ระลึก — children คือสิ่งที่กดได้ (รูปชุดรางวัลในหน้า) */
 export default function SouvenirDialog({ children, className = "" }) {
+  const t = useTranslations("blackIvory.souvenir");
   return (
     <Popup
       className={className}
-      label="ของที่ระลึกและรางวัล Black Ivory Trail"
+      label={t("label")}
       content={
         <div className="space-y-10 px-4 py-6 sm:px-8 sm:py-8">
           <section className="space-y-4">
             <SectionTitle>Race Pack</SectionTitle>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {RACE_PACK.map((item) => (
-                <ItemCard key={item.src} {...item} className={item.span ?? ""} />
+                <ItemCard key={item.src} {...item} label={t(`items.${item.id}`)} className={item.span ?? ""} />
               ))}
             </div>
           </section>
 
           <section className="space-y-4">
-            <SectionTitle>ไซซ์เสื้อ</SectionTitle>
+            <SectionTitle>{t("sizes")}</SectionTitle>
             <div className="mx-auto max-w-md">
               <SizeChart />
             </div>
@@ -190,8 +195,8 @@ export default function SouvenirDialog({ children, className = "" }) {
           <section className="space-y-4">
             <SectionTitle>Rewards</SectionTitle>
             <div className="grid grid-cols-2 gap-3">
-              <ItemCard src="trophies.jpg" w={1172} h={1116} label="ถ้วยรางวัล" />
-              <ItemCard src="visor.jpg" w={1277} h={1057} label="หมวก Finisher" />
+              <ItemCard src="trophies.jpg" w={1172} h={1116} label={t("items.trophies")} />
+              <ItemCard src="visor.jpg" w={1277} h={1057} label={t("items.visor")} />
             </div>
             <div className="space-y-3">
               {REWARDS.map((r) => (
@@ -202,8 +207,7 @@ export default function SouvenirDialog({ children, className = "" }) {
               <span className="font-bold" style={{ color: BLUE }}>
                 Special!
               </span>{" "}
-              Overall อันดับ 1-5 ระยะ 12K และ Overall อันดับ 1-3 ระยะ 8K จะได้รับ AMMO Natural Energy Gel{" "}
-              <span className="whitespace-nowrap">ท่านละ 1 เซ็ต</span>
+              {t("special")} <span className="whitespace-nowrap">{t("specialTail")}</span>
             </p>
           </section>
         </div>

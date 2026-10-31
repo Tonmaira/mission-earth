@@ -1,0 +1,76 @@
+{
+  "register": "Register now!",
+  "qrAlt": "QR code to register for Black Ivory Trail",
+  "place": "Mae Charim, Nan",
+  "prizesAlt": "Black Ivory Trail trophies, visor, buff and running shirt",
+  "souvenirHint": "Race pack & rewards",
+  "priceButton": "Entry fees",
+  "discount": "30% off",
+  "fullscreen": {
+    "enter": "Fullscreen",
+    "exit": "Exit fullscreen",
+    "exitHint": "Exit fullscreen (Esc)"
+  },
+  "langSwitch": "ภาษาไทย",
+  "close": "Close",
+  "distances": {
+    "label": "Black Ivory Trail distances",
+    "date": "21 Nov 2026",
+    "about": {
+      "5K": [
+        "For beginners",
+        "keen to try",
+        "trail running",
+        "and enjoy nature"
+      ],
+      "8K": [
+        "For runners",
+        "after a bigger",
+        "challenge and",
+        "new nature trails"
+      ],
+      "12K": [
+        "For the adventurous,",
+        "ready to test",
+        "their limits and",
+        "push further"
+      ]
+    }
+  },
+  "souvenir": {
+    "label": "Black Ivory Trail race pack and rewards",
+    "sizes": "Shirt sizes",
+    "items": {
+      "shirts": "Running shirt",
+      "buff": "Buff",
+      "box": "Souvenir box",
+      "medal": "Souvenir medal",
+      "trophies": "Trophies",
+      "visor": "Finisher visor"
+    },
+    "chest": "Chest",
+    "length": "Length",
+    "prizeLabel": "Prize money · Men/Women overall",
+    "top3": "top 3",
+    "baht": "{amount} THB",
+    "trophyLabel": "Trophies",
+    "trophyPrefix": "Men/Women overall",
+    "trophyRange": "top {range}",
+    "visorLabel": "Finisher visor",
+    "visorPrefix": "For the",
+    "visorTop": "first 50 finishers",
+    "noRace": "Non-competitive",
+    "special": "The overall top 5 in the 12K and the overall top 3 in the 8K each receive",
+    "specialTail": "an AMMO Natural Energy Gel set",
+    "ranks": [
+      "1st",
+      "2nd",
+      "3rd"
+    ]
+  },
+  "price": {
+    "label": "Black Ivory Trail entry fees",
+    "title": "Entry fees",
+    "baht": "THB"
+  }
+}

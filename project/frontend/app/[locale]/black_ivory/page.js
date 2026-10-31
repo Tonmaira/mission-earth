@@ -1,8 +1,12 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import BackgroundVideo from "@/components/blackIvory/BackgroundVideo";
 import FullscreenButton from "@/components/blackIvory/FullscreenButton";
 import SouvenirDialog from "@/components/blackIvory/SouvenirDialog";
 import DistanceDialog from "@/components/blackIvory/DistanceDialog";
+import PriceDialog from "@/components/blackIvory/PriceDialog";
+import LangToggle from "@/components/blackIvory/LangToggle";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
@@ -48,6 +52,7 @@ function Distances({ className = "" }) {
 }
 
 function QrCard({ className = "" }) {
+  const t = useTranslations("blackIvory");
   return (
     <a
       href={REGISTER_URL}
@@ -59,10 +64,10 @@ function QrCard({ className = "" }) {
         className="rounded-t-[1.5em] py-[0.35em] text-center font-semibold text-white"
         style={{ backgroundColor: NAVY }}
       >
-        สมัครเลย!
+        {t("register")}
       </div>
       <div className="bg-white p-[0.5em]">
-        <Image src={`${BASE}/qr-register.png`} alt="QR สมัคร Black Ivory Trail" width={500} height={500} className="w-full" />
+        <Image src={`${BASE}/qr-register.png`} alt={t("qrAlt")} width={500} height={500} className="w-full" />
       </div>
     </a>
   );
@@ -86,11 +91,16 @@ function Contact({ className = "" }) {
   );
 }
 
+function RegisterLabel() {
+  return useTranslations("blackIvory")("register");
+}
+
 function EventDate({ className = "" }) {
+  const t = useTranslations("blackIvory");
   return (
     <div className={`leading-tight text-white ${className}`}>
       <div className="text-[1em] font-bold tracking-tight">20-21 Nov 2026</div>
-      <div className="text-[0.56em] font-medium">อำเภอแม่จริม จังหวัดน่าน</div>
+      <div className="text-[0.56em] font-medium">{t("place")}</div>
     </div>
   );
 }
@@ -118,26 +128,42 @@ const Sponsors = ({ className, sizes }) => (
   />
 );
 
-const Prizes = ({ className, sizes }) => (
-  <Image
-    src={`${BASE}/iconPACK.png`}
-    alt="ถ้วยรางวัล หมวก บัฟ และเสื้อวิ่ง Black Ivory Trail"
-    width={4169}
-    height={1931}
-    sizes={sizes}
-    className={className}
-  />
-);
+function Prizes({ className, sizes }) {
+  const t = useTranslations("blackIvory");
+  return (
+    <Image
+      src={`${BASE}/iconPACK.png`}
+      alt={t("prizesAlt")}
+      width={4169}
+      height={1931}
+      sizes={sizes}
+      className={className}
+    />
+  );
+}
 
 // ป้ายเล็กใต้รูปชุดรางวัล บอกว่ากดดูรายละเอียดได้ (ขนาดตาม text-[..] ของปุ่มที่ครอบ)
-const SouvenirHint = () => (
-  <span
-    className="rounded-full px-[1em] py-[0.35em] font-semibold text-white"
-    style={{ backgroundColor: NAVY }}
-  >
-    ดูของที่ระลึก & รางวัล
-  </span>
-);
+function SouvenirHint() {
+  const t = useTranslations("blackIvory");
+  return (
+    <span className="rounded-full px-[1em] py-[0.35em] font-semibold text-white" style={{ backgroundColor: NAVY }}>
+      {t("souvenirHint")}
+    </span>
+  );
+}
+
+// ปุ่มเล็กเปิด pop-up ราคา (ขนาดตาม text-[..] ที่ส่งเข้ามา)
+function PriceButton({ className = "" }) {
+  const t = useTranslations("blackIvory");
+  return (
+    <PriceDialog
+      registerUrl={REGISTER_URL}
+      className={`rounded-full border border-white/70 bg-black/30 px-[1.1em] py-[0.4em] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/50 ${className}`}
+    >
+      {t("priceButton")}
+    </PriceDialog>
+  );
+}
 
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
 function LandscapeLayout() {
@@ -145,6 +171,7 @@ function LandscapeLayout() {
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
         <Logo sizes="20vw" className="ml-[2.6vw] mt-[2.1vw] w-[18.5vw]" />
+        <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
           <Distances className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
         </DistanceDialog>
@@ -157,7 +184,10 @@ function LandscapeLayout() {
           <Prizes sizes="22vw" className="w-full transition-transform group-hover:-translate-y-1" />
           <SouvenirHint />
         </SouvenirDialog>
-        <QrCard className="w-[13.8vw] text-[1.7vw]" />
+        <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
+          <PriceButton className="text-[1.1vw]" />
+          <QrCard className="w-full text-[1.7vw]" />
+        </div>
       </div>
 
       <footer
@@ -179,7 +209,10 @@ function PortraitLayout() {
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
         <Logo sizes="65vw" className="w-[62vw]" />
-        <FullscreenButton className="h-11 w-11" />
+        <div className="flex items-center gap-2">
+          <LangToggle className="h-11 text-sm" />
+          <FullscreenButton className="h-11 w-11" />
+        </div>
       </header>
 
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
@@ -191,6 +224,7 @@ function PortraitLayout() {
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
+        <PriceButton className="text-[3.6vw]" />
         <a
           href={REGISTER_URL}
           target="_blank"
@@ -198,7 +232,7 @@ function PortraitLayout() {
           className="w-full rounded-full bg-white py-[4vw] text-center text-[5.5vw] font-bold"
           style={{ color: NAVY }}
         >
-          สมัครเลย!
+          <RegisterLabel />
         </a>
       </div>
 
@@ -214,7 +248,10 @@ function PortraitLayout() {
   );
 }
 
-export default function BlackIvoryPage() {
+export default async function BlackIvoryPage({ params }) {
+  // ส่ง locale ให้ next-intl เอง ไม่งั้นตอน build หน้าไว้ล่วงหน้าทั้ง /th และ /en จะได้ภาษาเริ่มต้นทั้งคู่
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <BackgroundVideo />
