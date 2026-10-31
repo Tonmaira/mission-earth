@@ -71,5 +71,10 @@
     "label": "ราคาค่าสมัคร Black Ivory Trail",
     "title": "ค่าสมัคร",
     "baht": "บาท"
+  },
+  "social": {
+    "label": "QR code {name} ของ Mission Earth",
+    "scan": "สแกนเพื่อติดตาม Mission Earth",
+    "open": "เปิด {name}"
   }
 }

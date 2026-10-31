@@ -7,6 +7,7 @@ import SouvenirDialog from "@/components/blackIvory/SouvenirDialog";
 import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import PriceDialog from "@/components/blackIvory/PriceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
+import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
@@ -20,11 +21,12 @@ const DISTANCES = [
   { km: "12K", label: ["PEAK", "CHALLENGE"] },
 ];
 
-// contact.png เป็นรูปเดียวทั้งแถบ → วางลิงก์ใสทับตามตำแหน่งไอคอนในรูป (% ของความกว้างรูป)
+// contact.png เป็นรูปเดียวทั้งแถบ → วางปุ่มใสทับตามตำแหน่งไอคอนในรูป (% ของความกว้างรูป)
+// ไอคอนโซเชียลกดแล้วขึ้น QR (qr) ส่วนชื่อเว็บเป็นลิงก์ธรรมดา
 const CONTACT_LINKS = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61567764698039", left: 0, width: 6.3 },
-  { label: "LINE", href: "https://lin.ee/MDN9uJ4", left: 10.6, width: 6.3 },
-  { label: "Instagram", href: "https://instagram.com/missionearth.co/", left: 21.1, width: 6.3 },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61567764698039", qr: "qr-facebook.svg", left: 0, width: 6.3 },
+  { label: "LINE", href: "https://lin.ee/MDN9uJ4", qr: "qr-line.svg", left: 10.6, width: 6.3 },
+  { label: "Instagram", href: "https://instagram.com/missionearth.co/", qr: "qr-instagram.svg", left: 21.1, width: 6.3 },
   { label: "www.missionearth.co", href: "/", left: 38.6, width: 61.4 },
 ];
 
@@ -78,14 +80,13 @@ function Contact({ className = "" }) {
     <div className={`relative ${className}`}>
       <Image src={`${BASE}/contact.png`} alt="" width={7572} height={508} sizes="40vw" className="w-full" />
       {CONTACT_LINKS.map((c) => (
-        <a
-          key={c.label}
-          href={c.href}
-          aria-label={c.label}
-          {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="absolute inset-y-0"
-          style={{ left: `${c.left}%`, width: `${c.width}%` }}
-        />
+        <div key={c.label} className="absolute inset-y-0" style={{ left: `${c.left}%`, width: `${c.width}%` }}>
+          {c.qr ? (
+            <SocialQrDialog name={c.label} href={c.href} qr={`${BASE}/social/${c.qr}`} className="block h-full w-full" />
+          ) : (
+            <a href={c.href} aria-label={c.label} className="block h-full w-full" />
+          )}
+        </div>
       ))}
     </div>
   );
