@@ -9,6 +9,7 @@ const PAGES = [
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/forest_bathing", changeFrequency: "weekly", priority: 0.9 },
   { path: "/ekiden", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/black_ivory", changeFrequency: "weekly", priority: 0.9 },
   { path: "/activities/dek-sang-nan-2", changeFrequency: "weekly", priority: 0.9 },
   { path: "/services", changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.7 },
