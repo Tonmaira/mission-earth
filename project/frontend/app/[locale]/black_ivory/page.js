@@ -8,7 +8,9 @@ import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 import RunnersDialog from "@/components/blackIvory/RunnersDialog";
+import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
 import { getRunnerCounts, REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
+import { getBibEntries } from "@/lib/blackIvoryBib.mjs";
 import AutoRefresh from "@/components/blackIvory/AutoRefresh";
 
 const BASE = "/blackIvory";
@@ -190,7 +192,20 @@ function RunnersButton({ counts, className = "" }) {
 }
 
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
-function LandscapeLayout({ counts }) {
+function BibButton({ entries, className = "" }) {
+  const t = useTranslations("blackIvory.bib");
+  if (!entries?.length) return null;
+  return (
+    <BibSearchDialog
+      entries={entries}
+      className={`whitespace-nowrap rounded-full bg-[#e5322d] px-[1.1em] py-[0.4em] font-semibold text-white shadow-sm transition-[filter] hover:brightness-110 ${className}`}
+    >
+      {t("button")}
+    </BibSearchDialog>
+  );
+}
+
+function LandscapeLayout({ counts, bibs }) {
   return (
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
@@ -210,6 +225,7 @@ function LandscapeLayout({ counts }) {
         </SouvenirDialog>
         <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
           <RunnersButton counts={counts} className="text-[1.1vw]" />
+          <BibButton entries={bibs} className="text-[1.1vw]" />
           <QrCard className="w-full text-[1.7vw]" />
         </div>
       </div>
@@ -228,7 +244,7 @@ function LandscapeLayout({ counts }) {
 
 /* จอแนวตั้ง (มือถือ) — ไม่มีแบบใน Figma จัดเรียงลงมาเป็นแนวเดียว
    QR เปลี่ยนเป็นปุ่มกด เพราะคนดูบนมือถือสแกนจอตัวเองไม่ได้ */
-function PortraitLayout({ counts }) {
+function PortraitLayout({ counts, bibs }) {
   return (
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
@@ -248,7 +264,10 @@ function PortraitLayout({ counts }) {
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <RunnersButton counts={counts} className="text-[3.6vw]" />
+        <div className="flex flex-wrap justify-center gap-[2.5vw]">
+          <RunnersButton counts={counts} className="text-[3.6vw]" />
+          <BibButton entries={bibs} className="text-[3.6vw]" />
+        </div>
         <a
           href={REGISTER_URL}
           target="_blank"
@@ -276,14 +295,14 @@ export default async function BlackIvoryPage({ params }) {
   // ส่ง locale ให้ next-intl เอง ไม่งั้นตอน build หน้าไว้ล่วงหน้าทั้ง /th และ /en จะได้ภาษาเริ่มต้นทั้งคู่
   const { locale } = await params;
   setRequestLocale(locale);
-  const counts = await getRunnerCounts();
+  const [counts, bibs] = await Promise.all([getRunnerCounts(), getBibEntries()]);
   return (
     <>
       <BackgroundVideo />
-      {counts && <AutoRefresh everyMs={REVALIDATE * 1000} />}
+      {(counts || bibs) && <AutoRefresh everyMs={REVALIDATE * 1000} />}
       <main className="relative z-10">
-        <LandscapeLayout counts={counts} />
-        <PortraitLayout counts={counts} />
+        <LandscapeLayout counts={counts} bibs={bibs} />
+        <PortraitLayout counts={counts} bibs={bibs} />
       </main>
     </>
   );

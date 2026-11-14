@@ -84,5 +84,19 @@
     },
     "raceCount": "{count} racers",
     "raceSexes": "{men} men · {women} women"
+  },
+  "bib": {
+    "button": "Runner list / BIB",
+    "label": "Black Ivory Trail runner list and BIB numbers",
+    "title": "Runners & BIB numbers",
+    "hint": "Type a first name, last name or BIB number to search",
+    "placeholder": "Search name or BIB number",
+    "filter": "Filter by distance",
+    "all": "All",
+    "count": "{count} runners",
+    "name": "Name",
+    "distance": "Distance",
+    "notFound": "No match for “{query}”. Try just your first or last name.",
+    "nonRace": "Non-race"
   }
 }

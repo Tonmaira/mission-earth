@@ -126,7 +126,7 @@ export function parseRaceGenders(summaryRows, rosterRows) {
   return out;
 }
 
-const fetchRows = async (url) => {
+export const fetchRows = async (url) => {
   const res = await fetch(url, { next: { revalidate: REVALIDATE } });
   if (!res.ok) throw new Error(`Sheet ${res.status}`);
   return parseCsv(await res.text());

@@ -84,5 +84,19 @@
     },
     "raceCount": "Race {count} คน",
     "raceSexes": "ชาย {men} · หญิง {women}"
+  },
+  "bib": {
+    "button": "รายชื่อนักวิ่ง / เลข BIB",
+    "label": "รายชื่อนักวิ่งและเลข BIB Black Ivory Trail",
+    "title": "รายชื่อนักวิ่ง & เลข BIB",
+    "hint": "พิมพ์ชื่อ นามสกุล หรือเลข BIB เพื่อค้นหา",
+    "placeholder": "ค้นหาชื่อ นามสกุล หรือเลข BIB",
+    "filter": "กรองตามระยะ",
+    "all": "ทั้งหมด",
+    "count": "{count} คน",
+    "name": "ชื่อ-นามสกุล",
+    "distance": "ระยะ",
+    "notFound": "ไม่พบ “{query}” ลองพิมพ์แค่ชื่อหรือนามสกุลอย่างเดียว",
+    "nonRace": "Non-race"
   }
 }
