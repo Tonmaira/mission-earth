@@ -5,7 +5,6 @@ import BackgroundVideo from "@/components/blackIvory/BackgroundVideo";
 import FullscreenButton from "@/components/blackIvory/FullscreenButton";
 import SouvenirDialog from "@/components/blackIvory/SouvenirDialog";
 import DistanceDialog from "@/components/blackIvory/DistanceDialog";
-import PriceDialog from "@/components/blackIvory/PriceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 import RunnersDialog from "@/components/blackIvory/RunnersDialog";
@@ -38,19 +37,31 @@ const CONTACT_LINKS = [
 /* ขนาดทุกอย่างอิงความกว้างจอ (vw) เพื่อให้หน้าตาเหมือนโปสเตอร์ไม่ว่าจอใหญ่เล็ก
    ตัวหนังสือในกล่องย่อยใช้ em = ปรับขนาดทั้งกล่องได้ด้วยการเปลี่ยน text-[..] ที่ตัวกล่องอย่างเดียว */
 
-function Distances({ className = "" }) {
+// ใต้ชื่อระยะโชว์จำนวนนักวิ่งประเภท Race (จาก Sheet ทีม) เฉพาะระยะที่แข่งจริง — 5K เป็น Fun Trail ไม่โชว์
+const RACE_COUNT_KM = ["8K", "12K"];
+
+/* แถบระยะทาง — ตัวเลข 5K/8K/12K ชิดบนเท่ากันทุกคอลัมน์ (ชื่อระยะยาวไม่เท่ากัน ถ้าจัดกึ่งกลางตัวเลขจะเหลื่อม)
+   ชื่อระยะจองที่ไว้สองบรรทัดเสมอ บรรทัดยอดนักวิ่งข้างใต้จึงตรงกันทุกคอลัมน์ด้วย */
+function Distances({ counts, className = "" }) {
+  const t = useTranslations("blackIvory.runners");
+  const race = counts?.race?.byDistance;
   return (
-    <div className={`flex items-center text-white ${className}`} style={{ backgroundColor: NAVY }}>
+    <div className={`flex items-stretch text-white ${className}`} style={{ backgroundColor: NAVY }}>
       {DISTANCES.map((d, i) => (
         <div key={d.km} className="flex flex-1 items-center">
           {i > 0 && <span className="h-[0.8em] w-px bg-white/70" />}
-          <div className="flex-1 text-center leading-none">
+          <div className="flex-1 self-start text-center leading-none">
             <div className="text-[1em] font-bold tracking-tight">{d.km}</div>
-            <div className="mt-[0.3em] text-[0.42em] font-medium leading-tight">
+            <div className="mt-[0.3em] min-h-[2.5em] text-[0.42em] font-medium leading-tight">
               {d.label.map((l) => (
                 <div key={l}>{l}</div>
               ))}
             </div>
+            {race && RACE_COUNT_KM.includes(d.km) && (
+              <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-white/15 px-[0.8em] py-[0.25em] text-[0.3em] font-semibold">
+                {t("raceCount", { count: race[d.km].toLocaleString("en-US") })}
+              </div>
+            )}
           </div>
         </div>
       ))}
@@ -158,19 +169,6 @@ function SouvenirHint() {
   );
 }
 
-// ปุ่มเล็กเปิด pop-up ราคา (ขนาดตาม text-[..] ที่ส่งเข้ามา)
-function PriceButton({ className = "" }) {
-  const t = useTranslations("blackIvory");
-  return (
-    <PriceDialog
-      registerUrl={REGISTER_URL}
-      className={`rounded-full border border-white/70 bg-black/30 px-[1.1em] py-[0.4em] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/50 ${className}`}
-    >
-      {t("priceButton")}
-    </PriceDialog>
-  );
-}
-
 // ปุ่มเล็กเปิด pop-up ยอดนักวิ่ง — ดึงยอดจาก Sheet ไม่ได้ (counts = null) ก็ไม่แสดงปุ่มเลย
 function RunnersButton({ counts, className = "" }) {
   const t = useTranslations("blackIvory.runners");
@@ -193,7 +191,7 @@ function LandscapeLayout({ counts }) {
         <Logo sizes="20vw" className="ml-[2.6vw] mt-[2.1vw] w-[18.5vw]" />
         <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
-          <Distances className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
+          <Distances counts={counts} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
         </DistanceDialog>
       </header>
 
@@ -206,7 +204,6 @@ function LandscapeLayout({ counts }) {
         </SouvenirDialog>
         <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
           <RunnersButton counts={counts} className="text-[1.1vw]" />
-          <PriceButton className="text-[1.1vw]" />
           <QrCard className="w-full text-[1.7vw]" />
         </div>
       </div>
@@ -237,7 +234,7 @@ function PortraitLayout({ counts }) {
       </header>
 
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
-        <Distances className="rounded-[5vw] py-[4vw] text-[9vw]" />
+        <Distances counts={counts} className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
@@ -245,10 +242,7 @@ function PortraitLayout({ counts }) {
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <div className="flex flex-wrap justify-center gap-[2.5vw]">
-          <RunnersButton counts={counts} className="text-[3.6vw]" />
-          <PriceButton className="text-[3.6vw]" />
-        </div>
+        <RunnersButton counts={counts} className="text-[3.6vw]" />
         <a
           href={REGISTER_URL}
           target="_blank"

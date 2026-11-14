@@ -4,8 +4,6 @@
   "place": "Mae Charim, Nan",
   "prizesAlt": "Black Ivory Trail trophies, visor, buff and running shirt",
   "souvenirHint": "Race pack & rewards",
-  "priceButton": "Entry fees",
-  "discount": "30% off",
   "fullscreen": {
     "enter": "Fullscreen",
     "exit": "Exit fullscreen",
@@ -67,11 +65,6 @@
       "3rd"
     ]
   },
-  "price": {
-    "label": "Black Ivory Trail entry fees",
-    "title": "Entry fees",
-    "baht": "THB"
-  },
   "social": {
     "label": "Mission Earth {name} QR code",
     "scan": "Scan to follow Mission Earth",
@@ -88,6 +81,7 @@
       "all": "All",
       "race": "Race",
       "nonRace": "Non-race"
-    }
+    },
+    "raceCount": "{count} racers"
   }
 }

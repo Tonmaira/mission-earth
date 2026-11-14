@@ -4,8 +4,6 @@
   "place": "อำเภอแม่จริม จังหวัดน่าน",
   "prizesAlt": "ถ้วยรางวัล หมวก บัฟ และเสื้อวิ่ง Black Ivory Trail",
   "souvenirHint": "ดูของที่ระลึก & รางวัล",
-  "priceButton": "ดูราคาค่าสมัคร",
-  "discount": "ลด 30%",
   "fullscreen": {
     "enter": "เต็มจอ",
     "exit": "ออกจากโหมดเต็มจอ",
@@ -67,11 +65,6 @@
       "อันดับ 3"
     ]
   },
-  "price": {
-    "label": "ราคาค่าสมัคร Black Ivory Trail",
-    "title": "ค่าสมัคร",
-    "baht": "บาท"
-  },
   "social": {
     "label": "QR code {name} ของ Mission Earth",
     "scan": "สแกนเพื่อติดตาม Mission Earth",
@@ -88,6 +81,7 @@
       "all": "ทั้งหมด",
       "race": "Race",
       "nonRace": "Non-race"
-    }
+    },
+    "raceCount": "Race {count} คน"
   }
 }
