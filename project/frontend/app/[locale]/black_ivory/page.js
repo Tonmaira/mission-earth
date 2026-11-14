@@ -11,9 +11,11 @@ import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
-// ลิงก์เดียวกับที่ฝังอยู่ใน qr-register.png (Google Form สมัคร)
+// ลิงก์เดียวกับที่ฝังอยู่ใน qr-register-2026-11.png (Google Form สมัคร)
+// เปลี่ยน QR เมื่อไร ให้ตั้งชื่อไฟล์ใหม่ด้วย — next/image เก็บรูปที่ย่อแล้วไว้ 30 วัน (minimumCacheTTL)
+// ใช้ชื่อเดิมคนจะยังเห็น QR เก่าที่พาไปฟอร์มเก่า
 const REGISTER_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScpELXd4QkelXSqgFXPv1Z_w9ZHLIXc3iuPlpi0IbRtSHidQw/viewform";
+  "https://docs.google.com/forms/d/e/1FAIpQLScTgb2Rnq_Zw_8cf4uodGdF15zAiMcZHqIGNmqpBXwNXFU39Q/viewform";
 
 const DISTANCES = [
   { km: "5K", label: ["FUN TRAIL"] },
@@ -69,7 +71,7 @@ function QrCard({ className = "" }) {
         {t("register")}
       </div>
       <div className="bg-white p-[0.5em]">
-        <Image src={`${BASE}/qr-register.png`} alt={t("qrAlt")} width={500} height={500} className="w-full" />
+        <Image src={`${BASE}/qr-register-2026-11.png`} alt={t("qrAlt")} width={500} height={500} className="w-full" />
       </div>
     </a>
   );
