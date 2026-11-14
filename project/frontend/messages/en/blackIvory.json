@@ -82,6 +82,7 @@
       "race": "Race",
       "nonRace": "Non-race"
     },
-    "raceCount": "{count} racers"
+    "raceCount": "{count} racers",
+    "raceSexes": "{men} men · {women} women"
   }
 }

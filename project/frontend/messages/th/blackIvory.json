@@ -82,6 +82,7 @@
       "race": "Race",
       "nonRace": "Non-race"
     },
-    "raceCount": "Race {count} คน"
+    "raceCount": "Race {count} คน",
+    "raceSexes": "ชาย {men} · หญิง {women}"
   }
 }

@@ -45,6 +45,7 @@ const RACE_COUNT_KM = ["8K", "12K"];
 function Distances({ counts, className = "" }) {
   const t = useTranslations("blackIvory.runners");
   const race = counts?.race?.byDistance;
+  const sexes = counts?.raceGenders;
   return (
     <div className={`flex items-stretch text-white ${className}`} style={{ backgroundColor: NAVY }}>
       {DISTANCES.map((d, i) => (
@@ -60,6 +61,11 @@ function Distances({ counts, className = "" }) {
             {race && RACE_COUNT_KM.includes(d.km) && (
               <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-white/15 px-[0.8em] py-[0.25em] text-[0.3em] font-semibold">
                 {t("raceCount", { count: race[d.km].toLocaleString("en-US") })}
+              </div>
+            )}
+            {sexes?.[d.km] && RACE_COUNT_KM.includes(d.km) && (
+              <div className="mt-[0.3em] whitespace-nowrap text-[0.27em] font-medium text-white/80">
+                {t("raceSexes", { men: sexes[d.km].M, women: sexes[d.km].F })}
               </div>
             )}
           </div>
