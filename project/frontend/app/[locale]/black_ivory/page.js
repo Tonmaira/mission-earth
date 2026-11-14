@@ -191,25 +191,33 @@ function RunnersButton({ counts, className = "" }) {
   );
 }
 
-/* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
+// ปุ่มแดงเด่น ๆ เปิดตารางรายชื่อนักวิ่ง — ให้คนที่สมัครแล้วเข้ามาเช็คชื่อตัวเองได้ง่าย
 function BibButton({ entries, className = "" }) {
   const t = useTranslations("blackIvory.bib");
   if (!entries?.length) return null;
   return (
     <BibSearchDialog
       entries={entries}
-      className={`whitespace-nowrap rounded-full bg-[#e5322d] px-[1.1em] py-[0.4em] font-semibold text-white shadow-sm transition-[filter] hover:brightness-110 ${className}`}
+      className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-[#e5322d] px-[1.3em] py-[0.55em] font-bold text-white shadow-lg transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-110 ${className}`}
     >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </svg>
       {t("button")}
     </BibSearchDialog>
   );
 }
 
+/* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
 function LandscapeLayout({ counts, bibs }) {
   return (
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
-        <Logo sizes="20vw" className="ml-[2.6vw] mt-[2.1vw] w-[18.5vw]" />
+        <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
+          <Logo sizes="20vw" className="w-[18.5vw]" />
+          <BibButton entries={bibs} className="text-[1.6vw]" />
+        </div>
         <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
           <Distances counts={counts} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
@@ -225,7 +233,6 @@ function LandscapeLayout({ counts, bibs }) {
         </SouvenirDialog>
         <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
           <RunnersButton counts={counts} className="text-[1.1vw]" />
-          <BibButton entries={bibs} className="text-[1.1vw]" />
           <QrCard className="w-full text-[1.7vw]" />
         </div>
       </div>
@@ -258,16 +265,14 @@ function PortraitLayout({ counts, bibs }) {
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
         <Distances counts={counts} className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
+      <BibButton entries={bibs} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
         <SouvenirDialog className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <div className="flex flex-wrap justify-center gap-[2.5vw]">
-          <RunnersButton counts={counts} className="text-[3.6vw]" />
-          <BibButton entries={bibs} className="text-[3.6vw]" />
-        </div>
+        <RunnersButton counts={counts} className="text-[3.6vw]" />
         <a
           href={REGISTER_URL}
           target="_blank"

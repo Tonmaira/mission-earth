@@ -86,7 +86,7 @@
     "raceSexes": "{men} men · {women} women"
   },
   "bib": {
-    "button": "Runner list",
+    "button": "Check your name",
     "label": "Black Ivory Trail runner list",
     "title": "Runners",
     "hint": "Type a first or last name to search",
