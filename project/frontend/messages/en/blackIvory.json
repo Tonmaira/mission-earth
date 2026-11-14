@@ -76,5 +76,18 @@
     "label": "Mission Earth {name} QR code",
     "scan": "Scan to follow Mission Earth",
     "open": "Open {name}"
+  },
+  "runners": {
+    "button": "{count} registered",
+    "label": "Black Ivory Trail registered runners",
+    "title": "Registered runners",
+    "people": "runners",
+    "note": "Updates automatically every minute",
+    "filter": "Filter by type",
+    "groups": {
+      "all": "All",
+      "race": "Race",
+      "nonRace": "Non-race"
+    }
   }
 }

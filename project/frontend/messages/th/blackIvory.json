@@ -76,5 +76,18 @@
     "label": "QR code {name} ของ Mission Earth",
     "scan": "สแกนเพื่อติดตาม Mission Earth",
     "open": "เปิด {name}"
+  },
+  "runners": {
+    "button": "สมัครแล้ว {count} คน",
+    "label": "ยอดนักวิ่งที่สมัครแล้ว Black Ivory Trail",
+    "title": "นักวิ่งที่สมัครแล้ว",
+    "people": "คน",
+    "note": "อัปเดตอัตโนมัติทุก 1 นาที",
+    "filter": "กรองตามประเภท",
+    "groups": {
+      "all": "ทั้งหมด",
+      "race": "Race",
+      "nonRace": "Non-race"
+    }
   }
 }

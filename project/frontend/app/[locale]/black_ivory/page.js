@@ -8,6 +8,9 @@ import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import PriceDialog from "@/components/blackIvory/PriceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
+import RunnersDialog from "@/components/blackIvory/RunnersDialog";
+import { getRunnerCounts, REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
+import AutoRefresh from "@/components/blackIvory/AutoRefresh";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
@@ -168,8 +171,22 @@ function PriceButton({ className = "" }) {
   );
 }
 
+// ปุ่มเล็กเปิด pop-up ยอดนักวิ่ง — ดึงยอดจาก Sheet ไม่ได้ (counts = null) ก็ไม่แสดงปุ่มเลย
+function RunnersButton({ counts, className = "" }) {
+  const t = useTranslations("blackIvory.runners");
+  if (!counts) return null;
+  return (
+    <RunnersDialog
+      counts={counts}
+      className={`whitespace-nowrap rounded-full border border-white/70 bg-black/30 px-[1.1em] py-[0.4em] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/50 ${className}`}
+    >
+      {t("button", { count: counts.all.total.toLocaleString("en-US") })}
+    </RunnersDialog>
+  );
+}
+
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
-function LandscapeLayout() {
+function LandscapeLayout({ counts }) {
   return (
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
@@ -188,6 +205,7 @@ function LandscapeLayout() {
           <SouvenirHint />
         </SouvenirDialog>
         <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
+          <RunnersButton counts={counts} className="text-[1.1vw]" />
           <PriceButton className="text-[1.1vw]" />
           <QrCard className="w-full text-[1.7vw]" />
         </div>
@@ -207,7 +225,7 @@ function LandscapeLayout() {
 
 /* จอแนวตั้ง (มือถือ) — ไม่มีแบบใน Figma จัดเรียงลงมาเป็นแนวเดียว
    QR เปลี่ยนเป็นปุ่มกด เพราะคนดูบนมือถือสแกนจอตัวเองไม่ได้ */
-function PortraitLayout() {
+function PortraitLayout({ counts }) {
   return (
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
@@ -227,7 +245,10 @@ function PortraitLayout() {
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <PriceButton className="text-[3.6vw]" />
+        <div className="flex flex-wrap justify-center gap-[2.5vw]">
+          <RunnersButton counts={counts} className="text-[3.6vw]" />
+          <PriceButton className="text-[3.6vw]" />
+        </div>
         <a
           href={REGISTER_URL}
           target="_blank"
@@ -255,12 +276,14 @@ export default async function BlackIvoryPage({ params }) {
   // ส่ง locale ให้ next-intl เอง ไม่งั้นตอน build หน้าไว้ล่วงหน้าทั้ง /th และ /en จะได้ภาษาเริ่มต้นทั้งคู่
   const { locale } = await params;
   setRequestLocale(locale);
+  const counts = await getRunnerCounts();
   return (
     <>
       <BackgroundVideo />
+      {counts && <AutoRefresh everyMs={REVALIDATE * 1000} />}
       <main className="relative z-10">
-        <LandscapeLayout />
-        <PortraitLayout />
+        <LandscapeLayout counts={counts} />
+        <PortraitLayout counts={counts} />
       </main>
     </>
   );
