@@ -59,7 +59,7 @@ function Distances({ counts, className = "" }) {
               ))}
             </div>
             {race && RACE_COUNT_KM.includes(d.km) && (
-              <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-white/15 px-[0.8em] py-[0.25em] text-[0.3em] font-semibold">
+              <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-[#e5322d] px-[0.8em] py-[0.25em] text-[0.3em] font-bold shadow-sm">
                 {t("raceCount", { count: race[d.km].toLocaleString("en-US") })}
               </div>
             )}
