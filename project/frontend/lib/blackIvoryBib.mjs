@@ -1,7 +1,8 @@
 /* รายชื่อนักวิ่งและเลข BIB ของ Black Ivory Trail — อ่านจากแท็บ "BIB" ใน Google Sheet ของทีม
  *
  * ใช้ลิงก์เดียวกับยอดนักวิ่ง (env BLACK_IVORY_RUNNERS_CSV) แค่เปลี่ยน gid เป็นแท็บ BIB
- * รายชื่อนี้เปิดให้ทุกคนดูบนหน้าเว็บ (ทีมตกลงแล้ว) — แต่ส่งออกไปแค่ ชื่อ / นามสกุล / ระยะ / BIB / Non-race หรือไม่
+ * รายชื่อนี้เปิดให้ทุกคนดูบนหน้าเว็บ (ทีมตกลงแล้ว) — แต่ส่งออกไปแค่ ชื่อ / นามสกุล / ระยะ / Non-race หรือไม่
+ * เลข BIB ใช้แค่คัดว่าใครขึ้นตาราง ตัวเลขเองไม่ถูกส่งออกไป (ทีมขอยังไม่โชว์)
  * คอลัมน์อื่นในแท็บ (เพศ ไซส์เสื้อ หมายเหตุ ฯลฯ) ไม่ถูกส่งไปที่เบราว์เซอร์
  */
 
@@ -36,7 +37,7 @@ export function parseBibRows(rows) {
     .filter((p) => p.first && !/^\d+$/.test(p.first));
 }
 
-/** คำค้นอยู่ในชื่อ หรืออยู่ในนามสกุล หรือพิมพ์ชื่อเต็มตั้งแต่ต้น ("สมชาย ใจ") หรือตรงกับเลข BIB
+/** คำค้นอยู่ในชื่อ หรืออยู่ในนามสกุล หรือพิมพ์ชื่อเต็มตั้งแต่ต้น ("สมชาย ใจ")
  *  ไม่ค้นข้ามรอยต่อชื่อกับนามสกุล — ไม่งั้น "สม" ไปตรงกับ "ประภาส มูลวงค์"
  *  คำค้นว่าง = ทุกคน */
 export function matchesBib(p, query) {
@@ -45,8 +46,7 @@ export function matchesBib(p, query) {
   return (
     normalize(p.first).includes(q) ||
     normalize(p.last).includes(q) ||
-    normalize(p.first + p.last).startsWith(q) ||
-    (/^\d+$/.test(q) && p.bib !== "" && Number(p.bib) === Number(q)) // "20" เจอ BIB "020"
+    normalize(p.first + p.last).startsWith(q)
   );
 }
 
@@ -57,7 +57,7 @@ export async function getBibEntries() {
   if (!url) return null;
   try {
     const entries = parseBibRows(await fetchRows(url.replace(/gid=\d+/, `gid=${BIB_GID}`)));
-    return entries?.filter((p) => p.bib) ?? null;
+    return entries?.filter((p) => p.bib).map(({ bib, ...p }) => p) ?? null;
   } catch {
     return null;
   }

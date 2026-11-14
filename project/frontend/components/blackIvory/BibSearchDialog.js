@@ -7,8 +7,8 @@ import { matchesBib } from "@/lib/blackIvoryBib.mjs";
 const DISTANCES = ["5K", "8K", "12K"];
 const RING = { "12K": "#3b6bff", "8K": "#35b6e6", "5K": "#22a447" };
 
-/* pop-up ตารางรายชื่อนักวิ่งทั้งหมด + เลข BIB — entries มาจากแท็บ BIB ใน Sheet ของทีม (lib/blackIvoryBib.mjs)
- * เปิดมาเห็นทุกคน พิมพ์ชื่อ/นามสกุล/เลข BIB เพื่อกรอง และกรองตามระยะได้
+/* pop-up ตารางรายชื่อนักวิ่ง — entries มาจากแท็บ BIB ใน Sheet ของทีม (lib/blackIvoryBib.mjs)
+ * เปิดมาเห็นทุกคน พิมพ์ชื่อ/นามสกุลเพื่อกรอง และกรองตามระยะได้
  * ตารางอัปเดตตาม Sheet เองทุก 1 นาทีพร้อมยอดนักวิ่ง (AutoRefresh ในหน้า) */
 export default function BibSearchDialog({ children, className = "", entries }) {
   const t = useTranslations("blackIvory.bib");
@@ -68,7 +68,6 @@ export default function BibSearchDialog({ children, className = "", entries }) {
             <table className="mt-4 w-full border-separate border-spacing-y-1 text-left text-sm sm:text-base">
               <thead className="text-xs text-white/60 sm:text-sm">
                 <tr>
-                  <th className="px-3 py-1 font-semibold">BIB</th>
                   <th className="px-3 py-1 font-semibold">{t("name")}</th>
                   <th className="px-3 py-1 text-center font-semibold">{t("distance")}</th>
                 </tr>
@@ -76,10 +75,7 @@ export default function BibSearchDialog({ children, className = "", entries }) {
               <tbody>
                 {shown.map((p, i) => (
                   <tr key={i} className="bg-[#0b2540]/70">
-                    <td className="rounded-l-xl px-3 py-2 font-extrabold tabular-nums">
-                      {p.bib}
-                    </td>
-                    <td className="px-3 py-2">
+                    <td className="rounded-l-xl px-3 py-2">
                       {p.first} {p.last}
                       {p.nonRace && <span className="ml-1.5 whitespace-nowrap text-xs text-white/60">({t("nonRace")})</span>}
                     </td>

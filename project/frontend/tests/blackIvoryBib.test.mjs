@@ -25,14 +25,12 @@ test("returns null when a heading is renamed", () => {
   assert.equal(parseBibRows(parseCsv("ลำดับ,ชื่อ,นามสกุล,ระยะ,เลข\n1,a,b,5K,1")), null);
 });
 
-test("matches first name, last name, full name or BIB, ignoring case and spaces", () => {
+test("matches first name, last name or full name, ignoring case and spaces", () => {
   const entries = parseBibRows(ROWS);
   const names = (q) => entries.filter((p) => matchesBib(p, q)).map((p) => p.first);
   assert.deepEqual(names(""), ["สมชาย", "สมหญิง", "John"]); // empty search shows everyone
   assert.deepEqual(names("สม"), ["สมชาย", "สมหญิง"]);
   assert.deepEqual(names("ใจงาม"), ["สมหญิง"]);
   assert.deepEqual(names("john  SMI"), ["John"]);
-  assert.deepEqual(names("205"), ["John"]);
-  assert.deepEqual(names("1"), ["สมชาย"]); // BIB "001" without the leading zeros
   assert.deepEqual(names("ยใจ"), []); // doesn't match across the first/last name seam
 });
