@@ -7,10 +7,9 @@ import SouvenirDialog from "@/components/blackIvory/SouvenirDialog";
 import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
-import RunnersDialog from "@/components/blackIvory/RunnersDialog";
 import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
-import { getRunnerCounts, REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
-import { getBibEntries } from "@/lib/blackIvoryBib.mjs";
+import { REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
+import { getBibData } from "@/lib/blackIvoryBib.mjs";
 import AutoRefresh from "@/components/blackIvory/AutoRefresh";
 
 const BASE = "/blackIvory";
@@ -39,15 +38,12 @@ const CONTACT_LINKS = [
 /* ขนาดทุกอย่างอิงความกว้างจอ (vw) เพื่อให้หน้าตาเหมือนโปสเตอร์ไม่ว่าจอใหญ่เล็ก
    ตัวหนังสือในกล่องย่อยใช้ em = ปรับขนาดทั้งกล่องได้ด้วยการเปลี่ยน text-[..] ที่ตัวกล่องอย่างเดียว */
 
-// ใต้ชื่อระยะโชว์จำนวนนักวิ่งประเภท Race (จาก Sheet ทีม) เฉพาะระยะที่แข่งจริง — 5K เป็น Fun Trail ไม่โชว์
-const RACE_COUNT_KM = ["8K", "12K"];
+// ใต้ชื่อระยะโชว์จำนวนนักวิ่งประเภท Race (แท็บ BIB ใน Sheet ทีม) เฉพาะระยะที่แข่งจริง — 5K เป็น Fun Trail ไม่โชว์
 
 /* แถบระยะทาง — ตัวเลข 5K/8K/12K ชิดบนเท่ากันทุกคอลัมน์ (ชื่อระยะยาวไม่เท่ากัน ถ้าจัดกึ่งกลางตัวเลขจะเหลื่อม)
    ชื่อระยะจองที่ไว้สองบรรทัดเสมอ บรรทัดยอดนักวิ่งข้างใต้จึงตรงกันทุกคอลัมน์ด้วย */
-function Distances({ counts, className = "" }) {
+function Distances({ race, className = "" }) {
   const t = useTranslations("blackIvory.runners");
-  const race = counts?.race?.byDistance;
-  const sexes = counts?.raceGenders;
   return (
     <div className={`flex items-stretch text-white ${className}`} style={{ backgroundColor: NAVY }}>
       {DISTANCES.map((d, i) => (
@@ -60,15 +56,15 @@ function Distances({ counts, className = "" }) {
                 <div key={l}>{l}</div>
               ))}
             </div>
-            {race && RACE_COUNT_KM.includes(d.km) && (
-              <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-[#e5322d] px-[0.8em] py-[0.25em] text-[0.3em] font-bold shadow-sm">
-                {t("raceCount", { count: race[d.km].toLocaleString("en-US") })}
-              </div>
-            )}
-            {sexes?.[d.km] && RACE_COUNT_KM.includes(d.km) && (
-              <div className="mt-[0.3em] whitespace-nowrap text-[0.27em] font-medium text-white/80">
-                {t("raceSexes", { men: sexes[d.km].M, women: sexes[d.km].F })}
-              </div>
+            {race?.[d.km] && (
+              <>
+                <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-[#e5322d] px-[0.8em] py-[0.25em] text-[0.3em] font-bold shadow-sm">
+                  {t("raceCount", { count: race[d.km].total.toLocaleString("en-US") })}
+                </div>
+                <div className="mt-[0.3em] whitespace-nowrap text-[0.27em] font-medium text-white/80">
+                  {t("raceSexes", { men: race[d.km].M, women: race[d.km].F })}
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -177,20 +173,6 @@ function SouvenirHint() {
   );
 }
 
-// ปุ่มเล็กเปิด pop-up ยอดนักวิ่ง — ดึงยอดจาก Sheet ไม่ได้ (counts = null) ก็ไม่แสดงปุ่มเลย
-function RunnersButton({ counts, className = "" }) {
-  const t = useTranslations("blackIvory.runners");
-  if (!counts) return null;
-  return (
-    <RunnersDialog
-      counts={counts}
-      className={`whitespace-nowrap rounded-full border border-white/70 bg-black/30 px-[1.1em] py-[0.4em] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-black/50 ${className}`}
-    >
-      {t("button", { count: counts.all.total.toLocaleString("en-US") })}
-    </RunnersDialog>
-  );
-}
-
 // ปุ่มแดงเด่น ๆ เปิดตารางรายชื่อนักวิ่ง — ให้คนที่สมัครแล้วเข้ามาเช็คชื่อตัวเองได้ง่าย
 function BibButton({ entries, className = "" }) {
   const t = useTranslations("blackIvory.bib");
@@ -204,23 +186,23 @@ function BibButton({ entries, className = "" }) {
         <circle cx="11" cy="11" r="7" />
         <path d="M20 20l-4-4" />
       </svg>
-      {t("button")}
+      {t("button", { count: entries.length.toLocaleString("en-US") })}
     </BibSearchDialog>
   );
 }
 
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
-function LandscapeLayout({ counts, bibs }) {
+function LandscapeLayout({ bibs }) {
   return (
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
         <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
           <Logo sizes="20vw" className="w-[18.5vw]" />
-          <BibButton entries={bibs} className="text-[1.6vw]" />
+          <BibButton entries={bibs?.list} className="text-[1.6vw]" />
         </div>
         <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
-          <Distances counts={counts} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
+          <Distances race={bibs?.race} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
         </DistanceDialog>
       </header>
 
@@ -231,10 +213,7 @@ function LandscapeLayout({ counts, bibs }) {
           <Prizes sizes="22vw" className="w-full transition-transform group-hover:-translate-y-1" />
           <SouvenirHint />
         </SouvenirDialog>
-        <div className="flex w-[13.8vw] flex-col items-center gap-[0.8vw]">
-          <RunnersButton counts={counts} className="text-[1.1vw]" />
-          <QrCard className="w-full text-[1.7vw]" />
-        </div>
+        <QrCard className="w-[13.8vw] text-[1.7vw]" />
       </div>
 
       <footer
@@ -251,7 +230,7 @@ function LandscapeLayout({ counts, bibs }) {
 
 /* จอแนวตั้ง (มือถือ) — ไม่มีแบบใน Figma จัดเรียงลงมาเป็นแนวเดียว
    QR เปลี่ยนเป็นปุ่มกด เพราะคนดูบนมือถือสแกนจอตัวเองไม่ได้ */
-function PortraitLayout({ counts, bibs }) {
+function PortraitLayout({ bibs }) {
   return (
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
@@ -263,16 +242,15 @@ function PortraitLayout({ counts, bibs }) {
       </header>
 
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
-        <Distances counts={counts} className="rounded-[5vw] py-[4vw] text-[9vw]" />
+        <Distances race={bibs?.race} className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
-      <BibButton entries={bibs} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
+      <BibButton entries={bibs?.list} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
         <SouvenirDialog className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <RunnersButton counts={counts} className="text-[3.6vw]" />
         <a
           href={REGISTER_URL}
           target="_blank"
@@ -300,14 +278,14 @@ export default async function BlackIvoryPage({ params }) {
   // ส่ง locale ให้ next-intl เอง ไม่งั้นตอน build หน้าไว้ล่วงหน้าทั้ง /th และ /en จะได้ภาษาเริ่มต้นทั้งคู่
   const { locale } = await params;
   setRequestLocale(locale);
-  const [counts, bibs] = await Promise.all([getRunnerCounts(), getBibEntries()]);
+  const bibs = await getBibData();
   return (
     <>
       <BackgroundVideo />
-      {(counts || bibs) && <AutoRefresh everyMs={REVALIDATE * 1000} />}
+      {bibs && <AutoRefresh everyMs={REVALIDATE * 1000} />}
       <main className="relative z-10">
-        <LandscapeLayout counts={counts} bibs={bibs} />
-        <PortraitLayout counts={counts} bibs={bibs} />
+        <LandscapeLayout bibs={bibs} />
+        <PortraitLayout bibs={bibs} />
       </main>
     </>
   );

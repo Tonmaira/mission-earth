@@ -1,29 +1,30 @@
-/* รายชื่อนักวิ่งและเลข BIB ของ Black Ivory Trail — อ่านจากแท็บ "BIB" และ "รายชื่อ BIB" ใน Google Sheet ของทีม
+/* รายชื่อนักวิ่งและเลข BIB ของ Black Ivory Trail — อ่านจากแท็บ "BIB" ใน Google Sheet ของทีม
  *
- * ใช้ลิงก์เดียวกับยอดนักวิ่ง (env BLACK_IVORY_RUNNERS_CSV) แค่เปลี่ยน gid เป็นแต่ละแท็บ
- * ทีมกรอกชื่อไว้ทั้งสองแท็บ (บางคนมีแค่แท็บเดียว) จึงรวมกันโดยใช้เลข BIB เป็นตัวจับคู่
+ * ใช้ลิงก์เดียวกับยอดนักวิ่ง (env BLACK_IVORY_RUNNERS_CSV) แค่เปลี่ยน gid เป็นแท็บ BIB
+ * เคยรวมแท็บ "รายชื่อ BIB" (gid 1560598165) ด้วย แต่ทีมขอใช้แท็บ BIB แท็บเดียว — จะเพิ่มกลับก็ใส่ gid ลงใน BIB_GIDS
  * รายชื่อนี้เปิดให้ทุกคนดูบนหน้าเว็บ (ทีมตกลงแล้ว) — แต่ส่งออกไปแค่ ชื่อ / นามสกุล / ระยะ / Non-race หรือไม่
  * เลข BIB ใช้แค่คัดว่าใครขึ้นตาราง ตัวเลขเองไม่ถูกส่งออกไป (ทีมขอยังไม่โชว์)
- * คอลัมน์อื่นในแท็บ (เพศ ไซส์เสื้อ หมายเหตุ ฯลฯ) ไม่ถูกส่งไปที่เบราว์เซอร์
+ * คอลัมน์อื่นในแท็บ (เพศ ไซส์เสื้อ หมายเหตุ ฯลฯ) ไม่ถูกส่งไปที่เบราว์เซอร์ — เพศใช้แค่นับยอดชาย/หญิงเป็นตัวเลข
+ *
+ * ยอด Race และชาย/หญิงใต้ 8K/12K ก็นับจากแท็บนี้ (countRace) ตัวเลขจึงตรงกับตารางรายชื่อและบวกกันลงตัว
  */
 
 import { fetchRows } from "./blackIvoryRunners.mjs";
 
-// เรียงตามลำดับความสำคัญ: เลข BIB เดียวกันมีชื่อทั้งสองแท็บ ใช้แท็บแรก
+// ถ้ามีหลายแท็บ เรียงตามลำดับความสำคัญ: เลข BIB เดียวกันมีชื่อหลายแท็บ ใช้แท็บแรก
 const BIB_GIDS = [
-  "895374520", // "BIB" — ทุกคน
-  "1560598165", // "รายชื่อ BIB"
+  "895374520", // "BIB"
 ];
 // หาคอลัมน์จากข้อความหัว (แถวแรกของแท็บ) — ถ้าทีมเปลี่ยนชื่อหัวพวกนี้ต้องมาแก้ตรงนี้ด้วย
 // ช่อง Race: แท็บ "BIB" ใช้ "Race" (TRUE/FALSE), แท็บ "รายชื่อ BIB" ใช้ "Race / Non-race"
-const COLUMNS = { first: "ชื่อ", last: "นามสกุล", km: "ระยะ" };
+const COLUMNS = { first: "ชื่อ", last: "นามสกุล", km: "ระยะ", sex: "เพศ" };
 const RACE_HEADERS = ["Race", "Race / Non-race"];
 const NON_RACE = ["FALSE", "NON-RACE"];
 
 // ตัวพิมพ์เล็ก/ใหญ่และช่องว่างไม่มีผล: "somchai  jai" ตรงกับ "Somchai Jaidee"
 const normalize = (s) => String(s ?? "").normalize("NFC").toLowerCase().replace(/\s+/g, "");
 
-/** แถวของแท็บ → [{ first, last, km, bib, nonRace }] หรือ null ถ้าหัวคอลัมน์ไม่ครบ
+/** แถวของแท็บ → [{ first, last, km, sex, bib, nonRace }] หรือ null ถ้าหัวคอลัมน์ไม่ครบ
  *  มีคอลัมน์ "BIB" หลายช่องได้ (แท็บ "รายชื่อ BIB" มีช่องว่างหนึ่งช่อง) ใช้ช่องแรกที่มีเลข
  *  nonRace = ช่อง Race เป็น FALSE / Non-race (ช่องว่างไม่นับว่าเป็น Non-race)
  *  ข้ามแถวที่ไม่มีชื่อ (เช่นแถวสรุปยอดใต้หัวตาราง) */
@@ -41,6 +42,7 @@ export function parseBibRows(rows) {
         first: cell(col.first),
         last: cell(col.last),
         km: cell(col.km),
+        sex: cell(col.sex).toUpperCase(),
         bib: bibCols.map(cell).find(Boolean) ?? "",
         nonRace: NON_RACE.includes(cell(raceCol).toUpperCase()),
       };
@@ -72,9 +74,23 @@ export function matchesBib(p, query) {
   );
 }
 
-/** ดึงทั้งสองแท็บ (แคช 1 นาทีเหมือนยอดนักวิ่ง) แล้วรวมกัน
- *  แท็บไหนอ่านไม่ได้ก็ใช้แท็บที่เหลือ — อ่านไม่ได้ทั้งคู่ถึงคืน null ให้หน้าเว็บซ่อนปุ่ม */
-export async function getBibEntries() {
+/** นักวิ่ง Race ต่อระยะ → { "8K": { total, M, F }, ... }
+ *  total นับทุกคนที่เป็น Race — ถ้ามีคนไม่ได้กรอกเพศ ชาย + หญิงจะน้อยกว่า total */
+export function countRace(entries, kms) {
+  const out = Object.fromEntries(kms.map((km) => [km, { total: 0, M: 0, F: 0 }]));
+  for (const p of entries) {
+    const c = out[p.km];
+    if (!c || p.nonRace) continue;
+    c.total++;
+    if (p.sex === "M" || p.sex === "F") c[p.sex]++;
+  }
+  return out;
+}
+
+/** ดึงแท็บ (แคช 1 นาทีเหมือนยอดนักวิ่ง) → { list, race } หรือ null ให้หน้าเว็บซ่อนปุ่มกับยอด
+ *  list = รายชื่อที่ส่งไปเบราว์เซอร์ (ไม่มีเลข BIB และเพศ), race = ยอด Race ของ 8K/12K
+ *  มีหลายแท็บแล้วแท็บไหนอ่านไม่ได้ก็ใช้แท็บที่เหลือ */
+export async function getBibData() {
   const url = process.env.BLACK_IVORY_RUNNERS_CSV;
   if (!url) return null;
   const tabs = await Promise.allSettled(
@@ -82,5 +98,9 @@ export async function getBibEntries() {
   );
   const lists = tabs.map((t) => (t.status === "fulfilled" ? t.value : null)).filter(Boolean);
   if (!lists.length) return null;
-  return mergeBibLists(lists).map(({ bib, ...p }) => p);
+  const merged = mergeBibLists(lists);
+  return {
+    list: merged.map(({ first, last, km, nonRace }) => ({ first, last, km, nonRace })),
+    race: countRace(merged, ["8K", "12K"]),
+  };
 }

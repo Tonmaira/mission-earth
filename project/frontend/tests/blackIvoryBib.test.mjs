@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseCsv } from "../lib/blackIvoryRunners.mjs";
-import { matchesBib, mergeBibLists, parseBibRows } from "../lib/blackIvoryBib.mjs";
+import { countRace, matchesBib, mergeBibLists, parseBibRows } from "../lib/blackIvoryBib.mjs";
 
 // Same shape as the team's BIB tab (made-up people): header, a totals row, then runners.
 const ROWS = parseCsv([
@@ -15,9 +15,9 @@ const ROWS = parseCsv([
 
 test("reads only name, distance, BIB and Non-race, skipping the totals row and blank rows", () => {
   assert.deepEqual(parseBibRows(ROWS), [
-    { first: "สมชาย", last: "ใจดี", km: "5K", bib: "001", nonRace: false },
-    { first: "สมหญิง", last: "ใจงาม", km: "12K", bib: "", nonRace: true },
-    { first: "John", last: "Smith", km: "8K", bib: "205", nonRace: false },
+    { first: "สมชาย", last: "ใจดี", km: "5K", sex: "M", bib: "001", nonRace: false },
+    { first: "สมหญิง", last: "ใจงาม", km: "12K", sex: "F", bib: "", nonRace: true },
+    { first: "John", last: "Smith", km: "8K", sex: "M", bib: "205", nonRace: false },
   ]);
 });
 
@@ -45,13 +45,27 @@ const LIST_ROWS = parseCsv([
 
 test("reads the second tab's filled BIB column and its Race / Non-race words", () => {
   assert.deepEqual(parseBibRows(LIST_ROWS), [
-    { first: "สมหญิง", last: "ใจงาม", km: "12K", bib: "002", nonRace: true },
-    { first: "วัลลา", last: "ยอดหล้า", km: "5K", bib: "414", nonRace: true },
-    { first: "Jane", last: "Doe", km: "8K", bib: "010", nonRace: false },
+    { first: "สมหญิง", last: "ใจงาม", km: "12K", sex: "F", bib: "002", nonRace: true },
+    { first: "วัลลา", last: "ยอดหล้า", km: "5K", sex: "C", bib: "414", nonRace: true },
+    { first: "Jane", last: "Doe", km: "8K", sex: "F", bib: "010", nonRace: false },
   ]);
 });
 
 test("merges both tabs by BIB number, first tab wins, runners without a BIB dropped", () => {
   const merged = mergeBibLists([parseBibRows(ROWS), parseBibRows(LIST_ROWS)]);
   assert.deepEqual(merged.map((p) => `${p.bib} ${p.first}`), ["001 สมชาย", "002 สมหญิง", "010 Jane", "205 John", "414 วัลลา"]);
+});
+
+test("counts Race runners per distance with a men / women split that adds up", () => {
+  const entries = [
+    { km: "8K", sex: "M", nonRace: false },
+    { km: "8K", sex: "F", nonRace: false },
+    { km: "8K", sex: "C", nonRace: true }, // Non-race: not counted
+    { km: "12K", sex: "F", nonRace: false },
+    { km: "5K", sex: "M", nonRace: false }, // 5K isn't shown
+  ];
+  assert.deepEqual(countRace(entries, ["8K", "12K"]), {
+    "8K": { total: 2, M: 1, F: 1 },
+    "12K": { total: 1, M: 0, F: 1 },
+  });
 });

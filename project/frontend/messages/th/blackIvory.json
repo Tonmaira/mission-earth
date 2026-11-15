@@ -71,22 +71,11 @@
     "open": "เปิด {name}"
   },
   "runners": {
-    "button": "สมัครแล้ว {count} คน",
-    "label": "ยอดนักวิ่งที่สมัครแล้ว Black Ivory Trail",
-    "title": "นักวิ่งที่สมัครแล้ว",
-    "people": "คน",
-    "note": "อัปเดตอัตโนมัติทุก 1 นาที",
-    "filter": "กรองตามประเภท",
-    "groups": {
-      "all": "ทั้งหมด",
-      "race": "Race",
-      "nonRace": "Non-race"
-    },
     "raceCount": "Race {count} คน",
     "raceSexes": "ชาย {men} · หญิง {women}"
   },
   "bib": {
-    "button": "ตรวจสอบรายชื่อ",
+    "button": "ตรวจสอบรายชื่อ ({count} คน)",
     "label": "รายชื่อนักวิ่ง Black Ivory Trail",
     "title": "รายชื่อนักวิ่ง",
     "hint": "พิมพ์ชื่อหรือนามสกุลเพื่อค้นหา",
