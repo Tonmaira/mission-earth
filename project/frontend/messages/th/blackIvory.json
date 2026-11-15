@@ -1,6 +1,10 @@
 {
-  "register": "สมัครเลย!",
-  "qrAlt": "QR สมัคร Black Ivory Trail",
+  "apply": {
+    "title": "สนใจสมัคร",
+    "contact": "ติดต่อเจ้าหน้าที่",
+    "line": "LINE missionearth"
+  },
+  "home": "หน้าหลัก",
   "place": "อำเภอแม่จริม จังหวัดน่าน",
   "prizesAlt": "ถ้วยรางวัล หมวก บัฟ และเสื้อวิ่ง Black Ivory Trail",
   "souvenirHint": "ดูของที่ระลึก & รางวัล",

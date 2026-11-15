@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import BackgroundVideo from "@/components/blackIvory/BackgroundVideo";
 import FullscreenButton from "@/components/blackIvory/FullscreenButton";
@@ -11,14 +12,13 @@ import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
 import { REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
 import { getBibData } from "@/lib/blackIvoryBib.mjs";
 import AutoRefresh from "@/components/blackIvory/AutoRefresh";
+import { localePath } from "@/lib/locale";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
-// ลิงก์เดียวกับที่ฝังอยู่ใน qr-register-2026-11.png (Google Form สมัคร)
-// เปลี่ยน QR เมื่อไร ให้ตั้งชื่อไฟล์ใหม่ด้วย — next/image เก็บรูปที่ย่อแล้วไว้ 30 วัน (minimumCacheTTL)
-// ใช้ชื่อเดิมคนจะยังเห็น QR เก่าที่พาไปฟอร์มเก่า
-const REGISTER_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScTgb2Rnq_Zw_8cf4uodGdF15zAiMcZHqIGNmqpBXwNXFU39Q/viewform";
+// ปิดรับสมัครผ่านฟอร์มแล้ว — คนที่สนใจให้ทักเจ้าหน้าที่ทาง LINE ของ Mission Earth (ลิงก์เดียวกับไอคอน LINE ด้านล่าง)
+const LINE_URL = "https://lin.ee/MDN9uJ4";
+const LINE_GREEN = "#06c755";
 
 const DISTANCES = [
   { km: "5K", label: ["FUN TRAIL"] },
@@ -73,25 +73,46 @@ function Distances({ race, className = "" }) {
   );
 }
 
-function QrCard({ className = "" }) {
-  const t = useTranslations("blackIvory");
+// กล่องแทน QR สมัครเดิม — กดแล้วเปิด LINE คุยกับเจ้าหน้าที่
+function ApplyCard({ className = "" }) {
+  const t = useTranslations("blackIvory.apply");
   return (
     <a
-      href={REGISTER_URL}
+      href={LINE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`block transition-transform hover:-translate-y-1 ${className}`}
+      className={`block overflow-hidden rounded-[1.2em] text-center shadow-lg transition-transform hover:-translate-y-1 ${className}`}
     >
-      <div
-        className="rounded-t-[1.5em] py-[0.35em] text-center font-semibold text-white"
-        style={{ backgroundColor: NAVY }}
-      >
-        {t("register")}
+      <div className="py-[0.5em] font-bold text-white" style={{ backgroundColor: NAVY }}>
+        {t("title")}
       </div>
-      <div className="bg-white p-[0.5em]">
-        <Image src={`${BASE}/qr-register-2026-11.png`} alt={t("qrAlt")} width={500} height={500} className="w-full" />
+      <div className="bg-white px-[0.6em] py-[0.7em]" style={{ color: NAVY }}>
+        <div className="text-[0.75em] font-semibold">{t("contact")}</div>
+        <div
+          className="mt-[0.5em] rounded-full py-[0.35em] text-[0.8em] font-bold text-white"
+          style={{ backgroundColor: LINE_GREEN }}
+        >
+          {t("line")}
+        </div>
       </div>
     </a>
+  );
+}
+
+// ปุ่มกลับหน้าแรกของเว็บ — หน้านี้ไม่มี navbar ของเว็บ
+function HomeButton({ className = "" }) {
+  const t = useTranslations("blackIvory");
+  return (
+    <Link
+      href={localePath("/", useLocale())}
+      className={`flex items-center gap-[0.4em] whitespace-nowrap rounded-full bg-black/35 px-[1em] font-semibold text-white backdrop-blur-sm hover:bg-black/55 ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
+        <path d="M3 11l9-8 9 8" />
+        <path d="M5 10v10h14V10" />
+      </svg>
+      {t("home")}
+    </Link>
   );
 }
 
@@ -110,10 +131,6 @@ function Contact({ className = "" }) {
       ))}
     </div>
   );
-}
-
-function RegisterLabel() {
-  return useTranslations("blackIvory")("register");
 }
 
 function EventDate({ className = "" }) {
@@ -201,7 +218,10 @@ function LandscapeLayout({ bibs }) {
           <Logo sizes="20vw" className="w-[18.5vw]" />
           <BibButton entries={bibs?.list} summary={bibs?.summary} className="text-[1.6vw]" />
         </div>
-        <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
+        <div className="ml-auto mr-[1.7vw] mt-[2.1vw] flex gap-[0.6vw] text-[1.1vw]">
+          <HomeButton className="min-h-8 py-[0.4em]" />
+          <LangToggle className="min-h-8 py-[0.4em]" />
+        </div>
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
           <Distances race={bibs?.race} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
         </DistanceDialog>
@@ -214,7 +234,7 @@ function LandscapeLayout({ bibs }) {
           <Prizes sizes="22vw" className="w-full transition-transform group-hover:-translate-y-1" />
           <SouvenirHint />
         </SouvenirDialog>
-        <QrCard className="w-[13.8vw] text-[1.7vw]" />
+        <ApplyCard className="w-[15vw] text-[1.5vw]" />
       </div>
 
       <footer
@@ -230,13 +250,14 @@ function LandscapeLayout({ bibs }) {
 }
 
 /* จอแนวตั้ง (มือถือ) — ไม่มีแบบใน Figma จัดเรียงลงมาเป็นแนวเดียว
-   QR เปลี่ยนเป็นปุ่มกด เพราะคนดูบนมือถือสแกนจอตัวเองไม่ได้ */
+   กล่องสมัครเปลี่ยนเป็นปุ่ม LINE เต็มกว้าง */
 function PortraitLayout({ bibs }) {
   return (
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
         <Logo sizes="65vw" className="w-[62vw]" />
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <HomeButton className="h-11 text-sm" />
           <LangToggle className="h-11 text-sm" />
           <FullscreenButton className="h-11 w-11" />
         </div>
@@ -252,15 +273,7 @@ function PortraitLayout({ bibs }) {
           <Prizes sizes="85vw" className="w-full" />
           <SouvenirHint />
         </SouvenirDialog>
-        <a
-          href={REGISTER_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full rounded-full bg-white py-[4vw] text-center text-[5.5vw] font-bold"
-          style={{ color: NAVY }}
-        >
-          <RegisterLabel />
-        </a>
+        <ApplyCard className="w-full text-[5.5vw]" />
       </div>
 
       <footer

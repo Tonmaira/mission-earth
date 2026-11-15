@@ -1,6 +1,10 @@
 {
-  "register": "Register now!",
-  "qrAlt": "QR code to register for Black Ivory Trail",
+  "apply": {
+    "title": "Want to join?",
+    "contact": "Contact our team",
+    "line": "LINE missionearth"
+  },
+  "home": "Home",
   "place": "Mae Charim, Nan",
   "prizesAlt": "Black Ivory Trail trophies, visor, buff and running shirt",
   "souvenirHint": "Race pack & rewards",
