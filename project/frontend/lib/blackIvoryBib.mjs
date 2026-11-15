@@ -87,8 +87,31 @@ export function countRace(entries, kms) {
   return out;
 }
 
+/** จำนวนนักวิ่งต่อ ระยะ × ประเภท สำหรับตารางสรุป → [{ km, group, count }]
+ *  group: M / F = Race ชาย/หญิง, nonRace = Non-race ทั้งหมด (แท็บ BIB ไม่ได้กรอกเพศ Non-race)
+ *  unknown = Race ที่ไม่ได้กรอกเพศ — โชว์เฉพาะตอนมีคน
+ *  ระยะใน whole (เช่น 5K Fun Trail) ไม่แยกประเภท — แถวเดียว group "all" */
+export function countGroups(entries, kms, whole = []) {
+  const rows = kms.flatMap((km) =>
+    (whole.includes(km) ? ["all"] : ["M", "F", "nonRace", "unknown"]).map((group) => ({ km, group, count: 0 }))
+  );
+  for (const p of entries) {
+    const group = whole.includes(p.km)
+      ? "all"
+      : p.nonRace
+        ? "nonRace"
+        : p.sex === "M" || p.sex === "F"
+          ? p.sex
+          : "unknown";
+    const row = rows.find((r) => r.km === p.km && r.group === group);
+    if (row) row.count++;
+  }
+  return rows.filter((r) => r.group !== "unknown" || r.count > 0);
+}
+
 /** ดึงแท็บ (แคช 1 นาทีเหมือนยอดนักวิ่ง) → { list, race } หรือ null ให้หน้าเว็บซ่อนปุ่มกับยอด
  *  list = รายชื่อที่ส่งไปเบราว์เซอร์ (ไม่มีเลข BIB และเพศ), race = ยอด Race ของ 8K/12K
+ *  summary = ตารางสรุปจำนวน (ตัวเลขล้วน)
  *  มีหลายแท็บแล้วแท็บไหนอ่านไม่ได้ก็ใช้แท็บที่เหลือ */
 export async function getBibData() {
   const url = process.env.BLACK_IVORY_RUNNERS_CSV;
@@ -102,5 +125,6 @@ export async function getBibData() {
   return {
     list: merged.map(({ first, last, km, nonRace }) => ({ first, last, km, nonRace })),
     race: countRace(merged, ["8K", "12K"]),
+    summary: countGroups(merged, ["5K", "8K", "12K"], ["5K"]), // 5K เป็น Fun Trail ไม่แยก
   };
 }

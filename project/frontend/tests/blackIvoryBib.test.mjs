@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseCsv } from "../lib/blackIvoryRunners.mjs";
-import { countRace, matchesBib, mergeBibLists, parseBibRows } from "../lib/blackIvoryBib.mjs";
+import { countGroups, countRace, matchesBib, mergeBibLists, parseBibRows } from "../lib/blackIvoryBib.mjs";
 
 // Same shape as the team's BIB tab (made-up people): header, a totals row, then runners.
 const ROWS = parseCsv([
@@ -68,4 +68,24 @@ test("counts Race runners per distance with a men / women split that adds up", (
     "8K": { total: 2, M: 1, F: 1 },
     "12K": { total: 1, M: 0, F: 1 },
   });
+});
+
+test("summarises each distance as Race men, Race women and Non-race, or one row when not split", () => {
+  const entries = [
+    { km: "5K", sex: "M", nonRace: false },
+    { km: "5K", sex: "F", nonRace: false },
+    { km: "5K", sex: "C", nonRace: true },
+    { km: "5K", sex: "C", nonRace: true },
+    { km: "8K", sex: "", nonRace: false }, // Race with no sex: shown as its own row
+  ];
+  assert.deepEqual(countGroups(entries, ["5K"], ["5K"]), [{ km: "5K", group: "all", count: 4 }]);
+  assert.deepEqual(countGroups(entries, ["5K", "8K"]), [
+    { km: "5K", group: "M", count: 1 },
+    { km: "5K", group: "F", count: 1 },
+    { km: "5K", group: "nonRace", count: 2 },
+    { km: "8K", group: "M", count: 0 },
+    { km: "8K", group: "F", count: 0 },
+    { km: "8K", group: "nonRace", count: 0 },
+    { km: "8K", group: "unknown", count: 1 },
+  ]);
 });

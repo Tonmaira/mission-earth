@@ -174,12 +174,13 @@ function SouvenirHint() {
 }
 
 // ปุ่มแดงเด่น ๆ เปิดตารางรายชื่อนักวิ่ง — ให้คนที่สมัครแล้วเข้ามาเช็คชื่อตัวเองได้ง่าย
-function BibButton({ entries, className = "" }) {
+function BibButton({ entries, summary, className = "" }) {
   const t = useTranslations("blackIvory.bib");
   if (!entries?.length) return null;
   return (
     <BibSearchDialog
       entries={entries}
+      summary={summary}
       className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-[#e5322d] px-[1.3em] py-[0.55em] font-bold text-white shadow-lg transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-110 ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
@@ -198,7 +199,7 @@ function LandscapeLayout({ bibs }) {
       <header className="flex items-start justify-between">
         <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
           <Logo sizes="20vw" className="w-[18.5vw]" />
-          <BibButton entries={bibs?.list} className="text-[1.6vw]" />
+          <BibButton entries={bibs?.list} summary={bibs?.summary} className="text-[1.6vw]" />
         </div>
         <LangToggle className="ml-auto mr-[1.7vw] mt-[2.1vw] min-h-8 py-[0.4em] text-[1.1vw]" />
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
@@ -244,7 +245,7 @@ function PortraitLayout({ bibs }) {
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
         <Distances race={bibs?.race} className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
-      <BibButton entries={bibs?.list} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
+      <BibButton entries={bibs?.list} summary={bibs?.summary} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
         <SouvenirDialog className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">

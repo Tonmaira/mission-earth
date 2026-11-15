@@ -86,6 +86,24 @@
     "name": "Name",
     "distance": "Distance",
     "notFound": "No match for “{query}”. Try just your first or last name.",
-    "nonRace": "Non-race"
+    "nonRace": "Non-race",
+    "views": {
+      "list": "Names",
+      "summary": "Totals"
+    },
+    "summary": {
+      "km": "Distance",
+      "group": "Type",
+      "count": "Runners",
+      "total": "Total",
+      "note": "Men / women count Race runners only — Non-race isn’t split by sex yet · 5K counts everyone",
+      "groups": {
+        "all": "All",
+        "M": "Men (Race)",
+        "F": "Women (Race)",
+        "nonRace": "Non-race",
+        "unknown": "Race, sex not given"
+      }
+    }
   }
 }

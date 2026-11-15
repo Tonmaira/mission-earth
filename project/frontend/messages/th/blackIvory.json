@@ -86,6 +86,24 @@
     "name": "ชื่อ-นามสกุล",
     "distance": "ระยะ",
     "notFound": "ไม่พบ “{query}” ลองพิมพ์แค่ชื่อหรือนามสกุลอย่างเดียว",
-    "nonRace": "Non-race"
+    "nonRace": "Non-race",
+    "views": {
+      "list": "รายชื่อ",
+      "summary": "สรุปจำนวน"
+    },
+    "summary": {
+      "km": "ระยะ",
+      "group": "ประเภท",
+      "count": "จำนวน",
+      "total": "รวม",
+      "note": "ชาย / หญิง นับเฉพาะนักวิ่ง Race — Non-race ยังไม่ได้แยกเพศ · 5K รวมทุกประเภท",
+      "groups": {
+        "all": "ทั้งหมด",
+        "M": "ชาย (Race)",
+        "F": "หญิง (Race)",
+        "nonRace": "Non-race",
+        "unknown": "Race ไม่ระบุเพศ"
+      }
+    }
   }
 }
