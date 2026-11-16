@@ -74,10 +74,6 @@
     "scan": "Scan to follow Mission Earth",
     "open": "Open {name}"
   },
-  "runners": {
-    "raceCount": "{count} racers",
-    "raceSexes": "{men} men · {women} women"
-  },
   "bib": {
     "button": "Check your name ({count} runners)",
     "label": "Black Ivory Trail runner list",

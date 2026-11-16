@@ -4,9 +4,7 @@
  * เคยรวมแท็บ "รายชื่อ BIB" (gid 1560598165) ด้วย แต่ทีมขอใช้แท็บ BIB แท็บเดียว — จะเพิ่มกลับก็ใส่ gid ลงใน BIB_GIDS
  * รายชื่อนี้เปิดให้ทุกคนดูบนหน้าเว็บ (ทีมตกลงแล้ว) — แต่ส่งออกไปแค่ ชื่อ / นามสกุล / ระยะ / Non-race หรือไม่
  * เลข BIB ใช้แค่คัดว่าใครขึ้นตาราง ตัวเลขเองไม่ถูกส่งออกไป (ทีมขอยังไม่โชว์)
- * คอลัมน์อื่นในแท็บ (เพศ ไซส์เสื้อ หมายเหตุ ฯลฯ) ไม่ถูกส่งไปที่เบราว์เซอร์ — เพศใช้แค่นับยอดชาย/หญิงเป็นตัวเลข
- *
- * ยอด Race และชาย/หญิงใต้ 8K/12K ก็นับจากแท็บนี้ (countRace) ตัวเลขจึงตรงกับตารางรายชื่อและบวกกันลงตัว
+ * คอลัมน์อื่นในแท็บ (เพศ ไซส์เสื้อ หมายเหตุ ฯลฯ) ไม่ถูกส่งไปที่เบราว์เซอร์ — เพศใช้แค่นับยอดชาย/หญิงในตารางสรุป
  */
 
 import { fetchRows } from "./blackIvoryRunners.mjs";
@@ -74,19 +72,6 @@ export function matchesBib(p, query) {
   );
 }
 
-/** นักวิ่ง Race ต่อระยะ → { "8K": { total, M, F }, ... }
- *  total นับทุกคนที่เป็น Race — ถ้ามีคนไม่ได้กรอกเพศ ชาย + หญิงจะน้อยกว่า total */
-export function countRace(entries, kms) {
-  const out = Object.fromEntries(kms.map((km) => [km, { total: 0, M: 0, F: 0 }]));
-  for (const p of entries) {
-    const c = out[p.km];
-    if (!c || p.nonRace) continue;
-    c.total++;
-    if (p.sex === "M" || p.sex === "F") c[p.sex]++;
-  }
-  return out;
-}
-
 /** จำนวนนักวิ่งต่อ ระยะ × ประเภท สำหรับตารางสรุป → [{ km, group, count }]
  *  group: M / F = Race ชาย/หญิง, nonRace = Non-race ทั้งหมด (แท็บ BIB ไม่ได้กรอกเพศ Non-race)
  *  unknown = Race ที่ไม่ได้กรอกเพศ — โชว์เฉพาะตอนมีคน
@@ -109,8 +94,8 @@ export function countGroups(entries, kms, whole = []) {
   return rows.filter((r) => r.group !== "unknown" || r.count > 0);
 }
 
-/** ดึงแท็บ (แคช 1 นาทีเหมือนยอดนักวิ่ง) → { list, race } หรือ null ให้หน้าเว็บซ่อนปุ่มกับยอด
- *  list = รายชื่อที่ส่งไปเบราว์เซอร์ (ไม่มีเลข BIB และเพศ), race = ยอด Race ของ 8K/12K
+/** ดึงแท็บ (แคช 1 นาทีเหมือนยอดนักวิ่ง) → { list, summary } หรือ null ให้หน้าเว็บซ่อนปุ่ม
+ *  list = รายชื่อที่ส่งไปเบราว์เซอร์ (ไม่มีเลข BIB และเพศ)
  *  summary = ตารางสรุปจำนวน (ตัวเลขล้วน)
  *  มีหลายแท็บแล้วแท็บไหนอ่านไม่ได้ก็ใช้แท็บที่เหลือ */
 export async function getBibData() {
@@ -124,7 +109,6 @@ export async function getBibData() {
   const merged = mergeBibLists(lists);
   return {
     list: merged.map(({ first, last, km, nonRace }) => ({ first, last, km, nonRace })),
-    race: countRace(merged, ["8K", "12K"]),
     summary: countGroups(merged, ["5K", "8K", "12K"], ["5K"]), // 5K เป็น Fun Trail ไม่แยก
   };
 }

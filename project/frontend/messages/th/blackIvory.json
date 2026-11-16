@@ -74,10 +74,6 @@
     "scan": "สแกนเพื่อติดตาม Mission Earth",
     "open": "เปิด {name}"
   },
-  "runners": {
-    "raceCount": "Race {count} คน",
-    "raceSexes": "ชาย {men} · หญิง {women}"
-  },
   "bib": {
     "button": "ตรวจสอบรายชื่อ ({count} คน)",
     "label": "รายชื่อนักวิ่ง Black Ivory Trail",

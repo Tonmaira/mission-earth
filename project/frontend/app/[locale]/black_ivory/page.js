@@ -38,12 +38,9 @@ const CONTACT_LINKS = [
 /* ขนาดทุกอย่างอิงความกว้างจอ (vw) เพื่อให้หน้าตาเหมือนโปสเตอร์ไม่ว่าจอใหญ่เล็ก
    ตัวหนังสือในกล่องย่อยใช้ em = ปรับขนาดทั้งกล่องได้ด้วยการเปลี่ยน text-[..] ที่ตัวกล่องอย่างเดียว */
 
-// ใต้ชื่อระยะโชว์จำนวนนักวิ่งประเภท Race (แท็บ BIB ใน Sheet ทีม) เฉพาะระยะที่แข่งจริง — 5K เป็น Fun Trail ไม่โชว์
-
 /* แถบระยะทาง — ตัวเลข 5K/8K/12K ชิดบนเท่ากันทุกคอลัมน์ (ชื่อระยะยาวไม่เท่ากัน ถ้าจัดกึ่งกลางตัวเลขจะเหลื่อม)
-   ชื่อระยะจองที่ไว้สองบรรทัดเสมอ บรรทัดยอดนักวิ่งข้างใต้จึงตรงกันทุกคอลัมน์ด้วย */
-function Distances({ race, className = "" }) {
-  const t = useTranslations("blackIvory.runners");
+   ชื่อระยะจองที่ไว้สองบรรทัดเสมอ ความสูงทุกคอลัมน์จึงเท่ากัน */
+function Distances({ className = "" }) {
   return (
     <div className={`flex items-stretch text-white ${className}`} style={{ backgroundColor: NAVY }}>
       {DISTANCES.map((d, i) => (
@@ -56,16 +53,6 @@ function Distances({ race, className = "" }) {
                 <div key={l}>{l}</div>
               ))}
             </div>
-            {race?.[d.km] && (
-              <>
-                <div className="mx-auto mt-[0.35em] w-fit whitespace-nowrap rounded-full bg-[#e5322d] px-[0.8em] py-[0.25em] text-[0.3em] font-bold shadow-sm">
-                  {t("raceCount", { count: race[d.km].total.toLocaleString("en-US") })}
-                </div>
-                <div className="mt-[0.3em] whitespace-nowrap text-[0.27em] font-medium text-white/80">
-                  {t("raceSexes", { men: race[d.km].M, women: race[d.km].F })}
-                </div>
-              </>
-            )}
           </div>
         </div>
       ))}
@@ -223,7 +210,7 @@ function LandscapeLayout({ bibs }) {
           <LangToggle className="min-h-8 py-[0.4em]" />
         </div>
         <DistanceDialog className="block transition-[filter] hover:brightness-125">
-          <Distances race={bibs?.race} className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
+          <Distances className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
         </DistanceDialog>
       </header>
 
@@ -264,7 +251,7 @@ function PortraitLayout({ bibs }) {
       </header>
 
       <DistanceDialog className="mx-[6vw] mt-[6vw] block">
-        <Distances race={bibs?.race} className="rounded-[5vw] py-[4vw] text-[9vw]" />
+        <Distances className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
       <BibButton entries={bibs?.list} summary={bibs?.summary} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
 
