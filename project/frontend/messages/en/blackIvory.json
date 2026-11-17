@@ -218,5 +218,76 @@
         ]
       }
     ]
+  },
+  "faq": {
+    "button": "FAQ",
+    "label": "Black Ivory Trail frequently asked questions",
+    "title": "FAQ",
+    "subtitle": "Questions before race day",
+    "sections": [
+      {
+        "title": "Nan City Run",
+        "items": [
+          {
+            "q": "When is the City Run?",
+            "a": "Friday 20 Nov at 16:00, 4 km\nMeeting point: in front of the Nanthasippakarn Learning Center"
+          },
+          {
+            "q": "Where and when do I collect my race pack?",
+            "a": "Round 1: Friday 20 Nov, 12:00–20:00\nMueang Nan Provincial Police Station"
+          },
+          {
+            "q": "What do I need to bring?",
+            "a": "Your ID card or passport"
+          },
+          {
+            "q": "Can someone collect it for me?",
+            "a": "Yes. They must show a copy of your ID card or passport to our staff"
+          },
+          {
+            "q": "What happens after the run?",
+            "a": "Meet and greet with Channel 3 actors, then an orchestra performance at Khuang Mueang square"
+          }
+        ]
+      },
+      {
+        "title": "Trail race day",
+        "items": [
+          {
+            "q": "What time does each distance start?",
+            "a": "12K 06:00 | 8K 06:15 | 5K 06:30\nStart/finish: Mae Charim District Office"
+          },
+          {
+            "q": "Where can I park?",
+            "a": "At the Mae Charim District Office car park and the surrounding area"
+          },
+          {
+            "q": "Are there water stations?",
+            "a": "12K: 3 | 8K: 2 | 5K: 1\nEvery station has a first-aid team"
+          },
+          {
+            "q": "What should I bring?",
+            "a": "Trail running shoes, a water bottle or hydration pack, a cap\nand a head torch (optional)"
+          }
+        ]
+      },
+      {
+        "title": "Pham Mae Charim & food coupons",
+        "items": [
+          {
+            "q": "Can non-runners come along?",
+            "a": "Yes. Pham Mae Charim is free to enter\nSaturday 21 Nov, 08:00–12:00\nMae Charim District Office"
+          },
+          {
+            "q": "Where do I get food coupons?",
+            "a": "They are in every runner's race pack"
+          }
+        ]
+      }
+    ],
+    "more": "Still have a question?",
+    "moreText": "Send us a message",
+    "line": "LINE missionearth",
+    "bye": "See you in Nan!"
   }
 }
