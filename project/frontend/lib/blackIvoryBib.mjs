@@ -18,6 +18,8 @@ const BIB_GIDS = [
 const COLUMNS = { first: "ชื่อ", last: "นามสกุล", km: "ระยะ", sex: "เพศ" };
 const RACE_HEADERS = ["Race", "Race / Non-race"];
 const NON_RACE = ["FALSE", "NON-RACE"];
+const KMS = ["5K", "8K", "12K"];
+const WHOLE = ["5K"]; // ระยะที่ไม่แยก Race / Non-race (5K Fun Trail)
 
 // ตัวพิมพ์เล็ก/ใหญ่และช่องว่างไม่มีผล: "somchai  jai" ตรงกับ "Somchai Jaidee"
 const normalize = (s) => String(s ?? "").normalize("NFC").toLowerCase().replace(/\s+/g, "");
@@ -108,7 +110,8 @@ export async function getBibData() {
   if (!lists.length) return null;
   const merged = mergeBibLists(lists);
   return {
-    list: merged.map(({ first, last, km, nonRace }) => ({ first, last, km, nonRace })),
-    summary: countGroups(merged, ["5K", "8K", "12K"], ["5K"]), // 5K เป็น Fun Trail ไม่แยก
+    // 5K เป็น Fun Trail ไม่มี Race — ไม่ต้องวงเล็บ (Non-race) ทีมขอเอาออก
+    list: merged.map(({ first, last, km, nonRace }) => ({ first, last, km, nonRace: nonRace && !WHOLE.includes(km) })),
+    summary: countGroups(merged, KMS, WHOLE),
   };
 }

@@ -105,5 +105,118 @@
         "unknown": "Race, sex not given"
       }
     }
+  },
+  "schedule": {
+    "button": "Schedule",
+    "label": "Black Ivory Trail event schedule",
+    "title": "Event schedule",
+    "subtitle": "and BIB collection details",
+    "time": "Time",
+    "place": "Venue",
+    "days": [
+      {
+        "date": "20 November 2026",
+        "events": [
+          {
+            "name": "BIB & RACE KIT COLLECTION",
+            "tagline": "Collect your BIB and running shirt",
+            "time": "12:00–20:00",
+            "place": "Mueang Nan Provincial Police Station",
+            "listTitle": "What to bring",
+            "list": [
+              {
+                "lead": "All runners",
+                "text": "show your original ID card to our staff to collect your BIB and running shirt"
+              },
+              {
+                "lead": "Runners from the Black Elephant BIB exchange promotion",
+                "text": "show your Black Elephant BIB together with your original ID card"
+              },
+              {
+                "lead": "Collecting for someone else",
+                "text": "bring a copy of the runner's ID card, signed and certified as a true copy"
+              }
+            ]
+          },
+          {
+            "name": "NAN CITY RUN",
+            "tagline": "Run through Nan town together",
+            "placeLabel": "Meeting point",
+            "place": "Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)",
+            "timeline": [
+              {
+                "time": "15:30",
+                "text": "Meet at Mueang Nan Provincial Police Station"
+              },
+              {
+                "time": "16:00",
+                "text": "Opening, meet and greet, and group photos"
+              },
+              {
+                "time": "16:10",
+                "text": "Start from the road in front of the police station and discover the charm of Nan along the route, led by Cherry Khemupsorn"
+              },
+              {
+                "time": "18:00",
+                "text": "Orchestra performance by Paoparn Panya camp"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "date": "21 November 2026",
+        "events": [
+          {
+            "name": "BLACK IVORY TRAIL RUNNING",
+            "tagline": "Run into the nature of Mae Charim",
+            "place": "Mae Charim District Office, Nan",
+            "timeline": [
+              {
+                "time": "04:00",
+                "text": "Event area opens, runners welcome"
+              },
+              {
+                "time": "04:30–05:30",
+                "text": "Additional BIB collection"
+              },
+              {
+                "time": "05:30",
+                "text": "15-minute warm-up"
+              },
+              {
+                "time": "06:00",
+                "text": "12 KM start",
+                "km": "12K"
+              },
+              {
+                "time": "06:15",
+                "text": "8 KM start",
+                "km": "8K"
+              },
+              {
+                "time": "06:30",
+                "text": "5 KM start",
+                "km": "5K"
+              },
+              {
+                "time": "07:30",
+                "text": "onwards: results and award ceremony",
+                "sub": [
+                  "8 KM — presenter (to be confirmed)",
+                  "12 KM — presenter (to be confirmed)"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "MAE CHARIM LOCAL MARKET",
+            "tagline": "Pham Mae Charim market",
+            "time": "From 08:00 onwards",
+            "text": "Soak up the local atmosphere, browse goods and products from the Mae Charim community, and be part of an event that connects people, nature and community life"
+          }
+        ]
+      }
+    ]
   }
 }

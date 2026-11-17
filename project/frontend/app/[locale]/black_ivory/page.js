@@ -9,6 +9,7 @@ import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
+import ScheduleDialog from "@/components/blackIvory/ScheduleDialog";
 import { REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
 import { getBibData } from "@/lib/blackIvoryBib.mjs";
 import AutoRefresh from "@/components/blackIvory/AutoRefresh";
@@ -196,6 +197,22 @@ function BibButton({ entries, summary, className = "" }) {
   );
 }
 
+// ปุ่มขาวคู่กับปุ่มรายชื่อ เปิดกำหนดการกิจกรรม 20-21 พ.ย. (ขนาดตาม text-[..] ที่ส่งมา)
+function ScheduleButton({ className = "" }) {
+  const t = useTranslations("blackIvory.schedule");
+  return (
+    <ScheduleDialog
+      className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-white px-[1.3em] py-[0.55em] font-bold shadow-lg transition-transform hover:-translate-y-0.5 ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="2.5" strokeLinecap="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M3 10h18M8 3v4M16 3v4" />
+      </svg>
+      <span style={{ color: NAVY }}>{t("button")}</span>
+    </ScheduleDialog>
+  );
+}
+
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
 function LandscapeLayout({ bibs }) {
   return (
@@ -204,6 +221,7 @@ function LandscapeLayout({ bibs }) {
         <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
           <Logo sizes="20vw" className="w-[18.5vw]" />
           <BibButton entries={bibs?.list} summary={bibs?.summary} className="text-[1.6vw]" />
+          <ScheduleButton className="-mt-[0.6vw] text-[1.6vw]" />
         </div>
         <div className="ml-auto mr-[1.7vw] mt-[2.1vw] flex gap-[0.6vw] text-[1.1vw]">
           <HomeButton className="min-h-8 py-[0.4em]" />
@@ -254,6 +272,7 @@ function PortraitLayout({ bibs }) {
         <Distances className="rounded-[5vw] py-[4vw] text-[9vw]" />
       </DistanceDialog>
       <BibButton entries={bibs?.list} summary={bibs?.summary} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
+      <ScheduleButton className="mx-[6vw] mt-[3vw] py-[0.7em] text-[5vw]" />
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
         <SouvenirDialog className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">
