@@ -144,13 +144,14 @@ const Logo = ({ className, sizes }) => (
   />
 );
 
-const Sponsors = ({ className, sizes }) => (
+// ชุดสปอนเซอร์ล่าสุด (พ.ย. 2569) เป็น SVG สีขาว ตัดขอบจากไฟล์ทีมแล้ว — SVG ไม่ต้องผ่านตัวย่อรูปของ Next
+const Sponsors = ({ className }) => (
   <Image
-    src={`${BASE}/sponsorkmba.png`}
-    alt="ThaiBev, เมืองไทยประกันชีวิต, KBank, supported by AMMO"
-    width={5692}
-    height={668}
-    sizes={sizes}
+    src={`${BASE}/sponsors-2026-11.svg`}
+    alt="ThaiBev, เมืองไทยประกันชีวิต, KBank, Amazing Thailand, AMMO"
+    width={1020}
+    height={94}
+    unoptimized
     className={className}
   />
 );
@@ -271,7 +272,7 @@ function LandscapeLayout({ bibs }) {
         className="flex items-center justify-between gap-[3vw] px-[2.6vw] py-[1.4vw] pb-[max(1.4vw,env(safe-area-inset-bottom))]"
         style={{ backgroundColor: NAVY }}
       >
-        <Sponsors sizes="40vw" className="w-[39vw]" />
+        <Sponsors className="w-[39vw]" />
         <Contact className="w-[27vw]" />
         <EventDate className="text-right text-[2.6vw]" />
       </footer>
@@ -316,7 +317,7 @@ function PortraitLayout({ bibs }) {
       >
         <EventDate className="text-center text-[8vw]" />
         <Contact className="w-[80vw]" />
-        <Sponsors sizes="90vw" className="w-[88vw]" />
+        <Sponsors className="w-[88vw]" />
       </footer>
     </div>
   );

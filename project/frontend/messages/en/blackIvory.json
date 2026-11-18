@@ -129,8 +129,8 @@
                 "text": "show your original ID card to our staff to collect your BIB and running shirt"
               },
               {
-                "lead": "Runners from the Black Elephant BIB exchange promotion",
-                "text": "show your Black Elephant BIB together with your original ID card"
+                "lead": "Runners from the Nga Chang Dam BIB exchange promotion",
+                "text": "show your Nga Chang Dam BIB together with your original ID card"
               },
               {
                 "lead": "Collecting for someone else",
@@ -230,23 +230,23 @@
         "items": [
           {
             "q": "When is the City Run?",
-            "a": "Friday 20 Nov at 16:00, 4 km\nMeeting point: in front of the Nanthasippakarn Learning Center"
+            "a": "Friday 20 Nov, 4 km\nMeet at 15:30, start at 16:10\nMeeting point: Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)"
           },
           {
             "q": "Where and when do I collect my race pack?",
-            "a": "Round 1: Friday 20 Nov, 12:00–20:00\nMueang Nan Provincial Police Station"
+            "a": "Round 1: Friday 20 Nov, 12:00–20:00, Mueang Nan Provincial Police Station\nRound 2: Saturday 21 Nov, 04:30–05:30, Mae Charim District Office"
           },
           {
             "q": "What do I need to bring?",
-            "a": "Your ID card or passport"
+            "a": "Your original ID card\nRunners from the Nga Chang Dam BIB exchange promotion: show your Nga Chang Dam BIB together with your original ID card"
           },
           {
             "q": "Can someone collect it for me?",
-            "a": "Yes. They must show a copy of your ID card or passport to our staff"
+            "a": "Yes. Bring a copy of the runner's ID card, signed and certified as a true copy"
           },
           {
             "q": "What happens after the run?",
-            "a": "Meet and greet with Channel 3 actors, then an orchestra performance at Khuang Mueang square"
+            "a": "Meet and greet with Channel 3 actors\n18:00 orchestra performance by Paoparn Panya camp at Khuang Mueang square"
           }
         ]
       },
@@ -255,11 +255,11 @@
         "items": [
           {
             "q": "What time does each distance start?",
-            "a": "12K 06:00 | 8K 06:15 | 5K 06:30\nStart/finish: Mae Charim District Office"
+            "a": "12K 06:00 | 8K 06:15 | 5K 06:30\nStart/finish: Mae Charim District Office, Nan"
           },
           {
             "q": "Where can I park?",
-            "a": "At the Mae Charim District Office car park and the surrounding area"
+            "a": "At the Mae Charim District Office car park and the surrounding area\nand at Ban Na Kha School"
           },
           {
             "q": "Are there water stations?",
@@ -276,7 +276,7 @@
         "items": [
           {
             "q": "Can non-runners come along?",
-            "a": "Yes. Pham Mae Charim is free to enter\nSaturday 21 Nov, 08:00–12:00\nMae Charim District Office"
+            "a": "Yes. Pham Mae Charim is free to enter\nSaturday 21 Nov, from 08:00 onwards\nMae Charim District Office"
           },
           {
             "q": "Where do I get food coupons?",
