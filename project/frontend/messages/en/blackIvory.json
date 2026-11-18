@@ -287,6 +287,8 @@
     "kicker": "TAT x Black Ivory Trail",
     "title": "Participating shops",
     "soon": "The list of participating shops is coming soon. Check back on this page.",
-    "back": "Back to Black Ivory Trail"
+    "back": "Back to Black Ivory Trail",
+    "count": "{count} shops in Nan",
+    "map": "Open map"
   }
 }
