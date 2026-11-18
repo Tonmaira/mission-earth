@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   return pageMetadata({
     locale,
-    path: "/TATxBITT",
+    path: "/black_ivory/TATxBITT",
     image: "https://www.missionearth.co/blackIvory/bg-landscape.jpg",
     ...(COPY[locale] ?? COPY.th),
   });

@@ -6,7 +6,7 @@ import { localePath } from "@/lib/locale";
 
 const BASE = "/blackIvory";
 
-/* รายชื่อร้านค้าที่เข้าร่วม ททท. x Black Ivory Trail — URL นี้พิมพ์ลง QR ไปแล้ว ห้ามเปลี่ยน
+/* รายชื่อร้านค้าที่เข้าร่วม ททท. x Black Ivory Trail — URL นี้อยู่ใน QR ห้ามเปลี่ยน (/TATxBITT ตัวเก่าเด้งมาที่นี่ ดู next.config.mjs)
  * ตอนนี้ยังไม่มีรายชื่อ เป็นหน้า "เร็ว ๆ นี้" ไว้ก่อน ข้อความอยู่ใน messages/{th,en}/blackIvory.json → shops */
 function Shops() {
   const t = useTranslations("blackIvory.shops");

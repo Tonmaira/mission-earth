@@ -236,12 +236,12 @@ function InfoButton({ kind, className = "" }) {
   );
 }
 
-// ปุ่มเล็กใต้ชุดของที่ระลึก ไปหน้ารายชื่อร้านค้าที่เข้าร่วม ททท. (/TATxBITT) (ขนาดตาม text-[..] ที่ส่งมา)
+// ปุ่มเล็กใต้ชุดของที่ระลึก ไปหน้ารายชื่อร้านค้าที่เข้าร่วม ททท. (/black_ivory/TATxBITT) (ขนาดตาม text-[..] ที่ส่งมา)
 function ShopsButton({ className = "" }) {
   const t = useTranslations("blackIvory.shops");
   return (
     <Link
-      href={localePath("/TATxBITT", useLocale())}
+      href={localePath("/black_ivory/TATxBITT", useLocale())}
       className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-white px-[1em] py-[0.35em] font-semibold shadow-lg transition-transform hover:-translate-y-0.5 ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
