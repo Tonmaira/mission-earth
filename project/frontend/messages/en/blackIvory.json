@@ -201,11 +201,7 @@
               },
               {
                 "time": "07:30",
-                "text": "onwards: results and award ceremony",
-                "sub": [
-                  "8 KM — presenter (to be confirmed)",
-                  "12 KM — presenter (to be confirmed)"
-                ]
+                "text": "onwards: results and award ceremony"
               }
             ]
           },
@@ -272,15 +268,15 @@
         ]
       },
       {
-        "title": "Pham Mae Charim & food coupons",
+        "title": "Pham Mae Charim & Non-race",
         "items": [
           {
             "q": "Can non-runners come along?",
             "a": "Yes. Pham Mae Charim is free to enter\nSaturday 21 Nov, from 08:00 onwards\nMae Charim District Office"
           },
           {
-            "q": "Where do I get food coupons?",
-            "a": "They are in every runner's race pack"
+            "q": "What does Non-race mean?",
+            "a": "You join the runs on both days but don’t compete for prizes\nsuch as prize money, trophies and the Finisher visor"
           }
         ]
       }
