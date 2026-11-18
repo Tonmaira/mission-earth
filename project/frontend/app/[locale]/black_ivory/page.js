@@ -236,6 +236,22 @@ function InfoButton({ kind, className = "" }) {
   );
 }
 
+// ปุ่มเล็กใต้ชุดของที่ระลึก ไปหน้ารายชื่อร้านค้าที่เข้าร่วม ททท. (/TATxBITT) (ขนาดตาม text-[..] ที่ส่งมา)
+function ShopsButton({ className = "" }) {
+  const t = useTranslations("blackIvory.shops");
+  return (
+    <Link
+      href={localePath("/TATxBITT", useLocale())}
+      className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-white px-[1em] py-[0.35em] font-semibold shadow-lg transition-transform hover:-translate-y-0.5 ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
+        <path d="M4 10v10h16V10M3 4h18l-1 6H4L3 4zM10 20v-5h4v5" />
+      </svg>
+      <span style={{ color: NAVY }}>{t("button")}</span>
+    </Link>
+  );
+}
+
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
 function LandscapeLayout({ bibs }) {
   return (
@@ -261,10 +277,13 @@ function LandscapeLayout({ bibs }) {
       <div className="flex flex-1 items-end justify-end gap-[1.7vw] px-[1.7vw] pb-[1.4vw] pt-[2vw]">
         {/* ปุ่มเต็มจอชิดซ้ายล่าง ตรงที่โปสเตอร์ปล่อยว่างให้เห็นวิดีโอ */}
         <FullscreenButton className="mr-auto ml-[0.9vw] h-[3vw] min-h-9 w-[3vw] min-w-9" />
-        <SouvenirDialog className="group flex w-[22vw] flex-col items-center gap-[0.6vw] text-[1vw]">
-          <Prizes sizes="22vw" className="w-full transition-transform group-hover:-translate-y-1" />
-          <SouvenirHint />
-        </SouvenirDialog>
+        <div className="flex w-[22vw] flex-col items-center gap-[0.6vw] text-[1vw]">
+          <SouvenirDialog className="group flex w-full flex-col items-center gap-[0.6vw]">
+            <Prizes sizes="22vw" className="w-full transition-transform group-hover:-translate-y-1" />
+            <SouvenirHint />
+          </SouvenirDialog>
+          <ShopsButton />
+        </div>
         <ApplyCard className="w-[15vw] text-[1.5vw]" />
       </div>
 
@@ -304,10 +323,13 @@ function PortraitLayout({ bibs }) {
       </div>
 
       <div className="flex flex-1 flex-col items-center justify-end gap-[5vw] px-[6vw] pb-[6vw] pt-[10vw]">
-        <SouvenirDialog className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">
-          <Prizes sizes="85vw" className="w-full" />
-          <SouvenirHint />
-        </SouvenirDialog>
+        <div className="flex w-[85vw] flex-col items-center gap-[2vw] text-[3.4vw]">
+          <SouvenirDialog className="flex w-full flex-col items-center gap-[2vw]">
+            <Prizes sizes="85vw" className="w-full" />
+            <SouvenirHint />
+          </SouvenirDialog>
+          <ShopsButton />
+        </div>
         <ApplyCard className="w-full text-[5.5vw]" />
       </div>
 

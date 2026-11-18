@@ -118,10 +118,10 @@
         "date": "20 November 2026",
         "events": [
           {
-            "name": "BIB & RACE KIT COLLECTION",
+            "name": "BIB & RACE PACK COLLECTION",
             "tagline": "Collect your BIB and running shirt",
             "time": "12:00–20:00",
-            "place": "Mueang Nan Provincial Police Station",
+            "place": "In front of Mueang Nan Provincial Police Station",
             "listTitle": "What to bring",
             "list": [
               {
@@ -129,8 +129,8 @@
                 "text": "show your original ID card to our staff to collect your BIB and running shirt"
               },
               {
-                "lead": "Runners from the Nga Chang Dam BIB exchange promotion",
-                "text": "show your Nga Chang Dam BIB together with your original ID card"
+                "lead": "Runners from the BIB promotion who exchanged a Nga Chang Dam BIB",
+                "text": "show your BLACK IVORY TRAIL THAILAND BIB together with your original ID card to collect your shirt"
               },
               {
                 "lead": "Collecting for someone else",
@@ -142,11 +142,11 @@
             "name": "NAN CITY RUN",
             "tagline": "Run through Nan town together",
             "placeLabel": "Meeting point",
-            "place": "Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)",
+            "place": "In front of Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)",
             "timeline": [
               {
                 "time": "15:30",
-                "text": "Meet at Mueang Nan Provincial Police Station"
+                "text": "Meet in front of Mueang Nan Provincial Police Station"
               },
               {
                 "time": "16:00",
@@ -158,7 +158,7 @@
               },
               {
                 "time": "18:00",
-                "text": "Orchestra performance by Paoparn Panya camp"
+                "text": "Meet Channel 3 actors and enjoy an orchestra performance by Paoparn Panya camp"
               }
             ]
           }
@@ -173,16 +173,12 @@
             "place": "Mae Charim District Office, Nan",
             "timeline": [
               {
-                "time": "04:00",
-                "text": "Event area opens, runners welcome"
-              },
-              {
-                "time": "04:30–05:30",
-                "text": "Additional BIB collection"
+                "time": "04:00–05:30",
+                "text": "Base Camp opens, runners welcome"
               },
               {
                 "time": "05:30",
-                "text": "15-minute warm-up"
+                "text": "Warm-up and getting ready"
               },
               {
                 "time": "06:00",
@@ -200,7 +196,7 @@
                 "km": "5K"
               },
               {
-                "time": "07:30",
+                "time": "08:30",
                 "text": "onwards: results and award ceremony"
               }
             ]
@@ -226,7 +222,7 @@
         "items": [
           {
             "q": "When is the City Run?",
-            "a": "Friday 20 Nov, 4 km\nMeet at 15:30, start at 16:10\nMeeting point: Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)"
+            "a": "Friday 20 Nov, 4 km\nMeet at 15:30, start at 16:10\nMeeting point: in front of Mueang Nan Provincial Police Station (opposite the Nanthasippakarn Learning Center)"
           },
           {
             "q": "Where and when do I collect my race pack?",
@@ -234,7 +230,7 @@
           },
           {
             "q": "What do I need to bring?",
-            "a": "Your original ID card\nRunners from the Nga Chang Dam BIB exchange promotion: show your Nga Chang Dam BIB together with your original ID card"
+            "a": "Your original ID card\nRunners from the BIB promotion who exchanged a Nga Chang Dam BIB: show your BLACK IVORY TRAIL THAILAND BIB together with your original ID card to collect your shirt"
           },
           {
             "q": "Can someone collect it for me?",
@@ -285,5 +281,12 @@
     "moreText": "Send us a message",
     "line": "LINE missionearth",
     "bye": "See you in Nan!"
+  },
+  "shops": {
+    "button": "TAT participating shops",
+    "kicker": "TAT x Black Ivory Trail",
+    "title": "Participating shops",
+    "soon": "The list of participating shops is coming soon. Check back on this page.",
+    "back": "Back to Black Ivory Trail"
   }
 }
