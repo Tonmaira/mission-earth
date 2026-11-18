@@ -17,8 +17,11 @@ const THEMES = {
  *
  * ใช้ <dialog> ของเบราว์เซอร์: ลอยอยู่เหนือทุกอย่าง (รวมวิดีโอ fixed), กด Esc ปิดได้,
  * โฟกัสคีย์บอร์ดวนอยู่ข้างในให้เอง ไม่ต้องเขียนเอง
- * ล็อกการเลื่อนหน้าหลังไว้ระหว่างเปิด จะได้ไม่เลื่อนทะลุไปหน้าข้างหลังบนมือถือ */
-export default function Popup({ children, content, label, className = "", theme = "light", width = "max-w-[880px]" }) {
+ * ล็อกการเลื่อนหน้าหลังไว้ระหว่างเปิด จะได้ไม่เลื่อนทะลุไปหน้าข้างหลังบนมือถือ
+ *
+ * bare = ไม่มีกล่อง/หัวกรมท่า/ปุ่มปิด — content ลอยบนพื้นมืดเอง (เช่นแผนที่ที่เป็นอาร์ตเวิร์กครบในตัว)
+ * content เป็นฟังก์ชัน (close) => ... ได้ ให้ content วางปุ่มปิดเองตรงที่ไม่ทับอาร์ตเวิร์ก */
+export default function Popup({ children, content, label, className = "", theme = "light", width = "max-w-[880px]", bare = false }) {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
   const look = THEMES[theme];
@@ -55,9 +58,14 @@ export default function Popup({ children, content, label, className = "", theme 
         // กดพื้นมืดรอบกล่อง = ปิด (คลิกที่ตัว dialog เองคือคลิกนอกเนื้อหา)
         onClick={(e) => e.target === e.currentTarget && setOpen(false)}
         aria-label={label}
-        className={`m-auto max-h-[92dvh] w-[calc(100%-1.5rem)] overflow-hidden rounded-3xl p-0 backdrop:bg-black/70 backdrop:backdrop-blur-sm ${width}`}
+        className={
+          bare
+            ? "m-auto max-h-[96dvh] max-w-[calc(100%-1.5rem)] overflow-visible bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+            : `m-auto max-h-[92dvh] w-[calc(100%-1.5rem)] overflow-hidden rounded-3xl p-0 backdrop:bg-black/70 backdrop:backdrop-blur-sm ${width}`
+        }
       >
-        {open && (
+        {open && bare && (typeof content === "function" ? content(() => setOpen(false)) : content)}
+        {open && !bare && (
           <div
             className="max-h-[92dvh] overflow-y-auto bg-cover bg-center"
             style={{ backgroundImage: `url(${BASE}/${look.bg})`, color: look.color }}

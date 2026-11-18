@@ -211,6 +211,13 @@
       }
     ]
   },
+  "map": {
+    "button": "ดูเส้นทาง",
+    "label": "แผนที่เส้นทาง Black Ivory Trail",
+    "overview": "ภาพรวม",
+    "alt": "แผนที่เส้นทาง Black Ivory Trail — {name}",
+    "full": "เปิดรูปเต็ม (ซูมดูได้)"
+  },
   "faq": {
     "button": "FAQ",
     "label": "คำถามที่พบบ่อย Black Ivory Trail",

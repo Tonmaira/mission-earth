@@ -11,6 +11,7 @@ import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
 import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
 import ScheduleDialog from "@/components/blackIvory/ScheduleDialog";
 import FaqDialog from "@/components/blackIvory/FaqDialog";
+import MapDialog from "@/components/blackIvory/MapDialog";
 import { REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
 import { getBibData } from "@/lib/blackIvoryBib.mjs";
 import AutoRefresh from "@/components/blackIvory/AutoRefresh";
@@ -59,6 +60,24 @@ function Distances({ className = "" }) {
         </div>
       ))}
     </div>
+  );
+}
+
+// แถบ "ดูเส้นทาง" ต่อใต้แถบระยะ เปิด pop-up แผนที่ (ขนาดตาม text-[..] ที่ส่งมา)
+function RouteButton({ className = "" }) {
+  const t = useTranslations("blackIvory.map");
+  return (
+    <MapDialog
+      className={`flex w-full items-center justify-center gap-[0.5em] whitespace-nowrap border-t border-white/25 bg-[#0b2540] font-semibold text-white transition-[filter] hover:brightness-125 ${className}`}
+    >
+      {/* ใส่ width/height ที่ตัว svg ด้วย — ถ้า CSS โหลดไม่ทัน svg จะไม่ขยายเต็มกล่อง */}
+      <svg viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden="true">
+        <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
+        <circle cx="12" cy="9.5" r="2.5" />
+      </svg>
+      {t("button")}
+      <span aria-hidden="true">›</span>
+    </MapDialog>
   );
 }
 
@@ -260,7 +279,7 @@ function LandscapeLayout({ bibs }) {
         <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
           <Logo sizes="20vw" className="w-[18.5vw]" />
           <BibButton entries={bibs?.list} summary={bibs?.summary} className="text-[1.6vw]" />
-          <div className="-mt-[0.6vw] flex gap-[0.8vw] text-[1.6vw]">
+          <div className="-mt-[0.6vw] flex gap-[0.6vw] text-[1.2vw]">
             <InfoButton kind="schedule" />
             <InfoButton kind="faq" />
           </div>
@@ -269,9 +288,14 @@ function LandscapeLayout({ bibs }) {
           <HomeButton className="min-h-8 py-[0.4em]" />
           <LangToggle className="min-h-8 py-[0.4em]" />
         </div>
-        <DistanceDialog className="block transition-[filter] hover:brightness-125">
-          <Distances className="w-[37.5vw] rounded-bl-[5vw] py-[1.4vw] pl-[3vw] pr-[1vw] text-[3.7vw]" />
-        </DistanceDialog>
+        {/* ขนาดขั้นต่ำ 28px — จอแนวนอนเล็ก (มือถือหมุนนอน) จะได้ไม่เล็กจนอ่านไม่ออก
+            กว้าง/ขอบเป็น em ให้โตตามตัวหนังสือ ชื่อระยะจะไม่ตกบรรทัด */}
+        <div className="w-[10.4em] overflow-hidden rounded-bl-[1.4em] text-[max(2.8vw,28px)]">
+          <DistanceDialog className="block w-full transition-[filter] hover:brightness-125">
+            <Distances className="py-[0.4em] pl-[0.85em] pr-[0.3em]" />
+          </DistanceDialog>
+          <RouteButton className="py-[0.6em] pl-[0.85em] text-[0.4em]" />
+        </div>
       </header>
 
       <div className="flex flex-1 items-end justify-end gap-[1.7vw] px-[1.7vw] pb-[1.4vw] pt-[2vw]">
@@ -313,9 +337,12 @@ function PortraitLayout({ bibs }) {
         </div>
       </header>
 
-      <DistanceDialog className="mx-[6vw] mt-[6vw] block">
-        <Distances className="rounded-[5vw] py-[4vw] text-[9vw]" />
-      </DistanceDialog>
+      <div className="mx-[6vw] mt-[6vw] overflow-hidden rounded-[5vw]">
+        <DistanceDialog className="block w-full">
+          <Distances className="py-[4vw] text-[9vw]" />
+        </DistanceDialog>
+        <RouteButton className="py-[3vw] text-[4.2vw]" />
+      </div>
       <BibButton entries={bibs?.list} summary={bibs?.summary} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
       <div className="mx-[6vw] mt-[3vw] grid grid-cols-2 gap-[3vw] text-[5vw]">
         <InfoButton kind="schedule" className="py-[0.7em]" />

@@ -211,6 +211,13 @@
       }
     ]
   },
+  "map": {
+    "button": "View route map",
+    "label": "Black Ivory Trail route maps",
+    "overview": "Overview",
+    "alt": "Black Ivory Trail route map — {name}",
+    "full": "Open full size (zoomable)"
+  },
   "faq": {
     "button": "FAQ",
     "label": "Black Ivory Trail frequently asked questions",
