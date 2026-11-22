@@ -8,20 +8,13 @@ import SouvenirDialog from "@/components/blackIvory/SouvenirDialog";
 import DistanceDialog from "@/components/blackIvory/DistanceDialog";
 import LangToggle from "@/components/blackIvory/LangToggle";
 import SocialQrDialog from "@/components/blackIvory/SocialQrDialog";
-import BibSearchDialog from "@/components/blackIvory/BibSearchDialog";
 import ScheduleDialog from "@/components/blackIvory/ScheduleDialog";
 import FaqDialog from "@/components/blackIvory/FaqDialog";
 import MapDialog from "@/components/blackIvory/MapDialog";
-import { REVALIDATE } from "@/lib/blackIvoryRunners.mjs";
-import { getBibData } from "@/lib/blackIvoryBib.mjs";
-import AutoRefresh from "@/components/blackIvory/AutoRefresh";
 import { localePath } from "@/lib/locale";
 
 const BASE = "/blackIvory";
 const NAVY = "#0b2540";
-// ปิดรับสมัครผ่านฟอร์มแล้ว — คนที่สนใจให้ทักเจ้าหน้าที่ทาง LINE ของ Mission Earth (ลิงก์เดียวกับไอคอน LINE ด้านล่าง)
-const LINE_URL = "https://lin.ee/MDN9uJ4";
-const LINE_GREEN = "#06c755";
 
 const DISTANCES = [
   { km: "5K", label: ["FUN TRAIL"] },
@@ -81,29 +74,19 @@ function RouteButton({ className = "" }) {
   );
 }
 
-// กล่องแทน QR สมัครเดิม — กดแล้วเปิด LINE คุยกับเจ้าหน้าที่
-function ApplyCard({ className = "" }) {
-  const t = useTranslations("blackIvory.apply");
+// งานจบแล้ว — กล่องขอบคุณวางแทนที่กล่องสมัคร (ตำแหน่งเดิม)
+function ThanksCard({ className = "" }) {
+  const t = useTranslations("blackIvory.thanks");
   return (
-    <a
-      href={LINE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`block overflow-hidden rounded-[1.2em] text-center shadow-lg transition-transform hover:-translate-y-1 ${className}`}
-    >
-      <div className="py-[0.5em] font-bold text-white" style={{ backgroundColor: NAVY }}>
+    <div className={`overflow-hidden rounded-[1.2em] text-center shadow-lg ${className}`}>
+      <div className="px-[0.6em] py-[0.5em] font-bold leading-tight text-white" style={{ backgroundColor: NAVY }}>
         {t("title")}
       </div>
-      <div className="bg-white px-[0.6em] py-[0.7em]" style={{ color: NAVY }}>
-        <div className="text-[0.75em] font-semibold">{t("contact")}</div>
-        <div
-          className="mt-[0.5em] rounded-full py-[0.35em] text-[0.8em] font-bold text-white"
-          style={{ backgroundColor: LINE_GREEN }}
-        >
-          {t("line")}
-        </div>
+      <div className="bg-white px-[0.6em] py-[0.6em]" style={{ color: NAVY }}>
+        <div className="text-[0.75em] font-semibold">{t("seeYou")}</div>
+        <div className="text-[1.8em] font-extrabold leading-none">2027</div>
       </div>
-    </a>
+    </div>
   );
 }
 
@@ -199,26 +182,7 @@ function SouvenirHint() {
   );
 }
 
-// ปุ่มแดงเด่น ๆ เปิดตารางรายชื่อนักวิ่ง — ให้คนที่สมัครแล้วเข้ามาเช็คชื่อตัวเองได้ง่าย
-function BibButton({ entries, summary, className = "" }) {
-  const t = useTranslations("blackIvory.bib");
-  if (!entries?.length) return null;
-  return (
-    <BibSearchDialog
-      entries={entries}
-      summary={summary}
-      className={`flex items-center justify-center gap-[0.5em] whitespace-nowrap rounded-full bg-[#e5322d] px-[1.3em] py-[0.55em] font-bold text-white shadow-lg transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-110 ${className}`}
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="h-[1.1em] w-[1.1em]" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" />
-        <path d="M20 20l-4-4" />
-      </svg>
-      {t("button", { count: entries.length.toLocaleString("en-US") })}
-    </BibSearchDialog>
-  );
-}
-
-// ปุ่มขาวใต้ปุ่มรายชื่อ เปิดกำหนดการ / FAQ (ขนาดตาม text-[..] ที่ส่งมา)
+// ปุ่มขาวใต้โลโก้ เปิดกำหนดการ / FAQ (ขนาดตาม text-[..] ที่ส่งมา)
 const INFO = {
   schedule: {
     Dialog: ScheduleDialog,
@@ -272,14 +236,13 @@ function ShopsButton({ className = "" }) {
 }
 
 /* จอแนวนอน — วางตามโปสเตอร์ (อ้างอิงแบบกว้าง 1174px: px ÷ 11.74 = vw) */
-function LandscapeLayout({ bibs }) {
+function LandscapeLayout() {
   return (
     <div className="flex min-h-dvh flex-col portrait:hidden">
       <header className="flex items-start justify-between">
         <div className="ml-[2.6vw] mt-[2.1vw] flex flex-col items-start gap-[1.6vw]">
           <Logo sizes="20vw" className="w-[18.5vw]" />
-          <BibButton entries={bibs?.list} summary={bibs?.summary} className="text-[1.6vw]" />
-          <div className="-mt-[0.6vw] flex gap-[0.6vw] text-[1.2vw]">
+          <div className="flex gap-[0.6vw] text-[1.2vw]">
             <InfoButton kind="schedule" />
             <InfoButton kind="faq" />
           </div>
@@ -308,7 +271,7 @@ function LandscapeLayout({ bibs }) {
           </SouvenirDialog>
           <ShopsButton />
         </div>
-        <ApplyCard className="w-[15vw] text-[1.5vw]" />
+        <ThanksCard className="w-[15vw] text-[1.5vw]" />
       </div>
 
       <footer
@@ -324,8 +287,8 @@ function LandscapeLayout({ bibs }) {
 }
 
 /* จอแนวตั้ง (มือถือ) — ไม่มีแบบใน Figma จัดเรียงลงมาเป็นแนวเดียว
-   กล่องสมัครเปลี่ยนเป็นปุ่ม LINE เต็มกว้าง */
-function PortraitLayout({ bibs }) {
+   กล่องขอบคุณเต็มกว้าง */
+function PortraitLayout() {
   return (
     <div className="flex min-h-dvh flex-col landscape:hidden">
       <header className="flex items-start justify-between px-[6vw] pt-[max(8vw,env(safe-area-inset-top))]">
@@ -343,8 +306,7 @@ function PortraitLayout({ bibs }) {
         </DistanceDialog>
         <RouteButton className="py-[3vw] text-[4.2vw]" />
       </div>
-      <BibButton entries={bibs?.list} summary={bibs?.summary} className="mx-[6vw] mt-[4vw] py-[0.7em] text-[5vw]" />
-      <div className="mx-[6vw] mt-[3vw] grid grid-cols-2 gap-[3vw] text-[5vw]">
+      <div className="mx-[6vw] mt-[4vw] grid grid-cols-2 gap-[3vw] text-[5vw]">
         <InfoButton kind="schedule" className="py-[0.7em]" />
         <InfoButton kind="faq" className="py-[0.7em]" />
       </div>
@@ -357,7 +319,7 @@ function PortraitLayout({ bibs }) {
           </SouvenirDialog>
           <ShopsButton />
         </div>
-        <ApplyCard className="w-full text-[5.5vw]" />
+        <ThanksCard className="w-full text-[5.5vw]" />
       </div>
 
       <footer
@@ -376,14 +338,12 @@ export default async function BlackIvoryPage({ params }) {
   // ส่ง locale ให้ next-intl เอง ไม่งั้นตอน build หน้าไว้ล่วงหน้าทั้ง /th และ /en จะได้ภาษาเริ่มต้นทั้งคู่
   const { locale } = await params;
   setRequestLocale(locale);
-  const bibs = await getBibData();
   return (
     <>
       <BackgroundVideo />
-      {bibs && <AutoRefresh everyMs={REVALIDATE * 1000} />}
       <main className="relative z-10">
-        <LandscapeLayout bibs={bibs} />
-        <PortraitLayout bibs={bibs} />
+        <LandscapeLayout />
+        <PortraitLayout />
       </main>
     </>
   );
